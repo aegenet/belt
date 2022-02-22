@@ -47,7 +47,7 @@ describe('odeep-get', () => {
         oDeepGet.getValue(ctx, ['propOne', 'propTwo']);
         throw new Error('Must failed');
       } catch (error) {
-        assert.strictEqual(error.message, "Cannot read property 'propTwo' of undefined");
+        assert.ok(error.message.startsWith('Cannot read prop'));
       }
     });
 
