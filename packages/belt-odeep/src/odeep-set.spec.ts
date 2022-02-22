@@ -48,7 +48,7 @@ describe('odeep-set', () => {
         oDeepSet.setValue(ctx, ['propOne', 'propTwo'], 1);
         throw new Error('Must failed.');
       } catch (error) {
-        assert.strictEqual(error.message, "Cannot set property 'propTwo' of undefined");
+        assert.ok(error.message.startsWith('Cannot set proper'));
       }
     });
 
