@@ -1,0 +1,21 @@
+[{
+  "name": "belt-crc8",
+  "links": [],
+  "publish": true
+}, {
+  "name": "belt-crc32",
+  "links": [],
+  "publish": true
+}, {
+  "name": "belt-promise",
+  "links": [],
+  "publish": true
+}, {
+  "name": "belt-odeep",
+  "links": [],
+  "publish": true
+}, {
+  "name": "belt-hook",
+  "links": [],
+  "publish": true
+}]

@@ -1,0 +1,141 @@
+{
+  "name": "belt",
+  "version": "999.0.0",
+  "description": "Belt monorepo",
+  "main": "index.js",
+  "author": "Alexandre Genet",
+  "license": "UNLICENSED",
+  "nyc": {
+    "report-dir": "./coverage",
+    "temp-dir": "./.nyc_output",
+    "sourceMap": true,
+    "instrument": true
+  },
+  "commitlint": {
+    "rules": {
+      "body-leading-blank": [
+        1,
+        "always"
+      ],
+      "footer-leading-blank": [
+        1,
+        "always"
+      ],
+      "header-max-length": [
+        2,
+        "always",
+        100
+      ],
+      "scope-case": [
+        2,
+        "always",
+        "lower-case"
+      ],
+      "subject-case": [
+        2,
+        "never",
+        [
+          "sentence-case",
+          "start-case",
+          "pascal-case",
+          "upper-case"
+        ]
+      ],
+      "subject-empty": [
+        2,
+        "never"
+      ],
+      "subject-full-stop": [
+        2,
+        "never",
+        "."
+      ],
+      "type-case": [
+        2,
+        "always",
+        "lower-case"
+      ],
+      "type-empty": [
+        2,
+        "never"
+      ],
+      "type-enum": [
+        2,
+        "always",
+        [
+          "build",
+          "chore",
+          "ci",
+          "docs",
+          "feat",
+          "fix",
+          "perf",
+          "refactor",
+          "revert",
+          "style",
+          "test"
+        ]
+      ]
+    }
+  },
+  "private": "true",
+  "scripts": {
+    "clean": "node ./.build/build-flow.js clean",
+    "dependencies": "node ./.build/build-flow.js dependencies",
+    "lint": "node ./.build/build-flow.js lint",
+    "build": "node ./.build/build-flow.js build",
+    "publish": "node ./.build/build-flow.js publish",
+    "upgrade": "yarn cache clean && node ./.build/build-flow.js upgrade",
+    "local": "node ./.build/build-flow.js local",
+    "local:publish": "node ./.build/build-flow.js localPublish",
+    "delete": "node ./.build/build-flow.js deleteNodeModules",
+    "test": "node ./.build/build-flow.js test",
+    "build-n-test": "yarn run cover:clean && yarn run lint && yarn run build && yarn run test && yarn run cover",
+    "codecov": "./node_modules/.bin/codecov",
+    "cover:clean": "rimraf ./coverage/ && rimraf ./.nyc_output/",
+    "cover:merge": "node ./.build/coverage.merge.js",
+    "cover:report": "nyc report -t ./.nyc_output/ --reporter html --reporter text-summary",
+    "cover": "yarn run cover:clean && yarn run cover:merge && yarn run cover:report",
+    "generate:readme": "node ./packages/rql-tools-samples-generator/build/cli --dataFile \"./packages/rql-app-playground/public/files/data.yml\" --schemaFile \"./packages/rql-app-playground/public/files/schema.yml\" --rqlFile \"./packages/rql-app-playground/public/files/read.yml\" --rqlFile \"./packages/rql-app-playground/public/files/update.yml\" --rqlFile \"./packages/rql-app-playground/public/files/create.yml\" --rqlFile \"./packages/rql-app-playground/public/files/delete.yml\" --rqlFile \"./packages/rql-app-playground/public/files/functions.yml\" --rqlFile \"./packages/rql-app-playground/public/files/date.yml\" --rqlFile \"./packages/rql-app-playground/public/files/math.yml\" --outDir \"./docs/\" --ejsFile \"./.assets/docs/samples.md.ejs\" "
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^15.0.0",
+    "@types/jest": "^27.4.0",
+    "@types/mocha": "^9.1.0",
+    "@types/node": "16",
+    "@typescript-eslint/eslint-plugin": "^5.5.0",
+    "@typescript-eslint/parser": "^5.5.0",
+    "bundle-declarations-webpack-plugin": "^2.2.2",
+    "codecov": "^3.8.3",
+    "copy-webpack-plugin": "^10.2.0",
+    "cross-env": "^7.0.3",
+    "dotenv-webpack": "^7.0.3",
+    "dts-bundle-generator": "^6.1.0",
+    "eslint": "^8.3.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "global-jsdom": "^8.4.0",
+    "html-webpack-plugin": "^5.5.0",
+    "http-server": "^14.1.0",
+    "jest": "^27.3.1",
+    "jest-transform-stub": "^2.0.0",
+    "json": "^11.0.0",
+    "mocha": "^9.2.0",
+    "nyc": "^15.1.0",
+    "pre-commit": "^1.2.2",
+    "prettier": "^2.5.1",
+    "rimraf": "^3.0.2",
+    "source-map-loader": "^3.0.0",
+    "source-map-support": "^0.5.21",
+    "ts-jest": "^27.1.2",
+    "ts-loader": "^9.2.6",
+    "ts-mocha": "^9.0.2",
+    "typescript": "^4.5.2",
+    "webpack": "^5.64.2",
+    "webpack-bundle-analyzer": "^4.5.0",
+    "webpack-cli": "^4.9.1",
+    "webpack-dev-server": "^4.5.0",
+    "webpack-node-externals": "^3.0.0",
+    "webpack-shell-plugin-next": "^2.2.2"
+  }
+}

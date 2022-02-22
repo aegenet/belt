@@ -1,0 +1,42 @@
+{
+	"folders": [
+	  {
+      "name": "CRC8",
+      "path": "./packages/belt-crc8"
+    },
+    {
+      "name": "CRC32",
+      "path": "./packages/belt-crc32"
+    },
+    {
+      "name": "Promise",
+      "path": "./packages/belt-promise"
+    },
+    {
+      "name": "Object Deep",
+      "path": "./packages/belt-odeep"
+    },
+    {
+      "name": "Hook",
+      "path": "./packages/belt-hook"
+    },
+    {
+      "name": "Root",
+      "path": "."
+    }
+  ],
+  "settings": {
+    "workbench.editor.enablePreviewFromQuickOpen": false,
+    "workbench.editor.enablePreview": false,
+    "telemetry.enableTelemetry": false,
+    "telemetry.enableCrashReporter": false,
+    "files.exclude": {
+      "**/coverage": true,
+      "**/node_modules": true,
+      "**/.nyc_output": true,
+      "**/dist": true,
+      "**/scripts/" : true,
+      "**/build/" : true
+    }
+  }
+}
