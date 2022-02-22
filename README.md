@@ -1,5 +1,5 @@
 [![Build Status](https://github.com/aegenet/belt/actions/workflows/ci.yml/badge.svg)](https://github.com/aegenet/belt/actions)
-[![codecov](https://codecov.io/gh/aegenet/belt/branch/master/graph/badge.svg?token=1C2ZAPPYAV)](https://codecov.io/gh/aegenet/belt)
+[![codecov](https://codecov.io/gh/aegenet/belt/branch/master/graph/badge.svg?token=XWMNA00XFY)](https://codecov.io/gh/aegenet/belt)
 <br />
 
 # Belt monorepo
@@ -16,11 +16,11 @@
 
 
 # Coverage
-[![codecov](https://codecov.io/gh/aegenet/belt/branch/master/graph/badge.svg?token=1C2ZAPPYAV)](https://codecov.io/gh/aegenet/belt)
+[![codecov](https://codecov.io/gh/aegenet/belt/branch/master/graph/badge.svg?token=XWMNA00XFY)](https://codecov.io/gh/aegenet/belt)
 
-![Coverage sunburst](https://codecov.io/gh/aegenet/belt/branch/master/graphs/sunburst.svg?token=1C2ZAPPYAV)
+![Coverage sunburst](https://codecov.io/gh/aegenet/belt/branch/master/graphs/sunburst.svg?token=XWMNA00XFY)
 
-![Coverage tree](https://codecov.io/gh/aegenet/belt/branch/master/graphs/tree.svg?token=1C2ZAPPYAV)
+![Coverage tree](https://codecov.io/gh/aegenet/belt/branch/master/graphs/tree.svg?token=XWMNA00XFY)
 
 
 # License
