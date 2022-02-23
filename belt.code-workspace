@@ -25,6 +25,10 @@
       "path": "./packages/belt-ofields"
     },
     {
+      "name": "Object Clone",
+      "path": "./packages/belt-oclone"
+    },
+    {
       "name": "Hook",
       "path": "./packages/belt-hook"
     },
