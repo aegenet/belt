@@ -35,6 +35,10 @@
   "links": [],
   "publish": true
 }, {
+  "name": "belt-array-stats",
+  "links": [],
+  "publish": true
+}, {
   "name": "belt-hook",
   "links": [],
   "publish": true

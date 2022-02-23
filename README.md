@@ -19,6 +19,7 @@
 | [@aegenet/belt-interpolation](./packages/belt-interpolation/README.md) | String interpolation |
 | [@aegenet/belt-array-to-obj](./packages/belt-array-to-obj/README.md) | Array to object |
 | [@aegenet/belt-array-duplicates](./packages/belt-array-duplicates/README.md) | Strip duplicates from array / get duplicates of an array |
+| [@aegenet/belt-array-stats](./packages/belt-array-stats/README.md) | Get stats from array |
 
 
 # Coverage
