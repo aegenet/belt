@@ -15,6 +15,14 @@
   "links": [],
   "publish": true
 }, {
+  "name": "belt-odiff",
+  "links": [],
+  "publish": true
+}, {
+  "name": "belt-ofields",
+  "links": [],
+  "publish": true
+}, {
   "name": "belt-hook",
   "links": [],
   "publish": true

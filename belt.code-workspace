@@ -17,6 +17,14 @@
       "path": "./packages/belt-odeep"
     },
     {
+      "name": "Object Diff",
+      "path": "./packages/belt-odiff"
+    },
+    {
+      "name": "Object Fields",
+      "path": "./packages/belt-ofields"
+    },
+    {
       "name": "Hook",
       "path": "./packages/belt-hook"
     },
