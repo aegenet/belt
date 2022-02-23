@@ -21,6 +21,10 @@
       "path": "./packages/belt-hook"
     },
     {
+      "name": "Interpolation",
+      "path": "./packages/belt-interpolation"
+    },
+    {
       "name": "Root",
       "path": "."
     }

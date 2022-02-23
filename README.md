@@ -13,6 +13,7 @@
 | [@aegenet/belt-hook](./packages/belt-hook/README.md) | Hook |
 | [@aegenet/belt-promise](./packages/belt-promise/README.md) | Promise |
 | [@aegenet/belt-odeep](./packages/belt-odeep/README.md) | Object Deep |
+| [@aegenet/belt-interpolation](./packages/belt-interpolation/README.md) | String interpolation |
 
 
 # Coverage
