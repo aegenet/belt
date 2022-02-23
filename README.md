@@ -22,6 +22,13 @@
 | [@aegenet/belt-array-stats](./packages/belt-array-stats/README.md) | Get stats from array |
 
 
+# @aegenet/belt - All In One
+
+| Name | Usage |
+|--|--|
+| [@aegenet/belt](./packages/belt/README.md) | The Belt |
+
+
 # Coverage
 [![codecov](https://codecov.io/gh/aegenet/belt/branch/master/graph/badge.svg?token=XWMNA00XFY)](https://codecov.io/gh/aegenet/belt)
 

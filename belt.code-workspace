@@ -1,5 +1,9 @@
 {
 	"folders": [
+    {
+      "name": "All in one",
+      "path": "./packages/belt"
+    },
 	  {
       "name": "CRC8",
       "path": "./packages/belt-crc8"

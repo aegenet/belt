@@ -46,4 +46,12 @@
   "name": "belt-interpolation",
   "links": [],
   "publish": true
+}, {
+  "name": "belt",
+  "links": [
+    "belt-crc8", "belt-crc32", "belt-promise", "belt-odeep",
+    "belt-odiff", "belt-ofields", "belt-oclone", "belt-array-to-obj",
+    "belt-array-duplicates", "belt-array-stats", "belt-hook", "belt-interpolation"
+  ],
+  "publish": true
 }]
