@@ -37,6 +37,10 @@
       "path": "./packages/belt-interpolation"
     },
     {
+      "name": "Array To Object",
+      "path": "./packages/belt-array-to-obj"
+    },
+    {
       "name": "Root",
       "path": "."
     }

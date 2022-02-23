@@ -17,6 +17,7 @@
 | [@aegenet/belt-ofields](./packages/belt-ofields/README.md) | Object fields with value as array |
 | [@aegenet/belt-oclone](./packages/belt-oclone/README.md) | Object clone |
 | [@aegenet/belt-interpolation](./packages/belt-interpolation/README.md) | String interpolation |
+| [@aegenet/belt-array-to-obj](./packages/belt-array-to-obj/README.md) | Array to object |
 
 
 # Coverage

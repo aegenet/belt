@@ -27,6 +27,10 @@
   "links": [],
   "publish": true
 }, {
+  "name": "belt-array-to-obj",
+  "links": [],
+  "publish": true
+}, {
   "name": "belt-hook",
   "links": [],
   "publish": true
