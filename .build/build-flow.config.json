@@ -18,4 +18,8 @@
   "name": "belt-hook",
   "links": [],
   "publish": true
+}, {
+  "name": "belt-interpolation",
+  "links": [],
+  "publish": true
 }]
