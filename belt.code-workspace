@@ -41,6 +41,10 @@
       "path": "./packages/belt-array-to-obj"
     },
     {
+      "name": "Array Duplicates",
+      "path": "./packages/belt-array-duplicates"
+    },
+    {
       "name": "Root",
       "path": "."
     }
