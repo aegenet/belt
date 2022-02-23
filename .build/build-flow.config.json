@@ -49,9 +49,9 @@
 }, {
   "name": "belt",
   "links": [
-    "belt-crc8", "belt-crc32", "belt-promise", "belt-odeep",
-    "belt-odiff", "belt-ofields", "belt-oclone", "belt-array-to-obj",
-    "belt-array-duplicates", "belt-array-stats", "belt-hook", "belt-interpolation"
+    "@aegenet/belt-crc8", "@aegenet/belt-crc32", "@aegenet/belt-promise", "@aegenet/belt-odeep",
+    "@aegenet/belt-odiff", "@aegenet/belt-ofields", "@aegenet/belt-oclone", "@aegenet/belt-array-to-obj",
+    "@aegenet/belt-array-duplicates", "@aegenet/belt-array-stats", "@aegenet/belt-hook", "@aegenet/belt-interpolation"
   ],
   "publish": true
 }]
