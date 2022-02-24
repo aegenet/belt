@@ -22,6 +22,7 @@ import {
   getDuplicates,
   stripDuplicates,
   arrayToObject,
+  objectToArray,
   getAverage,
   getMedian
 } from '@aegenet/belt';

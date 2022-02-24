@@ -33,6 +33,10 @@
       "path": "./packages/belt-oclone"
     },
     {
+      "name": "Object To Array",
+      "path": "./packages/belt-obj-to-array"
+    },
+    {
       "name": "Hook",
       "path": "./packages/belt-hook"
     },

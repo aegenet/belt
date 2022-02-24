@@ -10,3 +10,4 @@ export * from '@aegenet/belt-interpolation';
 export * from '@aegenet/belt-array-duplicates';
 export * from '@aegenet/belt-array-to-obj';
 export * from '@aegenet/belt-array-stats';
+export * from '@aegenet/belt-object-to-array';
