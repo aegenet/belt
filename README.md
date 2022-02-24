@@ -4,6 +4,8 @@
 
 # Belt monorepo
 
+> Mission: 0 dependency.
+
 ### Tools kit
 
 | Name | Usage |
@@ -27,7 +29,7 @@
 
 | Name | Usage |
 |--|--|
-| [@aegenet/belt](./packages/belt/README.md) | The Belt |
+| [@aegenet/belt](./packages/belt/README.md) | The Belt - 0 dependency |
 
 
 # Coverage

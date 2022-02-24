@@ -16,21 +16,7 @@
   "repository": "https://github.com/aegenet/belt/tree/master/packages/belt",
   "dependencies": {},
   "peerDependencies": {},
-  "devDependencies": {
-    "@aegenet/belt-crc8": "file:./../belt-crc8",
-    "@aegenet/belt-crc32": "file:./../belt-crc32",
-    "@aegenet/belt-promise": "file:./../belt-promise",
-    "@aegenet/belt-odeep": "file:./../belt-odeep",
-    "@aegenet/belt-ofields": "file:./../belt-ofields",
-    "@aegenet/belt-odiff": "file:./../belt-odiff",
-    "@aegenet/belt-oclone": "file:./../belt-oclone",
-    "@aegenet/belt-hook": "file:./../belt-hook",
-    "@aegenet/belt-interpolation": "file:./../belt-interpolation",
-    "@aegenet/belt-array-duplicates": "file:./../belt-array-duplicates",
-    "@aegenet/belt-array-to-obj": "file:./../belt-array-to-obj",
-    "@aegenet/belt-array-stats": "file:./../belt-array-stats",
-    "@aegenet/belt-obj-to-array": "file:./../belt-obj-to-array"
-  },
+  "devDependencies": {},
   "pre-commit": [
     "lint"
   ],
