@@ -47,6 +47,10 @@
   "links": [],
   "publish": true
 }, {
+  "name": "str-escape-regex",
+  "links": [],
+  "publish": true
+}, {
   "name": "belt",
   "links": [],
   "publish": true

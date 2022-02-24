@@ -19,6 +19,7 @@
 | [@aegenet/belt-ofields](./packages/belt-ofields/README.md) | Object fields with value as array |
 | [@aegenet/belt-oclone](./packages/belt-oclone/README.md) | Object clone |
 | [@aegenet/belt-interpolation](./packages/belt-interpolation/README.md) | String interpolation |
+| [@aegenet/belt-str-escape-regex](./packages/belt-str-escape-regex/README.md) | String Escape Regex |
 | [@aegenet/belt-obj-to-array](./packages/belt-obj-to-array/README.md) | Object to Array |
 | [@aegenet/belt-array-to-obj](./packages/belt-array-to-obj/README.md) | Array to Object |
 | [@aegenet/belt-array-duplicates](./packages/belt-array-duplicates/README.md) | Strip duplicates from array / get duplicates of an array |

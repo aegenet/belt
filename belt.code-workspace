@@ -41,8 +41,12 @@
       "path": "./packages/belt-hook"
     },
     {
-      "name": "Interpolation",
+      "name": "String Interpolation",
       "path": "./packages/belt-interpolation"
+    },
+    {
+      "name": "String Escape Regex",
+      "path": "./packages/belt-str-escape-regex"
     },
     {
       "name": "Array To Object",
