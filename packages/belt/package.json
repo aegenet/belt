@@ -17,18 +17,19 @@
   "dependencies": {},
   "peerDependencies": {},
   "devDependencies": {
-    "@aegenet/belt-crc8": "^999",
-    "@aegenet/belt-crc32": "^999",
-    "@aegenet/belt-promise": "^999",
-    "@aegenet/belt-odeep": "^999",
-    "@aegenet/belt-ofields": "^999",
-    "@aegenet/belt-odiff": "^999",
-    "@aegenet/belt-oclone": "^999",
-    "@aegenet/belt-hook": "^999",
-    "@aegenet/belt-interpolation": "^999",
-    "@aegenet/belt-array-duplicates": "^999",
-    "@aegenet/belt-array-to-obj": "^999",
-    "@aegenet/belt-array-stats": "^999"
+    "@aegenet/belt-crc8": "file:./../belt-crc8",
+    "@aegenet/belt-crc32": "file:./../belt-crc32",
+    "@aegenet/belt-promise": "file:./../belt-promise",
+    "@aegenet/belt-odeep": "file:./../belt-odeep",
+    "@aegenet/belt-ofields": "file:./../belt-ofields",
+    "@aegenet/belt-odiff": "file:./../belt-odiff",
+    "@aegenet/belt-oclone": "file:./../belt-oclone",
+    "@aegenet/belt-hook": "file:./../belt-hook",
+    "@aegenet/belt-interpolation": "file:./../belt-interpolation",
+    "@aegenet/belt-array-duplicates": "file:./../belt-array-duplicates",
+    "@aegenet/belt-array-to-obj": "file:./../belt-array-to-obj",
+    "@aegenet/belt-array-stats": "file:./../belt-array-stats",
+    "@aegenet/belt-obj-to-array": "file:./../belt-obj-to-array"
   },
   "pre-commit": [
     "lint"
