@@ -28,8 +28,7 @@
     "@aegenet/belt-interpolation": "^999",
     "@aegenet/belt-array-duplicates": "^999",
     "@aegenet/belt-array-to-obj": "^999",
-    "@aegenet/belt-array-stats": "^999",
-    "@aegenet/belt-obj-to-array": "^999"
+    "@aegenet/belt-array-stats": "^999"
   },
   "pre-commit": [
     "lint"

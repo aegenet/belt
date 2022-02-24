@@ -50,7 +50,7 @@
   "name": "belt",
   "links": [
     "@aegenet/belt-crc8", "@aegenet/belt-crc32", "@aegenet/belt-promise", "@aegenet/belt-odeep",
-    "@aegenet/belt-odiff", "@aegenet/belt-ofields", "@aegenet/belt-oclone", "@aegenet/belt-obj-to-array", "@aegenet/belt-array-to-obj",
+    "@aegenet/belt-odiff", "@aegenet/belt-ofields", "@aegenet/belt-oclone", "@aegenet/belt-array-to-obj",
     "@aegenet/belt-array-duplicates", "@aegenet/belt-array-stats", "@aegenet/belt-hook", "@aegenet/belt-interpolation"
   ],
   "publish": true

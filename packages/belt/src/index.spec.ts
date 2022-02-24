@@ -46,7 +46,7 @@ describe('all-in-one', () => {
     assert.ok(belt.getAverage);
     assert.ok(belt.getMedian);
   });
-  it('belt_obj_to_array', () => {
-    assert.ok(belt.objectToArray);
-  });
+  // it('belt_obj_to_array', () => {
+  //   assert.ok(belt.objectToArray);
+  // });
 });
