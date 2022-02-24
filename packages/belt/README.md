@@ -24,6 +24,7 @@ import {
   arrayToObject,
   objectToArray,
   getAverage,
-  getMedian
+  getMedian,
+  escapeRegex
 } from '@aegenet/belt';
 ```

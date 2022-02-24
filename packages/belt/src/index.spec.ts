@@ -49,4 +49,7 @@ describe('all-in-one', () => {
   it('belt_obj_to_array', () => {
     assert.ok(belt.objectToArray);
   });
+  it('belt_str_escape_regex', () => {
+    assert.ok(belt.escapeRegex);
+  });
 });

@@ -11,3 +11,4 @@ export * from '../../belt-array-duplicates/src/index';
 export * from '../../belt-array-to-obj/src/index';
 export * from '../../belt-array-stats/src/index';
 export * from '../../belt-obj-to-array/src/index';
+export * from '../../belt-str-escape-regex/src/index';
