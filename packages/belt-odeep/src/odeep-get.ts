@@ -35,6 +35,8 @@ export class ODeepGet {
       if (this._jitCache.has(symbol)) {
         return this._jitCache.get(symbol)(context) as O;
       }
+    } else {
+      return this._getImmediatValue(context, pathFlow, options);
     }
 
     const jitFunc = this._compileJIT(pathFlow, options);
@@ -69,5 +71,18 @@ export class ODeepGet {
       jit = `try { ${jit}} catch { return undefined; }`;
     }
     return jit;
+  }
+
+  /** If no memoize, we can get the value by a simple reduce */
+  private _getImmediatValue<C, O>(context: C, pathFlow: Array<string | number>, options: GetValueOptions): O {
+    if (pathFlow[0] === '#') {
+      pathFlow = pathFlow.slice(1);
+    }
+
+    if (options.shallowError) {
+      return pathFlow.reduce((prev, curr) => (prev ? prev[curr] : undefined), context);
+    } else {
+      return pathFlow.reduce((prev, curr) => prev[curr], context);
+    }
   }
 }

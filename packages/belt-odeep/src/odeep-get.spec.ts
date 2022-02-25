@@ -24,6 +24,24 @@ describe('odeep-get', () => {
       assert.strictEqual(oDeepGet.getValue(ctx, ['propOne']), 1);
     });
 
+    it('Deep One, 1, skip #', () => {
+      const ctx: {
+        propOne?: number;
+      } = {
+        propOne: 1,
+      };
+
+      assert.strictEqual(oDeepGet.getValue(ctx, ['#', 'propOne']), 1);
+    });
+
+    it('No ctx', () => {
+      assert.strictEqual(oDeepGet.getValue(null, ['#', 'propOne']), undefined);
+    });
+
+    it('No path', () => {
+      assert.strictEqual(oDeepGet.getValue({ id: 0 }, null), undefined);
+    });
+
     it('Deep Two, undefined', () => {
       const ctx: {
         propOne?: {
@@ -132,7 +150,6 @@ describe('odeep-get', () => {
     it('Deep One, 1', () => {
       const ctx = {
         propOne: 1,
-        propTwo: 2,
       };
 
       assert.strictEqual(
@@ -143,11 +160,52 @@ describe('odeep-get', () => {
       );
 
       assert.strictEqual(
-        oDeepGet.getValue(ctx, ['propTwo'], {
+        oDeepGet.getValue(ctx, ['propOne'], {
           memoize: true,
         }),
-        2
+        1
       );
+
+      oDeepGet.clear();
+    });
+
+    it('Deep One, 1, skip one', () => {
+      const ctx = {
+        propOne: 1,
+      };
+
+      assert.strictEqual(
+        oDeepGet.getValue(ctx, ['#', 'propOne'], {
+          memoize: true,
+        }),
+        1
+      );
+
+      assert.strictEqual(
+        oDeepGet.getValue(ctx, ['#', 'propOne'], {
+          memoize: true,
+        }),
+        1
+      );
+
+      oDeepGet.clear();
+    });
+
+    it('Deep Two, path undefined, error, memoize', () => {
+      const ctx: {
+        propOne?: {
+          propTwo?: number;
+        };
+      } = {};
+
+      try {
+        oDeepGet.getValue(ctx, ['propOne', 'propTwo'], {
+          memoize: true,
+        });
+        throw new Error('Must failed');
+      } catch (error) {
+        assert.ok(error.message.startsWith('Cannot read prop'));
+      }
     });
   });
 });
