@@ -87,6 +87,7 @@ export class ODeepSet {
 
       const step = this._getStep(path[i]);
       if (i === 0 && step.propName === '#') {
+        jit += `a0 = context;\n`;
         continue;
       }
       const prevCtx = i === 0 ? 'context' : `a${i - 1}`;

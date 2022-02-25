@@ -207,5 +207,21 @@ describe('odeep-get', () => {
         assert.ok(error.message.startsWith('Cannot read prop'));
       }
     });
+
+    it('Deep Two, path undefined, shallow error, memoize', () => {
+      const ctx: {
+        propOne?: {
+          propTwo?: number;
+        };
+      } = {};
+
+      assert.strictEqual(
+        oDeepGet.getValue(ctx, ['propOne', 'propTwo'], {
+          memoize: true,
+          shallowError: true,
+        }),
+        undefined
+      );
+    });
   });
 });

@@ -24,6 +24,24 @@ describe('odeep-set', () => {
       assert.strictEqual(ctx.propOne, 1);
     });
 
+    it('Deep One - Null context', () => {
+      const ctx: {
+        propOne?: number;
+      } = null;
+
+      oDeepSet.setValue(ctx, [{ propName: 'propOne', type: 'object' }], 1);
+      assert.strictEqual(ctx, null);
+    });
+
+    it('Deep One - Null path', () => {
+      const ctx: {
+        propOne?: number;
+      } = {};
+
+      oDeepSet.setValue(ctx, null, 1);
+      assert.strictEqual(ctx.propOne, undefined);
+    });
+
     it('Deep Two', () => {
       const ctx: {
         propOne?: {
@@ -34,6 +52,19 @@ describe('odeep-set', () => {
       };
 
       oDeepSet.setValue(ctx, ['propOne', 'propTwo'], 1);
+      assert.strictEqual(ctx.propOne.propTwo, 1);
+    });
+
+    it('Deep Two, skip #', () => {
+      const ctx: {
+        propOne?: {
+          propTwo?: number;
+        };
+      } = {
+        propOne: {},
+      };
+
+      oDeepSet.setValue(ctx, ['#', 'propOne', 'propTwo'], 1);
       assert.strictEqual(ctx.propOne.propTwo, 1);
     });
 
@@ -109,6 +140,17 @@ describe('odeep-set', () => {
       assert.strictEqual(ctx.propOne.propTwo, 1);
     });
 
+    it('Deep Two, skip #', () => {
+      const ctx: {
+        propOne?: {
+          propTwo?: number;
+        };
+      } = {};
+
+      oDeepSet.setValue(ctx, ['#', 'propOne', 'propTwo'], 1, { autoCreate: true });
+      assert.strictEqual(ctx.propOne.propTwo, 1);
+    });
+
     it('Deep Two - Array', () => {
       const ctx: {
         propOne?: number[];
@@ -161,6 +203,8 @@ describe('odeep-set', () => {
         memoize: true,
       });
       assert.strictEqual(ctx.propOne, 2);
+
+      oDeepSet.clear();
     });
 
     it('Deep One - object[] path', () => {
@@ -177,6 +221,8 @@ describe('odeep-set', () => {
         memoize: true,
       });
       assert.strictEqual(ctx.propOne, 2);
+
+      oDeepSet.clear();
     });
   });
 });
