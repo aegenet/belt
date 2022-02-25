@@ -51,6 +51,10 @@
   "links": [],
   "publish": true
 }, {
+  "name": "belt-binary-search",
+  "links": [],
+  "publish": true
+}, {
   "name": "belt",
   "links": [],
   "publish": true

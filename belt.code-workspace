@@ -61,6 +61,10 @@
       "path": "./packages/belt-array-stats"
     },
     {
+      "name": "Binary Search",
+      "path": "./packages/belt-binary-search"
+    },
+    {
       "name": "Root",
       "path": "."
     }

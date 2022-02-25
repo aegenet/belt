@@ -24,6 +24,7 @@
 | [@aegenet/belt-array-to-obj](./packages/belt-array-to-obj/README.md) | Array to Object |
 | [@aegenet/belt-array-duplicates](./packages/belt-array-duplicates/README.md) | Strip duplicates from array / get duplicates of an array |
 | [@aegenet/belt-array-stats](./packages/belt-array-stats/README.md) | Get stats from array |
+| [@aegenet/belt-binary-search](./packages/belt-binary-search/README.md) | Binary search |
 
 
 # @aegenet/belt - All In One

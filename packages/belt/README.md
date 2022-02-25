@@ -25,6 +25,8 @@ import {
   objectToArray,
   getAverage,
   getMedian,
-  escapeRegex
+  escapeRegex,
+  binarySearch,
+  safeBinarySearch
 } from '@aegenet/belt';
 ```
