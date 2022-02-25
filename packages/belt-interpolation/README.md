@@ -41,6 +41,7 @@ const interpolation = new Interpolation({
     spider: /(\\{0,1})¤¤([a-zA-Z0-9_\-]{1,})¤¤/,
   },
 });
+
 interpolation.transform(
   'Hello ¤¤firstName¤¤ ¤¤lastName¤¤',
   {
@@ -50,4 +51,25 @@ interpolation.transform(
   { dialect: 'spider' }
 );
 // 'Hello David Goodenough'
+```
+
+```typescript
+const interpolation = new Interpolation({
+  getValue: (ctx, propPath) => {
+    const props = propPath.split('.');
+    return String(
+      props.reduce((prev, curr) => {
+        return prev[curr];
+      }, ctx)
+    );
+  },
+});
+
+const result = interpolation.transform('Hello ${person.firstName} ${person.lastName}', {
+  person: {
+    firstName: 'David',
+    lastName: 'Goodenough',
+  },
+}),
+// result = 'Hello David Goodenough'
 ```

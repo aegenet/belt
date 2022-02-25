@@ -13,6 +13,16 @@ describe('interpolation', function () {
       );
     });
 
+    it('Skippy', () => {
+      const interpolation = new Interpolation();
+      assert.strictEqual(
+        interpolation.transform('Hello \\${name}', {
+          name: 'David',
+        }),
+        'Hello \\${name}'
+      );
+    });
+
     it('Multiple', () => {
       const interpolation = new Interpolation();
       assert.strictEqual(
@@ -48,7 +58,7 @@ describe('interpolation', function () {
     it('Custom language', () => {
       const interpolation = new Interpolation({
         customDialects: {
-          spider: /(\\{0,1})¤¤([a-zA-Z0-9_\-]{1,})¤¤/,
+          spider: /(\\{0,1})¤¤([\w\._\-]{1,})¤¤/,
         },
       });
       assert.strictEqual(
@@ -80,6 +90,31 @@ describe('interpolation', function () {
         transform('Hello ${firstName} ${lastName}', {
           firstName: 'David',
           lastName: 'Goodenough',
+        }),
+        'Hello David Goodenough'
+      );
+    });
+  });
+
+  describe('Override default getValue', () => {
+    it('Deep path', () => {
+      const interpolation = new Interpolation({
+        getValue: (ctx, propPath) => {
+          const props = propPath.split('.');
+          return String(
+            props.reduce((prev, curr) => {
+              return prev[curr];
+            }, ctx)
+          );
+        },
+      });
+
+      assert.strictEqual(
+        interpolation.transform('Hello ${person.firstName} ${person.lastName}', {
+          person: {
+            firstName: 'David',
+            lastName: 'Goodenough',
+          },
         }),
         'Hello David Goodenough'
       );
