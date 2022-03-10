@@ -65,6 +65,10 @@
       "path": "./packages/belt-binary-search"
     },
     {
+      "name": "Symbols Is Balanced",
+      "path": "./packages/belt-symbols-is-balanced"
+    },
+    {
       "name": "Root",
       "path": "."
     }

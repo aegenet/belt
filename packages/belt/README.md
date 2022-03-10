@@ -27,6 +27,7 @@ import {
   getMedian,
   escapeRegex,
   binarySearch,
-  safeBinarySearch
+  safeBinarySearch,
+  symbolsIsBalanced
 } from '@aegenet/belt';
 ```
