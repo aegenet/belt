@@ -21,6 +21,7 @@
 | [@aegenet/belt-interpolation](./packages/belt-interpolation/README.md) | String interpolation |
 | [@aegenet/belt-str-escape-regex](./packages/belt-str-escape-regex/README.md) | String Escape Regex |
 | [@aegenet/belt-obj-to-array](./packages/belt-obj-to-array/README.md) | Object to Array |
+| [@aegenet/belt-obj-is-empty](./packages/belt-obj-is-empty/README.md) | Object is empty ? |
 | [@aegenet/belt-array-to-obj](./packages/belt-array-to-obj/README.md) | Array to Object |
 | [@aegenet/belt-array-duplicates](./packages/belt-array-duplicates/README.md) | Strip duplicates from array / get duplicates of an array |
 | [@aegenet/belt-array-stats](./packages/belt-array-stats/README.md) | Get stats from array |
