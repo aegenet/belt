@@ -31,6 +31,10 @@
   "links": [],
   "publish": true
 }, {
+  "name": "belt-obj-to-map",
+  "links": [],
+  "publish": true
+}, {
   "name": "belt-obj-is-empty",
   "links": [],
   "publish": true

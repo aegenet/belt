@@ -37,6 +37,10 @@
       "path": "./packages/belt-obj-to-array"
     },
     {
+      "name": "Object To Map",
+      "path": "./packages/belt-obj-to-map"
+    },
+    {
       "name": "Object Is Empty",
       "path": "./packages/belt-obj-is-empty"
     },

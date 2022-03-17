@@ -24,6 +24,7 @@ import {
   arrayToObject,
   objectToArray,
   objectIsEmpty,
+  objectToMap,
   getAverage,
   getMedian,
   escapeRegex,

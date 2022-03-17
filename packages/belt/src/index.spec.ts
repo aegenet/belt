@@ -52,6 +52,9 @@ describe('all-in-one', () => {
   it('belt_obj_is_empty', () => {
     assert.ok(belt.objectIsEmpty);
   });
+  it('belt_obj_to_map', () => {
+    assert.ok(belt.objectToMap);
+  });
   it('belt_str_escape_regex', () => {
     assert.ok(belt.escapeRegex);
   });
