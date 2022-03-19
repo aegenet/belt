@@ -43,6 +43,14 @@
   "links": [],
   "publish": true
 }, {
+  "name": "belt-array-async-filter",
+  "links": [],
+  "publish": true
+}, {
+  "name": "belt-array-async-map",
+  "links": [],
+  "publish": true
+}, {
   "name": "belt-array-duplicates",
   "links": [],
   "publish": true

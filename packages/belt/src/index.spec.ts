@@ -61,4 +61,10 @@ describe('all-in-one', () => {
   it('belt_symbols_is_balanced', () => {
     assert.ok(belt.symbolsIsBalanced);
   });
+  it('belt_array_async_filter', () => {
+    assert.ok(belt.arrayAsyncFilter);
+  });
+  it('belt_array_async_map', () => {
+    assert.ok(belt.arrayAsyncMap);
+  });
 });

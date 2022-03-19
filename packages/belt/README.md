@@ -22,6 +22,8 @@ import {
   getDuplicates,
   stripDuplicates,
   arrayToObject,
+  arrayAsyncFilter,
+  arrayAsyncMap,
   objectToArray,
   objectIsEmpty,
   objectToMap,

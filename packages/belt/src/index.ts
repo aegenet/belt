@@ -16,3 +16,5 @@ export * from '../../belt-obj-is-empty/src/index';
 export * from '../../belt-str-escape-regex/src/index';
 export * from '../../belt-binary-search/src/index';
 export * from '../../belt-symbols-is-balanced/src/index';
+export * from '../../belt-array-async-filter/src/index';
+export * from '../../belt-array-async-map/src/index';

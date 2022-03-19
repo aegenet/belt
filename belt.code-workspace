@@ -61,6 +61,14 @@
       "path": "./packages/belt-array-to-obj"
     },
     {
+      "name": "Array Async Filter",
+      "path": "./packages/belt-array-async-filter"
+    },
+    {
+      "name": "Array Async Map",
+      "path": "./packages/belt-array-async-map"
+    },
+    {
       "name": "Array Duplicates",
       "path": "./packages/belt-array-duplicates"
     },
