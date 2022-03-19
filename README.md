@@ -29,6 +29,7 @@
 | [@aegenet/belt-array-to-obj](./packages/belt-array-to-obj/README.md) | Array to Object |
 | [@aegenet/belt-array-async-filter](./packages/belt-array-async-filter/README.md) | Array async filter (sequentially) |
 | [@aegenet/belt-array-async-map](./packages/belt-array-async-map/README.md) | Array async map (sequentially) |
+| [@aegenet/belt-array-async-foreach](./packages/belt-array-async-foreach/README.md) | Array async foreach (sequentially) |
 | [@aegenet/belt-array-duplicates](./packages/belt-array-duplicates/README.md) | Strip duplicates from array / get duplicates of an array |
 | [@aegenet/belt-array-stats](./packages/belt-array-stats/README.md) | Get stats from array |
 | [@aegenet/belt-binary-search](./packages/belt-binary-search/README.md) | Binary search |

@@ -70,4 +70,7 @@ describe('all-in-one', () => {
   it('belt_obj_first_key', () => {
     assert.ok(belt.objectFirstKey);
   });
+  it('belt_array_async_foreach', () => {
+    assert.ok(belt.arrayAsyncForEach);
+  });
 });

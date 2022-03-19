@@ -73,6 +73,10 @@
       "path": "./packages/belt-array-async-map"
     },
     {
+      "name": "Array Async ForEach",
+      "path": "./packages/belt-array-async-foreach"
+    },
+    {
       "name": "Array Duplicates",
       "path": "./packages/belt-array-duplicates"
     },

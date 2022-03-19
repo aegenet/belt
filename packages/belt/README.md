@@ -24,6 +24,7 @@ import {
   arrayToObject,
   arrayAsyncFilter,
   arrayAsyncMap,
+  arrayAsyncForEach,
   objectToArray,
   objectIsEmpty,
   objectFirstKey,

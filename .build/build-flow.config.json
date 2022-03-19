@@ -55,6 +55,10 @@
   "links": [],
   "publish": true
 }, {
+  "name": "belt-array-async-foreach",
+  "links": [],
+  "publish": true
+}, {
   "name": "belt-array-duplicates",
   "links": [],
   "publish": true
