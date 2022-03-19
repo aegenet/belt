@@ -10,4 +10,6 @@ objectFirstKey(undefined); // null
 objectFirstKey({}); // null
 objectFirstKey({ id: 1 }); // 'id'
 objectFirstKey({ id: 1, code: 'go' }); // 'id'
+
+objectFirstKey({ _privateStuff: true, id: 1, code: 'go' }, key => !key.startsWith('_')); // 'id'
 ```
