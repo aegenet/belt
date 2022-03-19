@@ -7,8 +7,6 @@ export function objectIsEmpty(input: Record<PropertyKey, unknown>): boolean {
     for (const prop in input) {
       return false;
     }
-    return true;
-  } else {
-    return true;
   }
+  return true;
 }

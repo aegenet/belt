@@ -25,6 +25,7 @@
 | [@aegenet/belt-obj-to-array](./packages/belt-obj-to-array/README.md) | Object to Array |
 | [@aegenet/belt-obj-to-map](./packages/belt-obj-to-map/README.md) | Object to Map |
 | [@aegenet/belt-obj-is-empty](./packages/belt-obj-is-empty/README.md) | Object is empty ? |
+| [@aegenet/belt-obj-first-key](./packages/belt-obj-first-key/README.md) | Object first key |
 | [@aegenet/belt-array-to-obj](./packages/belt-array-to-obj/README.md) | Array to Object |
 | [@aegenet/belt-array-async-filter](./packages/belt-array-async-filter/README.md) | Array async filter (sequentially) |
 | [@aegenet/belt-array-async-map](./packages/belt-array-async-map/README.md) | Array async map (sequentially) |

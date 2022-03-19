@@ -45,6 +45,10 @@
       "path": "./packages/belt-obj-is-empty"
     },
     {
+      "name": "Object First Key",
+      "path": "./packages/belt-obj-first-key"
+    },
+    {
       "name": "Hook",
       "path": "./packages/belt-hook"
     },

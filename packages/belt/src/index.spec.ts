@@ -67,4 +67,7 @@ describe('all-in-one', () => {
   it('belt_array_async_map', () => {
     assert.ok(belt.arrayAsyncMap);
   });
+  it('belt_obj_first_key', () => {
+    assert.ok(belt.objectFirstKey);
+  });
 });
