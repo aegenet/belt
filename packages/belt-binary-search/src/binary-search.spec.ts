@@ -1,5 +1,5 @@
 import * as assert from 'assert';
-import { binarySearch, safeBinarySearch } from './binary-search';
+import { binarySearch, safeBinarySearch } from './index';
 
 describe('binary-search & safe', () => {
   describe('binary-search', () => {
