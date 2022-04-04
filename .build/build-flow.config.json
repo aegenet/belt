@@ -87,6 +87,10 @@
   "links": [],
   "publish": true
 }, {
+  "name": "belt-platform-detector",
+  "links": [],
+  "publish": true
+}, {
   "name": "belt",
   "links": [],
   "publish": true

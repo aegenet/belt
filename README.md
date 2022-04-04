@@ -34,6 +34,7 @@
 | [@aegenet/belt-array-stats](./packages/belt-array-stats/README.md) | Get stats from array |
 | [@aegenet/belt-binary-search](./packages/belt-binary-search/README.md) | Binary search |
 | [@aegenet/belt-symbols-is-balanced](./packages/belt-symbols-is-balanced/README.md) | Symbols is balanced (`[`, `(` `{`) ?  |
+| [@aegenet/belt-platform-detector](./packages/belt-platform-detector/README.md) | Is NodeJS ?  |
 
 # @aegenet/belt - All In One
 

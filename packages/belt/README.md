@@ -34,6 +34,7 @@ import {
   escapeRegex,
   binarySearch,
   safeBinarySearch,
-  symbolsIsBalanced
+  symbolsIsBalanced,
+  isNodeJS
 } from '@aegenet/belt';
 ```

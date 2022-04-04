@@ -73,4 +73,7 @@ describe('all-in-one', () => {
   it('belt_array_async_foreach', () => {
     assert.ok(belt.arrayAsyncForEach);
   });
+  it('belt_platform_detector', () => {
+    assert.ok(belt.isNodeJS);
+  });
 });

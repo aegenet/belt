@@ -93,6 +93,10 @@
       "path": "./packages/belt-symbols-is-balanced"
     },
     {
+      "name": "Platform Detector",
+      "path": "./packages/belt-platform-detector"
+    },
+    {
       "name": "Root",
       "path": "."
     }
