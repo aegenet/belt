@@ -35,6 +35,8 @@ import {
   binarySearch,
   safeBinarySearch,
   symbolsIsBalanced,
-  isNodeJS
+  isNodeJS,
+  asError,
+  isSyntaxError
 } from '@aegenet/belt';
 ```

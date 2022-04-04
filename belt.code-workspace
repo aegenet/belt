@@ -97,6 +97,10 @@
       "path": "./packages/belt-platform-detector"
     },
     {
+      "name": "Error",
+      "path": "./packages/belt-error"
+    },
+    {
       "name": "Root",
       "path": "."
     }

@@ -76,4 +76,8 @@ describe('all-in-one', () => {
   it('belt_platform_detector', () => {
     assert.ok(belt.isNodeJS);
   });
+  it('belt_error', () => {
+    assert.ok(belt.isSyntaxError);
+    assert.ok(belt.asError);
+  });
 });

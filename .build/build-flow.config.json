@@ -91,6 +91,10 @@
   "links": [],
   "publish": true
 }, {
+  "name": "belt-error",
+  "links": [],
+  "publish": true
+}, {
   "name": "belt",
   "links": [],
   "publish": true
