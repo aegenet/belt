@@ -1,26 +1,26 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
-// const nodeExternals = require('webpack-node-externals');
+const nodeExternals = require('webpack-node-externals');
 const configuratorNode = require('./../../.build/webpack.node.configurator');
 
 module.exports = [
   configuratorNode({
     org: 'aegenet',
-    name: 'belt',
+    name: 'belt-base64',
     directory: __dirname,
     target: 'node',
     subdir: 'node',
     libraryType: 'commonjs',
+    externals: [nodeExternals({})],
     indexFileName: 'node.ts',
-    // externals: [nodeExternals({})],
   }),
   configuratorNode({
     org: 'aegenet',
-    name: 'belt',
+    name: 'belt-base64',
     directory: __dirname,
     target: 'web',
     subdir: 'web',
     libraryType: 'commonjs',
+    externals: [nodeExternals({})],
     indexFileName: 'browser.ts',
-    // externals: [nodeExternals({})],
   }),
 ];

@@ -95,6 +95,10 @@
   "links": [],
   "publish": true
 }, {
+  "name": "belt-base64",
+  "links": [],
+  "publish": true
+}, {
   "name": "belt",
   "links": [],
   "publish": true

@@ -1,5 +1,5 @@
 import * as assert from 'assert';
-import * as belt from './index';
+import * as belt from './node';
 
 describe('all-in-one', () => {
   it('belt_crc8', () => {
@@ -79,5 +79,9 @@ describe('all-in-one', () => {
   it('belt_error', () => {
     assert.ok(belt.isSyntaxError);
     assert.ok(belt.asError);
+  });
+  it('belt_base64', () => {
+    assert.ok(belt.fromBase64);
+    assert.ok(belt.toBase64);
   });
 });

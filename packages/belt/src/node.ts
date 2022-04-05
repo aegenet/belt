@@ -22,3 +22,4 @@ export * from '../../belt-array-async-map/src/index';
 export * from '../../belt-array-async-foreach/src/index';
 export * from '../../belt-platform-detector/src/index';
 export * from '../../belt-error/src/index';
+export * from '../../belt-base64/src/node';

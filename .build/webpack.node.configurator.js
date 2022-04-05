@@ -15,6 +15,8 @@ const { BundleDeclarationsWebpackPlugin } = require('bundle-declarations-webpack
  *   libraryType?: string;
  *   externals?: unknown[];
  *   plugins?: unknown[];
+ *   indexFileName?: string;
+ *   cliFileName?: string;
  * } options 
  * @returns Webpack Configuration
  * 
@@ -22,8 +24,8 @@ const { BundleDeclarationsWebpackPlugin } = require('bundle-declarations-webpack
 module.exports = function(
   options
 ) {
-  const indexPath = path.join(options.directory, './src/index.ts');
-  const cliPath = path.join(options.directory, './src/cli.ts');
+  const indexPath = path.join(options.directory, `./src/${options.indexFileName ?? 'index.ts'}`);
+  const cliPath = path.join(options.directory, `./src/${options.cliFileName ?? 'cli.ts'}`);
   const entry = { [options.name]: indexPath };
   const outputDir = path.join(options.directory, 'dist/');
   const outputDirSubDir = options.subdir ? path.join(outputDir, options.subdir) : outputDir;

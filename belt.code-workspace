@@ -101,6 +101,10 @@
       "path": "./packages/belt-error"
     },
     {
+      "name": "Base64",
+      "path": "./packages/belt-base64"
+    },
+    {
       "name": "Root",
       "path": "."
     }

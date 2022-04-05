@@ -37,6 +37,8 @@ import {
   symbolsIsBalanced,
   isNodeJS,
   asError,
-  isSyntaxError
+  isSyntaxError,
+  toBase64,
+  fromBase64
 } from '@aegenet/belt';
 ```
