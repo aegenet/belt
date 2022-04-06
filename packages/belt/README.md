@@ -36,6 +36,7 @@ import {
   safeBinarySearch,
   symbolsIsBalanced,
   isNodeJS,
+  isMobileDevice,
   asError,
   isSyntaxError,
   toBase64,

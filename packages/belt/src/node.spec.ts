@@ -75,6 +75,7 @@ describe('all-in-one', () => {
   });
   it('belt_platform_detector', () => {
     assert.ok(belt.isNodeJS);
+    assert.ok(belt.isMobileDevice);
   });
   it('belt_error', () => {
     assert.ok(belt.isSyntaxError);
