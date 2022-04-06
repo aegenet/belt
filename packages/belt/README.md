@@ -43,6 +43,9 @@ import {
   asError,
   isSyntaxError,
   toBase64,
-  fromBase64
+  fromBase64,
+  antiBounce,
+  AntiBounce,
+  disposeAntiBounces
 } from '@aegenet/belt';
 ```

@@ -109,6 +109,10 @@
       "path": "./packages/belt-base64"
     },
     {
+      "name": "Anti-Bounce",
+      "path": "./packages/belt-anti-bounce"
+    },
+    {
       "name": "Root",
       "path": "."
     }

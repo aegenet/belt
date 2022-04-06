@@ -89,4 +89,9 @@ describe('all-in-one', () => {
     assert.ok(belt.fromBase64);
     assert.ok(belt.toBase64);
   });
+  it('belt_anti_bounce', () => {
+    assert.ok(belt.antiBounce);
+    assert.ok(belt.AntiBounce);
+    assert.ok(belt.disposeAntiBounces);
+  });
 });

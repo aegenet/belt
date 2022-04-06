@@ -103,6 +103,10 @@
   "links": [],
   "publish": true
 }, {
+  "name": "belt-anti-bounce",
+  "links": [],
+  "publish": true
+}, {
   "name": "belt",
   "links": [],
   "publish": true
