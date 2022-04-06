@@ -45,6 +45,10 @@
       "path": "./packages/belt-obj-is-empty"
     },
     {
+      "name": "Objects Is Equals",
+      "path": "./packages/belt-obj-is-equals"
+    },
+    {
       "name": "Object First Key",
       "path": "./packages/belt-obj-first-key"
     },

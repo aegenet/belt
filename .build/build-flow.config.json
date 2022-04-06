@@ -39,6 +39,10 @@
   "links": [],
   "publish": true
 }, {
+  "name": "belt-obj-is-equals",
+  "links": [],
+  "publish": true
+}, {
   "name": "belt-obj-first-key",
   "links": [],
   "publish": true

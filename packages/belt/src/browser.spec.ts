@@ -52,6 +52,10 @@ describe('all-in-one', () => {
   it('belt_obj_is_empty', () => {
     assert.ok(belt.objectIsEmpty);
   });
+  it('belt_obj_is_equals', () => {
+    assert.ok(belt.objectsIsEquals);
+    assert.ok(belt.objectsIsNotEquals);
+  });
   it('belt_obj_to_map', () => {
     assert.ok(belt.objectToMap);
   });
