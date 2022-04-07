@@ -7,7 +7,7 @@
 ```typescript
 import { ODeepGet } from '@aegenet/belt-odeep';
 
-const oDeepGet = new ODeepSet();
+const oDeepGet = new ODeepGet();
 const result = oDeepGet.getValue({
   a: 1
 }, ['a']);  // 1
