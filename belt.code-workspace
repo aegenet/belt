@@ -113,6 +113,10 @@
       "path": "./packages/belt-anti-bounce"
     },
     {
+      "name": "JSON Ignore",
+      "path": "./packages/belt-json-ignore"
+    },
+    {
       "name": "Root",
       "path": "."
     }

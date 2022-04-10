@@ -46,6 +46,7 @@ import {
   fromBase64,
   antiBounce,
   AntiBounce,
-  disposeAntiBounces
+  disposeAntiBounces,
+  jsonIgnore
 } from '@aegenet/belt';
 ```

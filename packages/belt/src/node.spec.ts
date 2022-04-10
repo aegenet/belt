@@ -94,4 +94,7 @@ describe('all-in-one', () => {
     assert.ok(belt.AntiBounce);
     assert.ok(belt.disposeAntiBounces);
   });
+  it('belt_json_ignore', () => {
+    assert.ok(belt.jsonIgnore);
+  });
 });

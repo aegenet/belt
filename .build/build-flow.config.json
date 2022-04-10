@@ -107,6 +107,10 @@
   "links": [],
   "publish": true
 }, {
+  "name": "belt-json-ignore",
+  "links": [],
+  "publish": true
+}, {
   "name": "belt",
   "links": [],
   "publish": true
