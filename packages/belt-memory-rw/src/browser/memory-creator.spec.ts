@@ -1,7 +1,7 @@
 import assert from 'assert';
 import type { IMemoryCreator } from '../common/i-memory-creator';
-import { MemoryCreator } from './memory-creator';
-import { MemoryReader } from './memory-reader';
+import { MemoryCreator } from './../browser';
+import { MemoryReader } from './../browser';
 
 describe('browser memory-creator', () => {
   it('scenario', () => {
