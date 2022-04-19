@@ -9,22 +9,22 @@ export interface IMemoryWriter<InternalType = unknown> {
   /** Write bytes */
   writeBytes(values: number[] | InternalType): void;
 
-  /** Write an ascii string [VARY STR] */
+  /** Write an ISO-8859-1 string [VARY STR] */
   writeString(value: string): void;
 
-  /** Write an ascii string [VARY STR][MARKER] */
+  /** Write an ISO-8859-1 string [VARY STR][MARKER] */
   writeStringWithMarker(value: string, endByte?: number): void;
 
-  /** Write an ascii string [4B LE][VARY STR] */
+  /** Write an ISO-8859-1 string [4B LE][VARY STR] */
   writeCString32LE(value: string): void;
 
-  /** Write an ascii string [4B BE][VARY STR] */
+  /** Write an ISO-8859-1 string [4B BE][VARY STR] */
   writeCString32BE(value: string): void;
 
-  /** Write an ascii string [2B LE][VARY STR] */
+  /** Write an ISO-8859-1 string [2B LE][VARY STR] */
   writeCString16LE(value: string): void;
 
-  /** Write an ascii string [2B BE][VARY STR] */
+  /** Write an ISO-8859-1 string [2B BE][VARY STR] */
   writeCString16BE(value: string): void;
 
   /** Write an unsigned number (4 bytes) */

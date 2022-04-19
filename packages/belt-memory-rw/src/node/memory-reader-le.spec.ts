@@ -19,6 +19,21 @@ describe('nodejs memory-reader', () => {
       assert.strictEqual(reader.buffer.length, 32);
     });
 
+    it('readString - with french character', () => {
+      const buffer = Buffer.alloc(92);
+      const writer = new MemoryWriter(buffer);
+      writer.writeStringWithMarker('Bonjour à vous');
+      writer.writeStringWithMarker("Allons à l'école");
+      writer.writeCString32LE('Bonjour à vous');
+      writer.writeCString32LE("Allons à l'école");
+
+      const reader = new MemoryReader(buffer);
+      assert.strictEqual(reader.readStringWithMarker(), 'Bonjour à vous');
+      assert.strictEqual(reader.readStringWithMarker(), "Allons à l'école");
+      assert.strictEqual(reader.readCString32LE(), 'Bonjour à vous');
+      assert.strictEqual(reader.readCString32LE(), "Allons à l'école");
+    });
+
     it('readLine 0 remaining', () => {
       const buffer = Buffer.alloc(1);
       const writer = new MemoryWriter(buffer);

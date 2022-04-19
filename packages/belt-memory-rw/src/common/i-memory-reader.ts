@@ -6,25 +6,25 @@ export interface IMemoryReader<InternalType = unknown> {
   /** Clone bytes (and DON'T KEEP a reference !) */
   cloneBytes(length: number): InternalType;
 
-  /** Read an ascii string [4B LE][VARY STR] */
+  /** Read an ISO-8859-1 string [4B LE][VARY STR] */
   readCString32LE(): string;
 
-  /** Read an ascii string [4B BE][VARY STR] */
+  /** Read an ISO-8859-1 string [4B BE][VARY STR] */
   readCString32BE(): string;
 
-  /** Read an ascii string [2B LE][VARY STR] */
+  /** Read an ISO-8859-1 string [2B LE][VARY STR] */
   readCString16LE(): string;
 
-  /** Read an ascii string [2B BE][VARY STR] */
+  /** Read an ISO-8859-1 string [2B BE][VARY STR] */
   readCString16BE(): string;
 
-  /** Read an ascii line, auto search the end of line (\\n, \\r or 0x0) */
+  /** Read an ISO-8859-1 line, auto search the end of line (\\n, \\r or 0x0) */
   readLine(): string;
 
-  /** Read an ascii string with end marker, default 0x00 */
+  /** Read an ISO-8859-1 string with end marker, default 0x00 */
   readStringWithMarker(maxLength?: number, marker?: number): string;
 
-  /** Read an ascii string with specific size */
+  /** Read an ISO-8859-1 string with specific size */
   readString(length: number): string;
 
   /** Read a double (8 bytes) */

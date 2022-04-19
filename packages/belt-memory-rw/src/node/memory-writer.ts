@@ -24,7 +24,7 @@ export class MemoryWriter extends MemoryCommon implements IMemoryWriter<Buffer>,
 
   /** @inheritdoc */
   public writeString(value: string) {
-    this._buf.write(value, this._offset, value.length, 'ascii');
+    this._buf.write(value, this._offset, value.length, 'latin1');
     this._offset += value.length;
   }
 

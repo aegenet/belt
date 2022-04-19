@@ -98,7 +98,7 @@ export class MemoryReader extends MemoryCommon implements IMemoryReader<Buffer>,
     if (startOffset > endPosition) {
       endPosition = startOffset;
     }
-    const result = this._buf.toString('ascii', startOffset, endPosition);
+    const result = this._buf.toString('latin1', startOffset, endPosition);
     this._offset = endPosition + postOffset;
 
     return (result as any).toString('utf-8');
@@ -132,7 +132,7 @@ export class MemoryReader extends MemoryCommon implements IMemoryReader<Buffer>,
 
   /** @inheritdoc */
   public readString(length: number) {
-    const result = this._buf.toString('ascii', this._offset, this._offset + length);
+    const result = this._buf.toString('latin1', this._offset, this._offset + length);
     this._offset += length;
 
     return (result as any).toString('utf-8');
