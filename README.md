@@ -40,6 +40,7 @@
 | [@aegenet/belt-base64](./packages/belt-base64/README.md) | Base64 (`toBase64`, `fromBase64`)  |
 | [@aegenet/belt-anti-bounce](./packages/belt-anti-bounce/README.md) | Anti-bounce (`antiBounce` decorator, `AntiBounce` utility)  |
 | [@aegenet/belt-json-ignore](./packages/belt-json-ignore/README.md) | JSON Ignore (`@jsonIgnore`)  |
+| [@aegenet/belt-memory-rw](./packages/belt-memory-rw/README.md) | Memory RW helps to read a buffer sequentially |
 
 # @aegenet/belt - All In One
 

@@ -111,6 +111,10 @@
   "links": [],
   "publish": true
 }, {
+  "name": "belt-memory-rw",
+  "links": [],
+  "publish": true
+}, {
   "name": "belt",
   "links": [],
   "publish": true

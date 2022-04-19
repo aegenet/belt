@@ -97,4 +97,8 @@ describe('all-in-one', () => {
   it('belt_json_ignore', () => {
     assert.ok(belt.jsonIgnore);
   });
+  it('belt_memory_rw', () => {
+    assert.ok(belt.MemoryReader);
+    assert.ok(belt.MemoryWriter);
+  });
 });

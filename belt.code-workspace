@@ -117,6 +117,10 @@
       "path": "./packages/belt-json-ignore"
     },
     {
+      "name": "Memory RW",
+      "path": "./packages/belt-memory-rw"
+    },
+    {
       "name": "Root",
       "path": "."
     }

@@ -26,3 +26,4 @@ export * from '../../belt-error/src/index';
 export * from '../../belt-base64/src/node';
 export * from '../../belt-anti-bounce/src/index';
 export * from '../../belt-json-ignore/src/index';
+export * from '../../belt-memory-rw/src/node';
