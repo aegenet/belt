@@ -48,6 +48,6 @@ import {
   AntiBounce,
   disposeAntiBounces,
   jsonIgnore,
-  MemoryReader, MemoryWriter,
+  MemoryReader, MemoryWriter, MemoryCreator
 } from '@aegenet/belt';
 ```

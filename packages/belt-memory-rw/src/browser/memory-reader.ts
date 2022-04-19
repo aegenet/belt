@@ -1,14 +1,17 @@
+import type { IMemoryCommon } from '../common/i-memory-common';
 import type { IMemoryReader } from '../common/i-memory-reader';
 import { MemoryCommon } from './memory-common';
 
 /** Memory reader */
-export class MemoryReader extends MemoryCommon implements IMemoryReader<ArrayBuffer> {
+export class MemoryReader extends MemoryCommon implements IMemoryReader<ArrayBuffer>, IMemoryCommon {
   /** @inheritdoc */
   public readBytes(maxLength: number, strict: boolean = false): ArrayBuffer {
     if (strict && this._offset + maxLength > this.length) {
       throw new Error(`You read too far (${this._offset}/${this.length}).`);
     } else {
-      return this._buf.slice(this._offset, this._offset + maxLength);
+      const result = this._buf.slice(this._offset, this._offset + maxLength);
+      this._offset += maxLength;
+      return result;
     }
   }
 

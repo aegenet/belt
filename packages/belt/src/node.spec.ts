@@ -100,5 +100,6 @@ describe('all-in-one', () => {
   it('belt_memory_rw', () => {
     assert.ok(belt.MemoryReader);
     assert.ok(belt.MemoryWriter);
+    assert.ok(belt.MemoryCreator);
   });
 });

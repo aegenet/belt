@@ -1,7 +1,5 @@
-import type { IMemoryCommon } from './i-memory-common';
-
 /** Interface Memory reader */
-export interface IMemoryReader<InternalType = unknown> extends IMemoryCommon<InternalType> {
+export interface IMemoryReader<InternalType = unknown> {
   /** Read bytes (and **KEEP** a reference !) */
   readBytes(maxLength: number, strict?: boolean): InternalType;
 

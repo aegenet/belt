@@ -2,7 +2,7 @@ import assert from 'assert';
 import { MemoryWriter } from '../node';
 import { MemoryReader } from './memory-reader';
 
-describe('memory-reader', () => {
+describe('nodejs memory-reader', () => {
   describe('string', () => {
     it('readString', () => {
       const buffer = Buffer.alloc(32);

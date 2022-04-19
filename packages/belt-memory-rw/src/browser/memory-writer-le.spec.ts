@@ -2,7 +2,7 @@ import assert from 'assert';
 import { MemoryWriter } from '../browser';
 import { MemoryReader } from '../browser';
 
-describe('memory-writer LE', () => {
+describe('browser memory-writer LE', () => {
   describe('string', () => {
     it('writeString', () => {
       const buffer = new ArrayBuffer(32);

@@ -1,8 +1,9 @@
+import type { IMemoryCommon } from '../common/i-memory-common';
 import type { IMemoryWriter } from '../common/i-memory-writer';
 import { MemoryCommon } from './memory-common';
 
 /** Memory writer */
-export class MemoryWriter extends MemoryCommon implements IMemoryWriter<ArrayBuffer> {
+export class MemoryWriter extends MemoryCommon implements IMemoryWriter<ArrayBuffer>, IMemoryCommon {
   /** @inheritdoc */
   public fill(value: number, length: number) {
     for (let i = 0; i < length; i++) {
@@ -16,10 +17,14 @@ export class MemoryWriter extends MemoryCommon implements IMemoryWriter<ArrayBuf
   }
 
   /** @inheritdoc */
-  public writeBytes(values: number[]) {
-    values.forEach(octet => {
-      this._dv.setUint8(this._offset++, octet);
-    });
+  public writeBytes(values: number[] | ArrayBuffer) {
+    if (Array.isArray(values)) {
+      values.forEach(octet => {
+        this._dv.setUint8(this._offset++, octet);
+      });
+    } else {
+      new Uint8Array(this._buf).set(new Uint8Array(values), this._offset);
+    }
   }
 
   /** @inheritdoc */
