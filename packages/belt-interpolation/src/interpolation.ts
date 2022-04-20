@@ -17,7 +17,7 @@ export type InterpolationOptions = {
  */
 export class Interpolation {
   private static readonly _DEFAULT_DIALECTS = {
-    ECMAScript: /(\\{0,1})\${([\w_\.\-]{1,})}/,
+    ECMAScript: /(\\{0,1})\${([\$\w_\.\-]{1,})}/,
   };
 
   private readonly _getValue: (ctx: unknown, propPath: string, ...other: string[]) => string;
