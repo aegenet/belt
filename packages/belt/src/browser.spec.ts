@@ -102,4 +102,7 @@ describe('all-in-one', () => {
     assert.ok(belt.MemoryWriter);
     assert.ok(belt.MemoryCreator);
   });
+  it('belt_light_date', () => {
+    assert.ok(belt.LightDate);
+  });
 });

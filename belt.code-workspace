@@ -17,6 +17,10 @@
       "path": "./packages/belt-promise"
     },
     {
+      "name": "Light Date",
+      "path": "./packages/belt-light-date"
+    },
+    {
       "name": "Object Deep",
       "path": "./packages/belt-odeep"
     },

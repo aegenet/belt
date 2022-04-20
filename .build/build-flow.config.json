@@ -115,6 +115,10 @@
   "links": [],
   "publish": true
 }, {
+  "name": "belt-light-date",
+  "links": [],
+  "publish": true
+}, {
   "name": "belt",
   "links": [],
   "publish": true

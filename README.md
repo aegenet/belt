@@ -14,6 +14,7 @@
 |--|--|
 | [@aegenet/belt-crc8](./packages/belt-crc8/README.md) | CRC8 |
 | [@aegenet/belt-crc32](./packages/belt-crc32/README.md) | CRC32 |
+| [@aegenet/belt-light-date](./packages/belt-light-date/README.md) | (Very) light `Date` tools |
 | [@aegenet/belt-hook](./packages/belt-hook/README.md) | Hook |
 | [@aegenet/belt-promise](./packages/belt-promise/README.md) | Promise |
 | [@aegenet/belt-odeep](./packages/belt-odeep/README.md) | Object Deep |
