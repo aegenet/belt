@@ -49,6 +49,6 @@ import {
   disposeAntiBounces,
   jsonIgnore,
   MemoryReader, MemoryWriter, MemoryCreator,
-  LightDate
+  LightDate, getDayNames, getMonthNames,
 } from '@aegenet/belt';
 ```

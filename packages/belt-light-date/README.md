@@ -2,6 +2,8 @@
 
 > (Very) light `Date` tools
 
+## LightDate
+
 ```typescript
 import { LightDate } from '@aegenet/belt-light-date';
 
@@ -47,5 +49,52 @@ LightDate.prevMonthStart('2022-04-20T12:14:00.072Z').toLocaleString('fr'); // '0
 
 // prevMonthEnd
 LightDate.prevMonthEnd('2022-04-20T12:14:00.072Z').toLocaleString('fr'); // '31/03/2022, 23:59:59'
+
+```
+
+## getDayNames
+
+```typescript
+import { getDayNames } from '@aegenet/belt-light-date';
+
+getDayNames();
+// Long & Default locale
+// ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+
+getDayNames('short');
+// Default locale
+// ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+
+getDayNames('short', 'en');
+// ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+  
+getDayNames('long', 'en');
+// ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+  
+getDayNames('long', 'fr');
+// ['lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi', 'dimanche']);
+```
+
+## getMonthNames
+
+```typescript
+import { getMonthNames } from '@aegenet/belt-light-date';
+
+getMonthNames();
+// long & default locale
+// ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+
+getMonthNames('short');
+// default locale
+// ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+
+getMonthNames('short', 'en');
+// ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+
+getMonthNames('long', 'en');
+// ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+
+getMonthNames('long', 'fr');
+// ['janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre']
 
 ```

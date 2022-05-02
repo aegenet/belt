@@ -104,5 +104,7 @@ describe('all-in-one', () => {
   });
   it('belt_light_date', () => {
     assert.ok(belt.LightDate);
+    assert.ok(belt.getDayNames);
+    assert.ok(belt.getMonthNames);
   });
 });
