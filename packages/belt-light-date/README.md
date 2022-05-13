@@ -38,6 +38,14 @@ LightDate.monthStart('2022-04-20T12:14:00.072Z').toLocaleString('fr'); // '01/04
 // monthEnd
 LightDate.monthEnd('2022-04-20T12:14:00.072Z').toLocaleString('fr'); // '30/04/2022, 23:59:59'
 
+// weekStart
+LightDate.weekStart('2022-04-20T12:14:00.072Z', 'fr-FR').toLocaleString('fr'); // '18/04/2022, 00:00:00'
+LightDate.weekStart('2022-04-20T12:14:00.072Z', 'en-US').toLocaleString('fr'); // '17/04/2022, 00:00:00'
+
+// weekEnd
+LightDate.weekEnd('2022-04-20T12:14:00.072Z', 'fr-FR').toLocaleString('fr'); // '24/04/2022, 23:59:59'
+LightDate.weekEnd('2022-04-20T12:14:00.072Z', 'en-US').toLocaleString('fr'); // '23/04/2022, 23:59:59'
+
 // nextMonthStart
 LightDate.nextMonthStart('2022-04-20T12:14:00.072Z').toLocaleString('fr'); // '01/05/2022, 00:00:00'
 
@@ -50,6 +58,18 @@ LightDate.prevMonthStart('2022-04-20T12:14:00.072Z').toLocaleString('fr'); // '0
 // prevMonthEnd
 LightDate.prevMonthEnd('2022-04-20T12:14:00.072Z').toLocaleString('fr'); // '31/03/2022, 23:59:59'
 
+// Split date
+const splited = LightDate.splitDate({
+  days: 365,
+  dateFrom: '2022-04-20T12:14:00.072Z',
+  startEndOf: 'week',
+});
+
+splited.start.toLocaleString('fr'); // '18/10/2021, 00:00:00'
+splited.end.toLocaleString('fr'); // '23/10/2022, 23:59:59'
+
+// Get current locale
+getIntlLocale(); // Object
 ```
 
 ## getDayNames
