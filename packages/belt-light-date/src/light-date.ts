@@ -162,6 +162,46 @@ export class LightDate {
   }
 
   /**
+   * Previous week start at 00:00:00 (current locale)
+   * @remark It's not a UTC midight
+   */
+  public static prevWeekStart(dateFrom?: LightDateOptions, locale?: string): Date {
+    const weekStart = LightDate.weekStart(dateFrom, locale);
+    weekStart.setDate(weekStart.getDate() - 7);
+    return weekStart;
+  }
+
+  /**
+   * Previous week end at 23:59:59 (current locale)
+   * @remark It's not a UTC midight
+   */
+  public static prevWeekEnd(dateFrom?: LightDateOptions, locale?: string): Date {
+    const weekEnd = LightDate.weekEnd(dateFrom, locale);
+    weekEnd.setDate(weekEnd.getDate() - 7);
+    return weekEnd;
+  }
+
+  /**
+   * Next week start at 00:00:00 (current locale)
+   * @remark It's not a UTC midight
+   */
+  public static nextWeekStart(dateFrom?: LightDateOptions, locale?: string): Date {
+    const weekStart = LightDate.weekStart(dateFrom, locale);
+    weekStart.setDate(weekStart.getDate() + 7);
+    return weekStart;
+  }
+
+  /**
+   * Next week end at 23:59:59 (current locale)
+   * @remark It's not a UTC midight
+   */
+  public static nextWeekEnd(dateFrom?: LightDateOptions, locale?: string): Date {
+    const weekEnd = LightDate.weekEnd(dateFrom, locale);
+    weekEnd.setDate(weekEnd.getDate() + 7);
+    return weekEnd;
+  }
+
+  /**
    * From now or a date, compute the start & the end date with a number of days.
    */
   public static splitDate(options: { days: number; dateFrom?: LightDateOptions; startEndOf?: 'respect' | 'year' | 'month' | 'week'; locale?: string }): { start: Date; end: Date } {
@@ -180,7 +220,7 @@ export class LightDate {
       case 'week':
         return {
           start: LightDate.weekStart(start, options.locale),
-          end: LightDate.weekEnd(end, options.locale),
+          end: LightDate.prevWeekEnd(end, options.locale),
         };
       case 'year':
         return {

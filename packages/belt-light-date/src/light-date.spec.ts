@@ -58,6 +58,22 @@ describe('light-date', () => {
     assert.equal(LightDate.weekEnd('2022-04-20T12:14:00.072Z', 'fr-FR').toLocaleString('fr'), '24/04/2022, 23:59:59');
     assert.equal(LightDate.weekEnd('2022-04-20T12:14:00.072Z', 'en-US').toLocaleString('fr'), '23/04/2022, 23:59:59');
   });
+  it('prevWeekStart', () => {
+    assert.equal(LightDate.prevWeekStart('2022-04-20T12:14:00.072Z', 'fr-FR').toLocaleString('fr'), '11/04/2022, 00:00:00');
+    assert.equal(LightDate.prevWeekStart('2022-04-20T12:14:00.072Z', 'en-US').toLocaleString('fr'), '10/04/2022, 00:00:00');
+  });
+  it('prevWeekEnd', () => {
+    assert.equal(LightDate.prevWeekEnd('2022-04-20T12:14:00.072Z', 'fr-FR').toLocaleString('fr'), '17/04/2022, 23:59:59');
+    assert.equal(LightDate.prevWeekEnd('2022-04-20T12:14:00.072Z', 'en-US').toLocaleString('fr'), '16/04/2022, 23:59:59');
+  });
+  it('nextWeekStart', () => {
+    assert.equal(LightDate.nextWeekStart('2022-04-20T12:14:00.072Z', 'fr-FR').toLocaleString('fr'), '25/04/2022, 00:00:00');
+    assert.equal(LightDate.nextWeekStart('2022-04-20T12:14:00.072Z', 'en-US').toLocaleString('fr'), '24/04/2022, 00:00:00');
+  });
+  it('nextWeekEnd', () => {
+    assert.equal(LightDate.nextWeekEnd('2022-04-20T12:14:00.072Z', 'fr-FR').toLocaleString('fr'), '01/05/2022, 23:59:59');
+    assert.equal(LightDate.nextWeekEnd('2022-04-20T12:14:00.072Z', 'en-US').toLocaleString('fr'), '30/04/2022, 23:59:59');
+  });
   it('splitDate classic', () => {
     const dates = LightDate.splitDate({
       days: 30,
@@ -83,7 +99,7 @@ describe('light-date', () => {
         dateFrom: '2022-04-20T12:14:00.072Z',
         startEndOf: 'week',
       }).end.toLocaleString('fr'),
-      locale === 'en-US' ? '07/05/2022, 23:59:59' : '08/05/2022, 23:59:59'
+      locale === 'en-US' ? '30/04/2022, 23:59:59' : '01/05/2022, 23:59:59'
     );
   });
   it('splitDate month', () => {
@@ -123,13 +139,14 @@ describe('light-date', () => {
     );
   });
   it('splitDate 365d week', () => {
+    const locale = new Intl.NumberFormat().resolvedOptions().locale;
     assert.equal(
       LightDate.splitDate({
         days: 365,
         dateFrom: '2022-04-20T12:14:00.072Z',
         startEndOf: 'week',
       }).start.toLocaleString('fr'),
-      '18/10/2021, 00:00:00'
+      locale === 'en-US' ? '17/10/2021, 00:00:00' : '18/10/2021, 00:00:00'
     );
     assert.equal(
       LightDate.splitDate({
@@ -137,7 +154,23 @@ describe('light-date', () => {
         dateFrom: '2022-04-20T12:14:00.072Z',
         startEndOf: 'week',
       }).end.toLocaleString('fr'),
-      '23/10/2022, 23:59:59'
+      locale === 'en-US' ? '15/10/2022, 23:59:59' : '16/10/2022, 23:59:59'
+    );
+  });
+  it('splitDate 365d', () => {
+    assert.equal(
+      LightDate.splitDate({
+        days: 365,
+        dateFrom: '2022-04-20T12:14:00.072Z',
+      }).start.toLocaleString('fr'),
+      '20/10/2021, 00:00:00'
+    );
+    assert.equal(
+      LightDate.splitDate({
+        days: 365,
+        dateFrom: '2022-04-20T12:14:00.072Z',
+      }).end.toLocaleString('fr'),
+      '19/10/2022, 23:59:59'
     );
   });
   it('getIntlLocale', () => {
