@@ -1,5 +1,5 @@
-const monthsUTC0 = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'].map(month => {
-  return new Date(`2017-${month.padStart(2, '0')}-01T00:00:00+00:00`);
+const monthsUTC0 = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'].map(month => {
+  return new Date(`2017-${month}-01T00:00:00+00:00`);
 });
 const monthsMap: Map<string, string[]> = new Map();
 

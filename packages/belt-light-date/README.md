@@ -5,71 +5,93 @@
 ## LightDate
 
 ```typescript
-import { LightDate } from '@aegenet/belt-light-date';
+import { lightDate } from '@aegenet/belt-light-date';
 
 // today
-LightDate.today(); // Like new Date()
-LightDate.today('2022-04-20T12:14:00.072Z'); // new Date('2022-04-20T12:14:00.072Z')
+lightDate.today(); // Like new Date()
+lightDate.today('2022-04-20T12:14:00.072Z'); // new Date('2022-04-20T12:14:00.072Z')
 
 /**
  * Today at 00:00:00 (current language)
  * @remark It's not a UTC midight
  */
-LightDate.todayStart('2022-04-20T12:14:00.072Z').toLocaleString('fr'); // '20/04/2022, 00:00:00'
+lightDate.todayStart('2022-04-20T12:14:00.072Z').toLocaleString('fr'); // '20/04/2022, 00:00:00'
 
 // todayEnd
-LightDate.todayEnd('2022-04-20T12:14:00.072Z').toLocaleString('fr'); // '20/04/2022, 23:59:59'
+lightDate.todayEnd('2022-04-20T12:14:00.072Z').toLocaleString('fr'); // '20/04/2022, 23:59:59'
 
 // tomorrow
-LightDate.tomorrow('2022-04-20T12:14:00.072Z').toISOString(); // '2022-04-21T12:14:00.072Z'
+lightDate.tomorrow('2022-04-20T12:14:00.072Z').toISOString(); // '2022-04-21T12:14:00.072Z'
 
 // yesterday
-LightDate.yesterday('2022-04-20T12:14:00.072Z').toISOString(); // '2022-04-19T12:14:00.072Z'
+lightDate.yesterday('2022-04-20T12:14:00.072Z').toISOString(); // '2022-04-19T12:14:00.072Z'
 
 // tomorrowStart
-LightDate.tomorrowStart('2022-04-20T12:14:00.072Z').toLocaleString('fr'); // '21/04/2022, 00:00:00'
+lightDate.tomorrowStart('2022-04-20T12:14:00.072Z').toLocaleString('fr'); // '21/04/2022, 00:00:00'
 
 // tomorrowEnd
-LightDate.tomorrowEnd('2022-04-20T12:14:00.072Z').toLocaleString('fr'); // '21/04/2022, 23:59:59'
+lightDate.tomorrowEnd('2022-04-20T12:14:00.072Z').toLocaleString('fr'); // '21/04/2022, 23:59:59'
 
 // monthStart
-LightDate.monthStart('2022-04-20T12:14:00.072Z').toLocaleString('fr'); // '01/04/2022, 00:00:00'
+lightDate.monthStart('2022-04-20T12:14:00.072Z').toLocaleString('fr'); // '01/04/2022, 00:00:00'
 
 // monthEnd
-LightDate.monthEnd('2022-04-20T12:14:00.072Z').toLocaleString('fr'); // '30/04/2022, 23:59:59'
+lightDate.monthEnd('2022-04-20T12:14:00.072Z').toLocaleString('fr'); // '30/04/2022, 23:59:59'
 
 // weekStart
-LightDate.weekStart('2022-04-20T12:14:00.072Z', 'fr-FR').toLocaleString('fr'); // '18/04/2022, 00:00:00'
-LightDate.weekStart('2022-04-20T12:14:00.072Z', 'en-US').toLocaleString('fr'); // '17/04/2022, 00:00:00'
+lightDate.weekStart('2022-04-20T12:14:00.072Z', 'fr-FR').toLocaleString('fr'); // '18/04/2022, 00:00:00'
+lightDate.weekStart('2022-04-20T12:14:00.072Z', 'en-US').toLocaleString('fr'); // '17/04/2022, 00:00:00'
 
 // weekEnd
-LightDate.weekEnd('2022-04-20T12:14:00.072Z', 'fr-FR').toLocaleString('fr'); // '24/04/2022, 23:59:59'
-LightDate.weekEnd('2022-04-20T12:14:00.072Z', 'en-US').toLocaleString('fr'); // '23/04/2022, 23:59:59'
+lightDate.weekEnd('2022-04-20T12:14:00.072Z', 'fr-FR').toLocaleString('fr'); // '24/04/2022, 23:59:59'
+lightDate.weekEnd('2022-04-20T12:14:00.072Z', 'en-US').toLocaleString('fr'); // '23/04/2022, 23:59:59'
 
 // nextMonthStart
-LightDate.nextMonthStart('2022-04-20T12:14:00.072Z').toLocaleString('fr'); // '01/05/2022, 00:00:00'
+lightDate.nextMonthStart('2022-04-20T12:14:00.072Z').toLocaleString('fr'); // '01/05/2022, 00:00:00'
 
 // nextMonthEnd
-LightDate.nextMonthEnd('2022-04-20T12:14:00.072Z').toLocaleString('fr'); // '31/05/2022, 23:59:59'
+lightDate.nextMonthEnd('2022-04-20T12:14:00.072Z').toLocaleString('fr'); // '31/05/2022, 23:59:59'
 
 // prevMonthStart
-LightDate.prevMonthStart('2022-04-20T12:14:00.072Z').toLocaleString('fr'); // '01/03/2022, 00:00:00'
+lightDate.prevMonthStart('2022-04-20T12:14:00.072Z').toLocaleString('fr'); // '01/03/2022, 00:00:00'
 
 // prevMonthEnd
-LightDate.prevMonthEnd('2022-04-20T12:14:00.072Z').toLocaleString('fr'); // '31/03/2022, 23:59:59'
-
-// Split date
-const splited = LightDate.splitDate({
-  days: 365,
-  dateFrom: '2022-04-20T12:14:00.072Z',
-  startEndOf: 'week',
-});
-
-splited.start.toLocaleString('fr'); // '18/10/2021, 00:00:00'
-splited.end.toLocaleString('fr'); // '23/10/2022, 23:59:59'
+lightDate.prevMonthEnd('2022-04-20T12:14:00.072Z').toLocaleString('fr'); // '31/03/2022, 23:59:59'
 
 // Get current locale
 getIntlLocale(); // Object
+```
+
+## isLeapYear
+
+```typescript
+import { isLeapYear } from '@aegenet/belt-light-date';
+isLeapYear(2000); // true
+isLeapYear(2001); // false
+isLeapYear(2019); // false
+isLeapYear(2020); // true
+isLeapYear(2021); // false
+isLeapYear(2024); // true
+isLeapYear(2027); // false
+```
+
+## getDaysArrayInMonth
+
+```typescript
+import { getDaysArrayInMonth } from '@aegenet/belt-light-date';
+getDaysArrayInMonth(2021); // [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+getDaysArrayInMonth(2020); // [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+```
+
+## getDaysInMonth
+
+```typescript
+import { getDaysInMonth } from '@aegenet/belt-light-date';
+
+getDaysInMonth(new Date(2019, 0)); // 31
+getDaysInMonth(new Date(2021, 1)); // 28
+getDaysInMonth(new Date(2020, 0)); // 31
+getDaysInMonth(new Date(2020, 1)); // 29
 ```
 
 ## getDayNames
@@ -117,4 +139,20 @@ getMonthNames('long', 'en');
 getMonthNames('long', 'fr');
 // ['janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre']
 
+```
+
+## splitDate
+
+```typescript
+import { splitDate } from '@aegenet/belt-light-date';
+
+// Split date
+const splited = splitDate({
+  days: 365,
+  dateFrom: '2022-04-20T12:14:00.072Z',
+  startEndOf: 'week',
+});
+
+splited.start.toLocaleString('fr'); // '18/10/2021, 00:00:00'
+splited.end.toLocaleString('fr'); // '23/10/2022, 23:59:59'
 ```
