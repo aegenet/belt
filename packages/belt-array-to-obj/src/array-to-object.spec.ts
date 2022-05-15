@@ -2,6 +2,20 @@ import * as assert from 'assert';
 import { arrayToObject } from './index';
 
 describe('arrayToObject', function () {
+  it('number[]', () => {
+    assert.deepStrictEqual(arrayToObject([5, 6]), {
+      5: 5,
+      6: 6,
+    });
+  });
+
+  it('string[]', () => {
+    assert.deepStrictEqual(arrayToObject(['a', 'b']), {
+      a: 'a',
+      b: 'b',
+    });
+  });
+
   it('Simple', () => {
     assert.deepStrictEqual(
       arrayToObject(

@@ -14,7 +14,7 @@ const result = arrayToObject(
   ],
   'id'
 );
-// result = {
+// {
 //   5: {
 //     id: 5,
 //     value: 'Yo',
@@ -33,7 +33,7 @@ const result = arrayToObject(
   'id',
   'value'
 );
-// const result = {
+// {
 //   5: 'Yo',
 // }
 ```
@@ -49,7 +49,19 @@ const result = arrayToObject(
   value => value.id,
   'value'
 );
-// const result = {
+// {
 //   5: 'Yo',
 // }
+
+const result = arrayToObject([5, 6]);
+/* {
+  5: 5,
+  6: 6,
+} */
+
+const result = arrayToObject(['a', 'b']);
+/* {
+  a: 'a',
+  b: 'b',
+} */
 ```
