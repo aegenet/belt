@@ -4,7 +4,7 @@
  */
 export function getAverage(entries: number[]) {
   if (entries?.length) {
-    return entries.reduce((a, b) => (a || 0) + (b || 0), 0) / entries.length ?? 0;
+    return entries.reduce((a, b) => (a || 0) + (b || 0), 0) / entries.length;
   } else {
     return 0;
   }

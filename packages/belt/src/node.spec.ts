@@ -45,6 +45,8 @@ describe('all-in-one', () => {
   it('belt_array_stats', () => {
     assert.ok(belt.getAverage);
     assert.ok(belt.getMedian);
+    assert.ok(belt.getClosestNumber);
+    assert.ok(belt.getClosestValue);
   });
   it('belt_obj_to_array', () => {
     assert.ok(belt.objectToArray);

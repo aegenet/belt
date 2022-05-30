@@ -24,3 +24,44 @@ const results = getMedian([1, 1, 2]);
 const results = getMedian([1, 1, 2, 3, 4, 4], { sorted: true });
 // results = 2.5
 ```
+
+### getClosestNumber
+
+```typescript
+import { getClosestNumber } from '@aegenet/belt-array-stats';
+
+getClosestNumber(1, [1, 2]); // 1
+getClosestNumber(2, [1, 2]); // 2
+getClosestNumber(2, [1, 2, 3]); // 2
+getClosestNumber(2, [1, 2, 2, 3]); // 2
+getClosestNumber(2, [3, 1, 2, 2]); // 2
+
+getClosestNumber(0, [1, 2]); // 1
+getClosestNumber(3, [1, 2]); // 2
+getClosestNumber(13, [1, 2]); // 2
+```
+
+### getClosestValue
+
+```typescript
+import { getClosestValue } from '@aegenet/belt-array-stats';
+
+const reducer = (value: { value: number }, a: { value: number }, b: { value: number }) => {
+  const aDiff = Math.abs(a.value - value.value);
+  const bDiff = Math.abs(b.value - value.value);
+
+  if (aDiff === bDiff) {
+    return a.value > b.value ? a : b;
+  } else {
+    return bDiff < aDiff ? b : a;
+  }
+};
+
+getClosestValue<{ value: number }>(
+  { value: 1 },
+  [{ value: 1 }, { value: 2 }],
+  reducer
+);
+// { value: 1 }
+
+```

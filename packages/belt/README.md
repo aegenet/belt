@@ -34,6 +34,8 @@ import {
   isRecord,
   getAverage,
   getMedian,
+  getClosestNumber,
+  getClosestValue,
   escapeRegex,
   binarySearch,
   safeBinarySearch,
