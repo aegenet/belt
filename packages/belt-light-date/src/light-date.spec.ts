@@ -51,8 +51,9 @@ describe('light-date', () => {
     assert.equal(lightDate.yearEnd('2022-04-20T12:14:00.072Z').toLocaleString('fr'), '31/12/2022, 23:59:59');
   });
   it('weekStart', () => {
-    assert.equal(lightDate.weekStart('2022-04-20T12:14:00.072Z', 'fr-FR').toLocaleString('fr'), '18/04/2022, 00:00:00');
-    assert.equal(lightDate.weekStart('2022-04-20T12:14:00.072Z', 'en-US').toLocaleString('fr'), '17/04/2022, 00:00:00');
+    assert.equal(lightDate.weekStart('2022-04-20', 'en-US').toLocaleString('fr'), '17/04/2022, 00:00:00');
+    assert.equal(lightDate.weekStart('2022-06-12', 'fr-FR').toLocaleString('fr'), '06/06/2022, 00:00:00');
+    assert.equal(lightDate.weekStart('2022-04-20', 'fr-FR').toLocaleString('fr'), '18/04/2022, 00:00:00');
   });
   it('weekEnd', () => {
     assert.equal(lightDate.weekEnd('2022-04-20T12:14:00.072Z', 'fr-FR').toLocaleString('fr'), '24/04/2022, 23:59:59');
