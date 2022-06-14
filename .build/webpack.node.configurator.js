@@ -37,7 +37,7 @@ module.exports = function(
   return function (env, { analyze }) {
     const production = env.production || process.env.NODE_ENV === 'production';
     return {
-      target: options.target ?? 'node16',
+      target: options.target ? options.target : 'es2017',
       mode: production ? 'production' : 'development',
       devtool: production ? undefined : 'eval-cheap-source-map',
       entry,
@@ -45,18 +45,15 @@ module.exports = function(
         __dirname: false,
         __filename: false,
       },
-      // experiments: {
-      //   outputModule: true,
-      // },  
+      experiments: {
+        outputModule: options.libraryType === 'module' ? true : false,
+      },  
       output: {
         path: outputDirSubDir,
-        filename: `[name].bundle.js`,
-        library: {
-          // Attention, si le nom est mis alors le main export sera sous le nom indiqué, donc par exemple import { rqlcore } from '@aegenet/rql-core';
-          // Donc on évite
-          // name: options.name,
-          type: options.libraryType ?? 'commonjs',
-        },
+        filename: options.libraryType === 'module' ? 'index.mjs' : 'index.cjs',
+        // filename: `[name].bundle.js`,
+        library: production ? { type: options.libraryType ?? 'module' } : undefined,
+        chunkFormat: options.libraryType === 'module' ? 'module' : 'commonjs',
       },
       externalsPresets: { node: true },
       externals: options.externals,

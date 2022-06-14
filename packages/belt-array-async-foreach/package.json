@@ -2,8 +2,19 @@
   "name": "@aegenet/belt-array-async-foreach",
   "description": "Array async filter (sequentially)",
   "version": "999.0.0",
-  "main": "./dist/node/belt-array-async-foreach.bundle.js",
-  "browser": "./dist/web/belt-array-async-foreach.bundle.js",
+  "main": "dist/node/index.cjs",
+  "module": "dist/node/index.mjs",
+  "browser": "dist/web/index.mjs",
+"exports": {
+    "node": {
+        "require": "./dist/node/index.cjs",
+        "import": "./dist/node/index.mjs"
+    },
+    "default": {
+        "require": "./dist/web/index.cjs",
+        "import": "./dist/web/index.mjs"
+    }
+  },
   "typings": "./dist/node/bundle.d.ts",
   "author": "Alexandre Genet",
   "license": "UNLICENSED",
