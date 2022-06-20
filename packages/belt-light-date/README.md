@@ -156,3 +156,36 @@ const splited = splitDate({
 splited.start.toLocaleString('fr'); // '18/10/2021, 00:00:00'
 splited.end.toLocaleString('fr'); // '23/10/2022, 23:59:59'
 ```
+
+## Input date utils
+
+```typescript
+import { dateToInputDate, inputDateToDate } from '@aegenet/belt-light-date';
+
+// Convert a Date to an compatible input date string
+dateToInputDate(new Date()); // YYYY-MM-dd
+
+// Convert back a input date string to a Date object
+inputDateToDate('YYYY-MM-dd'); // Date object
+```
+
+## Input date time utils
+
+```typescript
+import { dateToInputDateTime, inputDateTimeToDate } from '@aegenet/belt-light-date';
+
+// Convert a Date to an compatible input date time string
+dateToInputDateTime(new Date()); // YYYY-MM-ddTHH:mm
+
+// Convert back a input date time string to a Date object
+inputDateToDate('YYYY-MM-ddTHH:mm'); // Date object
+```
+
+## getCurrentTimezone
+
+```typescript
+import { getCurrentTimezone } from '@aegenet/belt-light-date';
+
+// Get current timezone
+getCurrentTimezone(); // +0200
+```

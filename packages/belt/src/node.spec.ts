@@ -108,5 +108,10 @@ describe('all-in-one', () => {
     assert.ok(belt.LightDate);
     assert.ok(belt.getDayNames);
     assert.ok(belt.getMonthNames);
+    assert.ok(belt.inputDateTimeToDate);
+    assert.ok(belt.dateToInputDateTime);
+    assert.ok(belt.inputDateToDate);
+    assert.ok(belt.dateToInputDate);
+    assert.ok(belt.getCurrentTimezone);
   });
 });

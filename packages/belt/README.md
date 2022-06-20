@@ -52,5 +52,7 @@ import {
   jsonIgnore,
   MemoryReader, MemoryWriter, MemoryCreator,
   LightDate, getDayNames, getMonthNames,
+  dateToInputDate, inputDateToDate,
+  dateToInputDateTime, inputDateTimeToDate
 } from '@aegenet/belt';
 ```
