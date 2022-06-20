@@ -1,5 +1,5 @@
-import { getCurrentTimezone } from './get-current-timezone';
-import { lightDate, LightDateOptions } from './light-date';
+import { timezoneOffsetToISO } from './get-current-timezone';
+import { lightDate, type LightDateOptions } from './light-date';
 
 /**
  * Convert a date (iso string, number, Date...) to Input Date format (YYYY-MM-dd)
@@ -42,10 +42,11 @@ export function inputDateTimeToDate(inputDate: string): Date {
   if (!inputDate) {
     return new Date();
   } else {
+    const dteOnly = lightDate.dateOrNow(inputDate.slice(0, 10).replace(/\-/g, '/'));
     if (inputDate.length > 10) {
-      return lightDate.dateOrNow(inputDate.replace(/\//g, '-') + ':00.000' + getCurrentTimezone());
+      return lightDate.dateOrNow(inputDate.replace(/\//g, '-') + ':00.000' + timezoneOffsetToISO(dteOnly.getTimezoneOffset()));
     } else {
-      return lightDate.dateOrNow(inputDate.replace(/\-/g, '/'));
+      return dteOnly;
     }
   }
 }
