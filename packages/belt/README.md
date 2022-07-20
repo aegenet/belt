@@ -53,6 +53,7 @@ import {
   MemoryReader, MemoryWriter, MemoryCreator,
   LightDate, getDayNames, getMonthNames,
   dateToInputDate, inputDateToDate,
-  dateToInputDateTime, inputDateTimeToDate
+  dateToInputDateTime, inputDateTimeToDate,
+  readdir, IReaddirEntry
 } from '@aegenet/belt';
 ```

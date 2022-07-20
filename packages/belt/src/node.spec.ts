@@ -114,4 +114,7 @@ describe('all-in-one', () => {
     assert.ok(belt.dateToInputDate);
     assert.ok(belt.getCurrentTimezone);
   });
+  it('belt_readdir', () => {
+    assert.ok(belt.readdir);
+  });
 });

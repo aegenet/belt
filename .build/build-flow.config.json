@@ -119,6 +119,10 @@
   "links": [],
   "publish": true
 }, {
+  "name": "belt-readdir",
+  "links": [],
+  "publish": true
+}, {
   "name": "belt",
   "links": [],
   "publish": true

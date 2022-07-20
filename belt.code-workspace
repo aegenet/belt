@@ -125,6 +125,10 @@
       "path": "./packages/belt-memory-rw"
     },
     {
+      "name": "Read Directory",
+      "path": "./packages/belt-readdir"
+    },
+    {
       "name": "Root",
       "path": "."
     }
