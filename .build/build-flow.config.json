@@ -123,6 +123,10 @@
   "links": [],
   "publish": true
 }, {
+  "name": "belt-extract-domain",
+  "links": [],
+  "publish": true
+}, {
   "name": "belt",
   "links": [],
   "publish": true

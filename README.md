@@ -43,6 +43,7 @@
 | [@aegenet/belt-json-ignore](./packages/belt-json-ignore/README.md) | JSON Ignore (`@jsonIgnore`)  |
 | [@aegenet/belt-memory-rw](./packages/belt-memory-rw/README.md) | Memory RW helps to read a buffer sequentially |
 | [@aegenet/belt-readdir](./packages/belt-readdir/README.md) | Get all files from a root directory (recursively) |
+| [@aegenet/belt-extract-domain](./packages/belt-extract-domain/README.md) | Extract domain informations from a host name (`a.b.c.d.com`, to `{ domain: 'd.com', subdomains: ['c', 'b', 'a'] }`) |
 
 # @aegenet/belt - All In One
 

@@ -118,4 +118,8 @@ describe('all-in-one', () => {
     // Not implemented
     assert.ok(belt.readdir);
   });
+  it('belt_extract_domain', () => {
+    // Not implemented
+    assert.ok(belt.extractDomain);
+  });
 });

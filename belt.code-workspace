@@ -129,6 +129,10 @@
       "path": "./packages/belt-readdir"
     },
     {
+      "name": "Extract domain",
+      "path": "./packages/belt-extract-domain"
+    },
+    {
       "name": "Root",
       "path": "."
     }

@@ -54,6 +54,7 @@ import {
   LightDate, getDayNames, getMonthNames,
   dateToInputDate, inputDateToDate,
   dateToInputDateTime, inputDateTimeToDate,
-  readdir, IReaddirEntry
+  readdir, IReaddirEntry,
+  extractDomain, IDomain
 } from '@aegenet/belt';
 ```
