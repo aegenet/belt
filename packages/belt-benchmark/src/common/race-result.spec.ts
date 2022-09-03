@@ -1,0 +1,28 @@
+import * as assert from 'assert';
+import { RaceResult, RaceTime } from '../browser';
+
+describe('RaceResult', () => {
+  it('Two lap', async () => {
+    const result = new RaceResult({
+      name: 'n°1',
+      spec: () => {
+        /* */
+      },
+    });
+    result.laps = [new RaceTime(1000000000000, 1), new RaceTime(1000000000, 2)];
+    result.compute();
+
+    assert.deepStrictEqual(result.humanize(), {
+      duration: '16.68 min.',
+      fastest: '1.00 sec.',
+      laps: 2,
+      average: '8.34 min.',
+      name: 'n°1',
+      'p50 <': '16.67 min.',
+      p75: '16.67 min.',
+      p90: '16.67 min.',
+      'ratio %': '0.00',
+      slowest: '16.67 min.',
+    });
+  });
+});

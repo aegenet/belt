@@ -33,7 +33,7 @@
 | [@aegenet/belt-array-async-map](./packages/belt-array-async-map/README.md) | Array async map (sequentially) |
 | [@aegenet/belt-array-async-foreach](./packages/belt-array-async-foreach/README.md) | Array async foreach (sequentially) |
 | [@aegenet/belt-array-duplicates](./packages/belt-array-duplicates/README.md) | Strip duplicates from array / get duplicates of an array |
-| [@aegenet/belt-array-stats](./packages/belt-array-stats/README.md) | Get stats from array (`getAverage`, `getMedian`, `getClosestNumber`, ...) |
+| [@aegenet/belt-array-stats](./packages/belt-array-stats/README.md) | Get stats from array (`getPercentile`, `p10..90`, `getAverage`, `getMedian`, `getClosestNumber`, ...) |
 | [@aegenet/belt-binary-search](./packages/belt-binary-search/README.md) | Binary search |
 | [@aegenet/belt-symbols-is-balanced](./packages/belt-symbols-is-balanced/README.md) | Symbols is balanced (`[`, `(` `{`) ?  |
 | [@aegenet/belt-platform-detector](./packages/belt-platform-detector/README.md) | Is NodeJS ? is Mobile Device ?  |
@@ -44,6 +44,7 @@
 | [@aegenet/belt-memory-rw](./packages/belt-memory-rw/README.md) | Memory RW helps to read a buffer sequentially |
 | [@aegenet/belt-readdir](./packages/belt-readdir/README.md) | Get all files from a root directory (recursively) |
 | [@aegenet/belt-extract-domain](./packages/belt-extract-domain/README.md) | Extract domain informations from a host name (`a.b.c.d.com`, to `{ domain: 'd.com', subdomains: ['c', 'b', 'a'] }`) |
+| [@aegenet/belt-benchmark](./packages/belt-benchmark/README.md) | Benchmark your functions like an F1 driver |
 
 # @aegenet/belt - All In One
 

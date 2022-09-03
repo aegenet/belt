@@ -11,10 +11,10 @@ describe('crc8', () => {
   });
 
   it('Null', () => {
-    assert.equal(crc8(null), 0x00);
+    assert.equal(crc8(null as unknown as string), 0x00);
   });
 
   it('undefined', () => {
-    assert.equal(crc8(undefined), 0x00);
+    assert.equal(crc8(undefined as unknown as string), 0x00);
   });
 });

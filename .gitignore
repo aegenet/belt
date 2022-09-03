@@ -1,6 +1,7 @@
 node_modules/
 build/
 dist/
+temp/
 coverage/
 .nyc_output/
 .vscode/
@@ -55,3 +56,13 @@ packages/belt-odeep/.nyc_output/
 packages/belt-odeep/.vscode/
 packages/belt-odeep/yarn-error.log
 packages/belt-odeep/temp/
+packages/belt-benchmark/.yalc/
+packages/belt-benchmark/yalc.lock
+packages/belt-benchmark/node_modules/
+packages/belt-benchmark/build/
+packages/belt-benchmark/dist/
+packages/belt-benchmark/coverage/
+packages/belt-benchmark/.nyc_output/
+packages/belt-benchmark/.vscode/
+packages/belt-benchmark/yarn-error.log
+packages/belt-benchmark/temp/

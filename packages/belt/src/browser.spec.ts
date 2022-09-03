@@ -47,6 +47,12 @@ describe('all-in-one', () => {
     assert.ok(belt.getMedian);
     assert.ok(belt.getClosestNumber);
     assert.ok(belt.getClosestValue);
+    assert.ok(belt.getPercentile);
+    assert.ok(belt.p10);
+    assert.ok(belt.p25);
+    assert.ok(belt.p50);
+    assert.ok(belt.p75);
+    assert.ok(belt.p90);
   });
   it('belt_obj_to_array', () => {
     assert.ok(belt.objectToArray);
@@ -121,5 +127,10 @@ describe('all-in-one', () => {
   it('belt_extract_domain', () => {
     // Not implemented
     assert.ok(belt.extractDomain);
+  });
+  it('belt_benchmark', () => {
+    assert.ok(belt.RaceResult);
+    assert.ok(belt.RaceTime);
+    assert.ok(belt.Racetrack);
   });
 });

@@ -127,6 +127,10 @@
   "links": [],
   "publish": true
 }, {
+  "name": "belt-benchmark",
+  "links": [],
+  "publish": true
+}, {
   "name": "belt",
   "links": [],
   "publish": true

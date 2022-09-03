@@ -34,6 +34,7 @@ import {
   isRecord,
   getAverage,
   getMedian,
+  getPercentile, p10, p25, p50, p75, p90,
   getClosestNumber,
   getClosestValue,
   escapeRegex,
@@ -55,6 +56,7 @@ import {
   dateToInputDate, inputDateToDate,
   dateToInputDateTime, inputDateTimeToDate,
   readdir, IReaddirEntry,
-  extractDomain, IDomain
+  extractDomain, IDomain,
+  NodeRacetrack, Racetrack, NodeRacetrack, RaceResult, RaceTime
 } from '@aegenet/belt';
 ```

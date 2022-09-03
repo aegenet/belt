@@ -133,6 +133,10 @@
       "path": "./packages/belt-extract-domain"
     },
     {
+      "name": "Benchmark",
+      "path": "./packages/belt-benchmark"
+    },
+    {
       "name": "Root",
       "path": "."
     }

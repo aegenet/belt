@@ -9,3 +9,8 @@ export function getAverage(entries: number[]) {
     return 0;
   }
 }
+
+/**
+ * Get mean (alias of average)
+ */
+export const getMean = getAverage;
