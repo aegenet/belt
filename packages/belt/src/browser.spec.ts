@@ -133,4 +133,8 @@ describe('all-in-one', () => {
     assert.ok(belt.RaceTime);
     assert.ok(belt.Racetrack);
   });
+  it('belt_array_string_join', () => {
+    assert.ok(belt.stringConcat);
+    assert.ok(belt.stringJoin);
+  });
 });

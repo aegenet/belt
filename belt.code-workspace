@@ -89,6 +89,10 @@
       "path": "./packages/belt-array-duplicates"
     },
     {
+      "name": "Array String Join",
+      "path": "./packages/belt-array-string-join"
+    },
+    {
       "name": "Array Stats",
       "path": "./packages/belt-array-stats"
     },

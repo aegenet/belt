@@ -33,6 +33,7 @@
 | [@aegenet/belt-array-async-map](./packages/belt-array-async-map/README.md) | Array async map (sequentially) |
 | [@aegenet/belt-array-async-foreach](./packages/belt-array-async-foreach/README.md) | Array async foreach (sequentially) |
 | [@aegenet/belt-array-duplicates](./packages/belt-array-duplicates/README.md) | Strip duplicates from array / get duplicates of an array |
+| [@aegenet/belt-array-string-join](./packages/belt-array-string-join/README.md) | `stringJoin()` `stringConcat()` => Array.join() is slow, this tool helps you to join() your string array faster |
 | [@aegenet/belt-array-stats](./packages/belt-array-stats/README.md) | Get stats from array (`getPercentile`, `p10..90`, `getAverage`, `getMedian`, `getClosestNumber`, ...) |
 | [@aegenet/belt-binary-search](./packages/belt-binary-search/README.md) | Binary search |
 | [@aegenet/belt-symbols-is-balanced](./packages/belt-symbols-is-balanced/README.md) | Symbols is balanced (`[`, `(` `{`) ?  |

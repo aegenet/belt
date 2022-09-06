@@ -57,6 +57,7 @@ import {
   dateToInputDateTime, inputDateTimeToDate,
   readdir, IReaddirEntry,
   extractDomain, IDomain,
-  NodeRacetrack, Racetrack, NodeRacetrack, RaceResult, RaceTime
+  NodeRacetrack, Racetrack, NodeRacetrack, RaceResult, RaceTime,
+  stringJoin, stringConcat
 } from '@aegenet/belt';
 ```

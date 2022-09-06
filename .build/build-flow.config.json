@@ -71,6 +71,10 @@
   "links": [],
   "publish": true
 }, {
+  "name": "belt-array-string-join",
+  "links": [],
+  "publish": true
+}, {
   "name": "belt-hook",
   "links": [],
   "publish": true

@@ -31,3 +31,4 @@ export * from '../../belt-light-date/src/index';
 export * from '../../belt-readdir/src/node';
 export * from '../../belt-extract-domain/src/index';
 export * from '../../belt-benchmark/src/node';
+export * from '../../belt-array-string-join/src/index';
