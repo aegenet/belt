@@ -1,7 +1,7 @@
 import { RaceResult, Racetrack, ILapContext } from '../../src/common';
 import { NodeRacetrack } from '../../src/node';
 
-export async function mapVSObjectVSSwitchVSIf(laps: number): Promise<RaceResult[]> {
+export async function getMapVSObjectVSSwitchVSIf(duration: number): Promise<RaceResult[]> {
   const map: Map<string, () => number> = new Map([
     ['mul', () => Math.PI * Date.now()],
     ['div', () => Math.PI / Date.now()],
@@ -49,17 +49,17 @@ export async function mapVSObjectVSSwitchVSIf(laps: number): Promise<RaceResult[
 
   let res: number;
   const racetrack: Racetrack = new NodeRacetrack({
-    name: 'Map VS Object VS switch VS if',
-    laps,
+    name: '(Get only, no set) Map VS Object VS switch VS if',
+    duration,
   });
   const stats = await racetrack.race(
     {
       name: 'Map',
       explain: `map.get(key)`,
       spec: (ctx: ILapContext<number>) => {
-        ctx.begin();
+        // ctx.begin();
         res = fromMap('sum') + fromMap('mul') + fromMap('div') + fromMap('sub');
-        ctx.end();
+        // ctx.end();
         return res;
       },
     },
@@ -67,9 +67,9 @@ export async function mapVSObjectVSSwitchVSIf(laps: number): Promise<RaceResult[
       name: 'Object',
       explain: `obj[key]`,
       spec: (ctx: ILapContext<number>) => {
-        ctx.begin();
+        // ctx.begin();
         res = fromObject('sum') + fromObject('mul') + fromObject('div') + fromObject('sub');
-        ctx.end();
+        // ctx.end();
         return res;
       },
     },
@@ -77,9 +77,9 @@ export async function mapVSObjectVSSwitchVSIf(laps: number): Promise<RaceResult[
       name: 'Switch',
       explain: `switch (key)`,
       spec: (ctx: ILapContext<number>) => {
-        ctx.begin();
+        // ctx.begin();
         res = fromSwitch('sum') + fromSwitch('mul') + fromSwitch('div') + fromSwitch('sub');
-        ctx.end();
+        // ctx.end();
         return res;
       },
     },
@@ -87,9 +87,9 @@ export async function mapVSObjectVSSwitchVSIf(laps: number): Promise<RaceResult[
       name: 'If',
       explain: `if (key === 'a') { return something }`,
       spec: (ctx: ILapContext<number>) => {
-        ctx.begin();
+        // ctx.begin();
         res = fromIf('sum') + fromIf('mul') + fromIf('div') + fromIf('sub');
-        ctx.end();
+        // ctx.end();
         return res;
       },
     }

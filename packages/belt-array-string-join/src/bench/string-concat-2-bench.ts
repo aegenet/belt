@@ -8,7 +8,7 @@ export async function stringConcat2Bench(laps: number) {
   let str2;
   const racetrack: Racetrack = new NodeRacetrack({
     name: 'stringConcat with offset bench',
-    laps,
+    duration: 5000,
   });
   const stats = await racetrack.race(
     {
@@ -17,7 +17,6 @@ export async function stringConcat2Bench(laps: number) {
   str = ''.concat(...samples.slice(1, 5));
   `,
       spec: (ctx: ILapContext<number>) => {
-        ctx.begin();
         str1 = ''.concat(...samples.slice(1, 5));
         return str1;
       },
@@ -27,7 +26,6 @@ export async function stringConcat2Bench(laps: number) {
       explain: `str2 = stringConcat(samples, 1, 5);
   `,
       spec: (ctx: ILapContext<number>) => {
-        ctx.begin();
         str2 = stringConcat(samples, 1, 5);
         return str2;
       },

@@ -7,4 +7,12 @@ export interface ICarOptions {
   explain?: string;
   /** Function to try */
   spec: (ctx: ILapContext) => Promise<unknown> | unknown;
+  /** Async spec */
+  isAsync?: boolean;
+  /**
+   * @internal
+   *
+   * Generated dynamicaly
+   */
+  bench?: (perf: Performance, samplesPerLap: number, spec: (ctx: ILapContext) => Promise<unknown> | unknown, lapCtx: ILapContext) => number | Promise<number>;
 }

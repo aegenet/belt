@@ -8,7 +8,7 @@ export async function stringJoin3Bench(laps: number) {
   let str2;
   const racetrack: Racetrack = new NodeRacetrack({
     name: 'stringJoin with offset bench',
-    laps,
+    duration: 5000,
   });
   const stats = await racetrack.race(
     {
@@ -17,7 +17,6 @@ export async function stringJoin3Bench(laps: number) {
   str = samples.slice(1, 5).join(' - ');
   `,
       spec: (ctx: ILapContext<number>) => {
-        ctx.begin();
         str1 = samples.slice(1, 5).join(' - ');
         return str1;
       },
@@ -27,7 +26,6 @@ export async function stringJoin3Bench(laps: number) {
       explain: `str2 = stringJoin(samples, " - ", 1, 5);
   `,
       spec: (ctx: ILapContext<number>) => {
-        ctx.begin();
         str2 = stringJoin(samples, ' - ', 1, 5);
         return str2;
       },

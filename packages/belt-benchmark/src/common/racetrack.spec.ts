@@ -6,7 +6,7 @@ describe('Racetrack', () => {
     try {
       new Racetrack(
         {
-          laps: 100,
+          duration: 1000,
         },
         {
           performance: null as any,

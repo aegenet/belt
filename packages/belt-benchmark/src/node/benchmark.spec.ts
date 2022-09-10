@@ -11,6 +11,6 @@ describe('benchmark', () => {
     ) {
       await fs.mkdir('./temp');
     }
-    await benchmark('./temp/bench.md', 100);
-  });
+    await benchmark('./temp/bench.md', 5000);
+  }, 60000);
 });

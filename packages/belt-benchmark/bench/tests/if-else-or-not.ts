@@ -1,7 +1,7 @@
 import { RaceResult, Racetrack, ILapContext } from '../../src/common';
 import { NodeRacetrack } from '../../src/node';
 
-export async function ifElseOrNot(laps: number): Promise<RaceResult[]> {
+export async function ifElseOrNot(duration: number): Promise<RaceResult[]> {
   const ifReturn = (key: string) => {
     if (key === 'mul') {
       return Math.PI * Date.now();
@@ -49,7 +49,7 @@ export async function ifElseOrNot(laps: number): Promise<RaceResult[]> {
   let res: number;
   const racetrack: Racetrack = new NodeRacetrack({
     name: 'If Else Return?',
-    laps,
+    duration,
   });
   const stats = await racetrack.race(
     {
@@ -61,9 +61,9 @@ if (yyyy)
   return b;
 `,
       spec: (ctx: ILapContext<number>) => {
-        ctx.begin();
+        // ctx.begin();
         res = ifReturn('sum') + ifReturn('mul') + ifReturn('div') + ifReturn('sub');
-        ctx.end();
+        // ctx.end();
         return res;
       },
     },
@@ -76,9 +76,9 @@ else if (yyyy)
   return b;
 `,
       spec: (ctx: ILapContext<number>) => {
-        ctx.begin();
+        // ctx.begin();
         res = ifElseReturn('sum') + ifElseReturn('mul') + ifElseReturn('div') + ifElseReturn('sub');
-        ctx.end();
+        // ctx.end();
         return res;
       },
     },
@@ -94,9 +94,9 @@ else if (yyyy)
 return result;
 `,
       spec: (ctx: ILapContext<number>) => {
-        ctx.begin();
+        // ctx.begin();
         res = ifElseOneReturn('sum') + ifElseOneReturn('mul') + ifElseOneReturn('div') + ifElseOneReturn('sub');
-        ctx.end();
+        // ctx.end();
         return res;
       },
     }

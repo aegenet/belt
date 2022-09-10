@@ -8,7 +8,7 @@ export async function stringJoinBench(laps: number) {
   let str2;
   const racetrack: Racetrack = new NodeRacetrack({
     name: 'stringJoin bench',
-    laps,
+    duration: 5000,
   });
   const stats = await racetrack.race(
     {
@@ -17,7 +17,6 @@ export async function stringJoinBench(laps: number) {
   str = samples.join();
   `,
       spec: (ctx: ILapContext<number>) => {
-        ctx.begin();
         str1 = samples.join();
         return str1;
       },
@@ -27,7 +26,6 @@ export async function stringJoinBench(laps: number) {
       explain: `str2 = stringJoin(samples);
   `,
       spec: (ctx: ILapContext<number>) => {
-        ctx.begin();
         str2 = stringJoin(samples);
         return str2;
       },

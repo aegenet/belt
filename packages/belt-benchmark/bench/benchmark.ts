@@ -6,9 +6,14 @@ import { dynamicFunctionVSArrow } from './tests/dynamic-function-vs-arrow';
 import { ifElseOrNot } from './tests/if-else-or-not';
 import { joinStringArray } from './tests/join-string-array';
 import { loopOfKeyValues } from './tests/loop-of-keyval';
-import { mapVSObjectVSSwitchVSIf } from './tests/map-vs-object-vs-switch-vs-if';
+import { getMapVSObjectVSSwitchVSIf } from './tests/get-map-vs-object-vs-switch-vs-if';
 import { setVSInVSRegex } from './tests/set-vs-in-vs-regex';
 import { warOfLoop } from './tests/war-of-loop';
+import { composeString } from './tests/compose-string';
+import { setMapVSObject } from './tests/set-map-vs-object';
+// import { specificJoinArray } from './tests/specific-join-array';
+import { arrayJoin } from './tests/array-join';
+import { asyncFunctionVSFunction } from './tests/async-function-vs-function';
 
 async function createMarkdown(fileName: string, ...races: (() => Promise<RaceResult[]>)[]): Promise<void> {
   await fs.promises.writeFile(fileName, `# Benchmark Node.js v${process.versions.node}\n\n`, {
@@ -34,7 +39,7 @@ function createMarkdownForRace(...raceResult: RaceResult[]) {
 }
 
 function _tableHeader(raceResult: RaceResult) {
-  return `## ${raceResult.raceName} (${raceResult.laps.length} laps)
+  return `## ${raceResult.raceName} (${raceResult.laps.length} laps, ${raceResult.samplesPerLap} samples per lap)
 
 <table>
   <tr>
@@ -45,24 +50,29 @@ function _tableHeader(raceResult: RaceResult) {
 
 function _tableRow(result: RaceResult) {
   return `<tr>
-    <td>${result.position}</td><td>${result.car.name}</td><td><pre lang="typescript">\n${result.car.explain || ''}</pre></td><td>${result.fastestLap}</td><td>${result.slowestLap}</td><td>${result.average}</td><td>${result.p50}</td><td>${
-    result.p75
-  }</td><td>${result.p90}</td><td>${result.ratio?.toFixed(2)}</td><td>${result.duration}</td>
+    <td>${result.position}</td><td>${result.car.name}</td><td><pre lang="typescript"><code>\n${result.car.explain || ''}\n</code></pre></td><td>${result.fastestLap}</td><td>${result.slowestLap}</td><td>${result.average}</td><td${
+    result.position === 1 ? ' style="color:green"' : ''
+  }><strong>${result.p50}</strong></td><td>${result.p75}</td><td>${result.p90}</td><td>${result.ratio?.toFixed(2)}</td><td>${result.duration}</td>
 </tr>
 `;
 }
 
-export async function benchmark(fileName: string, laps = 100) {
+export async function benchmark(fileName: string, duration = 1000) {
   await createMarkdown(
     fileName,
-    async () => await warOfLoop(laps),
-    async () => await loopOfKeyValues(laps),
-    async () => await declareInLoop(laps),
-    async () => await joinStringArray(laps),
-    async () => await mapVSObjectVSSwitchVSIf(laps),
-    async () => await ifElseOrNot(laps),
-    async () => await setVSInVSRegex(laps),
-    async () => await dynamicFunctionVSArrow(laps),
-    async () => await declareFunctionVSDynamic(laps)
+    async () => await arrayJoin(duration),
+    // async () => await specificJoinArray(laps),
+    async () => await warOfLoop(duration),
+    async () => await loopOfKeyValues(duration),
+    async () => await declareInLoop(duration),
+    async () => await joinStringArray(duration),
+    async () => await getMapVSObjectVSSwitchVSIf(duration),
+    async () => await setMapVSObject(duration),
+    async () => await ifElseOrNot(duration),
+    async () => await setVSInVSRegex(duration),
+    async () => await dynamicFunctionVSArrow(duration),
+    async () => await declareFunctionVSDynamic(duration),
+    async () => await composeString(duration),
+    async () => await asyncFunctionVSFunction(duration)
   );
 }

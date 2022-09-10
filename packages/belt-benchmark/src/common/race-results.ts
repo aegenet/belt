@@ -6,6 +6,8 @@ import { RaceTime } from './race-time';
 export class RaceResult {
   /** Laps details */
   public laps: RaceTime[] = [];
+  /** Samples per lap */
+  public samplesPerLap: number = 1;
   /** Fastest lap time */
   public fastestLap?: RaceTime;
   /** Slowest lap time */
@@ -26,6 +28,8 @@ export class RaceResult {
   public result?: unknown;
   /** Ratio */
   public ratio?: number;
+  /** Aborted before the end */
+  public aborted: boolean = false;
 
   constructor(public readonly car: ICarOptions, public raceName?: string) {
     //
@@ -33,13 +37,15 @@ export class RaceResult {
 
   public compute() {
     const lapsNs = this.laps.map(f => f.ns);
-    this.average = new RaceTime(getAverage(lapsNs));
-    this.p50 = new RaceTime(p50(lapsNs));
-    this.p75 = new RaceTime(p75(lapsNs));
-    this.p90 = new RaceTime(p90(lapsNs));
-    this.fastestLap = this.laps.reduce((m, e) => (e.ns < m.ns ? e : m)); // min
-    this.slowestLap = this.laps.reduce((m, e) => (e.ns > m.ns ? e : m)); // max
-    this.duration = new RaceTime(lapsNs.reduce((m, e) => e + m)); // sum
+    if (this.laps.length) {
+      this.average = new RaceTime(getAverage(lapsNs));
+      this.p50 = new RaceTime(p50(lapsNs));
+      this.p75 = new RaceTime(p75(lapsNs));
+      this.p90 = new RaceTime(p90(lapsNs));
+      this.fastestLap = this.laps.reduce((m, e) => (e.ns < m.ns ? e : m)); // min
+      this.slowestLap = this.laps.reduce((m, e) => (e.ns > m.ns ? e : m)); // max
+      this.duration = new RaceTime(lapsNs.reduce((m, e) => e + m)); // sum
+    }
   }
 
   public computeRatio(fastestResult?: RaceResult) {
@@ -52,6 +58,7 @@ export class RaceResult {
     return {
       name: this.car.name,
       laps: this.laps.length,
+      samplesPerLap: this.samplesPerLap,
       fastest: this.fastestLap?.toString(),
       slowest: this.slowestLap?.toString(),
       average: this.average?.toString(),

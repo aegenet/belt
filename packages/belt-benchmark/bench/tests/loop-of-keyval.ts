@@ -2,7 +2,7 @@ import * as assert from 'assert';
 import { RaceResult, Racetrack, ILapContext } from '../../src/common';
 import { NodeRacetrack } from '../../src/node';
 
-export async function loopOfKeyValues(laps: number): Promise<RaceResult[]> {
+export async function loopOfKeyValues(duration: number): Promise<RaceResult[]> {
   const samples: Record<string, number> = {
     a: 8,
     b: 3,
@@ -18,7 +18,7 @@ export async function loopOfKeyValues(laps: number): Promise<RaceResult[]> {
 
   const racetrack: Racetrack = new NodeRacetrack({
     name: 'Loop Key,Value from an object',
-    laps,
+    duration,
   });
   const stats = await racetrack.race(
     {
@@ -31,12 +31,12 @@ for (let i = 0; i < keys.length; i++) {
 `,
       spec: (ctx: ILapContext<number>) => {
         const map = new Map<string, number>();
-        ctx.begin();
+        // ctx.begin();
         const keys = Object.keys(samples);
         for (let i = 0; i < keys.length; i++) {
           map.set(keys[i], samples[keys[i]]);
         }
-        ctx.end();
+        // ctx.end();
         assert.strictEqual(map.get('a'), 8);
         return map;
       },
@@ -50,11 +50,11 @@ Object.keys(samples).forEach(key => {
 `,
       spec: (ctx: ILapContext<number>) => {
         const map = new Map<string, number>();
-        ctx.begin();
+        // ctx.begin();
         Object.keys(samples).forEach(key => {
           map.set(key, samples[key]);
         });
-        ctx.end();
+        // ctx.end();
         assert.strictEqual(map.get('a'), 8);
         return map;
       },
@@ -68,11 +68,11 @@ for (const key of Object.keys(samples)) {
 `,
       spec: (ctx: ILapContext<number>) => {
         const map = new Map<string, number>();
-        ctx.begin();
+        // ctx.begin();
         for (const key of Object.keys(samples)) {
           map.set(key, samples[key]);
         }
-        ctx.end();
+        // ctx.end();
         assert.strictEqual(map.get('a'), 8);
         return map;
       },
@@ -86,11 +86,11 @@ for (const [key, value] of Object.entries(samples)) {
 `,
       spec: (ctx: ILapContext<number>) => {
         const map = new Map<string, number>();
-        ctx.begin();
+        // ctx.begin();
         for (const [key, value] of Object.entries(samples)) {
           map.set(key, value);
         }
-        ctx.end();
+        // ctx.end();
         assert.strictEqual(map.get('a'), 8);
         return map;
       },
@@ -104,11 +104,11 @@ for (const key in samples) {
 `,
       spec: (ctx: ILapContext<number>) => {
         const map = new Map<string, number>();
-        ctx.begin();
+        // ctx.begin();
         for (const key in samples) {
           map.set(key, samples[key]);
         }
-        ctx.end();
+        // ctx.end();
         return map;
       },
     }

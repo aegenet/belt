@@ -1,12 +1,12 @@
 import { RaceResult, Racetrack, ILapContext } from '../../src/common';
 import { NodeRacetrack } from '../../src/node';
 
-export async function dynamicFunctionVSArrow(laps: number): Promise<RaceResult[]> {
+export async function dynamicFunctionVSArrow(duration: number): Promise<RaceResult[]> {
   const samples = [8, 3, 4, 1, 0, 5, 2, 6, 9, 7];
   let res: string;
   const racetrack: Racetrack = new NodeRacetrack({
     name: 'Dynamic Function VS Arrow Function',
-    laps,
+    duration,
   });
   const stats = await racetrack.race(
     {
@@ -17,13 +17,13 @@ samples.filter(function (f) {
 });
 `,
       spec: (ctx: ILapContext<number>) => {
-        ctx.begin();
+        // ctx.begin();
         for (let i = 0; i < 100; i++) {
           res += samples.filter(function (f) {
             return f > 3 && f < 9;
           });
         }
-        ctx.end();
+        // ctx.end();
         return res;
       },
     },
@@ -35,13 +35,13 @@ samples.filter(f => {
 });
 `,
       spec: (ctx: ILapContext<number>) => {
-        ctx.begin();
+        // ctx.begin();
         for (let i = 0; i < 100; i++) {
           res += samples.filter(f => {
             return f > 3 && f < 9;
           });
         }
-        ctx.end();
+        // ctx.end();
         return res;
       },
     }
