@@ -103,7 +103,7 @@ describe('Node Racetrack', () => {
     });
     try {
       await racetrack.race({
-        isAsync: true,
+        async: true,
         spec: async () => {
           await new Promise(resolve => setTimeout(resolve, 5000));
         },

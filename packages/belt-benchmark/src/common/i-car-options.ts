@@ -8,7 +8,7 @@ export interface ICarOptions {
   /** Function to try */
   spec: (ctx: ILapContext) => Promise<unknown> | unknown;
   /** Async spec */
-  isAsync?: boolean;
+  async?: boolean;
   /**
    * @internal
    *
