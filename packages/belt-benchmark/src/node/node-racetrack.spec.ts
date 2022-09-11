@@ -1,4 +1,5 @@
 import * as assert from 'assert';
+import { randomUUID } from 'crypto';
 import { ILapContext, NodeRacetrack } from '../node';
 
 describe('Node Racetrack', () => {
@@ -344,6 +345,22 @@ describe('Node Racetrack', () => {
       }
     );
     assert.ok(stats);
+    console.table(stats.map(f => f.humanize()));
+  });
+
+  it('beforeAll', async () => {
+    const racetrack = new NodeRacetrack({
+      duration: 1000,
+      beforeLap: ctx => ctx.shared.set('key', randomUUID()),
+    });
+    let i = 0;
+    const stats = await racetrack.race({
+      spec: ctx => {
+        return (ctx.shared.get('key') as string).length + i++;
+      },
+    });
+    assert.ok(stats);
+    assert.ok(i);
     console.table(stats.map(f => f.humanize()));
   });
 });

@@ -41,13 +41,13 @@ export class Racetrack {
     if (accuracy) {
       switch (accuracy.unit) {
         case 'ns':
-          this._accuracyPredicat = (f: RaceResult) => !!(f.duration?.ns && f.duration.ns < accuracy.value);
+          this._accuracyPredicat = (f: RaceResult) => (f.duration ? f.duration.ns < accuracy.value : true);
           break;
         case 'us':
-          this._accuracyPredicat = (f: RaceResult) => !!(f.duration?.us && f.duration.us < accuracy.value);
+          this._accuracyPredicat = (f: RaceResult) => (f.duration ? f.duration.us < accuracy.value : true);
           break;
         case 'ms':
-          this._accuracyPredicat = (f: RaceResult) => !!(f.duration?.ms && f.duration.ms < accuracy.value);
+          this._accuracyPredicat = (f: RaceResult) => (f.duration ? f.duration.ms < accuracy.value : true);
           break;
         default:
           throw new Error('Invalid accuracy provided.');
@@ -67,14 +67,26 @@ export class Racetrack {
     });
     const estimation = await this._getRaceEstimations(cars);
     const lapsCount = Math.floor(duration / (estimation.lapDuration / 1e6));
-    this.onProgress({
-      message: `Estimation: ${lapsCount} laps (${estimation.samplesPerLap} samples per lap).`,
-      lap: 0,
-      lapsCount,
-      phase: ERacetrackPhase.ESTIMATE,
-    });
 
-    return await this._race({ lapsCount, samplesPerLap: estimation.samplesPerLap, duration }, cars);
+    if (lapsCount < Infinity) {
+      this.onProgress({
+        message: `Estimation: ${lapsCount} laps (${estimation.samplesPerLap} samples per lap).`,
+        lap: 0,
+        lapsCount,
+        phase: ERacetrackPhase.ESTIMATE,
+      });
+
+      const results = await this._race({ lapsCount, samplesPerLap: estimation.samplesPerLap, duration }, cars);
+      this.onProgress({
+        message: `Race completed.`,
+        lap: lapsCount,
+        lapsCount,
+        phase: ERacetrackPhase.COMPLETED,
+      });
+      return results;
+    } else {
+      throw new Error('Laps count cannot be Infinity.');
+    }
   }
 
   private async _race(
@@ -123,7 +135,7 @@ return perf.now() - begin;
 
     const results: RaceResult[] = cars.map((f, i) => {
       f.name ||= `n°${i + 1}`;
-      const rr = new RaceResult(f, this._options.name);
+      const rr: RaceResult = new RaceResult(f, this._options.name);
       rr.samplesPerLap = samplesPerLap;
       return rr;
     });
@@ -155,13 +167,6 @@ return perf.now() - begin;
     }
 
     this._fillStats(results);
-
-    this.onProgress({
-      message: `Race completed.`,
-      lap: lapsCount,
-      lapsCount,
-      phase: ERacetrackPhase.COMPLETED,
-    });
 
     return results;
   }
