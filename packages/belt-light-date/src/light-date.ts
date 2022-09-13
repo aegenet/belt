@@ -218,14 +218,15 @@ export class LightDate {
     // We can get the current locale by this way
     const currentLocale = locale || new Intl.NumberFormat().resolvedOptions().locale;
     const localeInfo: IntlLocaleBrowser = new Intl.Locale(currentLocale);
-    if (!localeInfo.weekInfo) {
-      // Minimal polyfill... (nodejs 16 tested, maybe ok with 18?)
+    if (!localeInfo.weekInfo || !localeInfo.hourCycle) {
+      // Minimal polyfill... (nodejs 16; weekInfo = null; node 18; weekInfo ok; but hourCycle KO)
+      const defaultHourCycle = localeInfo.hourCycles?.length ? localeInfo.hourCycles[0] : null;
       switch (currentLocale) {
         case 'en-US':
           Object.defineProperty(localeInfo, 'hourCycle', {
-            value: 'h12',
+            value: defaultHourCycle || 'h12',
           });
-          localeInfo.weekInfo = {
+          localeInfo.weekInfo ||= {
             firstDay: 7,
             minimalDays: 1,
             weekend: [6, 7],
@@ -233,9 +234,9 @@ export class LightDate {
           break;
         default:
           Object.defineProperty(localeInfo, 'hourCycle', {
-            value: 'h23',
+            value: defaultHourCycle || 'h23',
           });
-          localeInfo.weekInfo = {
+          localeInfo.weekInfo ||= {
             firstDay: 1,
             minimalDays: 4,
             weekend: [6, 7],
@@ -247,7 +248,7 @@ export class LightDate {
   }
 }
 
-export type IntlLocaleBrowser = Intl.Locale & { weekInfo?: { firstDay: number; minimalDays: number; weekend: number[] } };
+export type IntlLocaleBrowser = Intl.Locale & { hourCycles?: string[], weekInfo?: { firstDay: number; minimalDays: number; weekend: number[] } };
 
 /**
  * Global instance of LightDate

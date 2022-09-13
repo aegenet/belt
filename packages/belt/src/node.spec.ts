@@ -137,4 +137,8 @@ describe('all-in-one', () => {
     assert.ok(belt.stringConcat);
     assert.ok(belt.stringJoin);
   });
+  it('belt_fetch', () => {
+    assert.ok(belt.fetchEnsure);
+    assert.ok(belt.fetchFormatPayload);
+  });
 });

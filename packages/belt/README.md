@@ -58,6 +58,7 @@ import {
   readdir, IReaddirEntry,
   extractDomain, IDomain,
   NodeRacetrack, Racetrack, NodeRacetrack, RaceResult, RaceTime,
-  stringJoin, stringConcat
+  stringJoin, stringConcat,
+  fetchEnsure, fetchFormatPayload
 } from '@aegenet/belt';
 ```

@@ -17,6 +17,10 @@
       "path": "./packages/belt-promise"
     },
     {
+      "name": "Fetch",
+      "path": "./packages/belt-fetch"
+    },
+    {
       "name": "Light Date",
       "path": "./packages/belt-light-date"
     },
