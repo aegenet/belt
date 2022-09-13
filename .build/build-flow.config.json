@@ -11,6 +11,10 @@
   "links": [],
   "publish": true
 }, {
+  "name": "belt-fetch",
+  "links": [],
+  "publish": true
+}, {
   "name": "belt-odeep",
   "links": [],
   "publish": true
