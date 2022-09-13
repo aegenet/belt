@@ -248,7 +248,7 @@ export class LightDate {
   }
 }
 
-export type IntlLocaleBrowser = Intl.Locale & { hourCycles?: string[], weekInfo?: { firstDay: number; minimalDays: number; weekend: number[] } };
+export type IntlLocaleBrowser = Intl.Locale & { hourCycles?: string[]; weekInfo?: { firstDay: number; minimalDays: number; weekend: number[] } };
 
 /**
  * Global instance of LightDate
