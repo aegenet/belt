@@ -5,25 +5,25 @@
 ```typescript
 import { extractDomain } from '@aegenet/belt-extract-domain';
 
-belt-extract-domainextractDomain(undefined)
+extractDomain(undefined)
 // null
 
-belt-extract-domainextractDomain(undefined)
+extractDomain(undefined)
 // null
 
-belt-extract-domainextractDomain('aaa.zzz.com')
+extractDomain('aaa.zzz.com')
 // {
 //   domain: 'zzz.com',
 //   subdomains: [],
 // }
 
-belt-extract-domainextractDomain('aaa.zzz.com')
+extractDomain('aaa.zzz.com')
 // {
 //   domain: 'zzz.com',
 //   subdomains: ['aaa'],
 // }
 
-belt-extract-domainextractDomain('aaa.zzz.com')
+extractDomain('aaa.zzz.com')
 // {
 //   domain: 'zzz.com',
 //   subdomains: ['aaa', 'deeper'],
