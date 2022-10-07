@@ -141,4 +141,9 @@ describe('all-in-one', () => {
     assert.ok(belt.fetchEnsure);
     assert.ok(belt.fetchFormatPayload);
   });
+  it('belt_obj_monitoring', () => {
+    assert.ok(belt.ObjectMonitoring);
+    assert.ok(belt.deepSetMutate);
+    assert.ok(belt.deepSetProxy);
+  });
 });

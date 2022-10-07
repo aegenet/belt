@@ -51,6 +51,10 @@
   "links": [],
   "publish": true
 }, {
+  "name": "belt-obj-monitoring",
+  "links": [],
+  "publish": true
+}, {
   "name": "belt-array-to-obj",
   "links": [],
   "publish": true

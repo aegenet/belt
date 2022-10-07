@@ -61,6 +61,10 @@
       "path": "./packages/belt-obj-first-key"
     },
     {
+      "name": "Object Monitoring",
+      "path": "./packages/belt-obj-monitoring"
+    },
+    {
       "name": "Hook",
       "path": "./packages/belt-hook"
     },

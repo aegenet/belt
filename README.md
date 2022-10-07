@@ -29,6 +29,7 @@
 | [@aegenet/belt-obj-is-empty](./packages/belt-obj-is-empty/README.md) | Object is empty ? |
 | [@aegenet/belt-obj-is-equals](./packages/belt-obj-is-equals/README.md) | Object is equals `objectsIsEquals` ? |
 | [@aegenet/belt-obj-first-key](./packages/belt-obj-first-key/README.md) | Object first key |
+| [@aegenet/belt-obj-monitoring](./packages/belt-obj-monitoring/README.md) | Object Monitoring - Watcher / Tracker |
 | [@aegenet/belt-array-to-obj](./packages/belt-array-to-obj/README.md) | Array to Object |
 | [@aegenet/belt-array-async-filter](./packages/belt-array-async-filter/README.md) | Array async filter (sequentially) |
 | [@aegenet/belt-array-async-map](./packages/belt-array-async-map/README.md) | Array async map (sequentially) |
