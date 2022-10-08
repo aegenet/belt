@@ -11,11 +11,20 @@ describe('deep-set-mutate', () => {
     const results: ObjectMonitoringResult[] = [];
     deepSetMutate(something, options => results.push(options));
     something.title = 'Maurice';
+    assert.strictEqual(something.title, 'Maurice');
+    something.title = 'Tintin';
+    assert.strictEqual(something.title, 'Tintin');
 
     assert.deepStrictEqual(results, [
       {
         newValue: 'Maurice',
         oldValue: 'Boris',
+        path: 'title',
+        property: 'title',
+      },
+      {
+        newValue: 'Tintin',
+        oldValue: 'Maurice',
         path: 'title',
         property: 'title',
       },
@@ -32,6 +41,7 @@ describe('deep-set-mutate', () => {
     deepSetMutate(something, options => results.push(options));
     deepSetMutate(something, options => results.push(options));
     something.title = 'Maurice';
+    assert.strictEqual(something.title, 'Maurice');
 
     assert.deepStrictEqual(results, [
       {
@@ -62,9 +72,12 @@ describe('deep-set-mutate', () => {
     const results: ObjectMonitoringResult[] = [];
     const token = deepSetMutate(something, options => results.push(options));
     something.title = 'Maurice';
+    assert.strictEqual(something.title, 'Maurice');
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     something.company!.name = 'Other';
+    assert.strictEqual(something.company?.name, 'Other');
     something.company = undefined;
+    assert.strictEqual(something.company, undefined);
 
     assert.deepStrictEqual(JSON.parse(JSON.stringify(results)), [
       {
@@ -105,15 +118,26 @@ describe('deep-set-mutate', () => {
         value: 'ok',
       },
     };
+    assert.deepStrictEqual(something, {
+      title: 'Boris',
+      description: 'Oromov',
+      new: {
+        value: 'ok',
+      },
+    });
 
     const results: ObjectMonitoringResult[] = [];
     deepSetMutate(something, options => results.push(options));
     something.new.value = 'ok2';
+    assert.strictEqual(something.new.value, 'ok2');
     something.new = {
       value: 'ko',
     };
+    assert.strictEqual(something.new.value, 'ko');
     something.new = something.new;
+    assert.strictEqual(something.new.value, 'ko');
     something.new.value = 'ko2';
+    assert.strictEqual(something.new.value, 'ko2');
 
     assert.deepStrictEqual(results, [
       {
