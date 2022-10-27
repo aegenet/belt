@@ -3,6 +3,10 @@
   "links": [],
   "publish": true
 }, {
+  "name": "belt-hide-sensitive",
+  "links": [],
+  "publish": true
+}, {
   "name": "belt-crc32",
   "links": [],
   "publish": true

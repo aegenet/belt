@@ -4,6 +4,10 @@
       "name": "All in one",
       "path": "./packages/belt"
     },
+    {
+      "name": "Hide Sensitive",
+      "path": "./packages/belt-hide-sensitive"
+    },
 	  {
       "name": "CRC8",
       "path": "./packages/belt-crc8"

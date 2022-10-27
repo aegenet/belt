@@ -61,5 +61,6 @@ import {
   stringJoin, stringConcat,
   fetchEnsure, fetchFormatPayload,
   ObjectMonitoring, ObjectMonitoringResult, ObjectMonitoringDispose,
+  createHideSensitiveFunction
 } from '@aegenet/belt';
 ```

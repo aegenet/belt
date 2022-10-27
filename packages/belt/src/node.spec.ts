@@ -146,4 +146,7 @@ describe('all-in-one', () => {
     assert.ok(belt.deepSetMutate);
     assert.ok(belt.deepSetProxy);
   });
+  it('belt_hide_sensitive', () => {
+    assert.ok(belt.createHideSensitiveFunction);
+  });
 });
