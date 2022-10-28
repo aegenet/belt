@@ -39,7 +39,7 @@
 | [@aegenet/belt-array-stats](./packages/belt-array-stats/README.md) | Get stats from array (`getPercentile`, `p10..90`, `getAverage`, `getMedian`, `getClosestNumber`, ...) |
 | [@aegenet/belt-binary-search](./packages/belt-binary-search/README.md) | Binary search |
 | [@aegenet/belt-symbols-is-balanced](./packages/belt-symbols-is-balanced/README.md) | Symbols is balanced (`[`, `(` `{`) ?  |
-| [@aegenet/belt-platform-detector](./packages/belt-platform-detector/README.md) | Is NodeJS ? is Mobile Device ?  |
+| [@aegenet/belt-platform-detector](./packages/belt-platform-detector/README.md) | Is NodeJS? is Mobile Device?  |
 | [@aegenet/belt-error](./packages/belt-error/README.md) | Error tools (`asError`, `isSyntaxError`...)  |
 | [@aegenet/belt-base64](./packages/belt-base64/README.md) | Base64 (`toBase64`, `fromBase64`)  |
 | [@aegenet/belt-anti-bounce](./packages/belt-anti-bounce/README.md) | Anti-bounce (`antiBounce` decorator, `AntiBounce` utility)  |
