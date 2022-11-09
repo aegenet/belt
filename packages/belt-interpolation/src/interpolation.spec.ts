@@ -112,7 +112,7 @@ describe('interpolation', function () {
         getValue: (ctx, propPath) => {
           const props = propPath.split('.');
           return String(
-            props.reduce((prev, curr) => {
+            props.reduce((prev: any, curr) => {
               return prev[curr];
             }, ctx)
           );

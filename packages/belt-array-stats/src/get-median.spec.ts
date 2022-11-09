@@ -19,7 +19,7 @@ describe('getMedian', function () {
   });
 
   it('Two scramble with null & undefined', () => {
-    assert.deepStrictEqual(getMedian([1, 4, 2, undefined, 4, null]), 3);
+    assert.deepStrictEqual(getMedian([1, 4, 2, undefined as any, 4, null as any]), 3);
   });
 
   it('One - already sorted', () => {
@@ -27,10 +27,10 @@ describe('getMedian', function () {
   });
 
   it('Null', () => {
-    assert.deepStrictEqual(getMedian(null), 0);
+    assert.deepStrictEqual(getMedian(null as any), 0);
   });
 
   it('Undefined', () => {
-    assert.deepStrictEqual(getMedian(undefined), 0);
+    assert.deepStrictEqual(getMedian(undefined as any), 0);
   });
 });

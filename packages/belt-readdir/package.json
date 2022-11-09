@@ -5,7 +5,7 @@
   "main": "dist/node/index.cjs",
   "module": "dist/node/index.mjs",
   "browser": "dist/web/index.mjs",
-"exports": {
+  "exports": {
     "node": {
         "require": "./dist/node/index.cjs",
         "import": "./dist/node/index.mjs"
@@ -38,8 +38,8 @@
     "test-browser": "node ./../../node_modules/jest/bin/jest --config ./jest.web.config.js",
     "test-node": "node ./../../node_modules/jest/bin/jest --config ./jest.config.js",
     "test-local": "node ./../../node_modules/ts-mocha/bin/ts-mocha src/**/*.spec.ts",
-    "analyze": "node ./../../node_modules/rimraf/bin dist && node ./../../node_modules/webpack/bin/webpack --env production --analyze",
-    "build": "yarn run build:webpack",
-    "build:webpack": "node ./../../node_modules/rimraf/bin dist && node ./../../node_modules/webpack/bin/webpack --env production"
+    "build": "yarn tsc && yarn run build:vite",
+    "tsc": "node ./../../node_modules/rimraf/bin build && node ./../../node_modules/typescript/bin/tsc",
+    "build:vite": "node ./../../node_modules/rimraf/bin dist && node ./../../node_modules/vite/bin/vite build -c ./vite.node.config.js && node ./../../node_modules/vite/bin/vite build -c ./vite.web.config.js"
   }
 }

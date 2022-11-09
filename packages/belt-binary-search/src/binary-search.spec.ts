@@ -4,13 +4,13 @@ import { binarySearch, safeBinarySearch } from './index';
 describe('binary-search & safe', () => {
   describe('binary-search', () => {
     it('number', () => {
-      assert.strictEqual(binarySearch([1, 2, 3], 2, (a, b) => a - b).value, 2);
+      assert.strictEqual(binarySearch([1, 2, 3], 2, (a, b) => a - b)?.value, 2);
 
-      assert.strictEqual(binarySearch([1, 2, 3], 3, (a, b) => a - b).value, 3);
+      assert.strictEqual(binarySearch([1, 2, 3], 3, (a, b) => a - b)?.value, 3);
 
-      assert.strictEqual(binarySearch([1, 2, 3], 1, (a, b) => a - b).value, 1);
+      assert.strictEqual(binarySearch([1, 2, 3], 1, (a, b) => a - b)?.value, 1);
 
-      assert.strictEqual(binarySearch([1, 2, 3, 50, 92, 99, 120], 99, (a, b) => a - b).value, 99);
+      assert.strictEqual(binarySearch([1, 2, 3, 50, 92, 99, 120], 99, (a, b) => a - b)?.value, 99);
     });
 
     it('string', () => {
@@ -21,13 +21,13 @@ describe('binary-search & safe', () => {
         null
       );
 
-      assert.strictEqual(binarySearch<string>(sample, 'Arti', (a, b) => a.localeCompare(b)).value, 'Arti');
+      assert.strictEqual(binarySearch<string>(sample, 'Arti', (a, b) => a.localeCompare(b))?.value, 'Arti');
 
-      assert.strictEqual(binarySearch<string>(sample, 'Yolo', (a, b) => a.localeCompare(b)).value, 'Yolo');
+      assert.strictEqual(binarySearch<string>(sample, 'Yolo', (a, b) => a.localeCompare(b))?.value, 'Yolo');
 
-      assert.strictEqual(binarySearch<string>(sample, 'Iago', (a, b) => a.localeCompare(b)).value, 'Iago');
+      assert.strictEqual(binarySearch<string>(sample, 'Iago', (a, b) => a.localeCompare(b))?.value, 'Iago');
 
-      assert.strictEqual(binarySearch<string>(sample, 'Guru', (a, b) => a.localeCompare(b)).value, 'Guru');
+      assert.strictEqual(binarySearch<string>(sample, 'Guru', (a, b) => a.localeCompare(b))?.value, 'Guru');
     });
 
     it('object', () => {
@@ -80,25 +80,25 @@ describe('binary-search & safe', () => {
 
       assert.strictEqual(binarySearch<{ id: number; code?: string }>(sample, { id: 111 }, (a, b) => a.id - b.id)?.value.code, undefined);
 
-      assert.strictEqual(binarySearch<{ id: number; code?: string }>(sample, { id: 1 }, (a, b) => a.id - b.id).value.code, 'Arti');
+      assert.strictEqual(binarySearch<{ id: number; code?: string }>(sample, { id: 1 }, (a, b) => a.id - b.id)?.value.code, 'Arti');
 
-      assert.strictEqual(binarySearch<{ id: number; code?: string }>(sample, { id: 4 }, (a, b) => a.id - b.id).value.code, 'Yolo');
+      assert.strictEqual(binarySearch<{ id: number; code?: string }>(sample, { id: 4 }, (a, b) => a.id - b.id)?.value.code, 'Yolo');
 
-      assert.strictEqual(binarySearch<{ id: number; code?: string }>(sample, { id: 7 }, (a, b) => a.id - b.id).value.code, 'Iago');
+      assert.strictEqual(binarySearch<{ id: number; code?: string }>(sample, { id: 7 }, (a, b) => a.id - b.id)?.value.code, 'Iago');
 
-      assert.strictEqual(binarySearch<{ id: number; code?: string }>(sample, { id: 11 }, (a, b) => a.id - b.id).value.code, 'Guru');
+      assert.strictEqual(binarySearch<{ id: number; code?: string }>(sample, { id: 11 }, (a, b) => a.id - b.id)?.value.code, 'Guru');
     });
   });
 
   describe('binary-search', () => {
     it('number', () => {
-      assert.strictEqual(safeBinarySearch([1, 2, 3], 2).value, 2);
+      assert.strictEqual(safeBinarySearch([1, 2, 3], 2)?.value, 2);
 
-      assert.strictEqual(safeBinarySearch([1, 2, 3], 3).value, 3);
+      assert.strictEqual(safeBinarySearch([1, 2, 3], 3)?.value, 3);
 
-      assert.strictEqual(safeBinarySearch([1, 2, 3], 1).value, 1);
+      assert.strictEqual(safeBinarySearch([1, 2, 3], 1)?.value, 1);
 
-      assert.strictEqual(safeBinarySearch([1, 2, 3, 50, 92, 99, 120], 99).value, 99);
+      assert.strictEqual(safeBinarySearch([1, 2, 3, 50, 92, 99, 120], 99)?.value, 99);
     });
 
     it('string', () => {
@@ -106,13 +106,13 @@ describe('binary-search & safe', () => {
 
       assert.strictEqual(safeBinarySearch<string>(sample, 'Not FOund'), null);
 
-      assert.strictEqual(safeBinarySearch<string>(sample, 'Arti').value, 'Arti');
+      assert.strictEqual(safeBinarySearch<string>(sample, 'Arti')?.value, 'Arti');
 
-      assert.strictEqual(safeBinarySearch<string>(sample, 'Yolo').value, 'Yolo');
+      assert.strictEqual(safeBinarySearch<string>(sample, 'Yolo')?.value, 'Yolo');
 
-      assert.strictEqual(safeBinarySearch<string>(sample, 'Iago').value, 'Iago');
+      assert.strictEqual(safeBinarySearch<string>(sample, 'Iago')?.value, 'Iago');
 
-      assert.strictEqual(safeBinarySearch<string>(sample, 'Guru').value, 'Guru');
+      assert.strictEqual(safeBinarySearch<string>(sample, 'Guru')?.value, 'Guru');
     });
 
     it('object but sort first', () => {
@@ -165,13 +165,13 @@ describe('binary-search & safe', () => {
 
       assert.strictEqual(safeBinarySearch<{ id: number; code?: string }>(sample, { id: 111 }, (a, b) => a.id - b.id)?.value.code, undefined);
 
-      assert.strictEqual(safeBinarySearch<{ id: number; code?: string }>(sample, { id: 1 }, (a, b) => a.id - b.id).value.code, 'Arti');
+      assert.strictEqual(safeBinarySearch<{ id: number; code?: string }>(sample, { id: 1 }, (a, b) => a.id - b.id)?.value.code, 'Arti');
 
-      assert.strictEqual(safeBinarySearch<{ id: number; code?: string }>(sample, { id: 4 }, (a, b) => a.id - b.id).value.code, 'Yolo');
+      assert.strictEqual(safeBinarySearch<{ id: number; code?: string }>(sample, { id: 4 }, (a, b) => a.id - b.id)?.value.code, 'Yolo');
 
-      assert.strictEqual(safeBinarySearch<{ id: number; code?: string }>(sample, { id: 7 }, (a, b) => a.id - b.id).value.code, 'Iago');
+      assert.strictEqual(safeBinarySearch<{ id: number; code?: string }>(sample, { id: 7 }, (a, b) => a.id - b.id)?.value.code, 'Iago');
 
-      assert.strictEqual(safeBinarySearch<{ id: number; code?: string }>(sample, { id: 11 }, (a, b) => a.id - b.id).value.code, 'Guru');
+      assert.strictEqual(safeBinarySearch<{ id: number; code?: string }>(sample, { id: 11 }, (a, b) => a.id - b.id)?.value.code, 'Guru');
     });
 
     it('No comparator with object', () => {
@@ -179,7 +179,7 @@ describe('binary-search & safe', () => {
         safeBinarySearch<{ id: number; code?: string }>([], { id: 111 });
         throw new Error('Must failed.');
       } catch (error) {
-        assert.equal(error.message, 'Invalid usage: you must specify a comparator if your searchValue is an object.');
+        assert.equal((error as Error).message, 'Invalid usage: you must specify a comparator if your searchValue is an object.');
       }
     });
   });

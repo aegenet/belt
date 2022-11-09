@@ -2,17 +2,17 @@
   "name": "@aegenet/belt-obj-is-equals",
   "description": "Objects is equals ?",
   "version": "999.0.0",
-  "main": "dist/node/index.cjs",
-  "module": "dist/node/index.mjs",
-  "browser": "dist/web/index.mjs",
-"exports": {
+  "main": "dist/index.cjs",
+  "module": "dist/index.mjs",
+  "browser": "dist/index.mjs",
+  "exports": {
     "node": {
-        "require": "./dist/node/index.cjs",
-        "import": "./dist/node/index.mjs"
+        "require": "./dist/index.cjs",
+        "import": "./dist/index.mjs"
     },
     "default": {
-        "require": "./dist/web/index.cjs",
-        "import": "./dist/web/index.mjs"
+        "require": "./dist/index.cjs",
+        "import": "./dist/index.mjs"
     }
   },
   "typings": "./dist/node/bundle.d.ts",
@@ -38,8 +38,8 @@
     "test-browser": "node ./../../node_modules/jest/bin/jest --config ./jest.web.config.js",
     "test-node": "node ./../../node_modules/jest/bin/jest --config ./jest.config.js",
     "test-local": "node ./../../node_modules/ts-mocha/bin/ts-mocha src/**/*.spec.ts",
-    "analyze": "node ./../../node_modules/rimraf/bin dist && node ./../../node_modules/webpack/bin/webpack --env production --analyze",
-    "build": "yarn run build:webpack",
-    "build:webpack": "node ./../../node_modules/rimraf/bin dist && node ./../../node_modules/webpack/bin/webpack --env production"
+    "build": "yarn tsc && yarn run build:vite",
+    "tsc": "node ./../../node_modules/rimraf/bin build && node ./../../node_modules/typescript/bin/tsc",
+    "build:vite": "node ./../../node_modules/rimraf/bin dist && node ./../../node_modules/vite/bin/vite build"
   }
 }

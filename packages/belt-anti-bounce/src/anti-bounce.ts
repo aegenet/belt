@@ -4,16 +4,13 @@ import type { IAntiBounce } from './i-anti-bounce';
  * Anti-bounce
  */
 export class AntiBounce implements IAntiBounce {
-  private _token?;
+  private _token?: unknown;
 
   constructor(private fn: (...params: unknown[]) => void, private duration: number = 100, private checker?: () => boolean) {}
 
   /** Call with an anti-bounce :-) */
   public call(...params: unknown[]): void {
-    if (this._token) {
-      clearTimeout(this._token);
-      this._token = undefined;
-    }
+    this.dispose();
 
     if (this.checker && this.checker() === true) {
       if (this.fn) {
@@ -34,7 +31,7 @@ export class AntiBounce implements IAntiBounce {
    */
   public dispose(): void {
     if (this._token) {
-      clearTimeout(this._token);
+      clearTimeout(this._token as any);
       this._token = undefined;
     }
   }

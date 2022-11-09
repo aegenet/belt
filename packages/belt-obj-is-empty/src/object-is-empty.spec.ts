@@ -3,11 +3,11 @@ import { objectIsEmpty } from './index';
 
 describe('objectIsEmpty', () => {
   it('Null', () => {
-    assert.equal(objectIsEmpty(null), true);
+    assert.equal(objectIsEmpty(null as any), true);
   });
 
   it('Undefined', () => {
-    assert.equal(objectIsEmpty(undefined), true);
+    assert.equal(objectIsEmpty(undefined as any), true);
   });
 
   it('{}', () => {

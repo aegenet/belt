@@ -9,12 +9,12 @@ describe('ofields', function () {
           id: 5,
         },
         {
-          fields: null,
+          fields: null as any,
         }
       );
       throw new Error('Must failed.');
     } catch (error) {
-      assert.strictEqual(error.message, 'Invalid usage of ofields: fields property is mandatory.');
+      assert.strictEqual((error as Error).message, 'Invalid usage of ofields: fields property is mandatory.');
     }
   });
 
@@ -30,7 +30,7 @@ describe('ofields', function () {
       );
       throw new Error('Must failed.');
     } catch (error) {
-      assert.strictEqual(error.message, 'Invalid usage of ofields: fields property is mandatory.');
+      assert.strictEqual((error as Error).message, 'Invalid usage of ofields: fields property is mandatory.');
     }
   });
 

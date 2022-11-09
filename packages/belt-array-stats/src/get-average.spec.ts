@@ -15,7 +15,7 @@ describe('getAverage', function () {
   });
 
   it('Two scramble with undefined & null', () => {
-    assert.deepStrictEqual(getAverage([1, 4, 2, 3, undefined, 4, null, 1]), 1.875);
+    assert.deepStrictEqual(getAverage([1, 4, 2, 3, undefined as any, 4, null as any, 1]), 1.875);
   });
 
   it('Empty', () => {
@@ -23,10 +23,10 @@ describe('getAverage', function () {
   });
 
   it('Null', () => {
-    assert.deepStrictEqual(getAverage(null), 0);
+    assert.deepStrictEqual(getAverage(null as any), 0);
   });
 
   it('Undefined', () => {
-    assert.deepStrictEqual(getAverage(undefined), 0);
+    assert.deepStrictEqual(getAverage(undefined as any), 0);
   });
 });

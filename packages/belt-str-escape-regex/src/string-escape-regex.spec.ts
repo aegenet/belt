@@ -16,19 +16,19 @@ describe('escapeRegex', () => {
 
   it('Null', () => {
     try {
-      escapeRegex(null);
+      escapeRegex(null as any);
       throw new Error('Must failed');
     } catch (error) {
-      assert.strictEqual(error.message, 'Invalid usage: argument provided is not a string.');
+      assert.strictEqual((error as Error).message, 'Invalid usage: argument provided is not a string.');
     }
   });
 
   it('undefined', () => {
     try {
-      escapeRegex(undefined);
+      escapeRegex(undefined as any);
       throw new Error('Must failed');
     } catch (error) {
-      assert.strictEqual(error.message, 'Invalid usage: argument provided is not a string.');
+      assert.strictEqual((error as Error).message, 'Invalid usage: argument provided is not a string.');
     }
   });
 });

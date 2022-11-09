@@ -14,8 +14,8 @@ export function odiff<T = Record<string, unknown>>(
   }
 ): any[][] {
   const diff: any[][] = [];
-  const secOldData = oldData || {};
-  const secNewData = newData || {};
+  const secOldData: any = oldData || {};
+  const secNewData: any = newData || {};
   const fields: string[] = options.fields;
   if (fields?.length) {
     let before, after, field;

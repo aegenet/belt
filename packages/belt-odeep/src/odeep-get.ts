@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 export type GetValueOptions = {
   /** Fast, pre-parse, but use memory */
   memoize?: boolean;
@@ -21,7 +22,7 @@ export class ODeepGet {
   /**
    * Set value into an object
    */
-  public getValue<C = Record<string, any>, O = unknown>(context: C, pathFlow: Array<string | number>, options?: GetValueOptions): O {
+  public getValue<C = Record<string, any>, O = unknown>(context: C, pathFlow: Array<string | number>, options?: GetValueOptions): O | undefined {
     options = options || {};
 
     if (!context || !pathFlow) {
@@ -33,7 +34,7 @@ export class ODeepGet {
     if (options.memoize) {
       symbol = this._getMemoizeKey(pathFlow, options);
       if (this._jitCache.has(symbol)) {
-        return this._jitCache.get(symbol)(context) as O;
+        return this._jitCache.get(symbol)!(context) as O;
       }
     } else {
       return this._getImmediatValue(context, pathFlow, options);
@@ -80,9 +81,9 @@ export class ODeepGet {
     }
 
     if (options.shallowError) {
-      return pathFlow.reduce((prev, curr) => (prev ? prev[curr] : undefined), context);
+      return pathFlow.reduce<any>((prev, curr) => (prev ? prev[curr] : undefined), context);
     } else {
-      return pathFlow.reduce((prev, curr) => prev[curr], context);
+      return pathFlow.reduce<any>((prev, curr) => prev[curr], context);
     }
   }
 }

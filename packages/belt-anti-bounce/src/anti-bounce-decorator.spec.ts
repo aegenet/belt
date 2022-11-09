@@ -17,7 +17,7 @@ class Sample implements IAntiBounceSupport {
     this._i++;
   }
 
-  @antiBounce(undefined)
+  @antiBounce(undefined as any)
   public incDefault(): void {
     this._i++;
   }
@@ -90,7 +90,7 @@ describe('anti-bounce-decorator', () => {
   });
 
   it('Dispose nothing', async () => {
-    disposeAntiBounces(null);
+    disposeAntiBounces(null as any);
     // This must not failed
   });
 });

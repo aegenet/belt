@@ -13,7 +13,8 @@ export function objectToArray<I = Record<string, unknown>, O = unknown>(
 
   if (record) {
     const keys = options.fields?.length ? options.fields : Object.keys(record);
-    const getValue = options.control ? (key: string) => (options.control.test(key) ? record[key] : null) : key => record[key];
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    const getValue = options.control ? (key: string) => (options!.control!.test(key) ? (record as any)[key] : null) : (key: PropertyKey) => (record as any)[key];
 
     for (let i = 0; i < keys.length; i++) {
       const value = getValue(keys[i]);

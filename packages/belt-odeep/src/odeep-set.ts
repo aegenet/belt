@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 export type StepType = 'object' | 'indice';
 
 export type SetValueOptions = {
@@ -23,19 +24,17 @@ export class ODeepSet {
   /**
    * Set value into an object
    */
-  public setValue<C = Record<string, any>>(context: C, pathFlow: Array<{ propName: string; type: StepType } | string | number>, value: unknown, options?: SetValueOptions): void {
-    options = options || {};
-
+  public setValue<C = Record<string, any>>(context: C, pathFlow: Array<{ propName: string; type: StepType } | string | number>, value: unknown, options: SetValueOptions = {}): void {
     if (!context || !pathFlow) {
       // By choice, we don't throw an error, just ignore
       return;
     }
 
-    let symbol: string;
+    let symbol: string | undefined;
     if (options.memoize) {
       symbol = this._getMemoizeKey(pathFlow, options);
       if (this._jitCache.has(symbol)) {
-        return this._jitCache.get(symbol)(context, value);
+        return this._jitCache.get(symbol)!(context, value);
       }
     }
 
@@ -48,11 +47,11 @@ export class ODeepSet {
     return jitFunc(context, value);
   }
 
-  private _getMemoizeKey(pathFlow: Array<{ propName: string; type: StepType } | string | number>, options?: SetValueOptions) {
+  private _getMemoizeKey(pathFlow: Array<{ propName: string; type: StepType } | string | number>, options: SetValueOptions): string {
     return JSON.stringify(pathFlow) + ',' + options.autoCreate;
   }
 
-  private _compileJIT(pathFlow: Array<{ propName: string; type: StepType } | string | number>, options?: SetValueOptions): (context: unknown, value: unknown) => void {
+  private _compileJIT(pathFlow: Array<{ propName: string; type: StepType } | string | number>, options: SetValueOptions): (context: unknown, value: unknown) => void {
     let jit = '';
     if (!options.autoCreate) {
       jit = this._createJITFunc(pathFlow);

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import * as assert from 'assert';
 import { oclone } from './index';
 
@@ -38,8 +39,8 @@ describe('oclone', function () {
 
     const clone = oclone(source, { keepType: false });
 
-    assert.ok(!('method' in clone));
-    assert.strictEqual(clone.id, 5);
+    assert.ok(!('method' in clone!));
+    assert.strictEqual(clone!.id, 5);
   });
 
   it('Class - but keepType true', () => {
@@ -54,7 +55,7 @@ describe('oclone', function () {
 
     const clone = oclone(source, { keepType: true });
 
-    assert.ok('method' in clone);
+    assert.ok('method' in clone!);
     assert.strictEqual(clone.id, 7);
     clone.id = 6;
     assert.strictEqual(clone.id, 6);
@@ -62,7 +63,7 @@ describe('oclone', function () {
   });
 
   it('Null object', () => {
-    const clone = oclone(null);
+    const clone = oclone(null as any);
 
     assert.strictEqual(clone, null);
   });

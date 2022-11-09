@@ -19,7 +19,7 @@ describe('p10', function () {
   });
 
   it('Two scramble with null & undefined', () => {
-    assert.deepStrictEqual(p10([1, 4, 2, undefined, 4, null]), 0);
+    assert.deepStrictEqual(p10([1, 4, 2, undefined as any, 4, null as any]), 0);
   });
 });
 
@@ -42,7 +42,7 @@ describe('p25', function () {
   });
 
   it('Two scramble with null & undefined', () => {
-    assert.deepStrictEqual(p25([1, 4, 2, undefined, 4, null]), 0);
+    assert.deepStrictEqual(p25([1, 4, 2, undefined as any, 4, null as any]), 0);
   });
 });
 
@@ -64,7 +64,7 @@ describe('p50', function () {
   });
 
   it('Two scramble with null & undefined', () => {
-    assert.deepStrictEqual(p50([1, 4, 2, undefined, 4, null]), 2);
+    assert.deepStrictEqual(p50([1, 4, 2, undefined as any, 4, null as any]), 2);
   });
 
   it('One - already sorted', () => {
@@ -72,11 +72,11 @@ describe('p50', function () {
   });
 
   it('Null', () => {
-    assert.deepStrictEqual(p50(null), 0);
+    assert.deepStrictEqual(p50(null as any), 0);
   });
 
   it('Undefined', () => {
-    assert.deepStrictEqual(p50(undefined), 0);
+    assert.deepStrictEqual(p50(undefined as any), 0);
   });
 });
 
@@ -98,7 +98,7 @@ describe('p75', function () {
   });
 
   it('Two scramble with null & undefined', () => {
-    assert.deepStrictEqual(p75([1, 4, 2, undefined, 4, null]), 4);
+    assert.deepStrictEqual(p75([1, 4, 2, undefined as any, 4, null as any]), 4);
   });
 });
 
@@ -120,6 +120,6 @@ describe('p90', function () {
   });
 
   it('Two scramble with null & undefined', () => {
-    assert.deepStrictEqual(p90([1, 4, 2, undefined, 4, null]), 4);
+    assert.deepStrictEqual(p90([1, 4, 2, undefined as any, 4, null as any]), 4);
   });
 });

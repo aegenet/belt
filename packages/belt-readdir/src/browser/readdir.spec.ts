@@ -11,7 +11,7 @@ describe('readdir/browser', () => {
       await readdir(path.join(__dirname, '..'));
       throw new Error('Must failed');
     } catch (error) {
-      assert.strictEqual(error.message, 'Not implemented for browser.');
+      assert.strictEqual((error as Error).message, 'Not implemented for browser.');
     }
   });
 });

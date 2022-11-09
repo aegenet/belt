@@ -19,7 +19,7 @@ export interface IMemoryReader<InternalType = unknown> {
   readCString16BE(): string;
 
   /** Read an ISO-8859-1 line, auto search the end of line (\\n, \\r or 0x0) */
-  readLine(): string;
+  readLine(): string | undefined;
 
   /** Read an ISO-8859-1 string with end marker, default 0x00 */
   readStringWithMarker(maxLength?: number, marker?: number): string;

@@ -42,7 +42,7 @@ describe('dateToInputDateTime', () => {
 
 describe('inputDateTimeToDate', () => {
   it('String', () => {
-    assert.ok(inputDateTimeToDate(null));
+    assert.ok(inputDateTimeToDate(null as any));
     // - => Iso
     assert.strictEqual(inputDateTimeToDate('2015-12-25T19:30').toISOString(), isParisTZ ? '2015-12-25T18:30:00.000Z' : '2015-12-25T19:30:00.000Z');
     // / => Local

@@ -5,14 +5,15 @@
     "experimentalDecorators": true,
     "moduleResolution": "node",
     "skipLibCheck": true,
-    "target": "ES2017",
+    "target": "ES2020",
     "esModuleInterop": true,
     "resolveJsonModule": true,
+    "strict": true,
     "sourceMap": true,
     "newLine": "LF",
+    "outDir": "./build",
     "typeRoots": [
-      "../../node_modules/@types",
-      "./node_modules/@types"
+      "../../node_modules/@types"
     ]
   },
   "exclude": [
@@ -21,8 +22,7 @@
   ],
   "include": [
     "test",
-    "src"
-  ],
+    "src" ],
   "atom": {
     "rewriteTsconfig": false
   }

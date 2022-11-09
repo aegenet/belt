@@ -4,10 +4,10 @@ import { arrayAsyncFilter } from './index';
 describe('arrayAsyncFilter', function () {
   describe('bad way', () => {
     it('null array', async () => {
-      assert.deepStrictEqual(await arrayAsyncFilter(null, f => true), []);
+      assert.deepStrictEqual(await arrayAsyncFilter(null as any, f => true), []);
     });
     it('undefined array', async () => {
-      assert.deepStrictEqual(await arrayAsyncFilter(undefined, f => true), []);
+      assert.deepStrictEqual(await arrayAsyncFilter(undefined as any, f => true), []);
     });
     it('empty array', async () => {
       assert.deepStrictEqual(await arrayAsyncFilter([], f => true), []);
@@ -87,7 +87,7 @@ describe('arrayAsyncFilter', function () {
             },
           ],
           // in js... a guy can do that, so, let's check
-          f => null
+          f => null as any
         ),
         []
       );

@@ -6,7 +6,7 @@ describe('asyncForEach', function () {
     it('null array', async () => {
       let i = 0;
       assert.doesNotReject(async () => {
-        await arrayAsyncForEach(null, f => {
+        await arrayAsyncForEach(null as any, f => {
           i++;
         });
       });
@@ -15,7 +15,7 @@ describe('asyncForEach', function () {
     it('undefined array', async () => {
       let i = 0;
       assert.doesNotReject(async () => {
-        await arrayAsyncForEach(undefined, f => {
+        await arrayAsyncForEach(undefined as any, f => {
           i++;
         });
       });

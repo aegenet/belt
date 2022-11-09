@@ -145,7 +145,8 @@ export class LightDate {
     const dayOfWeek = now.getDay();
     // properDayOfWeek 1 - monday - 7 sunday
     const properDayOfWeek = dayOfWeek === 0 ? 7 : dayOfWeek;
-    now.setDate(now.getDate() - properDayOfWeek + (lng.weekInfo.firstDay === 7 ? 0 : lng.weekInfo.firstDay));
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    now.setDate(now.getDate() - properDayOfWeek + (lng.weekInfo!.firstDay === 7 ? 0 : lng.weekInfo!.firstDay));
     now.setHours(0, 0, 0, 0);
     return now;
   }
@@ -205,7 +206,7 @@ export class LightDate {
     return dateFrom ? new Date(dateFrom) : new Date();
   }
 
-  private _todayPlus(diff: number, dateFrom: LightDateOptions): Date {
+  private _todayPlus(diff: number, dateFrom?: LightDateOptions): Date {
     const todayPlusX = this.dateOrNow(dateFrom);
     todayPlusX.setDate(todayPlusX.getDate() + diff);
     return todayPlusX;
@@ -217,7 +218,7 @@ export class LightDate {
   public getIntlLocale(locale?: string): IntlLocaleBrowser {
     // We can get the current locale by this way
     const currentLocale = locale || new Intl.NumberFormat().resolvedOptions().locale;
-    const localeInfo: IntlLocaleBrowser = new Intl.Locale(currentLocale);
+    const localeInfo: IntlLocaleBrowserOpt = new Intl.Locale(currentLocale);
     if (!localeInfo.weekInfo || !localeInfo.hourCycle) {
       // Minimal polyfill... (nodejs 16; weekInfo = null; node 18; weekInfo ok; but hourCycle KO)
       const defaultHourCycle = localeInfo.hourCycles?.length ? localeInfo.hourCycles[0] : null;
@@ -244,11 +245,12 @@ export class LightDate {
           break;
       }
     }
-    return localeInfo;
+    return localeInfo as IntlLocaleBrowser;
   }
 }
 
-export type IntlLocaleBrowser = Intl.Locale & { hourCycles?: string[]; weekInfo?: { firstDay: number; minimalDays: number; weekend: number[] } };
+export type IntlLocaleBrowserOpt = Intl.Locale & { hourCycles?: string[]; weekInfo?: { firstDay: number; minimalDays: number; weekend: number[] } };
+export type IntlLocaleBrowser = Intl.Locale & { hourCycles: string[]; weekInfo: { firstDay: number; minimalDays: number; weekend: number[] } };
 
 /**
  * Global instance of LightDate

@@ -33,25 +33,26 @@ export function antiBounce(options: IAntiBounceOptions) {
     }
 
     if (!instance.$antiBounces.has(propertyKey)) {
-      instance.$antiBounces.set(propertyKey, new AntiBounce(descriptor.value.bind(instance), options.duration, options.checker ? instance[options.checker].bind(instance) : undefined));
+      instance.$antiBounces.set(propertyKey, new AntiBounce(descriptor.value.bind(instance), options.duration, options.checker ? (instance as any)[options.checker].bind(instance) : undefined));
     }
-    return instance.$antiBounces.get(propertyKey);
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    return instance.$antiBounces.get(propertyKey)!;
   }
 
   return function (target: IAntiBounceSupport, propertyKey: string, descriptor: PropertyDescriptor) {
     return {
       configurable: true,
       enumerable: descriptor.enumerable,
-      get: function getter() {
-        const method = _wrapAntiBounce(this, descriptor, propertyKey);
+      get: function (): unknown {
+        const method = _wrapAntiBounce(this as IAntiBounceSupport, descriptor, propertyKey);
         Object.defineProperty(this, propertyKey, {
           configurable: true,
           enumerable: descriptor.enumerable,
           value: method.call.bind(method),
         });
-        return this[propertyKey];
+        return (this as any)[propertyKey];
       },
-    };
+    } as any; // weirdo
   };
 }
 

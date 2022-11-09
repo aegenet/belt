@@ -1,4 +1,4 @@
-// tslint:disable:no-big-function no-duplicate-string no-identical-functions
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import * as assert from 'assert';
 import { ODeepSet } from './index';
 
@@ -27,7 +27,7 @@ describe('odeep-set', () => {
     it('Deep One - Null context', () => {
       const ctx: {
         propOne?: number;
-      } = null;
+      } = null as any;
 
       oDeepSet.setValue(ctx, [{ propName: 'propOne', type: 'object' }], 1);
       assert.strictEqual(ctx, null);
@@ -38,7 +38,7 @@ describe('odeep-set', () => {
         propOne?: number;
       } = {};
 
-      oDeepSet.setValue(ctx, null, 1);
+      oDeepSet.setValue(ctx, null as any, 1);
       assert.strictEqual(ctx.propOne, undefined);
     });
 
@@ -52,7 +52,7 @@ describe('odeep-set', () => {
       };
 
       oDeepSet.setValue(ctx, ['propOne', 'propTwo'], 1);
-      assert.strictEqual(ctx.propOne.propTwo, 1);
+      assert.strictEqual(ctx.propOne!.propTwo, 1);
     });
 
     it('Deep Two, skip #', () => {
@@ -65,7 +65,7 @@ describe('odeep-set', () => {
       };
 
       oDeepSet.setValue(ctx, ['#', 'propOne', 'propTwo'], 1);
-      assert.strictEqual(ctx.propOne.propTwo, 1);
+      assert.strictEqual(ctx.propOne!.propTwo, 1);
     });
 
     it('Deep Two - propOne is null', () => {
@@ -79,7 +79,7 @@ describe('odeep-set', () => {
         oDeepSet.setValue(ctx, ['propOne', 'propTwo'], 1);
         throw new Error('Must failed.');
       } catch (error) {
-        assert.ok(error.message.startsWith('Cannot set proper'));
+        assert.ok((error as Error).message.startsWith('Cannot set proper'));
       }
     });
 
@@ -91,7 +91,7 @@ describe('odeep-set', () => {
       };
 
       oDeepSet.setValue(ctx, ['propOne', { propName: '0', type: 'indice' }], 1);
-      assert.strictEqual(ctx.propOne[0], 1);
+      assert.strictEqual(ctx.propOne![0], 1);
     });
 
     it('Deep Two - Array alt', () => {
@@ -102,7 +102,7 @@ describe('odeep-set', () => {
       };
 
       oDeepSet.setValue(ctx, ['propOne', 0], 1);
-      assert.strictEqual(ctx.propOne[0], 1);
+      assert.strictEqual(ctx.propOne![0], 1);
     });
 
     it('Deep Two - Array 1', () => {
@@ -113,7 +113,7 @@ describe('odeep-set', () => {
       };
 
       oDeepSet.setValue(ctx, ['propOne', { propName: '1', type: 'indice' }], 1);
-      assert.strictEqual(ctx.propOne[1], 1);
+      assert.strictEqual(ctx.propOne![1], 1);
     });
 
     it('Deep Two - Array 1 alt', () => {
@@ -124,7 +124,7 @@ describe('odeep-set', () => {
       };
 
       oDeepSet.setValue(ctx, ['propOne', 1], 1);
-      assert.strictEqual(ctx.propOne[1], 1);
+      assert.strictEqual(ctx.propOne![1], 1);
     });
   });
 
@@ -137,7 +137,7 @@ describe('odeep-set', () => {
       } = {};
 
       oDeepSet.setValue(ctx, ['propOne', 'propTwo'], 1, { autoCreate: true });
-      assert.strictEqual(ctx.propOne.propTwo, 1);
+      assert.strictEqual(ctx.propOne!.propTwo, 1);
     });
 
     it('Deep Two, skip #', () => {
@@ -148,7 +148,7 @@ describe('odeep-set', () => {
       } = {};
 
       oDeepSet.setValue(ctx, ['#', 'propOne', 'propTwo'], 1, { autoCreate: true });
-      assert.strictEqual(ctx.propOne.propTwo, 1);
+      assert.strictEqual(ctx.propOne!.propTwo, 1);
     });
 
     it('Deep Two - Array', () => {
@@ -157,7 +157,7 @@ describe('odeep-set', () => {
       } = {};
 
       oDeepSet.setValue(ctx, ['propOne', { propName: '0', type: 'indice' }], 1, { autoCreate: true });
-      assert.strictEqual(ctx.propOne[0], 1);
+      assert.strictEqual(ctx.propOne![0], 1);
     });
 
     it('Deep Two - Array 1', () => {
@@ -166,7 +166,7 @@ describe('odeep-set', () => {
       } = {};
 
       oDeepSet.setValue(ctx, ['propOne', { propName: '1', type: 'indice' }], 1, { autoCreate: true });
-      assert.strictEqual(ctx.propOne[1], 1);
+      assert.strictEqual(ctx.propOne![1], 1);
     });
 
     it('Deep Two - Array - alt', () => {
@@ -175,7 +175,7 @@ describe('odeep-set', () => {
       } = {};
 
       oDeepSet.setValue(ctx, ['propOne', 0], 1, { autoCreate: true });
-      assert.strictEqual(ctx.propOne[0], 1);
+      assert.strictEqual(ctx.propOne![0], 1);
     });
 
     it('Deep Two - Array 1 - alt', () => {
@@ -184,7 +184,7 @@ describe('odeep-set', () => {
       } = {};
 
       oDeepSet.setValue(ctx, ['propOne', 1], 1, { autoCreate: true });
-      assert.strictEqual(ctx.propOne[1], 1);
+      assert.strictEqual(ctx.propOne![1], 1);
     });
   });
 

@@ -3,10 +3,10 @@ import { extractDomain, IDomain } from './index';
 
 describe('extract-domain', function () {
   it('undefined', () => {
-    assert.strictEqual(extractDomain(undefined), null);
+    assert.strictEqual(extractDomain(undefined as any), null);
   });
   it('null', () => {
-    assert.strictEqual(extractDomain(undefined), null);
+    assert.strictEqual(extractDomain(undefined as any), null);
   });
   it('zzz.com', () => {
     assert.deepStrictEqual(extractDomain('zzz.com'), {

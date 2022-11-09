@@ -8,7 +8,7 @@ export function oclone<T extends object>(
     /** If true, we try to recreate the same object type */
     keepType?: boolean;
   }
-): T {
+): T | null {
   if (source) {
     // We don't want any references
     const clone = JSON.parse(JSON.stringify(source));

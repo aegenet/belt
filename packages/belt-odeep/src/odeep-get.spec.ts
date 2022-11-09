@@ -39,7 +39,7 @@ describe('odeep-get', () => {
     });
 
     it('No path', () => {
-      assert.strictEqual(oDeepGet.getValue({ id: 0 }, null), undefined);
+      assert.strictEqual(oDeepGet.getValue({ id: 0 }, null as any), undefined);
     });
 
     it('Deep Two, undefined', () => {
@@ -65,7 +65,7 @@ describe('odeep-get', () => {
         oDeepGet.getValue(ctx, ['propOne', 'propTwo']);
         throw new Error('Must failed');
       } catch (error) {
-        assert.ok(error.message.startsWith('Cannot read prop'));
+        assert.ok((error as Error).message.startsWith('Cannot read prop'));
       }
     });
 
@@ -204,7 +204,7 @@ describe('odeep-get', () => {
         });
         throw new Error('Must failed');
       } catch (error) {
-        assert.ok(error.message.startsWith('Cannot read prop'));
+        assert.ok((error as Error).message.startsWith('Cannot read prop'));
       }
     });
 

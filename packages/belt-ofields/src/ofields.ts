@@ -19,7 +19,7 @@ export function ofields<T = Record<string, unknown>>(
     let value, field;
     for (let i = 0; i < fields.length; i++) {
       field = fields[i];
-      value = data[field];
+      value = (data as any)[field];
       rowsFields.push([field, value]);
     }
     return rowsFields;

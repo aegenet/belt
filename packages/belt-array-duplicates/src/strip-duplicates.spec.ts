@@ -70,7 +70,7 @@ describe('stripDuplicates', function () {
         });
         throw new Error('Must failed');
       } catch (error) {
-        assert.strictEqual(error.message, 'Invalid usage: compare function is only available with sorted array.');
+        assert.strictEqual((error as Error).message, 'Invalid usage: compare function is only available with sorted array.');
       }
     });
   });

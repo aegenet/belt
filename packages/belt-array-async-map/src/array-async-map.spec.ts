@@ -4,10 +4,10 @@ import { arrayAsyncMap } from './index';
 describe('arrayAsyncMap', function () {
   describe('bad way', () => {
     it('null array', async () => {
-      assert.deepStrictEqual(await arrayAsyncMap(null, f => true), []);
+      assert.deepStrictEqual(await arrayAsyncMap(null as any, f => true), []);
     });
     it('undefined array', async () => {
-      assert.deepStrictEqual(await arrayAsyncMap(undefined, f => true), []);
+      assert.deepStrictEqual(await arrayAsyncMap(undefined as any, f => true), []);
     });
     it('empty array', async () => {
       assert.deepStrictEqual(await arrayAsyncMap([], f => true), []);

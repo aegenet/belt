@@ -73,7 +73,7 @@ describe('arrayToObject', function () {
   });
 
   it('Null array', () => {
-    assert.deepStrictEqual(arrayToObject(null, 'id', 'value'), {});
+    assert.deepStrictEqual(arrayToObject(null as any, 'id', 'value'), {});
   });
 
   it('Empty array', () => {

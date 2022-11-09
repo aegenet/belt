@@ -2,18 +2,18 @@
   "name": "@aegenet/belt-rows-inflator",
   "description": "Rows Inflator, transforms SQL results into nested objects",
   "version": "999.0.0",
-  "main": "dist/node/index.cjs",
-  "module": "dist/node/index.mjs",
-  "browser": "dist/web/index.mjs",
   "keywords": ["sql", "query", "rows", "nested", "transform"],
+  "main": "dist/index.cjs",
+  "module": "dist/index.mjs",
+  "browser": "dist/index.mjs",
   "exports": {
     "node": {
-        "require": "./dist/node/index.cjs",
-        "import": "./dist/node/index.mjs"
+        "require": "./dist/index.cjs",
+        "import": "./dist/index.mjs"
     },
     "default": {
-        "require": "./dist/web/index.cjs",
-        "import": "./dist/web/index.mjs"
+        "require": "./dist/index.cjs",
+        "import": "./dist/index.mjs"
     }
   },
   "typings": "./dist/node/bundle.d.ts",
@@ -39,10 +39,9 @@
     "test-browser": "node ./../../node_modules/jest/bin/jest --config ./jest.web.config.js",
     "test-node": "node ./../../node_modules/jest/bin/jest --config ./jest.config.js --testTimeout=30000",
     "test-local": "node ./../../node_modules/ts-mocha/bin/ts-mocha src/**/*.spec.ts --timeout 30000",
-    "analyze": "node ./../../node_modules/rimraf/bin dist && node ./../../node_modules/webpack/bin/webpack --env production --analyze",
-    "build": "yarn run build:webpack",
-    "build:webpack": "node ./../../node_modules/rimraf/bin dist && node ./../../node_modules/webpack/bin/webpack --env production",
-    "tsc": "node ./../../node_modules/rimraf/bin build && node ./../../node_modules/typescript/bin/tsc -b ./tsconfig.benchmark.json",
+    "build": "yarn tsc && yarn run build:vite",
+    "tsc": "node ./../../node_modules/rimraf/bin build && node ./../../node_modules/typescript/bin/tsc",
+    "build:vite": "node ./../../node_modules/rimraf/bin dist && node ./../../node_modules/vite/bin/vite build",
     "generate": "yarn tsc && node ./build/belt-rows-inflator/bench/cli.js"
   }
 }

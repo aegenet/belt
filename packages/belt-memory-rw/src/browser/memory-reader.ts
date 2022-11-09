@@ -63,7 +63,7 @@ export class MemoryReader extends MemoryCommon implements IMemoryReader<ArrayBuf
   }
 
   /** @inheritdoc */
-  public readLine() {
+  public readLine(): string | undefined {
     if (this.remaining === 0) {
       return undefined;
     }

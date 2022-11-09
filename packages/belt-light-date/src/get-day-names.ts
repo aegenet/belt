@@ -12,7 +12,7 @@ export function getDayNames(format: 'short' | 'long' = 'long', locales?: string 
   const cacheKey = `${new Intl.NumberFormat().resolvedOptions().locale}_${format}_${locales}`;
 
   if (daysMap.has(cacheKey)) {
-    return daysMap.get(cacheKey);
+    return daysMap.get(cacheKey) as string[];
   } else {
     const formatter = new Intl.DateTimeFormat(locales, { weekday: format });
     const days = daysUTC0.map(day => formatter.format(day));

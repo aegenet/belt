@@ -8,7 +8,7 @@ export function binarySearch<EntityType = unknown>(
 ): {
   value: EntityType;
   index: number;
-} {
+} | null {
   const index = Math.floor(min + (max - min) / 2);
   const cmp = comparator(entries[index], searchValue);
   if (cmp !== 0 && (index === 0 || index === entries.length - 1)) {
@@ -41,7 +41,7 @@ export function safeBinarySearch<EntityType = unknown>(
 ): {
   value: EntityType;
   index: number;
-} {
+} | null {
   if (!comparator) {
     if (typeof searchValue === 'string') {
       comparator = ((a: string, b: string) => a.localeCompare(b)) as unknown as (a: EntityType, b: EntityType) => number;

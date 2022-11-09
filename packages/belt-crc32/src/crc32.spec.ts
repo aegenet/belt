@@ -11,10 +11,10 @@ describe('crc8', () => {
   });
 
   it('Null', () => {
-    assert.equal(crc32(null), 0x00);
+    assert.equal(crc32(null as any), 0x00);
   });
 
   it('undefined', () => {
-    assert.equal(crc32(undefined), 0x00);
+    assert.equal(crc32(undefined as any), 0x00);
   });
 });

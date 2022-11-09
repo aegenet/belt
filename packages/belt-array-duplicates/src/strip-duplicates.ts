@@ -2,7 +2,7 @@
 export function stripDuplicates<T = unknown>(
   dupArray: T[],
   options: {
-    compare?: (a, b) => boolean;
+    compare?: (a: T, b: T) => boolean;
     sorted?: boolean;
   } = {}
 ): T[] {
@@ -15,7 +15,7 @@ export function stripDuplicates<T = unknown>(
     if (options.sorted) {
       let compare = options.compare;
       if (!compare) {
-        const keys = typeof entries[0] === 'number' ? [] : Object.keys(entries[0]);
+        const keys = typeof entries[0] === 'number' ? [] : Object.keys((entries as any)[0]);
         if (keys.length === 0) {
           // Simple compare
           compare = (a, b) => a == b;
@@ -25,7 +25,7 @@ export function stripDuplicates<T = unknown>(
             let isOk = true;
             for (let keyI = 0; keyI < keys.length; keyI++) {
               const key = keys[keyI];
-              if ((a ? JSON.stringify(a[key]) : null) !== (b ? JSON.stringify(b[key]) : null)) {
+              if ((a ? JSON.stringify((a as any)[key]) : null) !== (b ? JSON.stringify((b as any)[key]) : null)) {
                 isOk = false;
                 break;
               }

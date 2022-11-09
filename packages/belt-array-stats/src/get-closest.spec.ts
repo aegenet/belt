@@ -17,13 +17,13 @@ describe('getClosestNumber', function () {
   });
 
   it('Null', () => {
-    assert.strictEqual(getClosestNumber(null, []), null);
-    assert.strictEqual(getClosestNumber(null, null), null);
+    assert.strictEqual(getClosestNumber(null as any, []), null);
+    assert.strictEqual(getClosestNumber(null as any, null as any), null);
   });
 
   it('Undefined', () => {
-    assert.strictEqual(getClosestNumber(undefined, []), null);
-    assert.strictEqual(getClosestNumber(undefined, undefined), null);
+    assert.strictEqual(getClosestNumber(undefined as any, []), null);
+    assert.strictEqual(getClosestNumber(undefined as any, undefined as any), null);
   });
 });
 
@@ -51,12 +51,12 @@ describe('getClosestValue', function () {
   });
 
   it('Null', () => {
-    assert.strictEqual(getClosestValue<{ value: number }>(null, [], reducer), null);
-    assert.strictEqual(getClosestValue<{ value: number }>(null, null, reducer), null);
+    assert.strictEqual(getClosestValue<{ value: number }>(null as any, [], reducer), null);
+    assert.strictEqual(getClosestValue<{ value: number }>(null as any, null as any, reducer), null);
   });
 
   it('Undefined', () => {
-    assert.strictEqual(getClosestValue<{ value: number }>(undefined, [], reducer), null);
-    assert.strictEqual(getClosestValue<{ value: number }>(undefined, undefined, reducer), null);
+    assert.strictEqual(getClosestValue<{ value: number }>(undefined as any, [], reducer), null);
+    assert.strictEqual(getClosestValue<{ value: number }>(undefined as any, undefined as any, reducer), null);
   });
 });

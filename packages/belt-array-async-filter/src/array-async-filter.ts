@@ -1,5 +1,5 @@
 /** Filter an array */
-export async function arrayAsyncFilter<T = unknown>(entries: T[], predicate: (value?: T, index?: number, array?: T[]) => boolean | Promise<boolean>): Promise<T[]> {
+export async function arrayAsyncFilter<T = unknown>(entries: T[], predicate: (value: T, index: number, array: T[]) => boolean | Promise<boolean>): Promise<T[]> {
   const filtered: T[] = [];
   if (entries) {
     for (let i = 0; i < entries.length; i++) {

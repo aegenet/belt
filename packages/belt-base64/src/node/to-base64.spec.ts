@@ -3,8 +3,8 @@ import * as assert from 'assert';
 
 describe('node - to-base64', () => {
   it('Null, undefined, empty', () => {
-    assert.strictEqual(toBase64(null), '');
-    assert.strictEqual(toBase64(undefined), '');
+    assert.strictEqual(toBase64(null as any), '');
+    assert.strictEqual(toBase64(undefined as any), '');
     assert.strictEqual(toBase64(''), '');
   });
 

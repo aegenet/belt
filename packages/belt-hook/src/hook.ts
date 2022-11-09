@@ -18,9 +18,9 @@ export type HookDisposable = { dispose: () => void };
 /**
  * Hook a function
  */
-export function hook<T = Record<string, unknown>>(options: HookOptions<T>): HookDisposable {
+export function hook<T = Record<PropertyKey, unknown>>(options: HookOptions<T>): HookDisposable {
   if (options?.context && options.name && options.name in options.context) {
-    const context = options.context;
+    const context: any = options.context;
     const storageFuncName = _createHookedName(options.name);
     context[storageFuncName] = context[options.name];
 
@@ -32,7 +32,7 @@ export function hook<T = Record<string, unknown>>(options: HookOptions<T>): Hook
           options.beforeCall({ id, startedAt });
         }
         // eslint-disable-next-line prefer-rest-params
-        const results = this[storageFuncName].apply(context, arguments);
+        const results = (this as any)[storageFuncName].apply(context, arguments);
         // Promise ?
         if (results && typeof results !== 'number' && typeof results.then === 'function') {
           return (results as Promise<unknown>)

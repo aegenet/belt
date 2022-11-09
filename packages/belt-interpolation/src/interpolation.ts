@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 /** Interpolation config */
 export type InterpolationConfig = {
   /** Custom dialects, the regex must captures two things: the "skip" and the property name */
@@ -45,7 +46,7 @@ export class Interpolation {
     context = context ?? ({} as C);
     const dialectName = options.dialect || 'ECMAScript';
 
-    const dialect = dialectName in Interpolation._DEFAULT_DIALECTS ? Interpolation._DEFAULT_DIALECTS[dialectName] : dialectName in this._config.customDialects ? this._config.customDialects[dialectName] : null;
+    const dialect = dialectName in Interpolation._DEFAULT_DIALECTS ? (Interpolation._DEFAULT_DIALECTS as Record<string, RegExp>)[dialectName] : dialectName in this._config.customDialects! ? this._config.customDialects![dialectName] : null;
     if (dialect) {
       const re = new RegExp(dialect, 'g');
       return text.replace(re, (substring: string, ...params: string[]) => {
@@ -62,7 +63,7 @@ export class Interpolation {
 
   /** Default get Value */
   private static _defaultGetValue<C>(ctx: C, propPath: string) {
-    const value = propPath in ctx ? ctx[propPath] : null;
+    const value = propPath in ctx ? (ctx as any)[propPath] : null;
     return value == null ? '' : String(value);
   }
 }
