@@ -3,7 +3,7 @@
 > Rows Inflator, transforms SQL results into nested objects
 
 ```typescript
-import { rowsInflator } from '@aegenet/belt-rows-inflator';
+import { rowsInflator, ERowsInflatorAssociation } from '@aegenet/belt-rows-inflator';
 
 const raws = [
   { id: 1, code: 'Luna', users__id: 1, users__code: 'wismerhill', users__subordinates__id: 3, users__subordinates__code: 'maurel' },
@@ -20,7 +20,7 @@ const results = rowsInflator(raws, {
   associations: {
     users: {
       as: 'users',
-      associationType: EAssociationType.hasMany,
+      associationType: ERowsInflatorAssociation.hasMany,
       fields: {
         code: {},
         id: {},
@@ -28,7 +28,7 @@ const results = rowsInflator(raws, {
       associations: {
         subordinates: {
           as: 'subordinates',
-          associationType: EAssociationType.hasMany,
+          associationType: ERowsInflatorAssociation.hasMany,
           fields: {
             code: {},
             id: {},

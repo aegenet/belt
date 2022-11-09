@@ -26,7 +26,7 @@ export function rowsInflator<I = any, O = any>(raws: I[], schema: IRowsInflatorO
   // Tableau principal
   const mainCollection: O[] = [];
   let assocUUID: string;
-  let raw, rowPathValues: any[], rowPathUUID: string[], rowMapper, depth, cache, map, cachedData, formated;
+  let raw: I, rowPathValues: any[], rowPathUUID: string[], rowMapper, depth, cache, map, cachedData, formated;
 
   for (let i = 0; i < raws.length; i++) {
     raw = raws[i];
