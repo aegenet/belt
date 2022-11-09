@@ -149,4 +149,8 @@ describe('all-in-one', () => {
   it('belt_hide_sensitive', () => {
     assert.ok(belt.createHideSensitiveFunction);
   });
+  it('belt_rows_inflator', () => {
+    assert.ok(belt.rowsInflator);
+    assert.ok(belt.ERowsInflatorAssociation);
+  });
 });

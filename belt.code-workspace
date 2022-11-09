@@ -153,6 +153,10 @@
       "path": "./packages/belt-benchmark"
     },
     {
+      "name": "Rows Inflator",
+      "path": "./packages/belt-rows-inflator"
+    },
+    {
       "name": "Root",
       "path": "."
     }

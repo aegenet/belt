@@ -33,6 +33,7 @@ module.exports = function(
           defaultShadowOptions: {
             mode: "open",
           },
+          isolatedModules: true,
         },
       ],
     },
@@ -53,10 +54,5 @@ module.exports = function(
     coverageReporters: options.reporter ?? [
       "json", "text-summary", "html"
     ],
-    globals: {
-      "ts-jest": {
-        isolatedModules: true,
-      },
-    },
   };
 };

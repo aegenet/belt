@@ -1,0 +1,29 @@
+{
+  "compileOnSave": true,
+  "compilerOptions": {
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "moduleResolution": "Node",
+    "module": "CommonJS",
+    "skipLibCheck": true,
+    "target": "ES2020",
+    "esModuleInterop": true,
+    "strict": true,
+    "sourceMap": true,
+    "newLine": "LF",
+    "outDir": "./build",
+    "typeRoots": [
+      "../../node_modules/@types"
+    ]
+  },
+  "exclude": [
+    "./node_modules",
+    "./samples"
+  ],
+  "include": [
+    "bench"
+  ],
+  "atom": {
+    "rewriteTsconfig": false
+  }
+}

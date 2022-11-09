@@ -147,6 +147,10 @@
   "links": [],
   "publish": true
 }, {
+  "name": "belt-rows-inflator",
+  "links": [],
+  "publish": true
+}, {
   "name": "belt",
   "links": [],
   "publish": true
