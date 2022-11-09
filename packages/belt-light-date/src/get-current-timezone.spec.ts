@@ -5,9 +5,9 @@ describe('getCurrentTimezone', () => {
   it('Once', () => {
     const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
     if (timezone === 'Europe/Paris') {
-      assert.strictEqual(getCurrentTimezone(), '+0200');
+      assert.ok(getCurrentTimezone() === '+0200' || getCurrentTimezone() === '+0100');
       // memoize
-      assert.strictEqual(getCurrentTimezone(), '+0200');
+      assert.ok(getCurrentTimezone() === '+0200' || getCurrentTimezone() === '+0100');
     } else {
       assert.strictEqual(getCurrentTimezone(), '+0000');
       // memoize

@@ -84,6 +84,7 @@
     "dependencies": "node ./.build/build-flow.js dependencies",
     "lint": "node ./.build/build-flow.js lint",
     "build": "node ./.build/build-flow.js build",
+    "test": "node ./.build/build-flow.js test",
     "publish": "node ./.build/build-flow.js publish",
     "upgrade": "yarn cache clean && node ./.build/build-flow.js upgrade",
     "local": "node ./.build/build-flow.js local",
