@@ -91,7 +91,8 @@ const tasks = {
 
 const taskMode = process.argv[2];
 if (taskMode && taskMode in tasks) {
-  console.log(`[BUILD-FLOW] ${taskMode} starting...`);
+  const startAt = new Date();
+  console.log(`[BUILD-FLOW] ${taskMode} starting at ${startAt.toLocaleString()}...`);
   const task = tasks[taskMode];
   const projects = require(path.join(__dirname, 'build-flow.config.json'));
 
@@ -106,7 +107,8 @@ if (taskMode && taskMode in tasks) {
       });
     }
   }
-  console.log(`[BUILD-FLOW] ${taskMode} finished.`)
+  const endAt = new Date();
+  console.log(`[BUILD-FLOW] ${taskMode} finished at ${endAt.toLocaleString()} in ${((endAt.getTime() - startAt.getTime()) / 60000).toFixed(2)} minutes.`)
 } else {
   console.log(`[BUILD-FLOW] invalid task ${taskMode} provided.`);
   process.exit(1);

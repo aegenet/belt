@@ -32,7 +32,7 @@
     "lint"
   ],
   "scripts": {
-    "clean": "node ./../../node_modules/rimraf/bin ./dist && node ./../../node_modules/rimraf/bin ./coverage && node ./../../node_modules/rimraf/bin ./.nyc_output && node ./../../node_modules/rimraf/bin ./node_modules",
+    "clean": "node ./../../node_modules/rimraf/bin ./dist ./coverage ./.nyc_output ./node_modules",
     "lint": "node ./../../node_modules/eslint/bin/eslint ./src/**/*.{js,ts,tsx}",
     "lint:fix": "node ./../../node_modules/eslint/bin/eslint ./src/**/*.{js,ts,tsx} --fix",
     "test-browser": "node ./../../node_modules/jest/bin/jest --config ./jest.web.config.js",
