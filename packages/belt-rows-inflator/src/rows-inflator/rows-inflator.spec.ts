@@ -60,14 +60,13 @@ describe('rows-inflator', () => {
     assert.strictEqual(results.length, 0);
   });
 
-  it.only('Nested many', () => {
+  it('Nested many', () => {
     const raws: any[] = [
       { id: 1, code: 'Luna', users__id: 1, users__code: 'wismerhill', users__subordinates__id: 3, users__subordinates__code: 'maurel' },
       { id: 2, code: 'Sun', users__id: 2, users__code: 'pileouface', users__subordinates__id: null, users__subordinates__code: null },
       { id: 1, code: 'Luna', users__id: 3, users__code: 'maurel', users__subordinates__id: null, users__subordinates__code: null },
     ];
     const results = rowsInflator(raws, rowsMergerSchema);
-    console.log(JSON.stringify(results, undefined, 2));
 
     assert.strictEqual(results.length, 2);
     assert.strictEqual(results[0].id, 1);

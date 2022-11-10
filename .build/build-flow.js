@@ -1,5 +1,7 @@
 const path = require('path');
-const child_process = require('child_process');
+const child_process = require('node:child_process');
+const util = require('node:util');
+const exec = util.promisify(child_process.exec);
 
 const tasks = {
   /** Clean up */
@@ -89,27 +91,63 @@ const tasks = {
   }
 }
 
-const taskMode = process.argv[2];
-if (taskMode && taskMode in tasks) {
-  const startAt = new Date();
-  console.log(`[BUILD-FLOW] ${taskMode} starting at ${startAt.toLocaleString()}...`);
-  const task = tasks[taskMode];
-  const projects = require(path.join(__dirname, 'build-flow.config.json'));
+async function main() {
+  const taskMode = process.argv[2];
+  if (taskMode && taskMode in tasks) {
+    const startAt = new Date();
+    console.log(`[BUILD-FLOW] ${taskMode} starting at ${startAt.toLocaleString()}...`);
+    const task = tasks[taskMode];
+    const projects = require(path.join(__dirname, 'build-flow.config.json'));
+  
+    const concurrentProjects = projects.filter(f => !f.links || f.links.length === 0);
+    const seqProjects = projects.filter(f => f.links?.length);
+  
+    let packProms = [];
+    const workers = process.env.BUILD_WORKER_THREADS || 8;
+    for (let i = 0; i < concurrentProjects.length; i++) {
+      const project = concurrentProjects[i];
+    
+      console.log(`[BUILD-FLOW] ${taskMode}/${project.name}...`);
+      const cmd = task(project);
+      if (cmd) {
+        packProms.push(exec(cmd, {
+          cwd: process.cwd(),
+        }).then(res => {
+          console.log(res.stdout);
+          console.error(res.stderr);
+        }).catch(error => {
+          console.log(error.stdout);
+          console.error(error.stderr);
+          console.log(`[BUILD-FLOW] ${taskMode}/${project.name} failed.`);
+          throw error;
+        }));
+      }
 
-  for (let i = 0; i < projects.length; i++) {
-    const project = projects[i];
-    console.log(`[BUILD-FLOW] ${taskMode}/${project.name}...`);
-    const cmd = task(project);
-    if (cmd) {
-      child_process.execSync(cmd, {
-        cwd: process.cwd(),
-        stdio: 'inherit',
-      });
+      if ((i + 1) % workers === 0) {
+        await Promise.all(packProms);
+        packProms = [];
+      }
     }
-  }
-  const endAt = new Date();
-  console.log(`[BUILD-FLOW] ${taskMode} finished at ${endAt.toLocaleString()} in ${((endAt.getTime() - startAt.getTime()) / 60000).toFixed(2)} minutes.`)
-} else {
-  console.log(`[BUILD-FLOW] invalid task ${taskMode} provided.`);
-  process.exit(1);
+
+    await Promise.all(packProms);
+  
+    for (let i = 0; i < seqProjects.length; i++) {
+      const project = seqProjects[i];
+      console.log(`[BUILD-FLOW] ${taskMode}/${project.name}...`);
+      const cmd = task(project);
+      if (cmd) {
+        child_process.execSync(cmd, {
+          cwd: process.cwd(),
+          stdio: 'inherit',
+        });
+      }
+    }
+    const endAt = new Date();
+    console.log(`[BUILD-FLOW] ${taskMode} finished at ${endAt.toLocaleString()} in ${((endAt.getTime() - startAt.getTime()) / 60000).toFixed(2)} minutes.`)
+  } else {
+    console.log(`[BUILD-FLOW] invalid task ${taskMode} provided.`);
+    process.exit(1);
+  }  
 }
+
+main();
