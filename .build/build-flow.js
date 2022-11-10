@@ -2,6 +2,7 @@ const path = require('path');
 const child_process = require('node:child_process');
 const util = require('node:util');
 const exec = util.promisify(child_process.exec);
+const IS_SILENT = process.env.BUILD_SILENT === 'true';
 
 const tasks = {
   /** Clean up */
@@ -99,11 +100,12 @@ async function main() {
     const task = tasks[taskMode];
     const projects = require(path.join(__dirname, 'build-flow.config.json'));
   
-    const concurrentProjects = projects.filter(f => !f.links || f.links.length === 0);
-    const seqProjects = projects.filter(f => f.links?.length);
+    const workers = process.env.BUILD_WORKER_THREADS || 8;
+
+    const concurrentProjects = workers < 2 ? [] : projects.filter(f => !f.links || f.links.length === 0);
+    const seqProjects = workers < 2 ? projects : projects.filter(f => f.links?.length);
   
     let packProms = [];
-    const workers = process.env.BUILD_WORKER_THREADS || 8;
     for (let i = 0; i < concurrentProjects.length; i++) {
       const project = concurrentProjects[i];
     
@@ -113,8 +115,10 @@ async function main() {
         packProms.push(exec(cmd, {
           cwd: process.cwd(),
         }).then(res => {
-          console.log(res.stdout);
-          console.error(res.stderr);
+          if (!IS_SILENT) {
+            console.log(res.stdout);
+            console.error(res.stderr);
+          }
         }).catch(error => {
           console.log(error.stdout);
           console.error(error.stderr);
@@ -128,8 +132,9 @@ async function main() {
         packProms = [];
       }
     }
-
-    await Promise.all(packProms);
+    if (packProms.length) {
+      await Promise.all(packProms);
+    }
   
     for (let i = 0; i < seqProjects.length; i++) {
       const project = seqProjects[i];
