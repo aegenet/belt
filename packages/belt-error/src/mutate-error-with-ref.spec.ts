@@ -8,7 +8,6 @@ describe('mutate-error-with-ref', () => {
     assert.strictEqual(mutateError, error);
     assert.ok(mutateError.refError);
     assert.ok(mutateError.message.startsWith(mutateError.refError));
-    console.dir(mutateError);
   });
 
   it('Mutate with empty message', () => {
