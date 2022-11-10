@@ -15,7 +15,7 @@
         "import": "./dist/index.mjs"
     }
   },
-  "typings": "./dist/node/bundle.d.ts",
+  "typings": "./dist/bundle.d.ts",
   "author": "Alexandre Genet",
   "license": "UNLICENSED",
   "files": [
