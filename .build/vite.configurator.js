@@ -1,6 +1,5 @@
 // vite.config.js
 import { resolve } from 'path';
-import dts from 'rollup-plugin-dts';
 import { defineConfig } from 'vite';
 
 export function config(options) {
@@ -8,7 +7,6 @@ export function config(options) {
   return defineConfig({
     build: {
       outDir: `./dist/${folder}`,
-      plugins: [dts()],
       lib: {
         // Could also be a dictionary or array of multiple entry points
         entry: resolve(options.cwd, `build/${options.entryPoint || 'index.js'}`),
@@ -32,12 +30,7 @@ export function config(options) {
           },
           {
             format: 'umd',
-            entryFileNames: `index-[format].js`,
-            globals: options.globals || {},
-          },
-          {
-            format: 'es',
-            entryFileNames: `bundle.d.ts`,
+            entryFileNames: `index.[format].js`,
             globals: options.globals || {},
           },
         ],
