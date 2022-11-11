@@ -5,4 +5,5 @@ export default config({
   cwd: __dirname,
   libName: '@aegenet/belt-array-async-filter',
   entryPoint: 'index',
+  nodeExternal: true,
 });

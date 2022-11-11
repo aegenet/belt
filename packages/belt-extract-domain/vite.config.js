@@ -5,4 +5,5 @@ export default config({
   cwd: __dirname,
   libName: '@aegenet/belt-extract-domain',
   entryPoint: 'index.js',
+  nodeExternal: true,
 });

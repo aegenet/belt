@@ -7,4 +7,5 @@ export default config({
   folder: 'node',
   entryPoint: 'node.ts',
   external: ['node:perf_hooks'],
+  nodeExternal: true,
 });

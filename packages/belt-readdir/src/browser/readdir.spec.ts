@@ -1,5 +1,5 @@
-import * as assert from 'assert';
-import * as path from 'path';
+import * as assert from 'node:assert';
+import * as path from 'node:path';
 import { readdir } from '../browser';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { IReaddirEntry } from '../browser';

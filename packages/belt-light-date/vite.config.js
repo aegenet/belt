@@ -5,4 +5,5 @@ export default config({
   cwd: __dirname,
   libName: '@aegenet/belt-light-date',
   entryPoint: 'index',
+  nodeExternal: true,
 });

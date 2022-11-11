@@ -1,4 +1,4 @@
-const path = require('path');
+const path = require('node:path');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const JSDOMEnvironment  = require(path.join(__dirname, './../../node_modules/jest-environment-jsdom'));
 // const express = require('express');

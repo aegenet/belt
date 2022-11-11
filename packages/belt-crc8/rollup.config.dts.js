@@ -5,4 +5,5 @@ export default config({
   cwd: __dirname,
   libName: '@aegenet/belt-crc8',
   entryPoint: 'index.ts',
+  nodeExternal: true,
 });

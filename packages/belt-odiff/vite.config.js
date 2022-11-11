@@ -5,4 +5,5 @@ export default config({
   cwd: __dirname,
   libName: '@aegenet/belt-odiff',
   entryPoint: 'index',
+  nodeExternal: true,
 });

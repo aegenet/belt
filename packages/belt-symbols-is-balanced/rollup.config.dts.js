@@ -5,4 +5,5 @@ export default config({
   cwd: __dirname,
   libName: '@aegenet/belt-symbols-is-balanced',
   entryPoint: 'index.ts',
+  nodeExternal: true,
 });

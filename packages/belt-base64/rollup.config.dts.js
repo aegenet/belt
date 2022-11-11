@@ -6,4 +6,5 @@ export default config({
   libName: '@aegenet/belt-base64',
   folder: 'node',
   entryPoint: 'node.ts',
+  nodeExternal: true,
 });

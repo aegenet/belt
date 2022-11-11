@@ -1,4 +1,4 @@
-const path = require('path');
+const path = require('node:path');
 const child_process = require('node:child_process');
 const util = require('node:util');
 const exec = util.promisify(child_process.exec);

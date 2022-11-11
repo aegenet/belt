@@ -5,4 +5,5 @@ export default config({
   cwd: __dirname,
   libName: '@aegenet/belt-array-string-join',
   entryPoint: 'belt-array-string-join/src/index',
+  nodeExternal: true,
 });

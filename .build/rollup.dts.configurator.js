@@ -7,7 +7,7 @@ module.exports = function(options) {
     input: path.resolve(options.cwd, `src/${options.entryPoint || 'index.ts'}`),
     // make sure to externalize deps that shouldn't be bundled
     // into your library
-    external: options.external || [],
+    external: options.nodeExternal ? [/node_modules/, /^node:/].concat(options.external || []) : options.external || [],
     output: [
       {
         format: 'es',

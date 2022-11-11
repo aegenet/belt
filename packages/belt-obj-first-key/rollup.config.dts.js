@@ -5,4 +5,5 @@ export default config({
   cwd: __dirname,
   libName: '@aegenet/belt-obj-first-key',
   entryPoint: 'index.ts',
+  nodeExternal: true,
 });

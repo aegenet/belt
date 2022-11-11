@@ -1,5 +1,5 @@
 // vite.config.js
-import { resolve } from 'path';
+import { resolve } from 'node:path';
 import { defineConfig } from 'vite';
 
 export function config(options) {
@@ -16,7 +16,7 @@ export function config(options) {
       rollupOptions: {
         // make sure to externalize deps that shouldn't be bundled
         // into your library
-        external: options.external || [],
+        external: options.nodeExternal ? [/node_modules/, /^node:/].concat(options.external || []) : options.external || [],
         output: [
           {
             format: 'cjs',

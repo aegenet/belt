@@ -5,4 +5,5 @@ export default config({
   cwd: __dirname,
   libName: '@aegenet/belt-str-escape-regex',
   entryPoint: 'index.ts',
+  nodeExternal: true,
 });
