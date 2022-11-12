@@ -6,4 +6,5 @@ export default config({
   libName: '@aegenet/belt-benchmark',
   folder: 'web',
   entryPoint: 'belt-benchmark/src/browser.js',
+  nodeExternal: true,
 });

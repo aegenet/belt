@@ -6,4 +6,5 @@ export default config({
   libName: '@aegenet/belt-memory-rw',
   folder: 'web',
   entryPoint: 'browser',
+  nodeExternal: true,
 });

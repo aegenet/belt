@@ -6,5 +6,5 @@ export default config({
   libName: '@aegenet/belt',
   folder: 'node',
   entryPoint: 'belt/src/node',
-  external: ['node:perf_hooks'],
+  nodeExternal: true,
 });

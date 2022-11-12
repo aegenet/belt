@@ -6,5 +6,5 @@ export default config({
   libName: '@aegenet/belt-benchmark',
   folder: 'node',
   entryPoint: 'belt-benchmark/src/node.js',
-  external: ['node:perf_hooks'],
+  nodeExternal: true,
 });

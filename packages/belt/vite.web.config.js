@@ -6,4 +6,5 @@ export default config({
   libName: '@aegenet/belt',
   folder: 'web',
   entryPoint: 'belt/src/browser',
+  nodeExternal: true,
 });

@@ -6,4 +6,5 @@ export default config({
   libName: '@aegenet/belt-readdir',
   folder: 'web',
   entryPoint: 'browser',
+  nodeExternal: true,
 });
