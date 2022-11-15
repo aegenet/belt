@@ -20,7 +20,7 @@ isSyntaxError(new SyntaxError('Toto'))); // true
 isSyntaxError(new Error('Toto'))); // false
 ```
 
-## isSyntaxError
+## mutateErrorWithRef, RefError
 
 ```typescript
 import { mutateErrorWithRef, RefError } from '@aegenet/belt-error';
