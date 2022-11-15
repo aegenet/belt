@@ -17,4 +17,14 @@ describe('mutate-error-with-ref', () => {
     assert.ok(mutateError.refError);
     assert.ok(mutateError.message.startsWith(mutateError.refError));
   });
+
+  it('Mutate two times', () => {
+    const error = new Error('Wallbang!');
+    const mutateError = mutateErrorWithRef(error);
+    const refError = mutateError.refError;
+    const mutateError2 = mutateErrorWithRef(mutateError);
+    assert.strictEqual(refError, mutateError2.refError);
+    assert.ok(mutateError.refError);
+    assert.ok(mutateError.message.startsWith(mutateError.refError));
+  });
 });
