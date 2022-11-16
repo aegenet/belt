@@ -22,7 +22,11 @@ export function mutateErrorWithRef<T, D extends Record<string, unknown>>(
   }
 
   if (options.data) {
-    Object.assign(err, options.data);
+    for (const key in options.data as Record<string, unknown>) {
+      if (options.data[key] !== undefined) {
+        (err as Record<string, unknown>)[key] = options.data[key];
+      }
+    }
   }
 
   return err;
