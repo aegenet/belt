@@ -9,6 +9,17 @@ describe('mutate-error-with-ref', () => {
     assert.ok(mutateError.refError);
   });
 
+  it('Mutate with identifier', () => {
+    const error = new Error('Toto');
+    const mutateError = mutateErrorWithRef(error, {
+      identifier: '5c',
+    });
+    assert.strictEqual(mutateError, error);
+    assert.ok(mutateError.refError);
+    assert.ok(mutateError.refError.startsWith('E-'));
+    assert.ok(mutateError.refError.endsWith('5c'));
+  });
+
   it('Mutate, prefix ref in message', () => {
     const error = new Error('Toto');
     const mutateError = mutateErrorWithRef(error, {

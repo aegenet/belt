@@ -13,6 +13,8 @@ export type RefError<T = unknown> = Error & T & { refError?: string };
 export function mutateErrorWithRef<T, D extends Record<string, unknown>>(
   error: T,
   options: {
+    /** Optional value to identify the error code */
+    identifier?: string;
     /** Prefix `error.message` with `refError` */
     prefixWithRef?: boolean;
     /** Data that will be injected into the error object */
@@ -21,7 +23,7 @@ export function mutateErrorWithRef<T, D extends Record<string, unknown>>(
 ): RefError<T & D> {
   const err: RefError<T & D> = asError(error) as RefError<T & D>;
   if (!err.refError) {
-    err.refError = `E-${(Date.now().toString(16) + _I_E_C.toString(16)).toUpperCase()}`;
+    err.refError = `E-${(Date.now().toString(16) + _I_E_C.toString(16)).toUpperCase()}` + (options.identifier ? `.${options.identifier}` : '');
     _I_E_C = _I_E_C + 1 > 4095 ? 1 : _I_E_C + 1;
 
     if (options.prefixWithRef) {
