@@ -58,4 +58,24 @@ describe('mutate-error-with-ref', () => {
     assert.strictEqual(mutateError.user, 'maurice');
     assert.ok(mutateError.message.startsWith(mutateError.refError));
   });
+
+  it('More than 4095 errors', () => {
+    for (let i = 0; i < 4098; i++) {
+      const error = new Error('Wallbang!');
+      const mutateError = mutateErrorWithRef(error, {
+        prefixWithRef: true,
+        data: {
+          tenant: 'yolo',
+          user: 'maurice',
+        },
+      });
+      const refError = mutateError.refError;
+      const mutateError2 = mutateErrorWithRef(mutateError);
+      assert.strictEqual(refError, mutateError2.refError);
+      assert.ok(mutateError.refError);
+      assert.strictEqual(mutateError.tenant, 'yolo');
+      assert.strictEqual(mutateError.user, 'maurice');
+      assert.ok(mutateError.message.startsWith(mutateError.refError));
+    }
+  });
 });

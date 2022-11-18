@@ -1,5 +1,11 @@
 import { asError } from './as-error';
 
+/**
+ * Internal usage, error counter, 1 to 4095 then loop
+ * @internal
+ */
+let _I_E_C: number = 1;
+
 /** RefError */
 export type RefError<T = unknown> = Error & T & { refError?: string };
 
@@ -15,7 +21,9 @@ export function mutateErrorWithRef<T, D extends Record<string, unknown>>(
 ): RefError<T & D> {
   const err: RefError<T & D> = asError(error) as RefError<T & D>;
   if (!err.refError) {
-    err.refError = `E-${Date.now().toString(16).toUpperCase()}`;
+    err.refError = `E-${(Date.now().toString(16) + _I_E_C.toString(16)).toUpperCase()}`;
+    _I_E_C = _I_E_C + 1 > 4095 ? 1 : _I_E_C + 1;
+
     if (options.prefixWithRef) {
       err.message = err.refError + (err.message?.length ? ' - ' + err.message : '');
     }
