@@ -5,7 +5,17 @@ describe('mutate-error-with-ref', () => {
   it('Mutate', () => {
     const error = new Error('Toto');
     const mutateError = mutateErrorWithRef(error);
+    assert.strictEqual(error.message, 'Toto');
+    assert.strictEqual(mutateError.message, 'Toto');
     assert.strictEqual(mutateError, error);
+    assert.ok(mutateError.refError);
+  });
+
+  it('Mutate an object', () => {
+    const error = { message: 'Toto' };
+    const mutateError = mutateErrorWithRef(error);
+    assert.strictEqual(error.message, 'Toto');
+    assert.strictEqual(mutateError.message, 'Toto');
     assert.ok(mutateError.refError);
   });
 
