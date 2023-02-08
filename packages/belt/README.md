@@ -43,7 +43,7 @@ import {
   symbolsIsBalanced,
   isNodeJS,
   isMobileDevice,
-  asError, isSyntaxError, mutateErrorWithRef,
+  asError, isSyntaxError, mutateErrorWithRef, getErrorMessage,
   toBase64,
   fromBase64,
   antiBounce,

@@ -93,6 +93,7 @@ describe('all-in-one', () => {
     assert.ok(belt.isSyntaxError);
     assert.ok(belt.asError);
     assert.ok(belt.mutateErrorWithRef);
+    assert.ok(belt.getErrorMessage);
   });
   it('belt_base64', () => {
     assert.ok(belt.fromBase64);
