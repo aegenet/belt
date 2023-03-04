@@ -6,6 +6,76 @@ describe('odeep-get', () => {
   const oDeepGet = new ODeepGet();
 
   describe('Safer', () => {
+    it('Invalid path', () => {
+      const ctx: {
+        propOne?: number;
+      } = {};
+
+      try {
+        new ODeepGet().getValue(ctx, [' && '], {
+          memoize: true,
+          shallowError: false,
+        });
+        throw new Error('Must fail');
+      } catch (error: any) {
+        assert.strictEqual(error.message, "Unexpected token '&&'");
+      }
+
+      try {
+        new ODeepGet().getValue(ctx, [' && '], {
+          safer: true,
+          memoize: true,
+          shallowError: false,
+        });
+        throw new Error('Must fail');
+      } catch (error: any) {
+        assert.strictEqual(error.message, 'The property path ( && ) seems invalid');
+      }
+
+      assert.strictEqual(
+        new ODeepGet().getValue(ctx, [' && '], {
+          memoize: true,
+          safer: true,
+          shallowError: true,
+        }),
+        undefined
+      );
+
+      assert.strictEqual(
+        new ODeepGet().getValue(ctx, [' && '], {
+          memoize: true,
+          safer: true,
+          shallowError: true,
+        }),
+        undefined
+      );
+
+      assert.strictEqual(
+        new ODeepGet().getValue(ctx, [' && '], {
+          shallowError: true,
+        }),
+        undefined
+      );
+
+      assert.strictEqual(
+        new ODeepGet().getValue(ctx, [' && '], {
+          safer: true,
+          shallowError: true,
+        }),
+        undefined
+      );
+
+      try {
+        new ODeepGet().getValue(ctx, [' && '], {
+          safer: true,
+          shallowError: false,
+        });
+        throw new Error('Must fail');
+      } catch (error: any) {
+        assert.strictEqual(error.message, 'The property path ( && ) seems invalid');
+      }
+    });
+
     it('No access toString', () => {
       const ctx: {
         propOne?: number;
