@@ -34,6 +34,26 @@ const result = oDeepGet.getValue({
     }
   }
 }, ['a', 'b', 'c', 0]);  // 1
+
+///////W
+// !!! Warning, getValue is not safe by default (performance)
+///////W
+const result = oDeepGet.getValue({
+  a: 1
+}, ['a', 'toString']);  // Function toString
+
+const result = oDeepGet.getValue({
+  a: 1
+}, ['a', 'toString'], {
+  safer: true
+});  // throw an Error
+
+const result = oDeepGet.getValue({
+  a: 1
+}, ['a', 'toString'], {
+  safer: true,
+  shallowError: true,
+});  // undefined
 ```
 
 ### Set

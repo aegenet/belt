@@ -1,9 +1,353 @@
 // tslint:disable:no-big-function no-duplicate-string no-identical-functions
-import * as assert from 'assert';
+import * as assert from 'node:assert';
 import { ODeepGet } from './index';
 
 describe('odeep-get', () => {
   const oDeepGet = new ODeepGet();
+
+  describe('Safer', () => {
+    it('No access toString', () => {
+      const ctx: {
+        propOne?: number;
+      } = {};
+
+      assert.ok(oDeepGet.getValue(ctx, ['toString']));
+      assert.ok(
+        !oDeepGet.getValue(ctx, ['toString'], {
+          safer: true,
+          shallowError: true,
+        })
+      );
+
+      try {
+        new ODeepGet().getValue(ctx, ['toString'], {
+          safer: true,
+        });
+        throw new Error('Must fail');
+      } catch (error: any) {
+        assert.strictEqual(error.message, 'The property path (toString) seems invalid');
+      }
+    });
+
+    it('No access toString deeper', () => {
+      const ctx = {
+        propOne: {
+          propTwo: {
+            propThree: {
+              something: 'else',
+            },
+          },
+        },
+      };
+
+      // Lvl 0
+      assert.ok(
+        new ODeepGet().getValue(ctx, ['toString'], {
+          memoize: false,
+        })
+      );
+      assert.ok(
+        !new ODeepGet().getValue(ctx, ['toString'], {
+          memoize: false,
+          safer: true,
+          shallowError: true,
+        })
+      );
+
+      assert.ok(
+        !new ODeepGet().getValue(ctx, ['#', 'toString'], {
+          memoize: false,
+          safer: true,
+          shallowError: true,
+        })
+      );
+
+      try {
+        new ODeepGet().getValue(ctx, ['toString'], {
+          safer: true,
+        });
+        throw new Error('Must fail');
+      } catch (error: any) {
+        assert.strictEqual(error.message, 'The property path (toString) seems invalid');
+      }
+
+      try {
+        new ODeepGet().getValue(ctx, ['#', 'toString'], {
+          safer: true,
+        });
+        throw new Error('Must fail');
+      } catch (error: any) {
+        assert.strictEqual(error.message, 'The property path (toString) seems invalid');
+      }
+
+      assert.ok(
+        new ODeepGet().getValue(ctx, ['propOne'], {
+          memoize: false,
+        })
+      );
+      assert.ok(
+        new ODeepGet().getValue(ctx, ['propOne'], {
+          memoize: false,
+          safer: true,
+        })
+      );
+
+      // Lvl 1
+      assert.ok(
+        new ODeepGet().getValue(ctx, ['propOne', 'toString'], {
+          memoize: false,
+        })
+      );
+      assert.ok(
+        !new ODeepGet().getValue(ctx, ['propOne', 'toString'], {
+          memoize: false,
+          safer: true,
+          shallowError: true,
+        })
+      );
+
+      try {
+        new ODeepGet().getValue(ctx, ['toString'], {
+          memoize: false,
+          safer: true,
+        });
+        throw new Error('Must fail');
+      } catch (error: any) {
+        assert.strictEqual(error.message, 'The property path (toString) seems invalid');
+      }
+
+      assert.ok(
+        new ODeepGet().getValue(ctx, ['propOne', 'propTwo'], {
+          memoize: false,
+        })
+      );
+      assert.ok(
+        new ODeepGet().getValue(ctx, ['propOne', 'propTwo'], {
+          memoize: false,
+          safer: true,
+        })
+      );
+
+      // Lvl 2
+      assert.ok(
+        new ODeepGet().getValue(ctx, ['propOne', 'propTwo', 'toString'], {
+          memoize: false,
+        })
+      );
+      assert.ok(
+        !new ODeepGet().getValue(ctx, ['propOne', 'propTwo', 'toString'], {
+          memoize: false,
+          safer: true,
+          shallowError: true,
+        })
+      );
+
+      try {
+        new ODeepGet().getValue(ctx, ['propOne', 'propTwo', 'toString'], {
+          memoize: false,
+          safer: true,
+        });
+        throw new Error('Must fail');
+      } catch (error: any) {
+        assert.strictEqual(error.message, 'The property path (propOne.propTwo.toString) seems invalid');
+      }
+
+      assert.ok(
+        new ODeepGet().getValue(ctx, ['propOne', 'propTwo', 'propThree'], {
+          memoize: false,
+        })
+      );
+      assert.ok(
+        new ODeepGet().getValue(ctx, ['propOne', 'propTwo', 'propThree'], {
+          memoize: false,
+          safer: true,
+        })
+      );
+    });
+
+    it('Memoize No access toString', () => {
+      const ctx: {
+        propOne?: number;
+      } = {
+        propOne: 1,
+      };
+
+      assert.ok(
+        new ODeepGet().getValue(ctx, ['toString'], {
+          memoize: true,
+        })
+      );
+
+      assert.ok(
+        !new ODeepGet().getValue(ctx, ['toString'], {
+          memoize: true,
+          safer: true,
+          shallowError: true,
+        })
+      );
+
+      assert.ok(
+        !new ODeepGet().getValue(ctx, ['#', 'toString'], {
+          memoize: true,
+          safer: true,
+          shallowError: true,
+        })
+      );
+
+      try {
+        new ODeepGet().getValue(ctx, ['toString'], {
+          memoize: true,
+          safer: true,
+        });
+        throw new Error('Must fail');
+      } catch (error: any) {
+        assert.strictEqual(error.message, 'The property path (toString) seems invalid');
+      }
+
+      try {
+        new ODeepGet().getValue(ctx, ['#', 'toString'], {
+          memoize: true,
+          safer: true,
+        });
+        throw new Error('Must fail');
+      } catch (error: any) {
+        assert.strictEqual(error.message, 'The property path (#.toString) seems invalid');
+      }
+
+      assert.ok(
+        new ODeepGet().getValue(ctx, ['propOne'], {
+          memoize: true,
+        })
+      );
+      assert.ok(
+        new ODeepGet().getValue(ctx, ['propOne'], {
+          memoize: true,
+          safer: true,
+        })
+      );
+    });
+
+    it('Memoize No access toString deeper', () => {
+      const ctx = {
+        propOne: {
+          propTwo: {
+            propThree: {
+              something: 'else',
+            },
+          },
+        },
+      };
+
+      // Lvl 0
+      assert.ok(
+        new ODeepGet().getValue(ctx, ['toString'], {
+          memoize: true,
+        })
+      );
+
+      assert.ok(
+        !new ODeepGet().getValue(ctx, ['toString'], {
+          memoize: true,
+          safer: true,
+          shallowError: true,
+        })
+      );
+
+      try {
+        new ODeepGet().getValue(ctx, ['toString'], {
+          memoize: true,
+          safer: true,
+        });
+        throw new Error('Must fail');
+      } catch (error: any) {
+        assert.strictEqual(error.message, 'The property path (toString) seems invalid');
+      }
+
+      assert.ok(
+        new ODeepGet().getValue(ctx, ['propOne'], {
+          memoize: true,
+        })
+      );
+      assert.ok(
+        new ODeepGet().getValue(ctx, ['propOne'], {
+          memoize: true,
+          safer: true,
+        })
+      );
+
+      // Lvl 1
+      assert.ok(
+        new ODeepGet().getValue(ctx, ['propOne', 'toString'], {
+          memoize: true,
+        })
+      );
+      assert.ok(
+        !new ODeepGet().getValue(ctx, ['propOne', 'toString'], {
+          memoize: true,
+          safer: true,
+          shallowError: true,
+        })
+      );
+
+      try {
+        new ODeepGet().getValue(ctx, ['propOne', 'toString'], {
+          memoize: true,
+          safer: true,
+        });
+        throw new Error('Must fail');
+      } catch (error: any) {
+        assert.strictEqual(error.message, 'The property path (propOne.toString) seems invalid');
+      }
+
+      assert.ok(
+        new ODeepGet().getValue(ctx, ['propOne', 'propTwo'], {
+          memoize: true,
+        })
+      );
+      assert.ok(
+        new ODeepGet().getValue(ctx, ['propOne', 'propTwo'], {
+          memoize: true,
+          safer: true,
+        })
+      );
+
+      // Lvl 2
+      assert.ok(
+        new ODeepGet().getValue(ctx, ['propOne', 'propTwo', 'toString'], {
+          memoize: true,
+        })
+      );
+      assert.ok(
+        !new ODeepGet().getValue(ctx, ['propOne', 'propTwo', 'toString'], {
+          memoize: true,
+          safer: true,
+          shallowError: true,
+        })
+      );
+
+      try {
+        new ODeepGet().getValue(ctx, ['propOne', 'propTwo', 'toString'], {
+          memoize: true,
+          safer: true,
+        });
+        throw new Error('Must fail');
+      } catch (error: any) {
+        assert.strictEqual(error.message, 'The property path (propOne.propTwo.toString) seems invalid');
+      }
+
+      assert.ok(
+        new ODeepGet().getValue(ctx, ['propOne', 'propTwo', 'propThree'], {
+          memoize: true,
+        })
+      );
+      assert.ok(
+        new ODeepGet().getValue(ctx, ['propOne', 'propTwo', 'propThree'], {
+          memoize: true,
+          safer: true,
+        })
+      );
+    });
+  });
 
   describe('Existing path', () => {
     it('Deep One, undefined', () => {
@@ -12,6 +356,31 @@ describe('odeep-get', () => {
       } = {};
 
       assert.strictEqual(oDeepGet.getValue(ctx, ['propOne']), undefined);
+    });
+
+    it('Deep array', () => {
+      const ctx = [{ a: 'b' }];
+
+      assert.strictEqual(oDeepGet.getValue(ctx, [0, 'a']), 'b');
+      assert.strictEqual(
+        oDeepGet.getValue(ctx, [0, 'a'], {
+          safer: true,
+        }),
+        'b'
+      );
+      assert.strictEqual(
+        new ODeepGet().getValue(ctx, [0, 'a'], {
+          memoize: true,
+        }),
+        'b'
+      );
+      assert.strictEqual(
+        new ODeepGet().getValue(ctx, [0, 'a'], {
+          memoize: true,
+          safer: true,
+        }),
+        'b'
+      );
     });
 
     it('Deep One, 1', () => {
