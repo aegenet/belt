@@ -4,6 +4,8 @@ export type GetValueOptions = {
   memoize?: boolean;
   /** Ignore error in path ? Return undefined if an element of path is undefined */
   shallowError?: boolean;
+  /** Safer */
+  safer?: boolean;
 };
 
 /** ODeepGet */
@@ -36,11 +38,13 @@ export class ODeepGet {
       if (this._jitCache.has(symbol)) {
         return this._jitCache.get(symbol)!(context) as O;
       }
+    } else if (options.safer) {
+      return this._getImmediatValueSafer(context, pathFlow, options);
     } else {
       return this._getImmediatValue(context, pathFlow, options);
     }
 
-    const jitFunc = this._compileJIT(pathFlow, options);
+    const jitFunc = options.safer ? this._compileJITSafer(pathFlow, options) : this._compileJIT(pathFlow, options);
     if (symbol) {
       // memoize
       this._jitCache.set(symbol, jitFunc);
@@ -57,17 +61,45 @@ export class ODeepGet {
     return new Function('context', this._createJITFunc(pathFlow, options)) as (context: unknown) => unknown;
   }
 
+  private _compileJITSafer(pathFlow: Array<string | number>, options: GetValueOptions): (context: unknown) => unknown {
+    return new Function('context', this._createJITFuncSafer(pathFlow, options)) as (context: unknown) => unknown;
+  }
+
   /** Set the value in path (without control) */
   private _createJITFunc(path: Array<string | number>, options: GetValueOptions) {
     let jit = `return context`;
+    let step: string | number;
     for (let i = 0; i < path.length; i++) {
-      const step = path[i];
+      step = path[i];
       if (i === 0 && step === '#') {
         continue;
       }
 
       jit += !isNaN(step as any) ? `[${step}]` : `.${step}`;
     }
+    if (options.shallowError) {
+      jit = `try { ${jit}} catch { return undefined; }`;
+    }
+    return jit;
+  }
+
+  /** Set the value in path (without control) */
+  private _createJITFuncSafer(path: Array<string | number>, options: GetValueOptions) {
+    let jit = `context`;
+    let control = '';
+    let step: string | number = '';
+    for (let i = 0; i < path.length; i++) {
+      step = path[i];
+      control += `${jit}.hasOwnProperty('${step}') && `;
+      if (i === 0 && step === '#') {
+        continue;
+      }
+
+      jit += !isNaN(step as any) ? `[${step}]` : `.${step}`;
+    }
+
+    jit = `if (${control}true) { return ${jit} } else { throw new Error('The property path (${path.join('.')}) seems invalid'); }`;
+
     if (options.shallowError) {
       jit = `try { ${jit}} catch { return undefined; }`;
     }
@@ -84,6 +116,25 @@ export class ODeepGet {
       return pathFlow.reduce<any>((prev, curr) => (prev ? prev[curr] : undefined), context);
     } else {
       return pathFlow.reduce<any>((prev, curr) => prev[curr], context);
+    }
+  }
+
+  /** If no memoize, we can get the value by a simple reduce (safer) */
+  private _getImmediatValueSafer<C, O>(context: C, pathFlow: Array<string | number>, options: GetValueOptions): O {
+    if (pathFlow[0] === '#') {
+      pathFlow = pathFlow.slice(1);
+    }
+
+    if (options.shallowError) {
+      return pathFlow.reduce<any>((prev, curr) => (prev && (prev as object).hasOwnProperty(curr) ? prev[curr] : undefined), context);
+    } else {
+      return pathFlow.reduce<any>((prev, curr) => {
+        if (prev && (prev as object).hasOwnProperty(curr)) {
+          return prev[curr];
+        } else {
+          throw new Error(`The property path (${pathFlow.join('.')}) seems invalid`);
+        }
+      }, context);
     }
   }
 }

@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import * as assert from 'assert';
+import * as assert from 'node:assert';
 import { ODeepSet } from './index';
 
 describe('odeep-set', () => {

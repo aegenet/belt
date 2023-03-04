@@ -23,7 +23,7 @@ extractDomain('aaa.zzz.com')
 //   subdomains: ['aaa'],
 // }
 
-extractDomain('aaa.zzz.com')
+extractDomain('deeper.aaa.zzz.com')
 // {
 //   domain: 'zzz.com',
 //   subdomains: ['aaa', 'deeper'],
