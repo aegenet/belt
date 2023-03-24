@@ -157,6 +157,10 @@
       "path": "./packages/belt-rows-inflator"
     },
     {
+      "name": "Fastify Abort",
+      "path": "./packages/belt-fastify-abort"
+    },
+    {
       "name": "Root",
       "path": "."
     }

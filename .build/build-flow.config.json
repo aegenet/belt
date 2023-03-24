@@ -151,6 +151,10 @@
   "links": [],
   "publish": true
 }, {
+  "name": "belt-fastify-abort",
+  "links": [],
+  "publish": true
+}, {
   "name": "belt",
   "links": [],
   "publish": true
