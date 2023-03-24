@@ -1,0 +1,51 @@
+{
+  "name": "@aegenet/belt-fastify-abort",
+  "description": "Auto add an AbortController on all Fastify Request",
+  "version": "999.0.0",
+  "main": "dist/node/index.cjs",
+  "module": "dist/node/index.mjs",
+  "browser": "dist/web/index.mjs",
+  "engines": {
+    "node": ">=18"
+  },
+  "exports": {
+    "node": {
+      "require": "./dist/node/index.cjs",
+      "import": "./dist/node/index.mjs"
+    },
+    "default": {
+      "require": "./dist/web/index.cjs",
+      "import": "./dist/web/index.mjs"
+    }
+  },
+  "typings": "./dist/node/bundle.d.ts",
+  "author": "Alexandre Genet",
+  "license": "UNLICENSED",
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
+  "repository": "https://github.com/aegenet/belt/tree/master/packages/belt-fastify-abort",
+  "dependencies": {},
+  "peerDependencies": {},
+  "devDependencies": {
+    "fastify": "^4"
+  },
+  "pre-commit": [
+    "lint"
+  ],
+  "scripts": {
+    "clean": "node ./../../node_modules/rimraf/bin ./dist ./coverage ./.nyc_output ./node_modules",
+    "lint": "node ./../../node_modules/eslint/bin/eslint ./src/**/*.{js,ts,tsx}",
+    "lint:fix": "node ./../../node_modules/eslint/bin/eslint ./src/**/*.{js,ts,tsx} --fix",
+    "test-browser": "node ./../../node_modules/jest/bin/jest --config ./jest.web.config.js",
+    "test-node": "node ./../../node_modules/jest/bin/jest --config ./jest.config.js",
+    "test-local": "node ./../../node_modules/ts-mocha/bin/ts-mocha src/**/*.spec.ts",
+    "build": "yarn tsc && yarn run build:vite && yarn run build:dts",
+    "tsc": "node ./../../node_modules/rimraf/bin build && node ./../../node_modules/typescript/bin/tsc",
+    "build:dts": "node ./../../node_modules/rollup/dist/bin/rollup -c rollup.config.dts.js",
+    "build:vite": "node ./../../node_modules/rimraf/bin dist && node ./../../node_modules/vite/bin/vite build -c ./vite.node.config.js && node ./../../node_modules/vite/bin/vite build -c ./vite.web.config.js"
+  }
+}
