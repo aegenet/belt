@@ -20,6 +20,9 @@ export async function fetchFormatPayload(response: Response, contentTypes: Fetch
     }
   }
 
-  // default
+  if (!response.status || response.status >= 500) {
+    return (await response.text()) || response.statusText || `HTTP error ${response.status}`;
+  }
+
   return await response.text();
 }
