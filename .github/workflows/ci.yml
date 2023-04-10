@@ -34,11 +34,11 @@ jobs:
     - name: Delete old dev (belt)
       uses: aegenet/delete-package-versions@v5
       with:
-        package-name: 'belt'
+        package-names: 'belt,belt-crc8,belt-hide-sensitive,belt-crc32'
         package-type: 'npm'
         min-versions-to-keep: 5
         ignore-versions: '^(?!999)(\\d+)\\.(\\d+)\\.(\\d+)$'
-        token: ${{ secrets.NPM_AUTH_TOKEN }}
+        token: ${{ secrets.DELETE_PACKAGES_TOKEN }}
 
     - name: Install dependencies
       env:
@@ -97,11 +97,11 @@ jobs:
     - name: Delete old dev (belt)
       uses: aegenet/delete-package-versions@v5
       with:
-        package-name: 'belt'
+        package-names: 'belt,belt-crc8,belt-hide-sensitive,belt-crc32'
         package-type: 'npm'
         min-versions-to-keep: 5
         ignore-versions: '^(?!999)(\\d+)\\.(\\d+)\\.(\\d+)$'
-        token: ${{ secrets.NPM_AUTH_TOKEN }}
+        token: ${{ secrets.DELETE_PACKAGES_TOKEN }}
 
     - name: Install dependencies
       env:
