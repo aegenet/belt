@@ -30,6 +30,16 @@ jobs:
         # Defaults to the user or organization that owns the workflow file
         scope: '@aegenet'
 
+    # Del old NPM
+    - name: Delete old dev (belt)
+      uses: aegenet/delete-package-versions@v5
+      with:
+        package-name: 'belt'
+        package-type: 'npm'
+        min-versions-to-keep: 5
+        ignore-versions: '^(?!999)(\\d+)\\.(\\d+)\\.(\\d+)$'
+        token: ${{ secrets.NPM_AUTH_TOKEN }}
+
     - name: Install dependencies
       env:
         CI: true
@@ -82,6 +92,16 @@ jobs:
         registry-url: 'https://npm.pkg.github.com'
         # Defaults to the user or organization that owns the workflow file
         scope: '@aegenet'
+
+    # Del old NPM
+    - name: Delete old dev (belt)
+      uses: aegenet/delete-package-versions@v5
+      with:
+        package-name: 'belt'
+        package-type: 'npm'
+        min-versions-to-keep: 5
+        ignore-versions: '^(?!999)(\\d+)\\.(\\d+)\\.(\\d+)$'
+        token: ${{ secrets.NPM_AUTH_TOKEN }}
 
     - name: Install dependencies
       env:
