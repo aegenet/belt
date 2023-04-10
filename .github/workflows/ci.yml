@@ -32,7 +32,7 @@ jobs:
 
     # Del old NPM
     - name: Delete old dev (belt)
-      uses: aegenet/delete-package-versions@v5
+      uses: aegenet/delete-package-versions@v5.1
       with:
         package-names: 'belt,belt-crc8,belt-hide-sensitive,belt-crc32'
         package-type: 'npm'
@@ -95,7 +95,7 @@ jobs:
 
     # Del old NPM
     - name: Delete old dev (belt)
-      uses: aegenet/delete-package-versions@v5
+      uses: aegenet/delete-package-versions@v5.1
       with:
         package-names: 'belt,belt-crc8,belt-hide-sensitive,belt-crc32'
         package-type: 'npm'
