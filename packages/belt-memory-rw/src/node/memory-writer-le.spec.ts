@@ -1,4 +1,4 @@
-import assert from 'assert';
+import assert from 'node:assert';
 import { MemoryWriter } from '../node';
 import { MemoryReader } from './memory-reader';
 

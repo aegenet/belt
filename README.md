@@ -51,6 +51,7 @@
 | [@aegenet/belt-benchmark](./packages/belt-benchmark/README.md) | Benchmark your functions |
 | [@aegenet/belt-hide-sensitive](./packages/belt-hide-sensitive/README.md) | Hide Sensititve data from string  (Example, small cli to hide passwords/secrets from environment variables in the console output) |
 | [@aegenet/belt-rows-inflator](./packages/belt-rows-inflator/README.md) | Rows Inflator, transforms SQL results into nested objects |
+| [@aegenet/belt-duration'](./packages/belt-duration/README.md) | Helps to convert or format durations |
 
 
 #### Node only

@@ -1,4 +1,4 @@
-import * as assert from 'assert';
+import * as assert from 'node:assert';
 import { bench100x10000PKs } from '../../bench/bench-100x10000-pks';
 import { bench100x10000WoPKs } from '../../bench/bench-100x10000-wo-pks';
 import { raws, rowsMergerSchemaWithPK } from '../../bench/bench-schema';

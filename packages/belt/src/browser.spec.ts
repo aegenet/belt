@@ -1,4 +1,4 @@
-import * as assert from 'assert';
+import * as assert from 'node:assert';
 import * as belt from './browser';
 
 describe('all-in-one', () => {
@@ -154,5 +154,12 @@ describe('all-in-one', () => {
   it('belt_rows_inflator', () => {
     assert.ok(belt.rowsInflator);
     assert.ok(belt.ERowsInflatorAssociation);
+  });
+  it('belt_duration', () => {
+    assert.ok(belt.toDuration);
+    assert.ok(belt.fromDuration);
+    assert.ok(belt.EDurationFormat);
+    assert.ok(belt.EDurationFormatMask);
+    assert.ok(belt.EDurationMask);
   });
 });

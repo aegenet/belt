@@ -1,4 +1,4 @@
-import assert from 'assert';
+import assert from 'node:assert';
 import { mutateErrorWithRef } from './index';
 
 describe('mutate-error-with-ref', () => {

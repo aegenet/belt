@@ -1,4 +1,4 @@
-import * as assert from 'assert';
+import * as assert from 'node:assert';
 import * as path from 'node:path';
 import { readdir } from '../node';
 import { IReaddirEntry } from '../node';

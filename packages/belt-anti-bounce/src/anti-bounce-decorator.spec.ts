@@ -1,4 +1,4 @@
-import * as assert from 'assert';
+import * as assert from 'node:assert';
 import { AntiBounce } from './index';
 import { antiBounce, disposeAntiBounces, IAntiBounceSupport } from './anti-bounce-decorator';
 import { delay } from './../../belt-promise/src/delay';
