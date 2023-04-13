@@ -1,4 +1,4 @@
-import * as assert from 'assert';
+import * as assert from 'node:assert';
 import { getClosestNumber, getClosestValue } from './get-closest';
 
 describe('getClosestNumber', function () {

@@ -36,3 +36,4 @@ export * from '../../belt-fetch/src/index';
 export * from '../../belt-obj-monitoring/src/index';
 export * from '../../belt-hide-sensitive/src/index';
 export * from '../../belt-rows-inflator/src/index';
+export * from '../../belt-duration/src/index';

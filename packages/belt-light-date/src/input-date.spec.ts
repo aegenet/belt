@@ -1,4 +1,4 @@
-import * as assert from 'assert';
+import * as assert from 'node:assert';
 import { dateToInputDate, dateToInputDateTime, inputDateTimeToDate, inputDateToDate } from './index';
 
 const isParisTZ = Intl.DateTimeFormat().resolvedOptions().timeZone === 'Europe/Paris';

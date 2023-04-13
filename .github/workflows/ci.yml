@@ -30,12 +30,25 @@ jobs:
         # Defaults to the user or organization that owns the workflow file
         scope: '@aegenet'
 
+    # Del old NPM
+    - name: Delete old dev (belt)
+      uses: aegenet/gh-delete-package-versions@v5.4.1
+      with:
+        package-names: 'belt,belt-crc8,belt-hide-sensitive,belt-crc32'
+        package-type: 'npm'
+        min-versions-to-keep: 5
+        include-versions: '^999\.'
+        token: ${{ secrets.DELETE_PACKAGES_TOKEN }}
+
     - name: Install dependencies
       env:
         CI: true
         NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
       run: yarn run dependencies
     - name: Our dependencies
+      env:
+        CI: true
+        NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
       run: yarn
 
     - name: Clean coverages
@@ -83,12 +96,25 @@ jobs:
         # Defaults to the user or organization that owns the workflow file
         scope: '@aegenet'
 
+    # Del old NPM
+    - name: Delete old dev (belt)
+      uses: aegenet/gh-delete-package-versions@v5.4.1
+      with:
+        package-names: 'belt,belt-crc8,belt-hide-sensitive,belt-crc32'
+        package-type: 'npm'
+        min-versions-to-keep: 5
+        include-versions: '^999\.'
+        token: ${{ secrets.DELETE_PACKAGES_TOKEN }}
+
     - name: Install dependencies
       env:
         CI: true
         NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
       run: yarn run dependencies
     - name: Our dependencies
+      env:
+        CI: true
+        NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
       run: yarn
 
     - name: Clean coverages

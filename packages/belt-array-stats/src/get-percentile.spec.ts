@@ -1,4 +1,4 @@
-import * as assert from 'assert';
+import * as assert from 'node:assert';
 import { p10, p25, p50, p75, p90 } from './index';
 
 describe('p10', function () {

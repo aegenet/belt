@@ -1,4 +1,4 @@
-import assert from 'assert';
+import assert from 'node:assert';
 import type { IMemoryCreator } from '../common/i-memory-creator';
 import { MemoryCreator } from './memory-creator';
 import { MemoryReader } from './memory-reader';

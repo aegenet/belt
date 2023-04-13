@@ -155,6 +155,10 @@
   "links": [],
   "publish": true
 }, {
+  "name": "belt-duration",
+  "links": [],
+  "publish": true
+}, {
   "name": "belt",
   "links": [],
   "publish": true

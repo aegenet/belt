@@ -1,4 +1,4 @@
-import * as assert from 'assert';
+import * as assert from 'node:assert';
 import { isLeapYear } from './is-leap-year';
 
 describe('is-leap-year', () => {

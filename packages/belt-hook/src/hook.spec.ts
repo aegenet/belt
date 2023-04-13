@@ -1,5 +1,5 @@
 // tslint:disable:no-big-function no-duplicate-string no-identical-functions
-import * as assert from 'assert';
+import * as assert from 'node:assert';
 import { hook } from './index';
 
 describe('Hook', function () {

@@ -161,6 +161,10 @@
       "path": "./packages/belt-fastify-abort"
     },
     {
+      "name": "Duration",
+      "path": "./packages/belt-duration"
+    },
+    {
       "name": "Root",
       "path": "."
     }
