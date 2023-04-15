@@ -18,7 +18,7 @@ export type HookDisposable = { dispose: () => void };
 /**
  * Hook a function
  */
-export function hook<T = Record<PropertyKey, unknown>>(options: HookOptions<T>): HookDisposable {
+export function hook<T extends object = Record<PropertyKey, unknown>>(options: HookOptions<T>): HookDisposable {
   if (options?.context && options.name && options.name in options.context) {
     const context: any = options.context;
     const storageFuncName = _createHookedName(options.name);

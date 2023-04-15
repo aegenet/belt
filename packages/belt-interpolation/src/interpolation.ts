@@ -63,7 +63,7 @@ export class Interpolation {
 
   /** Default get Value */
   private static _defaultGetValue<C>(ctx: C, propPath: string) {
-    const value = propPath in ctx ? (ctx as any)[propPath] : null;
+    const value = propPath in (ctx as Record<string, unknown>) ? (ctx as Record<string, unknown>)[propPath] : null;
     return value == null ? '' : String(value);
   }
 }
