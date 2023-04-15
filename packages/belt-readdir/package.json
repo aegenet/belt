@@ -2,17 +2,17 @@
   "name": "@aegenet/belt-readdir",
   "description": "Get all files from a root directory (recursively)",
   "version": "999.0.0",
-  "main": "dist/node/index.cjs",
-  "module": "dist/node/index.mjs",
-  "browser": "dist/web/index.mjs",
+  "main": "dist/node/node.cjs",
+  "module": "dist/node/node.mjs",
+  "browser": "dist/web/browser.mjs",
   "exports": {
     "node": {
-        "require": "./dist/node/index.cjs",
-        "import": "./dist/node/index.mjs"
+        "require": "./dist/node/node.cjs",
+        "import": "./dist/node/node.mjs"
     },
     "default": {
-        "require": "./dist/web/index.cjs",
-        "import": "./dist/web/index.mjs"
+        "require": "./dist/web/browser.cjs",
+        "import": "./dist/web/browser.mjs"
     }
   },
   "typings": "./dist/node/bundle.d.ts",
