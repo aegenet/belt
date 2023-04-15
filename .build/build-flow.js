@@ -1,4 +1,5 @@
 const path = require('node:path');
+const fs = require('node:fs');
 const child_process = require('node:child_process');
 const util = require('node:util');
 const exec = util.promisify(child_process.exec);
@@ -60,7 +61,28 @@ const tasks = {
     return cmds.join(' && ');
   },
   /** Test */
-  test: project => `cd ./packages/${project.name}/ && npm run test-node`,
+  test: project => {
+    const projectPath = path.join(process.cwd(), `./packages/${project.name}`);
+    const pkgProject = require(path.join(projectPath, 'package.json'));
+
+    for (const key of ['main', 'module', 'browser']) {
+      if (!fs.existsSync(path.join(projectPath, pkgProject[key]))) {
+        throw new Error(`package.json/${key} must exists (${pkgProject[key]})`);
+      }
+    }
+    for (const key of ['require', 'import']) {
+      if (!fs.existsSync(path.join(projectPath, pkgProject.exports.node[key]))) {
+        throw new Error(`package.json/node/${key} must exists (${pkgProject.exports.node[key]})`);
+      }
+    }
+    for (const key of ['require', 'import']) {
+      if (!fs.existsSync(path.join(projectPath, pkgProject.exports.default[key]))) {
+        throw new Error(`package.json/default/${key} must exists (${pkgProject.exports.default[key]})`);
+      }
+    }
+
+    return `cd ./packages/${project.name}/ && npm run test-node`;
+  },
   /** Test local */
   local: project => `cd ./packages/${project.name}/ && npm run test-node-local`,
   /** Publish */
