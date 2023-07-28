@@ -9,6 +9,19 @@ describe('mutate-error-with-ref', () => {
     assert.strictEqual(mutateError.message, 'Toto');
     assert.strictEqual(mutateError, error);
     assert.ok(mutateError.refError);
+    assert.deepStrictEqual(Object.keys(mutateError), ['refError']);
+  });
+
+  it('Set message/stack enumerable', () => {
+    const error = new Error('Toto');
+    const mutateError = mutateErrorWithRef(error, {
+      setAsEnumerable: true,
+    });
+    assert.strictEqual(error.message, 'Toto');
+    assert.strictEqual(mutateError.message, 'Toto');
+    assert.strictEqual(mutateError, error);
+    assert.ok(mutateError.refError);
+    assert.deepStrictEqual(Object.keys(mutateError), ['stack', 'message', 'refError']);
   });
 
   it('Mutate an object', () => {
@@ -17,6 +30,7 @@ describe('mutate-error-with-ref', () => {
     assert.strictEqual(error.message, 'Toto');
     assert.strictEqual(mutateError.message, 'Toto');
     assert.ok(mutateError.refError);
+    assert.deepStrictEqual(Object.keys(mutateError), ['refError']);
   });
 
   it('Mutate with identifier', () => {
@@ -28,6 +42,7 @@ describe('mutate-error-with-ref', () => {
     assert.ok(mutateError.refError);
     assert.ok(mutateError.refError.startsWith('E-'));
     assert.ok(mutateError.refError.endsWith('5c'));
+    assert.deepStrictEqual(Object.keys(mutateError), ['refError']);
   });
 
   it('Mutate, prefix ref in message', () => {
@@ -38,6 +53,7 @@ describe('mutate-error-with-ref', () => {
     assert.strictEqual(mutateError, error);
     assert.ok(mutateError.refError);
     assert.ok(mutateError.message.startsWith(mutateError.refError));
+    assert.deepStrictEqual(Object.keys(mutateError), ['refError']);
   });
 
   it('Mutate with empty message', () => {
@@ -48,6 +64,7 @@ describe('mutate-error-with-ref', () => {
     assert.strictEqual(mutateError, error);
     assert.ok(mutateError.refError);
     assert.ok(mutateError.message.startsWith(mutateError.refError));
+    assert.deepStrictEqual(Object.keys(mutateError), ['refError']);
   });
 
   it('Mutate two times', () => {
@@ -60,6 +77,7 @@ describe('mutate-error-with-ref', () => {
     assert.strictEqual(refError, mutateError2.refError);
     assert.ok(mutateError.refError);
     assert.ok(mutateError.message.startsWith(mutateError.refError));
+    assert.deepStrictEqual(Object.keys(mutateError), ['refError']);
   });
 
   it('Mutate and add properties', () => {
@@ -78,6 +96,7 @@ describe('mutate-error-with-ref', () => {
     assert.strictEqual(mutateError.tenant, 'yolo');
     assert.strictEqual(mutateError.user, 'maurice');
     assert.ok(mutateError.message.startsWith(mutateError.refError));
+    assert.deepStrictEqual(Object.keys(mutateError), ['refError', 'tenant', 'user']);
   });
 
   it('More than 4095 errors', () => {
@@ -97,6 +116,7 @@ describe('mutate-error-with-ref', () => {
       assert.strictEqual(mutateError.tenant, 'yolo');
       assert.strictEqual(mutateError.user, 'maurice');
       assert.ok(mutateError.message.startsWith(mutateError.refError));
+      assert.deepStrictEqual(Object.keys(mutateError), ['refError', 'tenant', 'user']);
     }
   });
 });

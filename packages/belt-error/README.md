@@ -30,6 +30,18 @@ const error = new Error('An error!');
 
 (error as RefError).refError; // E-XXXXXXX
 (error as RefError).message;  // E-XXXXXXX - [message]
+// Beware `message` and `stack` are not enumerable in Error object
+Object.keys(error); // ['refError']
+
+
+// You can set (danger zone) the properties as enumerable:
+const error = new Error('An error!', {
+  setAsEnumerable: true,
+});
+(error as RefError).refError; // E-XXXXXXX
+(error as RefError).message;  // E-XXXXXXX - [message]
+
+Object.keys(error); // ['stack', 'message', 'refError']
 ```
 
 ## getErrorMessage
