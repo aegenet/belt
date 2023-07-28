@@ -19,6 +19,8 @@ export function mutateErrorWithRef<T, D extends Record<string, unknown>>(
     prefixWithRef?: boolean;
     /** Data that will be injected into the error object */
     data?: D;
+    /** Set `message` and `stack` properties to enumerable */
+    setAsEnumerable?: boolean;
   } = {}
 ): RefError<T & D> {
   const err: RefError<T & D> = asError(error) as RefError<T & D>;
@@ -39,5 +41,19 @@ export function mutateErrorWithRef<T, D extends Record<string, unknown>>(
     }
   }
 
+  if (options.setAsEnumerable) {
+    if (err.message) {
+      Object.defineProperty(err, 'message', {
+        value: err.message,
+        enumerable: true,
+      });
+    }
+    if (err.stack) {
+      Object.defineProperty(err, 'stack', {
+        value: err.stack,
+        enumerable: true,
+      });
+    }
+  }
   return err;
 }
