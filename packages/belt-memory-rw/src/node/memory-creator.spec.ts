@@ -6,6 +6,7 @@ import { MemoryReader } from './memory-reader';
 describe('nodejs memory-creator', () => {
   it('scenario', () => {
     const memCreator: IMemoryCreator<Buffer> = new MemoryCreator();
+    memCreator.rewind();
     memCreator.fill(7, 7);
     memCreator.writeByte(1);
     memCreator.writeBytes([2, 3]);
@@ -32,6 +33,14 @@ describe('nodejs memory-creator', () => {
     memCreator.writeUInt8(254);
 
     assert.strictEqual(memCreator.length, 95);
+    assert.strictEqual(memCreator.length, memCreator.position);
+    assert.strictEqual(memCreator.remaining, 0);
+
+    try {
+      memCreator.seek(0);
+    } catch (error: any) {
+      assert.strictEqual(error.message, 'Method not implemented.');
+    }
     const reader = new MemoryReader(memCreator.buffer);
     assert.deepStrictEqual(Array.from(reader.readBytes(7)), [7, 7, 7, 7, 7, 7, 7]);
     assert.strictEqual(reader.readByte(), 1);
