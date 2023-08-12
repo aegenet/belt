@@ -82,6 +82,15 @@ describe('nodejs memory-writer LE', () => {
       const reader = new MemoryReader(buffer);
       assert.deepStrictEqual(Array.from(reader.readBytes(5)), [8, 7, 6, 5, 4]);
     });
+
+    it('writeSomeBytes', () => {
+      const buffer = Buffer.alloc(32);
+      const writer = new MemoryWriter(buffer);
+      writer.writeSomeBytes(3, [8, 7, 6, 5, 4]);
+
+      const reader = new MemoryReader(buffer);
+      assert.deepStrictEqual(Array.from(reader.readBytes(5)), [8, 7, 6, 0, 0]);
+    });
   });
 
   describe('number', () => {

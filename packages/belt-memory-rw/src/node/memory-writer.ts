@@ -23,6 +23,13 @@ export class MemoryWriter extends MemoryCommon implements IMemoryWriter<Buffer>,
   }
 
   /** @inheritdoc */
+  public writeSomeBytes(size: number, values: number[] | Buffer) {
+    for (let i = 0; i < size; i++) {
+      this._buf.writeUInt8(values[i], this._offset++);
+    }
+  }
+
+  /** @inheritdoc */
   public writeString(value: string) {
     this._buf.write(value, this._offset, value.length, 'latin1');
     this._offset += value.length;
