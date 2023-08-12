@@ -11,6 +11,9 @@ export interface IMemoryWriter<InternalType = unknown> extends IMemoryCommon {
   /** Write bytes */
   writeBytes(values: number[] | InternalType): void;
 
+  /** Write some bytes */
+  writeSomeBytes(size: number, values: number[] | InternalType): void;
+
   /** Write an ISO-8859-1 string [VARY STR] */
   writeString(value: string): void;
 

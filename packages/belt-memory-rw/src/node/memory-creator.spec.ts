@@ -11,6 +11,8 @@ describe('nodejs memory-creator', () => {
     memCreator.writeByte(1);
     memCreator.writeBytes([2, 3]);
     memCreator.writeBytes(Buffer.from([2, 3]));
+    memCreator.writeSomeBytes(1, [5, 3]);
+    memCreator.writeSomeBytes(1, [9, 3]);
     memCreator.writeCString16BE('456');
     memCreator.writeCString16LE('789');
     memCreator.writeCString32BE('01234');
@@ -32,7 +34,7 @@ describe('nodejs memory-creator', () => {
     memCreator.writeUInt32LE(33333);
     memCreator.writeUInt8(254);
 
-    assert.strictEqual(memCreator.length, 95);
+    assert.strictEqual(memCreator.length, 97);
     assert.strictEqual(memCreator.length, memCreator.position);
     assert.strictEqual(memCreator.remaining, 0);
 
@@ -46,6 +48,7 @@ describe('nodejs memory-creator', () => {
     assert.strictEqual(reader.readByte(), 1);
     assert.deepStrictEqual(Array.from(reader.readBytes(2)), [2, 3]);
     assert.deepStrictEqual(Array.from(reader.readBytes(2)), [2, 3]);
+    assert.deepStrictEqual(Array.from(new Uint8Array(reader.readBytes(2))), [5, 9]);
     assert.strictEqual(reader.readCString16BE(), '456');
     assert.strictEqual(reader.readCString16LE(), '789');
     assert.strictEqual(reader.readCString32BE(), '01234');

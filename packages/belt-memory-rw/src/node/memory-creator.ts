@@ -97,6 +97,11 @@ export class MemoryCreator implements IMemoryCreator<Buffer> {
   }
 
   /** @inheritdoc */
+  public writeSomeBytes(size: number, values: Buffer): void {
+    this._encapsWithBuffer(writer => writer.writeSomeBytes(size, values), size);
+  }
+
+  /** @inheritdoc */
   public writeString(value: string): void {
     this._encapsWithBuffer(writer => writer.writeString(value), value.length);
   }

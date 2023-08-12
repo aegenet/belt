@@ -28,6 +28,17 @@ export class MemoryWriter extends MemoryCommon implements IMemoryWriter<ArrayBuf
   }
 
   /** @inheritdoc */
+  public writeSomeBytes(size: number, values: number[] | ArrayBuffer) {
+    if (Array.isArray(values)) {
+      for (let i = 0; i < size; i++) {
+        this._dv.setUint8(this._offset++, values[i]);
+      }
+    } else {
+      new Uint8Array(this._buf).set(new Uint8Array(values.slice(0, size)), this._offset);
+    }
+  }
+
+  /** @inheritdoc */
   public writeString(value: string) {
     for (let i = 0; i < value.length; i++) {
       this._dv.setUint8(this._offset + i, value.charCodeAt(i));
