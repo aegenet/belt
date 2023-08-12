@@ -1,5 +1,7 @@
+import type { IMemoryCommon } from './i-memory-common';
+
 /** Interface Memory writer */
-export interface IMemoryWriter<InternalType = unknown> {
+export interface IMemoryWriter<InternalType = unknown> extends IMemoryCommon {
   /** Fill the array with a value and a length */
   fill(value: number, length: number): void;
 

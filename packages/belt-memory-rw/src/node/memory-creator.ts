@@ -140,4 +140,21 @@ export class MemoryCreator implements IMemoryCreator<Buffer> {
   public writeDoubleLE(value: number): void {
     this._encapsWithBuffer(writer => writer.writeDoubleLE(value), 8);
   }
+
+  /** Always returns 0 */
+  public get remaining(): number {
+    return 0;
+  }
+  /** Always the current length */
+  public get position(): number {
+    return this.length;
+  }
+  /** You can't seek right now */
+  public seek(offset: number): void {
+    throw new Error('Method not implemented.');
+  }
+  /** @inheritdoc */
+  public rewind(): void {
+    this._buffers = [];
+  }
 }
