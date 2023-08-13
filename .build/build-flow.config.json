@@ -99,6 +99,10 @@
   "links": [],
   "publish": true
 }, {
+  "name": "belt-string-split",
+  "links": [],
+  "publish": true
+}, {
   "name": "belt-binary-search",
   "links": [],
   "publish": true
