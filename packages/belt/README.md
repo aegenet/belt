@@ -62,6 +62,7 @@ import {
   ObjectMonitoring, ObjectMonitoringResult, ObjectMonitoringDispose,
   createHideSensitiveFunction,
   rowsInflator, ERowsInflatorAssociation,
-  toDuration, fromDuration
+  toDuration, fromDuration,
+  StringSplit
 } from '@aegenet/belt';
 ```

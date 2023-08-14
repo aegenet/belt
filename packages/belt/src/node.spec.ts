@@ -162,4 +162,7 @@ describe('all-in-one', () => {
     assert.ok(belt.EDurationFormatMask);
     assert.ok(belt.EDurationMask);
   });
+  it('belt_string_split', () => {
+    assert.ok(belt.StringSplit);
+  });
 });

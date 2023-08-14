@@ -22,7 +22,7 @@
   ],
   "include": [
     "test",
-    "src" ],
+    "src", "bench" ],
   "atom": {
     "rewriteTsconfig": false
   }
