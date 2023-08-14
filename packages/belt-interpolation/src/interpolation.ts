@@ -46,7 +46,7 @@ export class Interpolation {
     context = context ?? ({} as C);
     const dialectName = options.dialect || 'ECMAScript';
 
-    const dialect = dialectName in Interpolation._DEFAULT_DIALECTS ? (Interpolation._DEFAULT_DIALECTS as Record<string, RegExp>)[dialectName] : dialectName in this._config.customDialects! ? this._config.customDialects![dialectName] : null;
+    const dialect = dialectName in this._config.customDialects! ? this._config.customDialects![dialectName] : dialectName in Interpolation._DEFAULT_DIALECTS ? (Interpolation._DEFAULT_DIALECTS as Record<string, RegExp>)[dialectName] : null;
     if (dialect) {
       const re = new RegExp(dialect, 'g');
       return text.replace(re, (substring: string, ...params: string[]) => {
