@@ -15,9 +15,9 @@ export function symbolsIsBalanced(str: string): boolean {
 
   let inComments = false;
   const lifo: string[] = [];
-
+  let char: string;
   for (let i = 0; i < str.length; i++) {
-    const char = str[i];
+    char = str[i];
 
     if (!inComments) {
       if (BEGIN_CLOSE.has(char)) {
