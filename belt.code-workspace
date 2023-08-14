@@ -77,6 +77,10 @@
       "path": "./packages/belt-interpolation"
     },
     {
+      "name": "String Split",
+      "path": "./packages/belt-string-split"
+    },
+    {
       "name": "String Escape Regex",
       "path": "./packages/belt-str-escape-regex"
     },

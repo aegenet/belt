@@ -26,6 +26,7 @@
 | [@aegenet/belt-oclone](./packages/belt-oclone/README.md) | Object clone |
 | [@aegenet/belt-interpolation](./packages/belt-interpolation/README.md) | String interpolation |
 | [@aegenet/belt-str-escape-regex](./packages/belt-str-escape-regex/README.md) | String Escape Regex |
+| [@aegenet/belt-string-split](./packages/belt-string-split/README.md) | String Split is an alternative to String.split, with the ability to ignore the split character inside 'tags' |
 | [@aegenet/belt-obj-to-array](./packages/belt-obj-to-array/README.md) | Object to Array |
 | [@aegenet/belt-obj-to-map](./packages/belt-obj-to-map/README.md) | Object to Map |
 | [@aegenet/belt-obj-is-empty](./packages/belt-obj-is-empty/README.md) | Object is empty? |
@@ -46,7 +47,7 @@
 | [@aegenet/belt-base64](./packages/belt-base64/README.md) | Base64 (`toBase64`, `fromBase64`)  |
 | [@aegenet/belt-anti-bounce](./packages/belt-anti-bounce/README.md) | Anti-bounce (`antiBounce` decorator, `AntiBounce` utility)  |
 | [@aegenet/belt-json-ignore](./packages/belt-json-ignore/README.md) | JSON Ignore (`@jsonIgnore`)  |
-| [@aegenet/belt-memory-rw](./packages/belt-memory-rw/README.md) | Memory RW helps to read a buffer sequentially |
+| [@aegenet/belt-memory-rw](./packages/belt-memory-rw/README.md) | Memory RW helps to read/write a buffer sequentially |
 | [@aegenet/belt-extract-domain](./packages/belt-extract-domain/README.md) | Extract domain informations from a host name (`a.b.c.d.com`, to `{ domain: 'd.com', subdomains: ['c', 'b', 'a'] }`) |
 | [@aegenet/belt-benchmark](./packages/belt-benchmark/README.md) | Benchmark your functions |
 | [@aegenet/belt-hide-sensitive](./packages/belt-hide-sensitive/README.md) | Hide Sensititve data from string  (Example, small cli to hide passwords/secrets from environment variables in the console output) |
