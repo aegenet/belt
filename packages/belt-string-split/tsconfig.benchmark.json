@@ -21,7 +21,8 @@
     "./samples"
   ],
   "include": [
-    "src"
+    "src",
+    "bench"
   ],
   "atom": {
     "rewriteTsconfig": false

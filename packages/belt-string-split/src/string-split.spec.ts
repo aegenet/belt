@@ -1,50 +1,45 @@
 import * as assert from 'node:assert';
-import { stringSplit, type IStringSplitOptions } from './index';
+import { StringSplit, type IStringSplitOptions, type IStringSplit } from './index';
 
 describe('string-split', () => {
   it('Null or undefined', () => {
     assert.deepStrictEqual(
-      stringSplit(
-        null as any,
-        {
-          separator: ' ',
-        } as IStringSplitOptions
-      ),
+      new StringSplit({
+        separator: ' ',
+      } as IStringSplitOptions).split(null as any),
       []
     );
     assert.deepStrictEqual(
-      stringSplit(undefined as any, {
+      new StringSplit({
         separator: ' ',
-      }),
+      }).split(undefined as any),
       []
     );
   });
 
   it('Simple', () => {
     assert.deepStrictEqual(
-      stringSplit('Hello Maurice', {
+      new StringSplit({
         separator: ' ',
-      }),
+      }).split('Hello Maurice'),
       ['Hello', 'Maurice']
     );
   });
 
   it('Empty', () => {
     assert.deepStrictEqual(''.split(' '), ['']);
-    assert.deepStrictEqual(
-      stringSplit('', {
-        separator: ' ',
-      }),
-      ['']
-    );
+    const strSplit: IStringSplit = new StringSplit({
+      separator: ' ',
+    });
+    assert.deepStrictEqual(strSplit.split(''), ['']);
   });
 
   it('Without space', () => {
     assert.deepStrictEqual('nospace'.split(' '), ['nospace']);
     assert.deepStrictEqual(
-      stringSplit('nospace', {
+      new StringSplit({
         separator: ' ',
-      }),
+      }).split('nospace'),
       ['nospace']
     );
   });
@@ -52,9 +47,9 @@ describe('string-split', () => {
   it('Multiple words', () => {
     assert.deepStrictEqual('Hello Brian and Maurice'.split(' '), ['Hello', 'Brian', 'and', 'Maurice']);
     assert.deepStrictEqual(
-      stringSplit('Hello Brian and Maurice', {
+      new StringSplit({
         separator: ' ',
-      }),
+      }).split('Hello Brian and Maurice'),
       ['Hello', 'Brian', 'and', 'Maurice']
     );
   });
@@ -62,9 +57,9 @@ describe('string-split', () => {
   it('Multiple words with extra spaces', () => {
     assert.deepStrictEqual('Hello Brian  and Maurice'.split(' '), ['Hello', 'Brian', '', 'and', 'Maurice']);
     assert.deepStrictEqual(
-      stringSplit('Hello Brian  and Maurice', {
+      new StringSplit({
         separator: ' ',
-      }),
+      }).split('Hello Brian  and Maurice'),
       ['Hello', 'Brian', '', 'and', 'Maurice']
     );
   });
@@ -72,10 +67,10 @@ describe('string-split', () => {
   it('Multiple words with extra spaces -> IgnoreEmpty', () => {
     assert.deepStrictEqual('Hello Brian  and Maurice'.split(' '), ['Hello', 'Brian', '', 'and', 'Maurice']);
     assert.deepStrictEqual(
-      stringSplit('Hello Brian  and Maurice', {
+      new StringSplit({
         separator: ' ',
         ignoreEmpty: true,
-      }),
+      }).split('Hello Brian  and Maurice'),
       ['Hello', 'Brian', 'and', 'Maurice']
     );
   });
@@ -83,9 +78,9 @@ describe('string-split', () => {
   it('Space in string and between quotes without ignoreTags', () => {
     assert.deepStrictEqual('Hello Brian "Something Else"'.split(' '), ['Hello', 'Brian', '"Something', 'Else"']);
     assert.deepStrictEqual(
-      stringSplit('Hello Brian "Something Else"', {
+      new StringSplit({
         separator: ' ',
-      }),
+      }).split('Hello Brian "Something Else"'),
       ['Hello', 'Brian', '"Something', 'Else"']
     );
   });
@@ -93,38 +88,72 @@ describe('string-split', () => {
   it('Space in string and between quotes with ignoreTags "', () => {
     assert.deepStrictEqual('Hello Brian "Something Else"'.split(' '), ['Hello', 'Brian', '"Something', 'Else"']);
     assert.deepStrictEqual(
-      stringSplit('Hello Brian "Something Else"', {
+      new StringSplit({
         separator: ' ',
         ignoreTags: {
           '"': '"',
         },
-      }),
+      }).split('Hello Brian "Something Else"'),
       ['Hello', 'Brian', '"Something Else"']
     );
   });
 
   it('Space in string and between quotes with ignoreTags', () => {
     assert.deepStrictEqual(
-      stringSplit('Hello Brian (Something Else (or something))', {
+      new StringSplit({
         separator: ' ',
         ignoreTags: {
           '(': ')',
         },
-      }),
+      }).split('Hello Brian (Something Else (or something))'),
       ['Hello', 'Brian', '(Something Else (or something))']
     );
   });
 
   it('Unbalanced', () => {
     try {
-      stringSplit('Hello Brian (Something Else or something))', {
+      new StringSplit({
         separator: ' ',
         ignoreTags: {
           '(': ')',
         },
-      });
+      }).split('Hello Brian (Something Else or something))');
     } catch (error: any) {
       assert.strictEqual(error.message, 'StringSplit cannot ignores tags with unbalanced symbols');
     }
+  });
+
+  it('${$this.sizes.len() > 0}', () => {
+    const stringSplit = new StringSplit({
+      separator: ' ',
+      ignoreTags: {
+        '${': '}',
+      },
+    });
+    assert.deepStrictEqual(stringSplit.split('${$this.sizes.len() > 0}'), ['${$this.sizes.len() > 0}']);
+    assert.deepStrictEqual(stringSplit.split('${$this.sizes.len() > 0} ${$this.sizes.len() < 255}'), ['${$this.sizes.len() > 0}', '${$this.sizes.len() < 255}']);
+  });
+
+  it('mapped ${$this._count} [id:value]', () => {
+    const stringSplit = new StringSplit({
+      separator: ' ',
+      ignoreTags: {
+        '"': '"',
+        '${': '}',
+      },
+    });
+    assert.deepStrictEqual(stringSplit.split('mapped ${$this._count} [id:value]'), ['mapped', '${$this._count}', '[id:value]']);
+  });
+
+  it('mapped ${$this._count} [id:value] <% Toto %>', () => {
+    const stringSplit = new StringSplit({
+      separator: ' ',
+      ignoreTags: {
+        '"': '"',
+        '${': '}',
+        '<%': '%>',
+      },
+    });
+    assert.deepStrictEqual(stringSplit.split('mapped ${$this._count} [id:value] <% Toto %>'), ['mapped', '${$this._count}', '[id:value]', '<% Toto %>']);
   });
 });
