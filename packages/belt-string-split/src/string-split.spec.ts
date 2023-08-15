@@ -156,4 +156,31 @@ describe('string-split', () => {
     });
     assert.deepStrictEqual(stringSplit.split('mapped ${$this._count} [id:value] <% Toto %>'), ['mapped', '${$this._count}', '[id:value]', '<% Toto %>']);
   });
+
+  it('Multiple separators', () => {
+    const stringSplit = new StringSplit({
+      separator: ['+', '*', '.', ':', ','],
+      ignoreTags: {
+        '"': '"',
+        '${': '}',
+        '<%': '%>',
+        '[': ']',
+      },
+    });
+    assert.deepStrictEqual(stringSplit.split('mapped ${$this._count}, [id:value] <% Toto %>'), ['mapped ${$this._count}', ' [id:value] <% Toto %>']);
+  });
+
+  it('Multiple separators, includeSep', () => {
+    const stringSplit = new StringSplit({
+      separator: ['+', '*', '.', ':', ','],
+      includeSep: true,
+      ignoreTags: {
+        '"': '"',
+        '${': '}',
+        '<%': '%>',
+        '[': ']',
+      },
+    });
+    assert.deepStrictEqual(stringSplit.split('mapped ${$this._count}, [id:value] <% Toto %>'), ['mapped ${$this._count}', ',', ' [id:value] <% Toto %>']);
+  });
 });

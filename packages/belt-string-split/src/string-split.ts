@@ -10,15 +10,24 @@ export class StringSplit implements IStringSplit {
   public readonly split: (str: string) => string[];
 
   constructor(private readonly _options: IStringSplitOptions) {
-    // this.split = this._createStringSplit(this._options);
-    this.split =
-      (!this._options.ignoreTags || Object.keys(this._options.ignoreTags).length === 0) && this._options.ignoreEmpty !== true ? str => (str != null ? str.split(this._options.separator) : []) : this._createStringSplit(this._options);
+    if (typeof this._options.separator === 'string' && (!this._options.ignoreTags || Object.keys(this._options.ignoreTags).length === 0) && this._options.ignoreEmpty !== true) {
+      this.split = str => {
+        if (str != null) {
+          return str.split(this._options.separator as string);
+        } else {
+          return [];
+        }
+      };
+    } else {
+      this.split = this._createStringSplit(this._options);
+    }
   }
 
-  private _createStringSplit({ separator, ignoreTags = {}, ignoreEmpty = false }: IStringSplitOptions): (str: string) => string[] {
+  private _createStringSplit({ separator, includeSep = false, ignoreTags = {}, ignoreEmpty = false }: IStringSplitOptions): (str: string) => string[] {
     /** Optimize one chars tags */
     const optimizeTags: Array<{ open: string; close: string }> = [];
     const slowTags: Array<{ open: string; close: string }> = [];
+    const separators = typeof separator === 'string' ? [separator] : separator;
 
     Object.entries(ignoreTags).forEach(entry => {
       if (entry[0].length === 1 && entry[1].length === 1) {
@@ -82,10 +91,11 @@ export class StringSplit implements IStringSplit {
   `
     )
     .join('\n')}
-        ${slowTags.length ? 'else ' : ''}if (lifo.length === 0 && char === ${JSON.stringify(separator)}) {
+        ${slowTags.length ? 'else ' : ''}if (lifo.length === 0 && (${separators.map(f => `char === ${JSON.stringify(f)}`).join(' || ')})) {
           if (!${ignoreEmpty} || currentWord.length) {
             splited.push(currentWord);
           }
+          ${includeSep ? 'splited.push(char);' : ''}
           addChar = false;
           currentWord = '';
         }
