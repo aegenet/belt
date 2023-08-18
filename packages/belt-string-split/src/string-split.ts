@@ -43,6 +43,18 @@ export class StringSplit implements IStringSplit {
       }
     });
 
+    let mapperCl = 'const mapperCl = {';
+    for (let i = 0; i < slowTags.length; i++) {
+      mapperCl += `  ${JSON.stringify(slowTags[i].close)}: (str, i) => ${slowTags[i].close
+        .split('')
+        .map((c, cidx) => `${JSON.stringify(c)} === str[i + ${cidx}]`)
+        .join(' && ')},\n`;
+    }
+    for (let i = 0; i < optimizeTags.length; i++) {
+      mapperCl += `  ${JSON.stringify(optimizeTags[i].close)}: (str, i) => ${JSON.stringify(optimizeTags[i].close)} === str[i],\n`;
+    }
+    mapperCl += '\n};';
+
     return new Function(
       'str',
       `
@@ -54,6 +66,9 @@ export class StringSplit implements IStringSplit {
     let char;
     const len = str.length;
     let endStr;
+
+    ${mapperCl}
+
     for (let i = 0; i < len; i++) {
       char = str[i];
       endStr = str.slice(i);
@@ -76,11 +91,22 @@ export class StringSplit implements IStringSplit {
     )
     .join('\n')}
         default:
-  ${slowTags.map((f, i) => `        ${i > 0 ? 'else ' : ''}if (endStr.startsWith(${JSON.stringify(f.open)})) { lifo.push(${JSON.stringify(f.close)}); }`).join('\n')}
   ${slowTags
     .map(
-      f => `        else if (endStr.startsWith(${JSON.stringify(f.close)})) {
-            if (lifo.length === 0 || !endStr.startsWith(lifo[lifo.length - 1])) {
+      (f, i) =>
+        `        ${i > 0 ? 'else ' : ''}if (${f.open
+          .split('')
+          .map((c, cidx) => `${JSON.stringify(c)} === str[i + ${cidx}]`)
+          .join(' && ')}) { lifo.push(${JSON.stringify(f.close)}); }`
+    )
+    .join('\n')}
+  ${slowTags
+    .map(
+      f => `        else if (${f.close
+        .split('')
+        .map((c, cidx) => `${JSON.stringify(c)} === str[i + ${cidx}]`)
+        .join(' && ')}) {
+            if (lifo.length === 0 || !mapperCl[lifo[lifo.length - 1]](str, i)) {
               // Not open or we try to close an other symbol
               throw new Error('StringSplit cannot ignores tags with unbalanced symbols');
             } else {

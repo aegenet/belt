@@ -110,6 +110,18 @@ describe('string-split', () => {
     );
   });
 
+  it('Preserve space', () => {
+    assert.deepStrictEqual(
+      new StringSplit({
+        separator: ' ',
+        ignoreTags: {
+          '"': '"',
+        },
+      }).split('Hello Brian "Mitch "'),
+      ['Hello', 'Brian', '"Mitch "']
+    );
+  });
+
   it('Unbalanced', () => {
     try {
       new StringSplit({
