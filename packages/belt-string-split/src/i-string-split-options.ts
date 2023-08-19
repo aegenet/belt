@@ -1,6 +1,6 @@
 export interface IStringSplitOptions {
   /** Split Separator */
-  separator: string;
+  separator: string | string[];
   /**
    * Ignore tags
    *
@@ -18,4 +18,10 @@ export interface IStringSplitOptions {
    * @default false
    */
   ignoreEmpty?: boolean;
+  /**
+   * If true, the separator will be added
+   * eg: ['Something', ' ', 'Else'] instead of ['Something', 'Else']
+   * @default false
+   */
+  includeSep?: boolean;
 }
