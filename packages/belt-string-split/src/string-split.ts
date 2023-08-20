@@ -102,7 +102,9 @@ export class StringSplit implements IStringSplit {
         `        ${i > 0 ? 'else ' : ''}if (${f.open
           .split('')
           .map((c, cidx) => `${JSON.stringify(c)} === str[i + ${cidx}]`)
-          .join(' && ')}) { ${f.same ? `if (lifo.length && lifo[lifo.length - 1] === ${JSON.stringify(f.close)}) { lifo.pop(); } else { ` : ''}lifo.push(${JSON.stringify(f.close)}); ${f.same ? ' }' : ''} }`
+          .join(' && ')}) { ${f.same ? `if (lifo.length && lifo[lifo.length - 1] === ${JSON.stringify(f.close)}) { lifo.pop(); char = ${JSON.stringify(f.close)}; i+=${f.close.length - 1}; } else { ` : ''}lifo.push(${JSON.stringify(
+          f.close
+        )}); char = ${JSON.stringify(f.open)}; i+=${f.open.length - 1}; ${f.same ? ' }' : ''} }`
     )
     .join('\n')}
   ${slowTags
@@ -118,6 +120,8 @@ export class StringSplit implements IStringSplit {
             } else {
               // Fine, we pop
               lifo.pop();
+              char = ${JSON.stringify(f.close)};
+              i+=${f.close.length - 1};
             }
           }
   `
