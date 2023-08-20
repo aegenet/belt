@@ -114,11 +114,53 @@ describe('string-split', () => {
     assert.deepStrictEqual(
       new StringSplit({
         separator: ' ',
+        ignoreEmpty: true,
         ignoreTags: {
           '"': '"',
+          '${': '}',
         },
       }).split('Hello Brian "Mitch "'),
       ['Hello', 'Brian', '"Mitch "']
+    );
+
+    assert.deepStrictEqual(
+      new StringSplit({
+        separator: ' ',
+        ignoreEmpty: true,
+        ignoreTags: {
+          '"': '"',
+          '[': ']',
+          '${': '}',
+          '##': '##',
+        },
+      }).split('Hello '),
+      ['Hello']
+    );
+  });
+
+  it('string "Else" 0xff', () => {
+    assert.deepStrictEqual(
+      new StringSplit({
+        separator: ' ',
+        ignoreEmpty: true,
+        ignoreTags: {
+          '"': '"',
+        },
+      }).split('string "Else" 0xff'),
+      ['string', '"Else"', '0xff']
+    );
+  });
+
+  it('string $$Someting$$ 0xff', () => {
+    assert.deepStrictEqual(
+      new StringSplit({
+        separator: ' ',
+        ignoreEmpty: true,
+        ignoreTags: {
+          $$: '$$',
+        },
+      }).split('string $$Someting$$ 0xff'),
+      ['string', '$$Someting$$', '0xff']
     );
   });
 

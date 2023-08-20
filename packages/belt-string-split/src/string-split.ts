@@ -25,8 +25,8 @@ export class StringSplit implements IStringSplit {
 
   private _createStringSplit({ separator, includeSep = false, ignoreTags = {}, ignoreEmpty = false }: IStringSplitOptions): (str: string) => string[] {
     /** Optimize one chars tags */
-    const optimizeTags: Array<{ open: string; close: string }> = [];
-    const slowTags: Array<{ open: string; close: string }> = [];
+    const optimizeTags: Array<{ open: string; close: string; same: boolean }> = [];
+    const slowTags: Array<{ open: string; close: string; same: boolean }> = [];
     const separators = typeof separator === 'string' ? [separator] : separator;
 
     Object.entries(ignoreTags).forEach(entry => {
@@ -34,11 +34,13 @@ export class StringSplit implements IStringSplit {
         optimizeTags.push({
           open: entry[0],
           close: entry[1],
+          same: entry[0] === entry[1],
         });
       } else {
         slowTags.push({
           open: entry[0],
           close: entry[1],
+          same: entry[0] === entry[1],
         });
       }
     });
@@ -65,18 +67,21 @@ export class StringSplit implements IStringSplit {
     let addChar = false;
     let char;
     const len = str.length;
-    let endStr;
 
     ${mapperCl}
 
     for (let i = 0; i < len; i++) {
       char = str[i];
-      endStr = str.slice(i);
       addChar = true;
   
       switch (char) {
-  ${optimizeTags.map(f => `     case ${JSON.stringify(f.open)}:\n       lifo.push(${JSON.stringify(f.close)}); break;`).join('\n')}
   ${optimizeTags
+    .map(
+      f => `     case ${JSON.stringify(f.open)}:\n       ${f.same ? `if (lifo.length && lifo[lifo.length - 1] === ${JSON.stringify(f.close)}) { lifo.pop(); } else { ` : ''}lifo.push(${JSON.stringify(f.close)}); ${f.same ? '}' : ''} break;`
+    )
+    .join('\n')}
+  ${optimizeTags
+    .filter(f => !f.same)
     .map(
       f => `      case ${JSON.stringify(f.close)}:
           if (lifo.length === 0 || ${JSON.stringify(f.close)} != lifo[lifo.length - 1]) {
@@ -97,10 +102,11 @@ export class StringSplit implements IStringSplit {
         `        ${i > 0 ? 'else ' : ''}if (${f.open
           .split('')
           .map((c, cidx) => `${JSON.stringify(c)} === str[i + ${cidx}]`)
-          .join(' && ')}) { lifo.push(${JSON.stringify(f.close)}); }`
+          .join(' && ')}) { ${f.same ? `if (lifo.length && lifo[lifo.length - 1] === ${JSON.stringify(f.close)}) { lifo.pop(); } else { ` : ''}lifo.push(${JSON.stringify(f.close)}); ${f.same ? ' }' : ''} }`
     )
     .join('\n')}
   ${slowTags
+    .filter(f => !f.same)
     .map(
       f => `        else if (${f.close
         .split('')
@@ -126,15 +132,13 @@ export class StringSplit implements IStringSplit {
           currentWord = '';
         }
       }
-  
+
       if (addChar) {
         currentWord += char;
       }
     }
   
-    if (!${ignoreEmpty} || currentWord.length) {
-      splited.push(currentWord);
-    }
+    ${ignoreEmpty ? 'if (currentWord.length) { splited.push(currentWord); }' : 'splited.push(currentWord);'}
   
     return splited;
   `
