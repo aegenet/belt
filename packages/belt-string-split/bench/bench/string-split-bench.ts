@@ -8,6 +8,7 @@ export async function stringSplitBench(laps: number) {
   const sample3 = 'mapped (id value)';
   const sample4 = 'mapped ${$this._count aaa} [id:value]';
   const sample5 = '<div>Something ELSE</div> <div>Other Than us Follow us You Are Formidable</div>';
+  const sample6 = '(<div>Something ELSE</div>) <div>Other Than "us" Follow us You Are [Formidable]</div>';
 
   const stringSplit1 = new StringSplit({ separator: ' ' });
   const stringSplit2 = new StringSplit({
@@ -31,6 +32,15 @@ export async function stringSplitBench(laps: number) {
   const stringSplit5 = new StringSplit({
     separator: ' ',
     ignoreTags: {
+      '<div>': '</div>',
+    },
+  });
+  const stringSplit6 = new StringSplit({
+    separator: ' ',
+    ignoreTags: {
+      '(': ')',
+      '[': ']',
+      '"': '"',
       '<div>': '</div>',
     },
   });
@@ -102,6 +112,15 @@ export async function stringSplitBench(laps: number) {
   `,
       spec: (ctx: ILapContext<number>) => {
         str2 = stringSplit5.split(sample5);
+        return str2;
+      },
+    },
+    {
+      name: 'Nested 6',
+      explain: `str2 = stringSplit6.split(sample6);
+  `,
+      spec: (ctx: ILapContext<number>) => {
+        str2 = stringSplit6.split(sample6);
         return str2;
       },
     }
