@@ -65,7 +65,7 @@ export class RaceResult {
       'p50 <': this.p50?.toString(),
       p75: this.p75?.toString(),
       p90: this.p90?.toString(),
-      'ratio %': ((this.ratio || 1) * 100 - 100).toFixed(2),
+      slowdown: `${(this.ratio || 1).toFixed(2)}x`,
       duration: this.duration?.toString(),
     };
   }

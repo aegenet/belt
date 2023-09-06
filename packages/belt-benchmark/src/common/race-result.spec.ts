@@ -21,7 +21,7 @@ describe('RaceResult', () => {
       'p50 <': '16.67 min.',
       p75: '16.67 min.',
       p90: '16.67 min.',
-      'ratio %': '0.00',
+      slowdown: '1.00x',
       samplesPerLap: 1,
       slowest: '16.67 min.',
     });
