@@ -144,6 +144,56 @@ describe('odiff', function () {
       );
     });
 
+    it('Different null date vs date', () => {
+      assert.deepStrictEqual(
+        odiff(
+          {
+            id: 5,
+            at: new Date(2023, 3, 2, 1, 0, 0, 0),
+          },
+          {
+            id: 3,
+            at: undefined,
+          },
+          {
+            fields: [
+              { name: 'id', type: 'number' },
+              { name: 'at', type: 'date' },
+            ],
+          }
+        ),
+        [
+          ['id', 5, 3],
+          ['at', new Date(2023, 3, 2, 1, 0, 0, 0), undefined],
+        ]
+      );
+    });
+
+    it('Different date vs string', () => {
+      assert.deepStrictEqual(
+        odiff(
+          {
+            id: 5,
+            at: new Date(2023, 3, 2, 1, 0, 0, 0),
+          },
+          {
+            id: 3,
+            at: '2023-04-01T23:00:00.000Z',
+          },
+          {
+            fields: [
+              { name: 'id', type: 'number' },
+              { name: 'at', type: 'date' },
+            ],
+          }
+        ),
+        [
+          ['id', 5, 3],
+          ['at', new Date(2023, 3, 2, 1, 0, 0, 0), '2023-04-01T23:00:00.000Z'],
+        ]
+      );
+    });
+
     it('Multiple', () => {
       assert.deepStrictEqual(
         odiff(
