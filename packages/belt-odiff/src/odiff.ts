@@ -10,21 +10,54 @@ export function odiff<T = Record<string, unknown>>(
   oldData: T,
   newData: T,
   options: {
-    fields: string[];
+    fields: string[] | Array<{ name: string; type: 'date' | 'number' | 'string' | 'object' | 'array' }>;
   }
 ): [string, unknown, unknown][] {
   const diff: [string, unknown, unknown][] = [];
   const secOldData: Record<string, unknown> = oldData || {};
   const secNewData: Record<string, unknown> = newData || {};
-  const fields: string[] = options.fields;
+  const fields = options.fields;
   if (fields?.length) {
-    let before, after, field;
-    for (let i = 0; i < fields.length; i++) {
-      field = fields[i];
-      before = secOldData[field];
-      after = secNewData[field];
-      if (before !== after) {
-        diff.push([field, before, after]);
+    let before, after;
+    if (typeof fields[0] === 'string') {
+      let field: string;
+      for (let i = 0; i < fields.length; i++) {
+        field = fields[i] as string;
+        before = secOldData[field as string];
+        after = secNewData[field as string];
+        if (before !== after) {
+          diff.push([field as string, before, after]);
+        }
+      }
+    } else {
+      let field: { name: string; type: string };
+      for (let i = 0; i < fields.length; i++) {
+        field = fields[i] as { name: string; type: string };
+        before = secOldData[field.name];
+        after = secNewData[field.name];
+        switch (field.type) {
+          case 'string':
+          case 'number':
+            if (before !== after) {
+              diff.push([field.name, before, after]);
+            }
+            break;
+          case 'date':
+            if ((before as Date).getTime?.() !== (after as Date).getTime?.()) {
+              diff.push([field.name, before, after]);
+            }
+            break;
+          case 'array':
+          case 'object':
+            if (JSON.stringify(before) !== JSON.stringify(after)) {
+              diff.push([field.name, before, after]);
+            }
+            break;
+          default:
+            if (before !== after) {
+              diff.push([field.name, before, after]);
+            }
+        }
       }
     }
     return diff;
