@@ -12,10 +12,10 @@ export function odiff<T = Record<string, unknown>>(
   options: {
     fields: string[];
   }
-): any[][] {
-  const diff: any[][] = [];
-  const secOldData: any = oldData || {};
-  const secNewData: any = newData || {};
+): [string, unknown, unknown][] {
+  const diff: [string, unknown, unknown][] = [];
+  const secOldData: Record<string, unknown> = oldData || {};
+  const secNewData: Record<string, unknown> = newData || {};
   const fields: string[] = options.fields;
   if (fields?.length) {
     let before, after, field;
