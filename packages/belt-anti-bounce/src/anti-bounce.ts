@@ -6,7 +6,11 @@ import type { IAntiBounce } from './i-anti-bounce';
 export class AntiBounce implements IAntiBounce {
   private _token?: unknown;
 
-  constructor(private fn: (...params: unknown[]) => void, private duration: number = 100, private checker?: () => boolean) {}
+  constructor(
+    private fn: (...params: unknown[]) => void,
+    private duration: number = 100,
+    private checker?: () => boolean
+  ) {}
 
   /** Call with an anti-bounce :-) */
   public call(...params: unknown[]): void {
