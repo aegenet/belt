@@ -23,6 +23,16 @@ describe('interpolation', function () {
       );
     });
 
+    it('$value and space', () => {
+      const interpolation = new Interpolation();
+      assert.strictEqual(
+        interpolation.transform('Hello ${$value}  ', {
+          $value: 'David',
+        }),
+        'Hello David  '
+      );
+    });
+
     it('Skippy', () => {
       const interpolation = new Interpolation();
       assert.strictEqual(

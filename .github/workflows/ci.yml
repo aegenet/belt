@@ -37,7 +37,7 @@ jobs:
         package-names: 'belt,belt-crc8,belt-hide-sensitive,belt-crc32'
         package-type: 'npm'
         min-versions-to-keep: 5
-        include-versions: '^999\.'
+        include-versions: '^0\.'
         token: ${{ secrets.DELETE_PACKAGES_TOKEN }}
 
     - name: Install dependencies
@@ -103,7 +103,7 @@ jobs:
         package-names: 'belt,belt-crc8,belt-hide-sensitive,belt-crc32'
         package-type: 'npm'
         min-versions-to-keep: 5
-        include-versions: '^999\.'
+        include-versions: '^0\.'
         token: ${{ secrets.DELETE_PACKAGES_TOKEN }}
 
     - name: Install dependencies
