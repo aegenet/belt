@@ -7,7 +7,11 @@ export class LapContext<T> implements ILapContext<T> {
     return this._lapTime;
   }
 
-  constructor(public readonly lap: number, public readonly value: T | null, public readonly shared: Map<string, unknown> = new Map()) {
+  constructor(
+    public readonly lap: number,
+    public readonly value: T | null,
+    public readonly shared: Map<string, unknown> = new Map()
+  ) {
     //
   }
 

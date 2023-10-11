@@ -10,7 +10,7 @@ export type FastifyRequestAbortCtrl<
   TypeProvider extends FastifyTypeProvider = FastifyTypeProviderDefault,
   ContextConfig = ContextConfigDefault,
   Logger extends FastifyBaseLogger = FastifyBaseLogger,
-  RequestType extends FastifyRequestType = ResolveFastifyRequestType<TypeProvider, SchemaCompiler, RouteGeneric>
+  RequestType extends FastifyRequestType = ResolveFastifyRequestType<TypeProvider, SchemaCompiler, RouteGeneric>,
   // ^ Temporary Note: RequestType has been re-ordered to be the last argument in
   //   generic list. This generic argument is now considered optional as it can be
   //   automatically inferred from the SchemaCompiler, RouteGeneric and TypeProvider

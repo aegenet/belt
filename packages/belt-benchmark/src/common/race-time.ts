@@ -8,7 +8,10 @@ export class RaceTime {
   /** minutes */
   public m: number;
 
-  constructor(/** nanoseconds  */ public ns: number, /** Lap of this time */ public lap?: number) {
+  constructor(
+    /** nanoseconds */ public ns: number,
+    /** Lap of this time */ public lap?: number
+  ) {
     this.us = ns / 1000;
     this.ms = this.us / 1000;
     this.s = this.ms / 1000;

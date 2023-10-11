@@ -31,7 +31,10 @@ export class RaceResult {
   /** Aborted before the end */
   public aborted: boolean = false;
 
-  constructor(public readonly car: ICarOptions, public raceName?: string) {
+  constructor(
+    public readonly car: ICarOptions,
+    public raceName?: string
+  ) {
     //
   }
 
