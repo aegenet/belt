@@ -7,22 +7,21 @@
     "skipLibCheck": true,
     "target": "ES2020",
     "esModuleInterop": true,
-    "resolveJsonModule": true,
-    "strict": true,
     "sourceMap": true,
     "newLine": "LF",
+    "module": "CommonJS",
     "outDir": "./build",
-    "typeRoots": [
-      "../../node_modules/@types"
-    ]
+    "alwaysStrict": true
   },
   "exclude": [
     "./node_modules",
-    "./samples"
+    "./samples",
+    "./build"
   ],
   "include": [
-    "test",
-    "src" ],
+    "./bench",
+    "./src"
+  ],
   "atom": {
     "rewriteTsconfig": false
   }

@@ -25,6 +25,23 @@ for (let i = 0; i < samples.length; i++) {
       },
     },
     {
+      name: 'for i (len outside)',
+      explain: `
+const len = samples.length;
+for (let i = 0; i < len; i++) {
+  // [...]
+}
+`,
+      spec: (ctx: ILapContext<number>) => {
+        let count = ctx.value || 0;
+        const len = samples.length;
+        for (let i = 0; i < len; i++) {
+          count += samples[i];
+        }
+        return count;
+      },
+    },
+    {
       name: 'for of',
       explain: `
 for (const val of samples) {

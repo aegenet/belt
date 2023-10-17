@@ -18,6 +18,7 @@ samples.filter(function (f) {
 `,
       spec: (ctx: ILapContext<number>) => {
         // ctx.begin();
+        res = '';
         for (let i = 0; i < 100; i++) {
           res += samples.filter(function (f) {
             return f > 3 && f < 9;
@@ -36,6 +37,7 @@ samples.filter(f => {
 `,
       spec: (ctx: ILapContext<number>) => {
         // ctx.begin();
+        res = '';
         for (let i = 0; i < 100; i++) {
           res += samples.filter(f => {
             return f > 3 && f < 9;

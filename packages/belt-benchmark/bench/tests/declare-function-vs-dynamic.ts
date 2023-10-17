@@ -24,6 +24,7 @@ export async function declareFunctionVSDynamic(duration: number): Promise<RaceRe
       })`,
       spec: (ctx: ILapContext<number>) => {
         // ctx.begin();
+        res = '';
         for (let i = 0; i < 100; i++) {
           res += samples.filter(function (f) {
             return f > 3 && f < 9;
@@ -42,6 +43,7 @@ export async function declareFunctionVSDynamic(duration: number): Promise<RaceRe
       samples.filter(declareFunctionFilter)`,
       spec: (ctx: ILapContext<number>) => {
         // ctx.begin();
+        res = '';
         for (let i = 0; i < 100; i++) {
           res += samples.filter(declareFunctionFilter);
         }
@@ -58,6 +60,7 @@ export async function declareFunctionVSDynamic(duration: number): Promise<RaceRe
       samples.filter(declareFunctionFilter)`,
       spec: (ctx: ILapContext<number>) => {
         // ctx.begin();
+        res = '';
         for (let i = 0; i < 100; i++) {
           res += samples.filter(declareFilter);
         }
