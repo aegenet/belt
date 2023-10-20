@@ -52,7 +52,7 @@ str = samples.join();
 
 </table>
 
-## Sopmethig (11376 laps, 512 samples per lap)
+## Specific Join string array (11376 laps, 512 samples per lap)
 
 <table>
   <tr>
@@ -410,8 +410,8 @@ return obj['keywithalenght'];
 
 <tr>
     <td>8</td><td>Object (very long key)</td><td><pre lang="typescript"><code>
-obj['1234'] = value;
-return obj['1234'];
+obj['something-else-everyon-ok-super-ultra'] = value;
+return obj['something-else-everyon-ok-super-ultra'];
 
 </code></pre></td><td>148.97 ns</td><td>262.51 ns</td><td>158.43 ns</td><td><strong>155.73 ns</strong></td><td>158.45 ns</td><td>163.75 ns</td><td>8.35</td><td>153.36 μs</td>
 </tr>

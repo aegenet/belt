@@ -1,7 +1,7 @@
 import { RaceResult, Racetrack, ILapContext } from '../../src/common';
 import { NodeRacetrack } from '../../src/node';
 
-const samples = [
+const recipes = [
   {
     id: 1,
     image: 'Recette01.jpg',
@@ -1811,9 +1811,20 @@ const samples = [
   },
 ];
 
-export async function warOfSort(duration: number): Promise<RaceResult[]> {
+function generateTestArray(arraySize: number) {
+  const result = [];
+  for (let i = 0; i < arraySize; ++i) {
+    result.push({
+      name: recipes[i % recipes.length],
+    });
+  }
+  return result;
+}
+
+export async function warOfSort(duration: number, arraySize: number): Promise<RaceResult[]> {
+  const samples = generateTestArray(arraySize);
   const raceTrack: Racetrack = new NodeRacetrack({
-    name: 'War of Sort',
+    name: `War of Sort - ${arraySize} items`,
     duration,
   });
 

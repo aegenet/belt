@@ -1,10 +1,22 @@
 import { RaceResult, Racetrack, ILapContext } from '../../src/common';
 import { NodeRacetrack } from '../../src/node';
 
-export async function warOfLoop(duration: number): Promise<RaceResult[]> {
-  const samples = [8, 3, 4, 1, 0, 5, 2, 6, 9, 7];
+function generateTestArray(arraySize: number) {
+  const result = [];
+  for (let i = 0; i < arraySize; ++i) {
+    result.push({
+      a: i,
+      b: i / 2,
+      r: 0,
+    });
+  }
+  return result;
+}
+
+export async function warOfLoop(duration: number, arraySize: number): Promise<RaceResult[]> {
+  const samples = generateTestArray(arraySize);
   const raceTrack: Racetrack = new NodeRacetrack({
-    name: 'War of Loop',
+    name: `War of Loop - ${arraySize} items`,
     duration,
   });
 

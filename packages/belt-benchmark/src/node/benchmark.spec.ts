@@ -11,6 +11,6 @@ describe.skip('benchmark', () => {
     ) {
       await fs.mkdir('./temp');
     }
-    await benchmark('./temp/bench.md', 10);
+    await benchmark({ fileName: './temp/bench.md', duration: 10 });
   }, 60000);
 });

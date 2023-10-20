@@ -97,8 +97,8 @@ return obj['1234'];
     },
     {
       name: 'Object (very long key)',
-      explain: `obj['1234'] = value;
-return obj['1234'];
+      explain: `obj['something-else-everyon-ok-super-ultra'] = value;
+return obj['something-else-everyon-ok-super-ultra'];
 `,
       spec: (ctx: ILapContext<number>) => {
         // ctx.begin();

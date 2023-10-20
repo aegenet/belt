@@ -109,21 +109,21 @@ export class Racetrack {
 
     cars.forEach(car => {
       let funcBody = `const begin = perf.now();\n`;
-      if (car.async) {
-        funcBody += `
-for (let sample = 0; sample < samplesPerLap - 1; sample++) {
-  await spec(lapCtx);
-}
-lapCtx.value = await spec(lapCtx);
-return perf.now() - begin;
-`;
-      } else {
-        for (let sample = 0; sample < samplesPerLap - 1; sample++) {
-          funcBody += 'spec(lapCtx);\n';
-        }
-        funcBody += 'lapCtx.value = spec(lapCtx);\n';
-        funcBody += 'return perf.now() - begin;\n';
+      //       if (car.async) {
+      //         funcBody += `
+      // for (let sample = 0; sample < samplesPerLap - 1; sample++) {
+      //   await spec(lapCtx);
+      // }
+      // lapCtx.value = await spec(lapCtx);
+      // return perf.now() - begin;
+      // `;
+      //       } else {
+      for (let sample = 0; sample < samplesPerLap - 1; sample++) {
+        funcBody += `${car.async ? 'await ' : ''}spec(lapCtx);\n`;
       }
+      funcBody += `lapCtx.value = ${car.async ? 'await ' : ''}spec(lapCtx);\n`;
+      funcBody += 'return perf.now() - begin;\n';
+      // }
       if (car.async) {
         car.bench = new AsyncFunction('perf', 'samplesPerLap', 'spec', 'lapCtx', funcBody);
       } else {

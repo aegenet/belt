@@ -10,6 +10,14 @@ function rejoin(array: string[]) {
   }
   return str2;
 }
+function rejoin2(array: string[]) {
+  let str2 = '';
+  let i = 0;
+  while (i < array.length) {
+    str2 += array[i++];
+  }
+  return str2;
+}
 
 export async function arrayJoin(duration: number): Promise<RaceResult[]> {
   const samples = [randomUUID(), randomUUID(), randomUUID(), randomUUID(), randomUUID(), randomUUID(), randomUUID(), randomUUID()];
@@ -75,6 +83,25 @@ str2 = rejoin(samples);
       spec: (ctx: ILapContext<number>) => {
         // ctx.begin();
         str2 = rejoin(samples);
+        return str2;
+      },
+    },
+    {
+      name: 'rejoin2()',
+      explain: `
+function rejoin2(array: string[]) {
+  let str2 = array[0];
+  for (let i = 1; i < array.length; ++i) {
+    str2 += array[i];
+  }
+  return str2;
+}
+
+str2 = rejoin2(samples);
+`,
+      spec: (ctx: ILapContext<number>) => {
+        // ctx.begin();
+        str2 = rejoin2(samples);
         return str2;
       },
     }

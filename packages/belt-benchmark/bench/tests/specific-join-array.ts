@@ -6,7 +6,7 @@ import { NodeRacetrack } from '../../src/node';
 export async function specificJoinArray(duration: number): Promise<RaceResult[]> {
   const rowPathUUID = [randomUUID(), randomUUID(), randomUUID(), randomUUID(), randomUUID(), randomUUID()];
   const racetrack: Racetrack = new NodeRacetrack({
-    name: 'Sopmethig',
+    name: 'Specific Join string array',
     duration,
   });
   let res: string;
