@@ -13,9 +13,6 @@ export async function stringJoin3Bench(laps: number) {
   const stats = await racetrack.race(
     {
       name: 'samples.slice(1, 5).join(" - ")',
-      explain: `
-  str = samples.slice(1, 5).join(' - ');
-  `,
       spec: (ctx: ILapContext<number>) => {
         str1 = samples.slice(1, 5).join(' - ');
         return str1;
@@ -23,8 +20,6 @@ export async function stringJoin3Bench(laps: number) {
     },
     {
       name: "stringJoin(samples, ' - ', 1, 5)",
-      explain: `str2 = stringJoin(samples, " - ", 1, 5);
-  `,
       spec: (ctx: ILapContext<number>) => {
         str2 = stringJoin(samples, ' - ', 1, 5);
         return str2;

@@ -11,11 +11,6 @@ export async function costOfTryCatch(duration: number): Promise<RaceResult[]> {
   const stats = await raceTrack.race(
     {
       name: 'Without try/catch',
-      explain: `
-for (let i = 0; i < samples.length; i++) {
-  // Without try catch
-}
-`,
       spec: (ctx: ILapContext<number>) => {
         let count = ctx.value || 0;
         for (let i = 0; i < samples.length; i++) {
@@ -26,15 +21,6 @@ for (let i = 0; i < samples.length; i++) {
     },
     {
       name: 'With try/catch',
-      explain: `
-for (let i = 0; i < samples.length; i++) {
-  try {
-    //
-  } catch {
-    //
-  }
-}
-`,
       spec: (ctx: ILapContext<number>) => {
         let count = ctx.value || 0;
         for (let i = 0; i < samples.length; i++) {
@@ -49,17 +35,6 @@ for (let i = 0; i < samples.length; i++) {
     },
     {
       name: 'With try/catch/finally',
-      explain: `
-for (let i = 0; i < samples.length; i++) {
-  try {
-    //
-  } catch {
-    //
-  } finally {
-    //
-  }
-}
-`,
       spec: (ctx: ILapContext<number>) => {
         let count = ctx.value || 0;
         for (let i = 0; i < samples.length; i++) {
@@ -76,15 +51,6 @@ for (let i = 0; i < samples.length; i++) {
     },
     {
       name: 'With try/catch and throw error',
-      explain: `
-for (let i = 0; i < samples.length; i++) {
-  try {
-    //
-  } catch (error) {
-    //
-  }
-}
-`,
       spec: (ctx: ILapContext<number>) => {
         let count = ctx.value || 0;
         for (let i = 0; i < samples.length; i++) {
@@ -102,17 +68,6 @@ for (let i = 0; i < samples.length; i++) {
     },
     {
       name: 'With try/catch/finally and throw error',
-      explain: `
-for (let i = 0; i < samples.length; i++) {
-  try {
-    //
-  } catch (error) {
-    //
-  } finally {
-    //
-  }
-}
-`,
       spec: (ctx: ILapContext<number>) => {
         let count = ctx.value || 0;
         for (let i = 0; i < samples.length; i++) {

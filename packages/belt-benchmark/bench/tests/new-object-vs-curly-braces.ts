@@ -10,12 +10,6 @@ export async function newObjectVSCurlyBraces(duration: number): Promise<RaceResu
   const stats = await racetrack.race(
     {
       name: 'new object()',
-      explain: `
-const map = new Map<number, unknown>();
-for (let i = 0; i < 10000; i++) {
-  map.set(i, new object());
-}
-`,
       spec: (ctx: ILapContext<number>) => {
         const map = new Map<number, unknown>();
         for (let i = 0; i < 10000; i++) {
@@ -26,12 +20,6 @@ for (let i = 0; i < 10000; i++) {
     },
     {
       name: 'Object.create({})',
-      explain: `
-const map = new Map<number, unknown>();
-for (let i = 0; i < 10000; i++) {
-  map.set(i, Object.create());
-}
-`,
       spec: (ctx: ILapContext<number>) => {
         const map = new Map<number, unknown>();
         for (let i = 0; i < 10000; i++) {
@@ -42,12 +30,6 @@ for (let i = 0; i < 10000; i++) {
     },
     {
       name: 'Curly braces {}',
-      explain: `
-const map = new Map<number, unknown>();
-for (let i = 0; i < 10000; i++) {
-  map.set(i, {});
-}
-`,
       spec: (ctx: ILapContext<number>) => {
         const map = new Map<number, unknown>();
         for (let i = 0; i < 10000; i++) {

@@ -172,14 +172,6 @@ export async function alphanumFight(duration: number): Promise<RaceResult[]> {
   const stats = await racetrack.race(
     {
       name: '/^[a-zA-Z0-9]+$/g',
-      explain: `
-const map = new Map<number, unknown>();
-const regex = /[a-zA-Z0-9]/g;
-for (let i = 0; i < 10000; i++) {
-  map.set(i, regex.test(crypto.randomBytes(20).toString('hex')));
-}
-return map;
-`,
       spec: (ctx: ILapContext<number>) => {
         const map = new Map<number, unknown>();
         for (let i = 0; i < 10000; i++) {
@@ -190,12 +182,6 @@ return map;
     },
     {
       name: '/^[a-z0-9]+$/gi',
-      explain: `
-const map = new Map<number, unknown>();
-for (let i = 0; i < 10000; i++) {
-  map.set(i, regex2.test);
-}
-`,
       spec: (ctx: ILapContext<number>) => {
         const map = new Map<number, unknown>();
         for (let i = 0; i < 10000; i++) {
@@ -206,12 +192,6 @@ for (let i = 0; i < 10000; i++) {
     },
     {
       name: 'checkString dumb',
-      explain: `
-const map = new Map<number, unknown>();
-for (let i = 0; i < 10000; i++) {
-  map.set(i, checkStringDumb);
-}
-`,
       spec: (ctx: ILapContext<number>) => {
         const map = new Map<number, unknown>();
         for (let i = 0; i < 10000; i++) {
@@ -222,12 +202,6 @@ for (let i = 0; i < 10000; i++) {
     },
     {
       name: 'checkString if',
-      explain: `
-const map = new Map<number, unknown>();
-for (let i = 0; i < 10000; i++) {
-  map.set(i, checkString);
-}
-`,
       spec: (ctx: ILapContext<number>) => {
         const map = new Map<number, unknown>();
         for (let i = 0; i < 10000; i++) {
@@ -238,12 +212,6 @@ for (let i = 0; i < 10000; i++) {
     },
     {
       name: 'checkString Object',
-      explain: `
-const map = new Map<number, unknown>();
-for (let i = 0; i < 10000; i++) {
-  map.set(i, checkStringObject);
-}
-`,
       spec: (ctx: ILapContext<number>) => {
         const map = new Map<number, unknown>();
         for (let i = 0; i < 10000; i++) {

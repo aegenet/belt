@@ -28,44 +28,84 @@ import { createMarkdown } from './providers/bench-doc';
 const allBench: Record<string, (duration: number) => Promise<RaceResult[]>> = {
   arrayJoin: arrayJoin,
   specificJoinArray: specificJoinArray,
-  warOfLoop10: duration => warOfLoop(duration, 10),
-  warOfLoop1000: duration => warOfLoop(duration, 1000),
-  warOfLoop10000: duration => warOfLoop(duration, 10000),
-  warOfLoop100000: duration => warOfLoop(duration, 100000),
-  warOfLoop1000000: duration => warOfLoop(duration, 1000000),
-  warOfReduce10: duration =>
+  warOfLoopObj10: duration => warOfLoop(duration, 10, 'object'),
+  warOfLoopObj1000: duration => warOfLoop(duration, 1000, 'object'),
+  warOfLoopObj1000000: duration => warOfLoop(duration, 1000000, 'object'),
+  warOfLoopNum10: duration => warOfLoop(duration, 10, 'number'),
+  warOfLoopNum1000: duration => warOfLoop(duration, 1000, 'number'),
+  warOfLoopNum1000000: duration => warOfLoop(duration, 1000000, 'number'),
+  warOfLoopStr10: duration => warOfLoop(duration, 10, 'string'),
+  warOfLoopStr1000: duration => warOfLoop(duration, 1000, 'string'),
+  warOfLoopStr1000000: duration => warOfLoop(duration, 1000000, 'string'),
+  warOfReduceObj10: duration =>
     warOfReduce(duration, {
       arraySize: 10,
+      itemType: 'object',
     }),
-  warOfReduce1000: duration =>
+  warOfReduceObj1000: duration =>
     warOfReduce(duration, {
       arraySize: 1000,
+      itemType: 'object',
     }),
-  warOfReduce10000: duration =>
-    warOfReduce(duration, {
-      arraySize: 10000,
-    }),
-  warOfReduce20000: duration =>
-    warOfReduce(duration, {
-      arraySize: 20000,
-    }),
-  warOfReduce50000: duration =>
+  warOfReduceObj50000: duration =>
     warOfReduce(duration, {
       arraySize: 50000,
+      itemType: 'object',
     }),
-  warOfReduce100000: duration =>
-    warOfReduce(duration, {
-      arraySize: 100000,
-    }),
-  warOfReduce1000000: duration =>
+  warOfReduceObj1000000: duration =>
     warOfReduce(duration, {
       arraySize: 1000000,
+      itemType: 'object',
     }),
-  warOfSort10: duration => warOfSort(duration, 10),
-  warOfSort1000: duration => warOfSort(duration, 1000),
-  warOfSort10000: duration => warOfSort(duration, 10000),
-  warOfSort100000: duration => warOfSort(duration, 100000),
-  warOfSort1000000: duration => warOfSort(duration, 1000000),
+  warOfReduceNum10: duration =>
+    warOfReduce(duration, {
+      arraySize: 10,
+      itemType: 'number',
+    }),
+  warOfReduceNum1000: duration =>
+    warOfReduce(duration, {
+      arraySize: 1000,
+      itemType: 'number',
+    }),
+  warOfReduceNum50000: duration =>
+    warOfReduce(duration, {
+      arraySize: 50000,
+      itemType: 'number',
+    }),
+  warOfReduceNum1000000: duration =>
+    warOfReduce(duration, {
+      arraySize: 1000000,
+      itemType: 'number',
+    }),
+  warOfReduceStr10: duration =>
+    warOfReduce(duration, {
+      arraySize: 10,
+      itemType: 'string',
+    }),
+  warOfReduceStr1000: duration =>
+    warOfReduce(duration, {
+      arraySize: 1000,
+      itemType: 'string',
+    }),
+  warOfReduceStr50000: duration =>
+    warOfReduce(duration, {
+      arraySize: 50000,
+      itemType: 'string',
+    }),
+  warOfReduceStr1000000: duration =>
+    warOfReduce(duration, {
+      arraySize: 1000000,
+      itemType: 'string',
+    }),
+  warOfSortObj10: duration => warOfSort(duration, 10, 'object'),
+  warOfSortObj1000: duration => warOfSort(duration, 1000, 'object'),
+  warOfSortObj1000000: duration => warOfSort(duration, 1000000, 'object'),
+  warOfSortNum10: duration => warOfSort(duration, 10, 'number'),
+  warOfSortNum1000: duration => warOfSort(duration, 1000, 'number'),
+  warOfSortNum1000000: duration => warOfSort(duration, 1000000, 'number'),
+  warOfSortStr10: duration => warOfSort(duration, 10, 'string'),
+  warOfSortStr1000: duration => warOfSort(duration, 1000, 'string'),
+  warOfSortStr1000000: duration => warOfSort(duration, 1000000, 'string'),
   loopOfKeyValues: loopOfKeyValues,
   declareInLoop: declareInLoop,
   joinStringArray: joinStringArray,
@@ -82,11 +122,15 @@ const allBench: Record<string, (duration: number) => Promise<RaceResult[]>> = {
   newObjectVSCurlyBraces: newObjectVSCurlyBraces,
   alphanumFight: alphanumFight,
   costOfTryCatch: costOfTryCatch,
-  warOfCopyArray10: duration => warOfCopyArray(duration, 10),
-  warOfCopyArray1000: duration => warOfCopyArray(duration, 1000),
-  warOfCopyArray10000: duration => warOfCopyArray(duration, 10000),
-  warOfCopyArray100000: duration => warOfCopyArray(duration, 100000),
-  warOfCopyArray1000000: duration => warOfCopyArray(duration, 1000000),
+  warOfCopyArrayObj10: duration => warOfCopyArray(duration, 10, 'object'),
+  warOfCopyArrayObj1000: duration => warOfCopyArray(duration, 1000, 'object'),
+  warOfCopyArrayObj1000000: duration => warOfCopyArray(duration, 1000000, 'object'),
+  warOfCopyArrayNum10: duration => warOfCopyArray(duration, 10, 'number'),
+  warOfCopyArrayNum1000: duration => warOfCopyArray(duration, 1000, 'number'),
+  warOfCopyArrayNum1000000: duration => warOfCopyArray(duration, 1000000, 'number'),
+  warOfCopyArrayStr10: duration => warOfCopyArray(duration, 10, 'string'),
+  warOfCopyArrayStr1000: duration => warOfCopyArray(duration, 1000, 'string'),
+  warOfCopyArrayStr1000000: duration => warOfCopyArray(duration, 1000000, 'string'),
 };
 
 export async function benchmark(

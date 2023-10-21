@@ -108,6 +108,10 @@ export class Racetrack {
     }, duration);
 
     cars.forEach(car => {
+      if (!car.explain) {
+        car.explain = car.spec.toString().trim();
+      }
+
       let funcBody = `const begin = perf.now();\n`;
       //       if (car.async) {
       //         funcBody += `

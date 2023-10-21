@@ -52,8 +52,6 @@ export async function specificJoinArray(duration: number): Promise<RaceResult[]>
   const stats = await racetrack.race(
     {
       name: 'Slice Join',
-      explain: `interpolation, slice, join';
-`,
       spec: (ctx: ILapContext<number>) => {
         depth = ctx.lap % rowPathUUID.length;
         res = `${
@@ -66,8 +64,6 @@ export async function specificJoinArray(duration: number): Promise<RaceResult[]>
     },
     {
       name: 'for let str+=',
-      explain: `interpolation, slice, join';
-`,
       spec: (ctx: ILapContext<number>) => {
         depth = ctx.lap % rowPathUUID.length;
         if (depth === rowPathUUID.length) {
@@ -86,8 +82,6 @@ export async function specificJoinArray(duration: number): Promise<RaceResult[]>
     },
     {
       name: 'reduce',
-      explain: `reduce';
-`,
       spec: (ctx: ILapContext<number>) => {
         depth = ctx.lap % rowPathUUID.length;
         if (depth === rowPathUUID.length) {
@@ -100,8 +94,6 @@ export async function specificJoinArray(duration: number): Promise<RaceResult[]>
     },
     {
       name: 'iterator keys()',
-      explain: `iterator';
-`,
       spec: (ctx: ILapContext<number>) => {
         depth = ctx.lap % rowPathUUID.length;
         if (depth === rowPathUUID.length) {

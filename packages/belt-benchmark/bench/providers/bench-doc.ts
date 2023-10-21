@@ -1,7 +1,7 @@
 import type { RaceResult } from '../../src/common/race-results';
 import * as path from 'node:path';
 import * as fs from 'node:fs';
-import { p90 } from '../../../belt-array-stats/src/get-percentile';
+import { p50 } from '../../../belt-array-stats/src/get-percentile';
 
 export async function createMarkdown(fileName: string, ...races: (() => Promise<RaceResult[]>)[]): Promise<void> {
   const format = path.extname(fileName);
@@ -124,7 +124,7 @@ async function createChart(results: RaceResult[]): Promise<{
   new Chart(document.getElementById('${id}'), {
     type: 'line',
     data: {
-      labels: ${JSON.stringify(results[0].laps.map((lap, idx) => idx + 1))},
+      labels: ${JSON.stringify(datasets[0].data.map((lap, idx) => idx + 1))},
       datasets: ${JSON.stringify([
         ...datasets,
         ...results.map((res, idx) => {
@@ -134,8 +134,8 @@ async function createChart(results: RaceResult[]): Promise<{
             fill: false,
             borderDash: [5, 5],
             borderColor: chartColors[idx % chartColors.length],
-            label: `${res.car.name} p90 orig`,
-            data: new Array(samples).fill(res.p90.us),
+            label: `${res.car.name} p50`,
+            data: new Array(datasets[0].data.length).fill(res.p50.us),
             pointStyle: false,
           };
         }),
@@ -196,7 +196,7 @@ function reSamplesData(data: number[], count: number): number[] {
   let subPart: number[];
   for (let i = 1; i < data.length; i += interval) {
     subPart = data.slice(i, i + interval);
-    result.push(p90(subPart));
+    result.push(p50(subPart));
   }
   return result;
 }

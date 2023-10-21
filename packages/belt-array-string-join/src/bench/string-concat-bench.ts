@@ -13,9 +13,6 @@ export async function stringConcatBench(laps: number) {
   const stats = await racetrack.race(
     {
       name: 'samples.join()',
-      explain: `
-  str = samples.join();
-  `,
       spec: (ctx: ILapContext<number>) => {
         str1 = samples.join();
         return str1;
@@ -23,9 +20,6 @@ export async function stringConcatBench(laps: number) {
     },
     {
       name: 'String.concat();',
-      explain: `
-  str = ''.concat(...samples);
-  `,
       spec: (ctx: ILapContext<number>) => {
         str1 = ''.concat(...samples);
         return str1;
@@ -33,8 +27,6 @@ export async function stringConcatBench(laps: number) {
     },
     {
       name: 'stringConcat()',
-      explain: `str2 = stringConcat(samples);
-  `,
       spec: (ctx: ILapContext<number>) => {
         str2 = stringConcat(samples);
         return str2;

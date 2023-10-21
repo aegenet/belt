@@ -19,9 +19,6 @@ export async function declareFunctionVSDynamic(duration: number): Promise<RaceRe
   const stats = await racetrack.race(
     {
       name: 'Dynamic function',
-      explain: `samples.filter(function (f) {
-        return f > 3 && f < 9;
-      })`,
       spec: (ctx: ILapContext<number>) => {
         // ctx.begin();
         res = '';
@@ -36,11 +33,6 @@ export async function declareFunctionVSDynamic(duration: number): Promise<RaceRe
     },
     {
       name: 'Declared function',
-      explain: `const declareFilter = (f: number) => {
-        return f > 3 && f < 9;
-      };
-      // [...]
-      samples.filter(declareFunctionFilter)`,
       spec: (ctx: ILapContext<number>) => {
         // ctx.begin();
         res = '';
@@ -53,11 +45,6 @@ export async function declareFunctionVSDynamic(duration: number): Promise<RaceRe
     },
     {
       name: 'Declared arrow function',
-      explain: `function declareFunctionFilter(f: number) {
-        return f > 3 && f < 9;
-      }
-      // [...]
-      samples.filter(declareFunctionFilter)`,
       spec: (ctx: ILapContext<number>) => {
         // ctx.begin();
         res = '';

@@ -30,9 +30,6 @@ export async function arrayJoin(duration: number): Promise<RaceResult[]> {
   const stats = await racetrack.race(
     {
       name: 'samples.join()',
-      explain: `
-str = samples.join();
-`,
       spec: (ctx: ILapContext<number>) => {
         // ctx.begin();
         str1 = samples.join();
@@ -41,9 +38,6 @@ str = samples.join();
     },
     {
       name: 'String.concat',
-      explain: `
-str = ''.concat(... samples);
-`,
       spec: (ctx: ILapContext<number>) => {
         // ctx.begin();
         str2 = ''.concat(...samples);
@@ -52,12 +46,6 @@ str = ''.concat(... samples);
     },
     {
       name: 'for +=',
-      explain: `
-str = samples[0];
-for (let i = 1; i < samples.length; i++) {
-  str += samples[i];
-}
-`,
       spec: (ctx: ILapContext<number>) => {
         // ctx.begin();
         str2 = samples[0];
@@ -69,17 +57,6 @@ for (let i = 1; i < samples.length; i++) {
     },
     {
       name: 'rejoin()',
-      explain: `
-function rejoin(array: string[]) {
-  let str2 = array[0];
-  for (let i = 1; i < array.length; i++) {
-    str2 += array[i];
-  }
-  return str2;
-}
-
-str2 = rejoin(samples);
-`,
       spec: (ctx: ILapContext<number>) => {
         // ctx.begin();
         str2 = rejoin(samples);
@@ -88,17 +65,6 @@ str2 = rejoin(samples);
     },
     {
       name: 'rejoin2()',
-      explain: `
-function rejoin2(array: string[]) {
-  let str2 = array[0];
-  for (let i = 1; i < array.length; ++i) {
-    str2 += array[i];
-  }
-  return str2;
-}
-
-str2 = rejoin2(samples);
-`,
       spec: (ctx: ILapContext<number>) => {
         // ctx.begin();
         str2 = rejoin2(samples);

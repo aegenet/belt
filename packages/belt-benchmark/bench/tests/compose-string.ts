@@ -10,8 +10,6 @@ export async function composeString(duration: number): Promise<RaceResult[]> {
   const stats = await racetrack.race(
     {
       name: 'Plus operator',
-      explain: `'n°' + i + '\\n';
-`,
       spec: (ctx: ILapContext<number>) => {
         // ctx.begin();
         let str = '';
@@ -24,8 +22,6 @@ export async function composeString(duration: number): Promise<RaceResult[]> {
     },
     {
       name: 'Interpolation',
-      explain: `\`n°\${i}\\n\`;
-`,
       spec: (ctx: ILapContext<number>) => {
         // ctx.begin();
         let str = '';
