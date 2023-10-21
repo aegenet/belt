@@ -57,7 +57,7 @@ export class RaceResult {
     }
   }
 
-  public humanize() {
+  public humanize(extra?: string) {
     return {
       name: this.car.name,
       laps: this.laps.length,
@@ -70,6 +70,7 @@ export class RaceResult {
       p90: this.p90?.toString(),
       slowdown: `${(this.ratio || 1).toFixed(2)}x`,
       duration: this.duration?.toString(),
+      extra,
     };
   }
 }

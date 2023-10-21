@@ -14,6 +14,7 @@ describe('RaceResult', () => {
 
     assert.deepStrictEqual(result.humanize(), {
       duration: '16.68 min.',
+      extra: undefined,
       fastest: '1.00 sec.',
       laps: 2,
       average: '8.34 min.',

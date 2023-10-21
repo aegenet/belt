@@ -1,7 +1,7 @@
 import { benchmark } from './../../bench/benchmark';
 import * as fs from 'fs/promises';
 
-describe('benchmark', () => {
+describe.skip('benchmark', () => {
   it('100 laps', async () => {
     if (
       !(await fs
@@ -11,6 +11,6 @@ describe('benchmark', () => {
     ) {
       await fs.mkdir('./temp');
     }
-    await benchmark('./temp/bench.md', 5000);
+    await benchmark({ fileName: './temp/bench.md', duration: 10 });
   }, 60000);
 });

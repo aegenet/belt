@@ -13,9 +13,6 @@ export async function stringJoinBench(laps: number) {
   const stats = await racetrack.race(
     {
       name: 'samples.join()',
-      explain: `
-  str = samples.join();
-  `,
       spec: (ctx: ILapContext<number>) => {
         str1 = samples.join();
         return str1;
@@ -23,8 +20,6 @@ export async function stringJoinBench(laps: number) {
     },
     {
       name: 'stringJoin()',
-      explain: `str2 = stringJoin(samples);
-  `,
       spec: (ctx: ILapContext<number>) => {
         str2 = stringJoin(samples);
         return str2;

@@ -6,7 +6,7 @@ import { NodeRacetrack } from '../../src/node';
 export async function specificJoinArray(duration: number): Promise<RaceResult[]> {
   const rowPathUUID = [randomUUID(), randomUUID(), randomUUID(), randomUUID(), randomUUID(), randomUUID()];
   const racetrack: Racetrack = new NodeRacetrack({
-    name: 'Sopmethig',
+    name: 'Specific Join string array',
     duration,
   });
   let res: string;
@@ -18,19 +18,26 @@ export async function specificJoinArray(duration: number): Promise<RaceResult[]>
   function assertResult(depth: number, lap: number, result: string) {
     switch (depth) {
       case 0:
-        assert.strictEqual(result, `${rowPathUUID[0]}_${lap}`);
+        assert.strictEqual(result, `_${lap}`);
+        break;
       case 1:
         assert.strictEqual(result, `${rowPathUUID[0]}_${lap}`);
+        break;
       case 2:
         assert.strictEqual(result, `${rowPathUUID[0]}${rowPathUUID[1]}_${lap}`);
+        break;
       case 3:
         assert.strictEqual(result, `${rowPathUUID[0]}${rowPathUUID[1]}${rowPathUUID[2]}_${lap}`);
+        break;
       case 4:
         assert.strictEqual(result, `${rowPathUUID[0]}${rowPathUUID[1]}${rowPathUUID[2]}${rowPathUUID[3]}_${lap}`);
+        break;
       case 5:
         assert.strictEqual(result, `${rowPathUUID[0]}${rowPathUUID[1]}${rowPathUUID[2]}${rowPathUUID[3]}${rowPathUUID[4]}_${lap}`);
+        break;
       case 6:
         assert.strictEqual(result, `${rowPathUUID[0]}${rowPathUUID[1]}${rowPathUUID[2]}${rowPathUUID[3]}${rowPathUUID[4]}${rowPathUUID[5]}_${lap}`);
+        break;
       default:
         throw new Error('Invalid size');
     }
@@ -45,10 +52,8 @@ export async function specificJoinArray(duration: number): Promise<RaceResult[]>
   const stats = await racetrack.race(
     {
       name: 'Slice Join',
-      explain: `interpolation, slice, join';
-`,
       spec: (ctx: ILapContext<number>) => {
-        depth = (ctx.lap % (rowPathUUID.length - 1)) + 1;
+        depth = ctx.lap % rowPathUUID.length;
         res = `${
           // Le slice est très punitif, si nous pouvons éviter de le faire, tant mieux
           (depth === rowPathUUID.length ? rowPathUUID : rowPathUUID.slice(0, depth)).join('')
@@ -59,8 +64,6 @@ export async function specificJoinArray(duration: number): Promise<RaceResult[]>
     },
     {
       name: 'for let str+=',
-      explain: `interpolation, slice, join';
-`,
       spec: (ctx: ILapContext<number>) => {
         depth = ctx.lap % rowPathUUID.length;
         if (depth === rowPathUUID.length) {
@@ -79,8 +82,6 @@ export async function specificJoinArray(duration: number): Promise<RaceResult[]>
     },
     {
       name: 'reduce',
-      explain: `reduce';
-`,
       spec: (ctx: ILapContext<number>) => {
         depth = ctx.lap % rowPathUUID.length;
         if (depth === rowPathUUID.length) {
@@ -93,8 +94,6 @@ export async function specificJoinArray(duration: number): Promise<RaceResult[]>
     },
     {
       name: 'iterator keys()',
-      explain: `iterator';
-`,
       spec: (ctx: ILapContext<number>) => {
         depth = ctx.lap % rowPathUUID.length;
         if (depth === rowPathUUID.length) {

@@ -11,13 +11,9 @@ export async function dynamicFunctionVSArrow(duration: number): Promise<RaceResu
   const stats = await racetrack.race(
     {
       name: 'Function',
-      explain: `
-samples.filter(function (f) {
-  return f > 3 && f < 9;
-});
-`,
       spec: (ctx: ILapContext<number>) => {
         // ctx.begin();
+        res = '';
         for (let i = 0; i < 100; i++) {
           res += samples.filter(function (f) {
             return f > 3 && f < 9;
@@ -29,13 +25,9 @@ samples.filter(function (f) {
     },
     {
       name: 'Anonymous',
-      explain: `
-samples.filter(f => {
-  return f > 3 && f < 9;
-});
-`,
       spec: (ctx: ILapContext<number>) => {
         // ctx.begin();
+        res = '';
         for (let i = 0; i < 100; i++) {
           res += samples.filter(f => {
             return f > 3 && f < 9;

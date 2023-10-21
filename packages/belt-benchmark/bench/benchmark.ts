@@ -1,78 +1,164 @@
-import * as fs from 'fs';
 import type { RaceResult } from '../src/common';
+import { warOfSort } from './tests/war-of-sort';
+import { alphanumFight } from './tests/alphanum-fight';
+import { arrayJoin } from './tests/array-join';
+import { asyncFunctionVSFunction } from './tests/async-function-vs-function';
+import { composeString } from './tests/compose-string';
+import { costOfTryCatch } from './tests/cost-of-try-catch';
+import { dateNowVSGetTime } from './tests/date-now-vs-get-time';
 import { declareFunctionVSDynamic } from './tests/declare-function-vs-dynamic';
 import { declareInLoop } from './tests/declare-in-loop';
 import { dynamicFunctionVSArrow } from './tests/dynamic-function-vs-arrow';
+import { getMapVSObjectVSSwitchVSIf } from './tests/get-map-vs-object-vs-switch-vs-if';
 import { ifElseOrNot } from './tests/if-else-or-not';
 import { joinStringArray } from './tests/join-string-array';
 import { loopOfKeyValues } from './tests/loop-of-keyval';
-import { getMapVSObjectVSSwitchVSIf } from './tests/get-map-vs-object-vs-switch-vs-if';
-import { setVSInVSRegex } from './tests/set-vs-in-vs-regex';
-import { warOfLoop } from './tests/war-of-loop';
-import { composeString } from './tests/compose-string';
+import { newObjectVSCurlyBraces } from './tests/new-object-vs-curly-braces';
 import { setMapVSObject } from './tests/set-map-vs-object';
-// import { specificJoinArray } from './tests/specific-join-array';
-import { arrayJoin } from './tests/array-join';
-import { asyncFunctionVSFunction } from './tests/async-function-vs-function';
+import { setVSInVSRegex } from './tests/set-vs-in-vs-regex';
+import { specificJoinArray } from './tests/specific-join-array';
+import { warOfLoop } from './tests/war-of-loop';
+import { workersWar } from './tests/workers-war';
+import { warOfReduce } from './tests/war-of-reduce';
+import { warOfCopyArray } from './tests/war-of-copy-array';
+import { consoleOutput } from './providers/bench-console';
+import { createJSON } from './providers/bench-json';
+import { createMarkdown } from './providers/bench-doc';
 
-async function createMarkdown(fileName: string, ...races: (() => Promise<RaceResult[]>)[]): Promise<void> {
-  await fs.promises.writeFile(fileName, `# Benchmark Node.js v${process.versions.node}\n\n`, {
-    encoding: 'utf-8',
-  });
+const allBench: Record<string, (duration: number) => Promise<RaceResult[]>> = {
+  arrayJoin: arrayJoin,
+  specificJoinArray: specificJoinArray,
+  warOfLoopObj10: duration => warOfLoop(duration, 10, 'object'),
+  warOfLoopObj1000: duration => warOfLoop(duration, 1000, 'object'),
+  warOfLoopObj1000000: duration => warOfLoop(duration, 1000000, 'object'),
+  warOfLoopNum10: duration => warOfLoop(duration, 10, 'number'),
+  warOfLoopNum1000: duration => warOfLoop(duration, 1000, 'number'),
+  warOfLoopNum1000000: duration => warOfLoop(duration, 1000000, 'number'),
+  warOfLoopStr10: duration => warOfLoop(duration, 10, 'string'),
+  warOfLoopStr1000: duration => warOfLoop(duration, 1000, 'string'),
+  warOfLoopStr1000000: duration => warOfLoop(duration, 1000000, 'string'),
+  warOfReduceObj10: duration =>
+    warOfReduce(duration, {
+      arraySize: 10,
+      itemType: 'object',
+    }),
+  warOfReduceObj1000: duration =>
+    warOfReduce(duration, {
+      arraySize: 1000,
+      itemType: 'object',
+    }),
+  warOfReduceObj50000: duration =>
+    warOfReduce(duration, {
+      arraySize: 50000,
+      itemType: 'object',
+    }),
+  warOfReduceObj1000000: duration =>
+    warOfReduce(duration, {
+      arraySize: 1000000,
+      itemType: 'object',
+    }),
+  warOfReduceNum10: duration =>
+    warOfReduce(duration, {
+      arraySize: 10,
+      itemType: 'number',
+    }),
+  warOfReduceNum1000: duration =>
+    warOfReduce(duration, {
+      arraySize: 1000,
+      itemType: 'number',
+    }),
+  warOfReduceNum50000: duration =>
+    warOfReduce(duration, {
+      arraySize: 50000,
+      itemType: 'number',
+    }),
+  warOfReduceNum1000000: duration =>
+    warOfReduce(duration, {
+      arraySize: 1000000,
+      itemType: 'number',
+    }),
+  warOfReduceStr10: duration =>
+    warOfReduce(duration, {
+      arraySize: 10,
+      itemType: 'string',
+    }),
+  warOfReduceStr1000: duration =>
+    warOfReduce(duration, {
+      arraySize: 1000,
+      itemType: 'string',
+    }),
+  warOfReduceStr50000: duration =>
+    warOfReduce(duration, {
+      arraySize: 50000,
+      itemType: 'string',
+    }),
+  warOfReduceStr1000000: duration =>
+    warOfReduce(duration, {
+      arraySize: 1000000,
+      itemType: 'string',
+    }),
+  warOfSortObj10: duration => warOfSort(duration, 10, 'object'),
+  warOfSortObj1000: duration => warOfSort(duration, 1000, 'object'),
+  warOfSortObj1000000: duration => warOfSort(duration, 1000000, 'object'),
+  warOfSortNum10: duration => warOfSort(duration, 10, 'number'),
+  warOfSortNum1000: duration => warOfSort(duration, 1000, 'number'),
+  warOfSortNum1000000: duration => warOfSort(duration, 1000000, 'number'),
+  warOfSortStr10: duration => warOfSort(duration, 10, 'string'),
+  warOfSortStr1000: duration => warOfSort(duration, 1000, 'string'),
+  warOfSortStr1000000: duration => warOfSort(duration, 1000000, 'string'),
+  loopOfKeyValues: loopOfKeyValues,
+  declareInLoop: declareInLoop,
+  joinStringArray: joinStringArray,
+  getMapVSObjectVSSwitchVSIf: getMapVSObjectVSSwitchVSIf,
+  setMapVSObject: setMapVSObject,
+  ifElseOrNot: ifElseOrNot,
+  setVSInVSRegex: setVSInVSRegex,
+  workersWar: workersWar,
+  dynamicFunctionVSArrow: dynamicFunctionVSArrow,
+  declareFunctionVSDynamic: declareFunctionVSDynamic,
+  composeString: composeString,
+  asyncFunctionVSFunction: asyncFunctionVSFunction,
+  dateNowVSGetTime: dateNowVSGetTime,
+  newObjectVSCurlyBraces: newObjectVSCurlyBraces,
+  alphanumFight: alphanumFight,
+  costOfTryCatch: costOfTryCatch,
+  warOfCopyArrayObj10: duration => warOfCopyArray(duration, 10, 'object'),
+  warOfCopyArrayObj1000: duration => warOfCopyArray(duration, 1000, 'object'),
+  warOfCopyArrayObj1000000: duration => warOfCopyArray(duration, 1000000, 'object'),
+  warOfCopyArrayNum10: duration => warOfCopyArray(duration, 10, 'number'),
+  warOfCopyArrayNum1000: duration => warOfCopyArray(duration, 1000, 'number'),
+  warOfCopyArrayNum1000000: duration => warOfCopyArray(duration, 1000000, 'number'),
+  warOfCopyArrayStr10: duration => warOfCopyArray(duration, 10, 'string'),
+  warOfCopyArrayStr1000: duration => warOfCopyArray(duration, 1000, 'string'),
+  warOfCopyArrayStr1000000: duration => warOfCopyArray(duration, 1000000, 'string'),
+};
 
-  for (let i = 0; i < races.length; i++) {
-    const race = await races[i]();
-    console.log(`Race: ${race[0].raceName}`);
-    console.table(race.map(f => f.humanize()));
-    await fs.promises.appendFile(fileName, createMarkdownForRace(...race), {
-      encoding: 'utf-8',
-    });
+export async function benchmark(
+  options: {
+    fileName?: string;
+    duration;
+    benchName?;
+    // nodeVersion;
+  } = {
+    duration: 1000,
+    // nodeVersion: undefined,
   }
-}
-
-function createMarkdownForRace(...raceResult: RaceResult[]) {
-  let md = _tableHeader(raceResult[0]) + '\n';
-  for (let i = 0; i < raceResult.length; i++) {
-    md += _tableRow(raceResult[i]) + '\n';
+) {
+  if (options.benchName) {
+    if (!options.fileName) {
+      await consoleOutput(async () => await allBench[options.benchName](options.duration));
+    } else if (options.fileName.endsWith('.json')) {
+      await createJSON(options.fileName, async () => await allBench[options.benchName](options.duration));
+    } else {
+      await createMarkdown(options.fileName, async () => await allBench[options.benchName](options.duration));
+    }
+  } else {
+    if (!options.fileName) {
+      await consoleOutput(...Object.values(allBench).map(f => async () => await f(options.duration)));
+    } else if (options.fileName.endsWith('.json')) {
+      await createJSON(options.fileName, ...Object.values(allBench).map(f => async () => await f(options.duration)));
+    } else {
+      await createMarkdown(options.fileName, ...Object.values(allBench).map(f => async () => await f(options.duration)));
+    }
   }
-  return md + '</table>\n\n';
-}
-
-function _tableHeader(raceResult: RaceResult) {
-  return `## ${raceResult.raceName} (${raceResult.laps.length} laps, ${raceResult.samplesPerLap} samples per lap)
-
-<table>
-  <tr>
-    <th>pos</th><th>name</th><th>sample</th><th>fastest</th><th>slowest</th><th>average</th><th>p50</th><th>p75</th><th>p90</th><th>ratio</th><th>duration</th>
-  </tr>
-`;
-}
-
-function _tableRow(result: RaceResult) {
-  return `<tr>
-    <td>${result.position}</td><td>${result.car.name}</td><td><pre lang="typescript"><code>\n${result.car.explain || ''}\n</code></pre></td><td>${result.fastestLap}</td><td>${result.slowestLap}</td><td>${result.average}</td><td${
-    result.position === 1 ? ' style="color:green"' : ''
-  }><strong>${result.p50}</strong></td><td>${result.p75}</td><td>${result.p90}</td><td>${result.ratio?.toFixed(2)}</td><td>${result.duration}</td>
-</tr>
-`;
-}
-
-export async function benchmark(fileName: string, duration = 1000) {
-  await createMarkdown(
-    fileName,
-    async () => await arrayJoin(duration),
-    // async () => await specificJoinArray(laps),
-    async () => await warOfLoop(duration),
-    async () => await loopOfKeyValues(duration),
-    async () => await declareInLoop(duration),
-    async () => await joinStringArray(duration),
-    async () => await getMapVSObjectVSSwitchVSIf(duration),
-    async () => await setMapVSObject(duration),
-    async () => await ifElseOrNot(duration),
-    async () => await setVSInVSRegex(duration),
-    async () => await dynamicFunctionVSArrow(duration),
-    async () => await declareFunctionVSDynamic(duration),
-    async () => await composeString(duration),
-    async () => await asyncFunctionVSFunction(duration)
-  );
 }

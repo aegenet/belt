@@ -10,13 +10,6 @@ export async function declareInLoop(duration: number): Promise<RaceResult[]> {
   const stats = await racetrack.race(
     {
       name: 'const in loop',
-      explain: `
-const map = new Map<number, number>();
-for (let i = 0; i < 10000; i++) {
-  const myVarInLoop = i * 5;
-  map.set(i, myVarInLoop);
-}
-`,
       spec: (ctx: ILapContext<number>) => {
         const map = new Map<number, number>();
         // ctx.begin();
@@ -30,14 +23,6 @@ for (let i = 0; i < 10000; i++) {
     },
     {
       name: 'let out loop',
-      explain: `
-const map = new Map<number, number>();
-let myVarOutLoop: number;
-for (let i = 0; i < 100; i++) {
-  myVarOutLoop = i * 5;
-  map.set(i, myVarOutLoop);
-}
-`,
       spec: (ctx: ILapContext<number>) => {
         const map = new Map<number, number>();
         // ctx.begin();
@@ -52,12 +37,6 @@ for (let i = 0; i < 100; i++) {
     },
     {
       name: 'No var',
-      explain: `
-const map = new Map<number, number>();
-for (let i = 0; i < 100; i++) {
-  map.set(i, i * 5);
-}
-`,
       spec: (ctx: ILapContext<number>) => {
         const map = new Map<number, number>();
         // ctx.begin();
