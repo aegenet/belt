@@ -53,7 +53,7 @@ export class RaceResult {
 
   public computeRatio(fastestResult?: RaceResult) {
     if (fastestResult) {
-      this.ratio = fastestResult === this ? 1 : ((this.p50?.ns || 0) + (this.p75?.ns || 0) + (this.p90?.ns || 0)) / ((fastestResult.p50?.ns || 0) + (fastestResult.p75?.ns || 0) + (fastestResult.p90?.ns || 0));
+      this.ratio = fastestResult === this ? 1 : (this.p50?.ns || 0) / (fastestResult.p50?.ns || 0);
     }
   }
 
