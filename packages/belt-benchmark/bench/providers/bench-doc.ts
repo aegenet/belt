@@ -1,7 +1,7 @@
 import type { RaceResult } from '../../src/common/race-results';
 import * as path from 'node:path';
 import * as fs from 'node:fs';
-import { p50 } from '../../../belt-array-stats/src/get-percentile';
+import { reSamplesData } from './bench-common';
 
 export async function createMarkdown(fileName: string, ...races: (() => Promise<RaceResult[]>)[]): Promise<void> {
   const format = path.extname(fileName);
@@ -65,7 +65,7 @@ function _tableHeader(format: 'html' | 'md', raceResult: RaceResult) {
 
 function _tableRow(result: RaceResult) {
   return `<tr>
-    <td class="py-2 px-1 border-r">${result.position}</td><td class="py-2 px-1 border-r">${result.car.name}</td><td class="py-2 px-1 border-r hidden lg:block"><pre lang="typescript"><code>\n${
+    <td class="py-2 px-1 border-r">${result.position}</td><td class="py-2 px-1 border-r">${result.car.name}</td><td class="py-2 px-1 border-r text-xs hidden lg:block"><pre lang="typescript"><code>\n${
       result.car.explain || ''
     }\n</code></pre></td><td class="py-2 px-1 border-r">${result.fastestLap}</td><td class="py-2 px-1 border-r">${result.slowestLap}</td><td class="py-2 px-1 border-r">${result.average}</td><td class="py-2 px-1 border-r" ${
       result.position === 1 ? ' style="color:green"' : ''
@@ -183,22 +183,6 @@ async function createChart(results: RaceResult[]): Promise<{
 </script>
     `,
   };
-}
-
-/** Chartjs can't digest too much samples */
-function reSamplesData(data: number[], count: number): number[] {
-  if (data.length < count) {
-    return data;
-  }
-
-  const interval = Math.floor((data.length - 1) / count);
-  const result = [data[0]];
-  let subPart: number[];
-  for (let i = 1; i < data.length; i += interval) {
-    subPart = data.slice(i, i + interval);
-    result.push(p50(subPart));
-  }
-  return result;
 }
 
 // async function createStaticChart(results: RaceResult[]): Promise<string> {
