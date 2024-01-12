@@ -20,25 +20,25 @@ export function rowsInflator<I = any, O = any>(raws: I[], schema: IRowsInflatorO
     return [];
   }
 
-  /** Le rows mapper va nous permettre de savoir comment nous allons parser chaque ligne */
+  /** The rows mapper lets us know how we are going to parse each line. */
   const rowsMapper = _createJITRowMapper([], '', schema);
 
-  // Tableau principal
+  /** Main collection */
   const mainCollection: O[] = [];
   let assocUUID: string;
   let raw: I, rowPathValues: any[], rowPathUUID: string[], rowMapper, depth, cache, map: <I>(row: I) => { value: any; uuid: string }, cachedData, formated;
 
   for (let i = 0; i < raws.length; i++) {
     raw = raws[i];
-    // Permet de savoir qui est le parent
+    // Allows us to find out who the parent is
     rowPathValues = [];
     rowPathUUID = [];
 
-    /** Nous dépilons tous les expands/associations/includes possibles */
+    /** We expands all possible associations/includes */
     for (let y = 0; y < rowsMapper.length; y++) {
       ({ depth, cache, map } = rowMapper = rowsMapper[y]);
 
-      // Nous scannons que si nous avons le parent, sinon cela ne sert à rien
+      // We only scan if we have the parent, otherwise skip
       if (rowPathValues.length >= depth) {
         formated = map<I>(raw);
         if (formated) {
@@ -46,24 +46,24 @@ export function rowsInflator<I = any, O = any>(raws: I[], schema: IRowsInflatorO
 
           cachedData = cache.get(assocUUID);
 
-          // Si elle n'existe pas on la crée et on l'ajoute au tableau et à la map
+          // If it doesn't exist, we create it and add it to the table and map.
           if (!cachedData) {
             cachedData = formated.value;
             cache.set(assocUUID, cachedData);
 
-            // Lors du setValue il y aussi l'hydratation
+            // The setValue also includes hydration
             rowMapper.setValue(mainCollection, rowPathValues, cachedData);
           }
 
           // Important
           if (depth === 0) {
-            // Si le record root est null il ne peut pas y avoir d'enfant
+            // If record root is null => no children
             rowPathValues = [cachedData];
             rowPathUUID = [formated.uuid];
           } else {
             rowPathValues[depth] = cachedData;
-            // On ne fait pas la ligne en dessous car ça provoque la réécriture du tableau, ce qui plombe les performances
-            // Il ne faut jamais utiliser la taille du rowPathValues, mais toujours la profondeur de l'association pour ne pas à avoir à faire cela
+            // We don't do the line bellow (`rowPathValues.length = rowMapper.depth + 1`) because this causes the table to be rewritten, which reduces performance.
+            // Never use the size of rowPathValues, but always the depth of the association, so you don't have to.
             // rowPathValues.length = rowMapper.depth + 1;
 
             rowPathUUID[depth] = formated.uuid;
@@ -76,7 +76,7 @@ export function rowsInflator<I = any, O = any>(raws: I[], schema: IRowsInflatorO
   return mainCollection;
 }
 
-/** Nous créeons le parcours à effectuer par row pour parser tous les éléments */
+/** We create the path to be taken by row (JIT) to parse all the elements */
 function _createJITRowMapper(rowMappers: IRowsInflatorMapper[], actualPath: string, levelSchema: IRowsInflatorOptions, depth: number = 0): Array<IRowsInflatorMapper> {
   if (levelSchema) {
     const formatedPathWithU = actualPath ? `${actualPath}__` : '';
@@ -86,7 +86,7 @@ function _createJITRowMapper(rowMappers: IRowsInflatorMapper[], actualPath: stri
       const fields = Object.keys(levelSchema.fields);
       const pks = levelSchema.primaryKeys?.length ? levelSchema.primaryKeys.filter(f => f in levelSchema.fields) : [];
       const hasPKFields = !!pks.length;
-      // Nous créeons un closure dédié à cette chaine pour ne pas garder toute la fonction en doublon dans la mémoire (ici et dans la Function)
+      // We create a closure dedicated to this string so as not to keep the entire function in memory (here and in the Function).
       let mapFuncStr = `
 const rowed = {};
 let hasValue = ${fields.length};
@@ -121,7 +121,7 @@ ${hasPKFields ? '' : `uuid += \`_\${val}\`;`}`;
           mainCollection.push(value);
         } else {
           const parent = rowPathValues[depth - 1];
-          // <= permet de prendre le hasOne & le belongsTo
+          // <= to take the hasOne & belongsTo
           if (levelSchema.associationType != null && levelSchema.associationType <= ERowsInflatorAssociation.belongsTo) {
             parent[levelSchema.as!] = value;
           } else {
@@ -136,8 +136,8 @@ ${hasPKFields ? '' : `uuid += \`_\${val}\`;`}`;
         if (levelSchema.hydrate && !value[symHydrate]) {
           levelSchema.hydrate(value);
           value[symHydrate] = 1;
-          /** Le code ci-dessous détruit les performances */
-          /** Nous mettons l'hydrated en non enumerable et non writable */
+          /** The following code destroys performance */
+          /** We set hydrated to non enumerable and non writable */
           // Object.defineProperty(cachedData, '__h', {
           //   value: true,
           //   enumerable: false,

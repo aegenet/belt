@@ -73,7 +73,7 @@ export interface IAntiBounceOptions {
  * Ah! Don't forget to call `disposeAntiBounces` in your lifecycle (dispose)!
  */
 export interface IAntiBounceSupport {
-  /** Instances des DebouceIts (permet de purger) */
+  /** DebouceIts instances (allows purging) */
   $antiBounces?: Map<string, IAntiBounce>;
 }
 
