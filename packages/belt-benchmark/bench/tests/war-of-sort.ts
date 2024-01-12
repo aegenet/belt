@@ -23,14 +23,14 @@ function mergeSortByName(data: Array<{ name: string }>) {
       globalIndex++;
     }
 
-    // Copiez les éléments restants de leftSide, s'il y en a
+    // Copy the remaining leftSide elements, if any
     while (leftIndex < leftSide.length) {
       data[globalIndex] = leftSide[leftIndex];
       leftIndex++;
       globalIndex++;
     }
 
-    // Copiez les éléments restants de rightSide, s'il y en a
+    // Copy the remaining elements of rightSide, if any
     while (rightIndex < rightSide.length) {
       data[globalIndex] = rightSide[rightIndex];
       rightIndex++;
@@ -61,14 +61,14 @@ function mergeSort(data: Array<string | number>) {
       globalIndex++;
     }
 
-    // Copiez les éléments restants de leftSide, s'il y en a
+    // Copy the remaining leftSide elements, if any
     while (leftIndex < leftSide.length) {
       data[globalIndex] = leftSide[leftIndex];
       leftIndex++;
       globalIndex++;
     }
 
-    // Copiez les éléments restants de rightSide, s'il y en a
+    // Copy the remaining elements of rightSide, if any
     while (rightIndex < rightSide.length) {
       data[globalIndex] = rightSide[rightIndex];
       rightIndex++;

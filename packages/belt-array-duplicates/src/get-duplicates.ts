@@ -1,5 +1,5 @@
 /**
- * Permet de récupérer les doublons d'une collection de nombre
+ * Retrieves duplicates from a collection of numbers
  */
 export function getDuplicates(collection: number[]) {
   const duplicates: number[] = [];

@@ -1,9 +1,9 @@
 /**
- * Renvoie la liste des propriétés d'un objet.
+ * Returns a list of object properties.
  *
- * Pour des raisons de performances et de mémoire:
- *  - La liste des champs est obligatoire.
- *  - Le retour est précaire, tableau de tableau sous la forme @return
+ * For performance and memory reasons:
+ *  - The list of fields is mandatory
+ *  - The return is basic, table of table in the form:
  * @return [field, value][]
  */
 export function ofields<T = Record<string, unknown>>(

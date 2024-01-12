@@ -8,7 +8,7 @@ const buildConfigPath = path.join(__dirname, 'build-flow.config.json');
 const projects = fs.existsSync(buildConfigPath) ? require(buildConfigPath) : [];
 
 if (projects?.length) {
-  // S'il y a une config, nous la prenons en + des répertoires spécifiés
+  // If a config exists, we take it in addition to the specified folders.
   folders = folders.concat(... projects.map(f => `./packages/${f.name}/coverage`));
 }
 
