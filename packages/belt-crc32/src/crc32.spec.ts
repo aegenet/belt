@@ -1,7 +1,7 @@
 import * as assert from 'node:assert';
-import { crc32 } from './index';
+import { crc32 } from './crc32';
 
-describe('crc8', () => {
+describe('crc32', () => {
   it('Ok', () => {
     assert.equal(crc32('Hello'), 0xf7d18982);
   });
