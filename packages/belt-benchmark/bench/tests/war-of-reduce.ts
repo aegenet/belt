@@ -41,20 +41,20 @@ export async function warOfReduce(
               return reduce;
             }
           : itemType === 'number'
-          ? (ctx: ILapContext<number>) => {
-              let reduce = 0;
-              for (let i = 0; i < samples.length; i++) {
-                reduce += samples[i] as number;
+            ? (ctx: ILapContext<number>) => {
+                let reduce = 0;
+                for (let i = 0; i < samples.length; i++) {
+                  reduce += samples[i] as number;
+                }
+                return reduce;
               }
-              return reduce;
-            }
-          : (ctx: ILapContext<number>) => {
-              let reduce = '';
-              for (let i = 0; i < samples.length; i++) {
-                reduce += samples[i] as string;
-              }
-              return reduce;
-            },
+            : (ctx: ILapContext<number>) => {
+                let reduce = '';
+                for (let i = 0; i < samples.length; i++) {
+                  reduce += samples[i] as string;
+                }
+                return reduce;
+              },
     },
     {
       name: 'for i (len outside)',
@@ -69,22 +69,22 @@ export async function warOfReduce(
               return reduce;
             }
           : itemType === 'number'
-          ? (ctx: ILapContext<number>) => {
-              const len = samples.length;
-              let reduce = 0;
-              for (let i = 0; i < len; i++) {
-                reduce += samples[i] as number;
+            ? (ctx: ILapContext<number>) => {
+                const len = samples.length;
+                let reduce = 0;
+                for (let i = 0; i < len; i++) {
+                  reduce += samples[i] as number;
+                }
+                return reduce;
               }
-              return reduce;
-            }
-          : (ctx: ILapContext<number>) => {
-              const len = samples.length;
-              let reduce = '';
-              for (let i = 0; i < len; i++) {
-                reduce += samples[i] as string;
-              }
-              return reduce;
-            },
+            : (ctx: ILapContext<number>) => {
+                const len = samples.length;
+                let reduce = '';
+                for (let i = 0; i < len; i++) {
+                  reduce += samples[i] as string;
+                }
+                return reduce;
+              },
     },
     {
       name: 'for of',
@@ -98,20 +98,20 @@ export async function warOfReduce(
               return reduce;
             }
           : itemType === 'number'
-          ? (ctx: ILapContext<number>) => {
-              let reduce = 0;
-              for (const val of samples as number[]) {
-                reduce += val;
+            ? (ctx: ILapContext<number>) => {
+                let reduce = 0;
+                for (const val of samples as number[]) {
+                  reduce += val;
+                }
+                return reduce;
               }
-              return reduce;
-            }
-          : (ctx: ILapContext<number>) => {
-              let reduce = '';
-              for (const val of samples as string[]) {
-                reduce += val;
-              }
-              return reduce;
-            },
+            : (ctx: ILapContext<number>) => {
+                let reduce = '';
+                for (const val of samples as string[]) {
+                  reduce += val;
+                }
+                return reduce;
+              },
     },
     {
       name: 'forEach',
@@ -125,20 +125,20 @@ export async function warOfReduce(
               return reduce;
             }
           : itemType === 'number'
-          ? (ctx: ILapContext<number>) => {
-              let reduce = 0;
-              (samples as number[]).forEach(val => {
-                reduce += val;
-              });
-              return reduce;
-            }
-          : (ctx: ILapContext<number>) => {
-              let reduce = '';
-              (samples as string[]).forEach(val => {
-                reduce += val;
-              });
-              return reduce;
-            },
+            ? (ctx: ILapContext<number>) => {
+                let reduce = 0;
+                (samples as number[]).forEach(val => {
+                  reduce += val;
+                });
+                return reduce;
+              }
+            : (ctx: ILapContext<number>) => {
+                let reduce = '';
+                (samples as string[]).forEach(val => {
+                  reduce += val;
+                });
+                return reduce;
+              },
     },
     {
       name: 'reduce',
@@ -150,16 +150,16 @@ export async function warOfReduce(
               }, 0);
             }
           : itemType === 'number'
-          ? (ctx: ILapContext<number>) => {
-              return (samples as number[]).reduce((prev, act) => {
-                return prev + (act + act);
-              }, 0);
-            }
-          : (ctx: ILapContext<number>) => {
-              return (samples as string[]).reduce((prev, act) => {
-                return prev + (act + act);
-              }, '');
-            },
+            ? (ctx: ILapContext<number>) => {
+                return (samples as number[]).reduce((prev, act) => {
+                  return prev + (act + act);
+                }, 0);
+              }
+            : (ctx: ILapContext<number>) => {
+                return (samples as string[]).reduce((prev, act) => {
+                  return prev + (act + act);
+                }, '');
+              },
     },
     {
       name: 'while',
@@ -175,24 +175,24 @@ export async function warOfReduce(
               return reduce;
             }
           : itemType === 'number'
-          ? (ctx: ILapContext<number>) => {
-              let i = 0;
-              let reduce = 0;
-              while (i < samples.length) {
-                reduce += samples[i] as number;
-                i++;
+            ? (ctx: ILapContext<number>) => {
+                let i = 0;
+                let reduce = 0;
+                while (i < samples.length) {
+                  reduce += samples[i] as number;
+                  i++;
+                }
+                return reduce;
               }
-              return reduce;
-            }
-          : (ctx: ILapContext<number>) => {
-              let i = 0;
-              let reduce = '';
-              while (i < samples.length) {
-                reduce += samples[i] as string;
-                i++;
-              }
-              return reduce;
-            },
+            : (ctx: ILapContext<number>) => {
+                let i = 0;
+                let reduce = '';
+                while (i < samples.length) {
+                  reduce += samples[i] as string;
+                  i++;
+                }
+                return reduce;
+              },
     }
   );
   return stats;

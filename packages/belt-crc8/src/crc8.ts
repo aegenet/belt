@@ -16,7 +16,7 @@ export function crc8(input: string): number {
   if (input) {
     for (let i = 0; i < input.length; i++) {
       // tslint:disable-next-line:no-bitwise
-      output = table[(output ^ input.charCodeAt(i)) % 256];
+      output = table[(output ^ input.charCodeAt(i)) & 0xff];
     }
   }
   return output;

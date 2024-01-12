@@ -24,6 +24,7 @@ import { warOfCopyArray } from './tests/war-of-copy-array';
 import { consoleOutput } from './providers/bench-console';
 import { createJSON } from './providers/bench-json';
 import { createMarkdown } from './providers/bench-doc';
+import { warOfCRC32 } from './tests/war-of-crc32';
 
 const allBench: Record<string, (duration: number) => Promise<RaceResult[]>> = {
   arrayJoin: arrayJoin,
@@ -131,6 +132,10 @@ const allBench: Record<string, (duration: number) => Promise<RaceResult[]>> = {
   warOfCopyArrayStr10: duration => warOfCopyArray(duration, 10, 'string'),
   warOfCopyArrayStr1000: duration => warOfCopyArray(duration, 1000, 'string'),
   warOfCopyArrayStr1000000: duration => warOfCopyArray(duration, 1000000, 'string'),
+  warOfCRC32_10: duration => warOfCRC32(duration, 10),
+  warOfCRC32_1000: duration => warOfCRC32(duration, 1000),
+  warOfCRC32_50000: duration => warOfCRC32(duration, 50000),
+  warOfCRC32_1000000: duration => warOfCRC32(duration, 1000000),
 };
 
 export async function benchmark(
