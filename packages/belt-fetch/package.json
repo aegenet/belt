@@ -2,20 +2,20 @@
   "name": "@aegenet/belt-fetch",
   "description": "Ensure fetch response is ok",
   "version": "0.0.0-dev",
-  "main": "dist/index.cjs",
-  "module": "dist/index.mjs",
-  "browser": "dist/index.mjs",
+  "main": "dist/node/node.cjs",
+  "module": "dist/node/node.mjs",
+  "browser": "dist/web/browser.mjs",
   "exports": {
     "node": {
-        "require": "./dist/index.cjs",
-        "import": "./dist/index.mjs"
+        "require": "./dist/node/node.cjs",
+        "import": "./dist/node/node.mjs"
     },
     "default": {
-        "require": "./dist/index.cjs",
-        "import": "./dist/index.mjs"
+        "require": "./dist/web/browser.cjs",
+        "import": "./dist/web/browser.mjs"
     }
   },
-  "typings": "./dist/bundle.d.ts",
+  "typings": "./dist/node/bundle.d.ts",
   "author": "Alexandre Genet",
   "license": "UNLICENSED",
   "files": [
@@ -37,10 +37,10 @@
     "lint:fix": "node ./../../node_modules/eslint/bin/eslint ./src/**/*.{js,ts,tsx} --fix",
     "test-browser": "node ./../../node_modules/jest/bin/jest --config ./jest.web.config.js",
     "test-node": "node ./../../node_modules/jest/bin/jest --config ./jest.config.js",
-    "test-local": "node ./../../node_modules/ts-mocha/bin/ts-mocha src/**/*.spec.ts --timeout 15000",
+    "test-local": "node ./../../node_modules/ts-mocha/bin/ts-mocha \"src/**/*.spec.ts\"",
     "build": "yarn tsc && yarn run build:vite && yarn run build:dts  --bundleConfigAsCjs",
     "tsc": "node ./../../node_modules/rimraf/dist/esm/bin.mjs build && node ./../../node_modules/typescript/bin/tsc",
     "build:dts": "node ./../../node_modules/rollup/dist/bin/rollup -c rollup.config.dts.js",
-    "build:vite": "node ./../../node_modules/vite/bin/vite build"
+    "build:vite": "node ./../../node_modules/rimraf/dist/esm/bin.mjs dist && node ./../../node_modules/vite/bin/vite build -c ./vite.node.config.js && node ./../../node_modules/vite/bin/vite build -c ./vite.web.config.js"
   }
 }

@@ -142,6 +142,7 @@ describe('all-in-one', () => {
   it('belt_fetch', () => {
     assert.ok(belt.fetchEnsure);
     assert.ok(belt.fetchFormatPayload);
+    assert.ok(belt.bFetch);
   });
   it('belt_obj_monitoring', () => {
     assert.ok(belt.ObjectMonitoring);

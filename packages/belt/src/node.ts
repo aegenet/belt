@@ -32,7 +32,7 @@ export * from '../../belt-readdir/src/node';
 export * from '../../belt-extract-domain/src/index';
 export * from '../../belt-benchmark/src/node';
 export * from '../../belt-array-string-join/src/index';
-export * from '../../belt-fetch/src/index';
+export * from '../../belt-fetch/src/node';
 export * from '../../belt-obj-monitoring/src/index';
 export * from '../../belt-hide-sensitive/src/index';
 export * from '../../belt-rows-inflator/src/index';
