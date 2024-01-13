@@ -1,6 +1,6 @@
 # @aegenet/belt-hook
 
-> Hook function -> Don't use this stuff in production ! TESTS ONLY !
+> Hook function -> Not for production use! TESTS ONLY!
 
 ```typescript
 import { hook } from '@aegenet/belt-hook';

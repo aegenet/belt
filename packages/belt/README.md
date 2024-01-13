@@ -15,7 +15,7 @@ import {
   ofields,
   odiff,
   oclone,
-  HOOK_PREFIX,
+  BELT_HOOK_PREFIX,
   hook,
   Interpolation,
   transform,

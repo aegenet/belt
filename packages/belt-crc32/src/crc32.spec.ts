@@ -1,5 +1,5 @@
 import * as assert from 'node:assert';
-import { crc32 } from './crc32';
+import { crc32 } from './index';
 
 describe('crc32', () => {
   it('Ok', () => {

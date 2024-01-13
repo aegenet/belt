@@ -28,7 +28,7 @@ describe('all-in-one', () => {
     assert.ok(belt.oclone);
   });
   it('belt_hook', () => {
-    assert.ok(belt.HOOK_PREFIX);
+    assert.ok(belt.BELT_HOOK_PREFIX);
     assert.ok(belt.hook);
   });
   it('belt_interpolation', () => {
