@@ -74,6 +74,24 @@ describe('bFetch browser', () => {
         assert.strictEqual((error as Error).message, 'The operation was aborted due to timeout');
       }
     });
+
+    it('Object url', async () => {
+      try {
+        await bFetch(
+          {
+            url: 'http://127.0.0.1:3030/timeout/5000',
+          } as any,
+          {},
+          {
+            timeout: 200,
+            replaceDNSByIP: true,
+          }
+        );
+        throw new Error('Must failed!');
+      } catch (error) {
+        assert.strictEqual((error as Error).message, 'bFetch is not compatible atm with Request object');
+      }
+    });
   });
 
   describe('DNS async', () => {
@@ -89,8 +107,24 @@ describe('bFetch browser', () => {
         );
         throw new Error('Must failed!');
       } catch (error) {
-        assert.strictEqual((error as Error).message, 'bFetch is not compatible with `replaceDNSByIP` in a browser environment');
+        assert.strictEqual((error as Error).message, 'bFetch is not compatible with `replaceDNSByIP` and an empty `dnsMap` in a browser environment');
       }
+    });
+
+    it('Resolve dns with map', async () => {
+      const resp = await bFetch(
+        'http://dontexistbutmapped:3030/text',
+        {},
+        {
+          timeout: 200,
+          replaceDNSByIP: true,
+          dnsMap: {
+            dontexistbutmapped: '127.0.0.1',
+          },
+        }
+      );
+      assert.strictEqual(resp.status, 200);
+      assert.strictEqual(await fetchEnsure(resp), 'Hello World!');
     });
   });
 

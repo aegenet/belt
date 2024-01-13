@@ -1,5 +1,6 @@
 import { bFetchDefaultOptions } from '../../common/timeout/b-fetch-default-options';
 import type { bFetchOptions } from '../../common/timeout/b-fetch-options';
+import { LOCALHOST, getIPFromDNSMap, isIP } from '../../common/timeout/b-fetch-utils';
 
 /** Fetch with Timeout */
 export async function bFetch(
@@ -9,13 +10,39 @@ export async function bFetch(
     timeout: bFetchDefaultOptions.timeout,
     /** Not compatible with browser atm */
     replaceDNSByIP: false,
+    dnsMapAsFallback: false,
   }
 ): Promise<Response> {
-  if (options.replaceDNSByIP) {
-    throw new Error('bFetch is not compatible with `replaceDNSByIP` in a browser environment');
+  let urlInput: URL | undefined;
+  let origHost: string;
+  if (typeof input === 'string' || input instanceof URL) {
+    urlInput = new URL(input);
+
+    if (options.replaceDNSByIP) {
+      if (options.dnsMap == null) {
+        throw new Error('bFetch is not compatible with `replaceDNSByIP` and an empty `dnsMap` in a browser environment');
+      }
+
+      origHost = urlInput.host;
+
+      // Check if it is a domain or not an ip (v4/v6)
+      if (urlInput.hostname !== LOCALHOST && !isIP(urlInput.hostname)) {
+        const ips = getIPFromDNSMap(options.dnsMap, urlInput.hostname);
+
+        if (ips.length) {
+          urlInput.hostname = ips[0];
+          init.headers ??= {};
+          if (!(init.headers as Record<string, string>).host && !(init.headers as Record<string, string>).Host) {
+            (init.headers as Record<string, string>).Host = origHost;
+          }
+        }
+      }
+    }
+  } else {
+    throw new Error('bFetch is not compatible atm with Request object');
   }
 
-  return await fetch(input, {
+  return await fetch(urlInput, {
     ...init,
     signal: AbortSignal.timeout(options.timeout),
   });

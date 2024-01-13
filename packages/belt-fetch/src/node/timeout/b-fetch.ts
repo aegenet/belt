@@ -3,8 +3,7 @@ import { isIP } from 'node:net';
 
 import type { bFetchOptions } from '../../common/timeout/b-fetch-options';
 import { bFetchDefaultOptions } from '../../common/timeout/b-fetch-default-options';
-
-const LOCALHOST = 'localhost';
+import { LOCALHOST, getIPFromDNSMap } from '../../common/timeout/b-fetch-utils';
 
 /** Fetch with timeout and an async dns resolver */
 export async function bFetch(
@@ -15,6 +14,8 @@ export async function bFetch(
     replaceDNSByIP: bFetchDefaultOptions.replaceDNSByIP,
   }
 ): Promise<Response> {
+  options.dnsMap ??= {};
+
   let origHost: string;
   let urlInput: URL;
   if (typeof input === 'string' || input instanceof URL) {
@@ -23,12 +24,33 @@ export async function bFetch(
 
     // Check if it is a domain or not an ip (v4/v6)
     if (options.replaceDNSByIP && urlInput.hostname !== LOCALHOST && isIP(urlInput.hostname) === 0) {
-      // Resolve dns to ipv6 first
-      let ips = await resolve6(urlInput.hostname).catch(() => []);
-      if (ips.length === 0) {
-        // ipv4 fallback
-        ips = await resolve4(urlInput.hostname);
+      let ips: string[] = [];
+
+      if (options.dnsMapAsFallback === false) {
+        // DNS Map is used as the primary resolver
+        ips = getIPFromDNSMap(options.dnsMap, urlInput.hostname);
       }
+
+      if (ips.length === 0) {
+        // Resolve dns to ipv6 first
+        ips = await resolve6(urlInput.hostname).catch(() => []);
+        if (ips.length === 0) {
+          try {
+            // ipv4 fallback
+            ips = await resolve4(urlInput.hostname);
+          } catch (dnsError) {
+            if (options.dnsMapAsFallback) {
+              // DNS Map is used as the fallback resolver
+              ips = getIPFromDNSMap(options.dnsMap, urlInput.hostname);
+            }
+
+            if (ips.length === 0) {
+              throw dnsError;
+            }
+          }
+        }
+      }
+
       urlInput.hostname = ips[0];
 
       init.headers ??= {};
@@ -40,7 +62,7 @@ export async function bFetch(
     throw new Error('bFetch is not compatible atm with Request object');
   }
 
-  return await fetch(input, {
+  return await fetch(urlInput, {
     ...init,
     signal: AbortSignal.timeout(options.timeout),
   });

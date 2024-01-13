@@ -4,6 +4,8 @@
 
 ## `bFetch`
 
+### Why?
+
 **bFetch** is `fetch` with:
 - a configurable timeout *(default 10 seconds)*
 - (**node only**) an asynchronous DNS resolver: by default, native fetch uses a synchronous DNS resolver*, which can potentially block your entire Node.js process.
@@ -13,6 +15,8 @@
 **Important**: there is a drawback; the DNS is not resolved in the same way as `dns.lookup`. For example, the host file is not taken into account.
 
 For more informations: https://nodejs.org/api/dns.html#implementation-considerations
+
+### Basic usage
 
 ```typescript
 import { bFetch, fetchEnsure } from '@aegenet/belt-fetch';
@@ -26,6 +30,45 @@ const results = await fetchEnsure(response);
   "title": "delectus aut autem",
   "completed": false
 }
+```
+
+### Custom DNS resolution
+
+```typescript
+import { bFetch, fetchEnsure } from '@aegenet/belt-fetch';
+
+const resp = await bFetch(
+  'http://dontexistbutmapped:3030/text',
+  {},
+  {
+    timeout: 200,
+    replaceDNSByIP: true,
+    dnsMapAsFallback: true,
+    dnsMap: {
+      dontexistbutmapped: '127.0.0.1',
+    },
+  }
+);
+// resp.status 200 (Hello World!)
+```
+
+```typescript
+import { bFetch, fetchEnsure } from '@aegenet/belt-fetch';
+
+const resp = await bFetch(
+  'http://github.com:3030/text',
+  {},
+  {
+    timeout: 200,
+    replaceDNSByIP: true,
+    /** Not as a fallback, but as a primary resolver */
+    dnsMapAsFallback: false,
+    dnsMap: {
+      'github.com': '127.0.0.1',
+    },
+  }
+);
+// resp.status 200 (Hello World!)
 ```
 
 ## `fetchEnsure`

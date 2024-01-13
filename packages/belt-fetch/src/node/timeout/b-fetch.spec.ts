@@ -122,6 +122,40 @@ describe('bFetch node', () => {
       );
       assert.strictEqual(resp.status, 200);
     });
+
+    it('Resolve dns with dnsMap fallback', async () => {
+      const resp = await bFetch(
+        'http://dontexistbutmapped:3030/text',
+        {},
+        {
+          timeout: 200,
+          replaceDNSByIP: true,
+          dnsMapAsFallback: true,
+          dnsMap: {
+            dontexistbutmapped: '127.0.0.1',
+          },
+        }
+      );
+      assert.strictEqual(resp.status, 200);
+      assert.strictEqual(await fetchEnsure(resp), 'Hello World!');
+    });
+
+    it('Resolve dns with dnsMap as primary resolver: fake github.com', async () => {
+      const resp = await bFetch(
+        'http://github.com:3030/text',
+        {},
+        {
+          timeout: 200,
+          replaceDNSByIP: true,
+          dnsMapAsFallback: false,
+          dnsMap: {
+            'github.com': '127.0.0.1',
+          },
+        }
+      );
+      assert.strictEqual(resp.status, 200);
+      assert.strictEqual(await fetchEnsure(resp), 'Hello World!');
+    });
   });
 
   describe('ok', () => {
