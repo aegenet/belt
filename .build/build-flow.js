@@ -136,6 +136,7 @@ async function main() {
       if (cmd) {
         packProms.push(exec(cmd, {
           cwd: process.cwd(),
+          maxBuffer: undefined,
         }).then(res => {
           if (!IS_SILENT) {
             console.log(res.stdout);

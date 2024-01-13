@@ -1,5 +1,5 @@
 import * as assert from 'node:assert';
-import { fetchEnsure } from './index';
+import { fetchEnsure } from '../../browser';
 import * as http from 'http';
 
 const beforeAll = global.beforeAll ?? global.before;
