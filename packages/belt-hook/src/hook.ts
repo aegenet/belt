@@ -4,11 +4,11 @@ let _HOOKED_COUNT: number = 1;
 let _FUNC_CALL_COUNT: number = 1;
 
 /** Hooked functions prefix */
-export const HOOK_PREFIX: string = '__hooked__';
+export const BELT_HOOK_PREFIX: string = '__bhooked__';
 
 /** Hooked func name */
 function _createHookedName(funcName: string) {
-  return `${HOOK_PREFIX}${funcName}${_HOOKED_COUNT++}`;
+  return `${BELT_HOOK_PREFIX}${funcName}${_HOOKED_COUNT++}`;
 }
 
 export type HookOptions<T = Record<string, unknown>> = { context: T; name: string; beforeCall?: (data: HookedFunctionStat) => void; afterCall?: (data: HookedFunctionStat) => void };
