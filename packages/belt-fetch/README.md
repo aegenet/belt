@@ -4,7 +4,9 @@
 
 ## `bFetch`
 
-**bFetch** is `fetch` with a default timeout (10 seconds) and an asynchronous DNS resolver: by default, native fetch uses a synchronous DNS resolver, which can potentially block your entire Node.js process.
+**bFetch** is `fetch` with:
+- a configurable timeout *(default 10 seconds)*
+- (**node only**) an asynchronous DNS resolver: by default, native fetch uses a synchronous DNS resolver*, which can potentially block your entire Node.js process.
 
 > *Though the call to dns.lookup() will be asynchronous from JavaScript's perspective, it is implemented as a synchronous call to getaddrinfo(3) that runs on libuv's threadpool. This can have surprising negative performance implications for some applications, see the UV_THREADPOOL_SIZE documentation for more information.*
 

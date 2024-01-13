@@ -111,9 +111,9 @@ describe('bFetch node', () => {
       }
     });
 
-    it('Resolve github dns', async () => {
+    it('Resolve jsonplaceholder.typicode.com dns', async () => {
       const resp = await bFetch(
-        'https://github.com/',
+        'https://jsonplaceholder.typicode.com/todos/1',
         {},
         {
           timeout: 200,
