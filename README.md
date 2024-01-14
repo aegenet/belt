@@ -40,7 +40,7 @@
 | [@aegenet/belt-memory-rw](./packages/belt-memory-rw/README.md) | Memory RW helps to read/write a buffer sequentially |
 | [@aegenet/belt-obj-first-key](./packages/belt-obj-first-key/README.md) | Object first key |
 | [@aegenet/belt-obj-is-empty](./packages/belt-obj-is-empty/README.md) | Object is empty? |
-| [@aegenet/belt-obj-is-equals](./packages/belt-obj-is-equals/README.md) | Object is equals `objectsIsEquals` ? |
+| [@aegenet/belt-obj-is-equals](./packages/belt-obj-is-equals/README.md) | Object is equals `objectsIsEquals`? |
 | [@aegenet/belt-obj-monitoring](./packages/belt-obj-monitoring/README.md) | Object Monitoring - Watcher / Tracker |
 | [@aegenet/belt-obj-to-array](./packages/belt-obj-to-array/README.md) | Object to Array |
 | [@aegenet/belt-obj-to-map](./packages/belt-obj-to-map/README.md) | Object to Map |
@@ -53,7 +53,7 @@
 | [@aegenet/belt-rows-inflator](./packages/belt-rows-inflator/README.md) | Rows Inflator, transforms SQL results into nested objects |
 | [@aegenet/belt-str-escape-regex](./packages/belt-str-escape-regex/README.md) | String Escape Regex |
 | [@aegenet/belt-string-split](./packages/belt-string-split/README.md) | String Split is an alternative to String.split, with the ability to ignore the split character inside 'tags' |
-| [@aegenet/belt-symbols-is-balanced](./packages/belt-symbols-is-balanced/README.md) | Symbols is balanced (`[`, `(` `{`) ?  |
+| [@aegenet/belt-symbols-is-balanced](./packages/belt-symbols-is-balanced/README.md) | Symbols is balanced (`[`, `(` `{`)?  |
 
 
 #### Node only
