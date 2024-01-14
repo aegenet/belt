@@ -5,6 +5,16 @@
 
 > Stats from array.
 
+## 💾 Installation
+
+```shell
+yarn add @aegenet/belt-array-stats@^1.2.0
+# or
+npm i @aegenet/belt-array-stats@^1.2.0
+```
+
+## 📝 Usage
+
 ### getAverage
 
 ```typescript

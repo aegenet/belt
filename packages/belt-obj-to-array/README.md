@@ -5,6 +5,16 @@
 
 > Object to Array
 
+## 💾 Installation
+
+```shell
+yarn add @aegenet/belt-obj-to-array@^1.2.0
+# or
+npm i @aegenet/belt-obj-to-array@^1.2.0
+```
+
+## 📝 Usage
+
 ```typescript
 import { objectToArray } from '@aegenet/belt-obj-to-array';
 

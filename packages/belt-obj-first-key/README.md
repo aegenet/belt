@@ -5,6 +5,16 @@
 
 > Object first key
 
+## 💾 Installation
+
+```shell
+yarn add @aegenet/belt-obj-first-key@^1.2.0
+# or
+npm i @aegenet/belt-obj-first-key@^1.2.0
+```
+
+## 📝 Usage
+
 ```typescript
 import { objectFirstKey } from '@aegenet/belt-obj-first-key';
 

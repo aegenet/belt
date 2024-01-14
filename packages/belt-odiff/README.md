@@ -5,6 +5,16 @@
 
 > Simple objects differences
 
+## 💾 Installation
+
+```shell
+yarn add @aegenet/belt-odiff@^1.2.0
+# or
+npm i @aegenet/belt-odiff@^1.2.0
+```
+
+## 📝 Usage
+
 _Note: the field `type` must be either `number`, `string`, `date`, `object`, or `array`_
 
 ```typescript

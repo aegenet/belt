@@ -5,6 +5,16 @@
 
 > Strip duplicates from array / get duplicates of an array.
 
+## 💾 Installation
+
+```shell
+yarn add @aegenet/belt-array-duplicates@^1.2.0
+# or
+npm i @aegenet/belt-array-duplicates@^1.2.0
+```
+
+## 📝 Usage
+
 ### getDuplicates
 
 ```typescript

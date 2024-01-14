@@ -5,6 +5,16 @@
 
 > Object fields, retrieve fields of an object with values
 
+## 💾 Installation
+
+```shell
+yarn add @aegenet/belt-ofields@^1.2.0
+# or
+npm i @aegenet/belt-ofields@^1.2.0
+```
+
+## 📝 Usage
+
 ```typescript
 import { ofields } from '@aegenet/belt-ofields';
 

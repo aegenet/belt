@@ -5,6 +5,16 @@
 
 > Simple ECMAScript Interpolation
 
+## 💾 Installation
+
+```shell
+yarn add @aegenet/belt-interpolation@^1.2.0
+# or
+npm i @aegenet/belt-interpolation@^1.2.0
+```
+
+## 📝 Usage
+
 ```typescript
 import { Interpolation, transform } from '@aegenet/belt-interpolation';
 

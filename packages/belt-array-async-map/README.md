@@ -5,6 +5,16 @@
 
 > Array async map (sequentially)
 
+## 💾 Installation
+
+```shell
+yarn add @aegenet/belt-array-async-map@^1.2.0
+# or
+npm i @aegenet/belt-array-async-map@^1.2.0
+```
+
+## 📝 Usage
+
 ```typescript
 import { arrayAsyncMap } from '@aegenet/belt-array-async-map';
 

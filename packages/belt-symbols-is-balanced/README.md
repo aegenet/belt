@@ -5,6 +5,16 @@
 
 > Symbols is balanced (`[`, `(` `{`) ?
 
+## 💾 Installation
+
+```shell
+yarn add @aegenet/belt-symbols-is-balanced@^1.2.0
+# or
+npm i @aegenet/belt-symbols-is-balanced@^1.2.0
+```
+
+## 📝 Usage
+
 ```typescript
 import { symbolsIsBalanced } from '@aegenet/belt-symbols-is-balanced';
 

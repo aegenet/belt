@@ -5,6 +5,16 @@
 
 > Array async filter (sequentially)
 
+## 💾 Installation
+
+```shell
+yarn add @aegenet/belt-array-async-filter@^1.2.0
+# or
+npm i @aegenet/belt-array-async-filter@^1.2.0
+```
+
+## 📝 Usage
+
 ```typescript
 import { arrayAsyncFilter } from '@aegenet/belt-array-async-filter';
 

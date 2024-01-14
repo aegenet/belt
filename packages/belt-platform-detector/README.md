@@ -5,6 +5,16 @@
 
 > Platform detector - `isNodeJS` ? `isMobileDevice` ?
 
+## 💾 Installation
+
+```shell
+yarn add @aegenet/belt-platform-detector@^1.2.0
+# or
+npm i @aegenet/belt-platform-detector@^1.2.0
+```
+
+## 📝 Usage
+
 ```typescript
 import { isNodeJS } from '@aegenet/belt-platform-detector';
 

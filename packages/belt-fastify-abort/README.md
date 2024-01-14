@@ -7,6 +7,16 @@ Auto add an AbortController on all Fastify Request
 
 > Node only!
 
+## 💾 Installation
+
+```shell
+yarn add @aegenet/belt-fastify-abort@^1.2.0
+# or
+npm i @aegenet/belt-fastify-abort@^1.2.0
+```
+
+## 📝 Usage
+
 ### Node.js
 
 ```typescript

@@ -5,6 +5,16 @@
 
 > `@antiBounce` decorator
 
+## 💾 Installation
+
+```shell
+yarn add @aegenet/belt-anti-bounce@^1.2.0
+# or
+npm i @aegenet/belt-anti-bounce@^1.2.0
+```
+
+## 📝 Usage
+
 ```typescript
 import { IAntiBounceSupport, IAntiBounce, disposeAntiBounces } from '@aegenet/belt-anti-bounce';
 

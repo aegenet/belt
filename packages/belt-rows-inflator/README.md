@@ -5,6 +5,16 @@
 
 > Rows Inflator, transforms SQL results into nested objects
 
+## 💾 Installation
+
+```shell
+yarn add @aegenet/belt-rows-inflator@^1.2.0
+# or
+npm i @aegenet/belt-rows-inflator@^1.2.0
+```
+
+## 📝 Usage
+
 ```typescript
 import { rowsInflator, ERowsInflatorAssociation } from '@aegenet/belt-rows-inflator';
 

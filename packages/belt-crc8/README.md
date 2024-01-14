@@ -5,6 +5,16 @@
 
 > Very simple crc8
 
+## 💾 Installation
+
+```shell
+yarn add @aegenet/belt-crc8@^1.2.0
+# or
+npm i @aegenet/belt-crc8@^1.2.0
+```
+
+## 📝 Usage
+
 ```typescript
 import { crc8 } from '@aegenet/belt-crc8';
 

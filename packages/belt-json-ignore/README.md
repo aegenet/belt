@@ -5,6 +5,16 @@
 
 > `@jsonIgnore` decorator
 
+## 💾 Installation
+
+```shell
+yarn add @aegenet/belt-json-ignore@^1.2.0
+# or
+npm i @aegenet/belt-json-ignore@^1.2.0
+```
+
+## 📝 Usage
+
 ```typescript
 import { jsonIgnore } from '@aegenet/belt-json-ignore';
 

@@ -5,6 +5,14 @@
 
 > Belt fetch
 
+## 💾 Installation
+
+```shell
+yarn add @aegenet/belt-fetch@^1.2.0
+# or
+npm i @aegenet/belt-fetch@^1.2.0
+```
+
 ## `bFetch`
 
 ### Why?

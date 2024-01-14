@@ -6,6 +6,14 @@
 > Benchmark your functions like an F1 driver
 > Specify the duration, setup the <s>cars</s> functions and start your engine.
 
+## 💾 Installation
+
+```shell
+yarn add @aegenet/belt-benchmark@^1.2.0
+# or
+npm i @aegenet/belt-benchmark@^1.2.0
+```
+
 ## Browser
 
 > Warning! The accuracy of the browsers is not good at all, so we have to provide large samples per lap.

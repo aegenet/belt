@@ -5,6 +5,16 @@
 
 > crc32
 
+## 💾 Installation
+
+```shell
+yarn add @aegenet/belt-crc32@^1.2.0
+# or
+npm i @aegenet/belt-crc32@^1.2.0
+```
+
+## 📝 Usage
+
 ```typescript
 import { crc32 } from '@aegenet/belt-crc32';
 

@@ -5,6 +5,16 @@
 
 > objectsIsEquals ?
 
+## 💾 Installation
+
+```shell
+yarn add @aegenet/belt-obj-is-equals@^1.2.0
+# or
+npm i @aegenet/belt-obj-is-equals@^1.2.0
+```
+
+## 📝 Usage
+
 ```typescript
 import { objectsIsEquals } from '@aegenet/belt-obj-is-equals';
 

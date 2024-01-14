@@ -5,6 +5,16 @@
 
 > Object to Map
 
+## 💾 Installation
+
+```shell
+yarn add @aegenet/belt-obj-to-map@^1.2.0
+# or
+npm i @aegenet/belt-obj-to-map@^1.2.0
+```
+
+## 📝 Usage
+
 ```typescript
 import { objectToMap } from '@aegenet/belt-obj-to-map';
 

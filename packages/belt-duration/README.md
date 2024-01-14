@@ -5,6 +5,16 @@
 
 > Helps to convert or format durations
 
+## 💾 Installation
+
+```shell
+yarn add @aegenet/belt-duration@^1.2.0
+# or
+npm i @aegenet/belt-duration@^1.2.0
+```
+
+## 📝 Usage
+
 ```typescript
 import { toDuration, EDurationFormat, EDurationFormatMask } from '@aegenet/belt-duration';
 

@@ -5,7 +5,17 @@
 
 > Error tools
 
-## asError
+## 💾 Installation
+
+```shell
+yarn add @aegenet/belt-error@^1.2.0
+# or
+npm i @aegenet/belt-error@^1.2.0
+```
+
+## 📝 Usage
+
+### asError
 
 ```typescript
 import { asError, isSyntaxError } from '@aegenet/belt-error';
@@ -13,17 +23,17 @@ import { asError, isSyntaxError } from '@aegenet/belt-error';
 asError({ message: 'Toto', statusText: 'Yolo' }); // instanceof Error
 ```
 
-## isSyntaxError
+### isSyntaxError
 
 ```typescript
 import { isSyntaxError } from '@aegenet/belt-error';
 
-isSyntaxError(new SyntaxError('Toto'))); // true
+isSyntaxError(new SyntaxError('Toto')); // true
 
-isSyntaxError(new Error('Toto'))); // false
+isSyntaxError(new Error('Toto')); // false
 ```
 
-## mutateErrorWithRef, RefError
+### mutateErrorWithRef, RefError
 
 ```typescript
 import { mutateErrorWithRef, RefError } from '@aegenet/belt-error';
@@ -47,7 +57,7 @@ const error = new Error('An error!', {
 Object.keys(error); // ['stack', 'message', 'refError']
 ```
 
-## getErrorMessage
+### getErrorMessage
 
 ```typescript
 import { getErrorMessage } from '@aegenet/belt-error';

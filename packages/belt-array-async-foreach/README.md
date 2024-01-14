@@ -5,6 +5,16 @@
 
 > Array Async forEach (sequentially)
 
+## 💾 Installation
+
+```shell
+yarn add @aegenet/belt-array-async-foreach@^1.2.0
+# or
+npm i @aegenet/belt-array-async-foreach@^1.2.0
+```
+
+## 📝 Usage
+
 ```typescript
 import { arrayAsyncForEach } from '@aegenet/belt-array-async-foreach';
 

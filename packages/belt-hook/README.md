@@ -5,6 +5,16 @@
 
 > Hook function -> Not for production use! TESTS ONLY!
 
+## 💾 Installation
+
+```shell
+yarn add @aegenet/belt-hook@^1.2.0
+# or
+npm i @aegenet/belt-hook@^1.2.0
+```
+
+## 📝 Usage
+
 ```typescript
 import { hook } from '@aegenet/belt-hook';
 

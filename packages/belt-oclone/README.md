@@ -5,6 +5,16 @@
 
 > Simple clone
 
+## 💾 Installation
+
+```shell
+yarn add @aegenet/belt-oclone@^1.2.0
+# or
+npm i @aegenet/belt-oclone@^1.2.0
+```
+
+## 📝 Usage
+
 ```typescript
 import { oclone } from '@aegenet/belt-oclone';
 

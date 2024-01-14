@@ -5,7 +5,17 @@
 
 > Hide Sensititve data from string
 
-## Example, small cli to hide passwords/secrets from environment variables in the console output.
+## 💾 Installation
+
+```shell
+yarn add @aegenet/belt-hide-sensitive@^1.2.0
+# or
+npm i @aegenet/belt-hide-sensitive@^1.2.0
+```
+
+## 📝 Usage
+
+Example, small cli to hide passwords/secrets from environment variables in the console output.
 
 ```typescript
 // ./hide-out-cli.js

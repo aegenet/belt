@@ -5,6 +5,16 @@
 
 > Binary search
 
+## 💾 Installation
+
+```shell
+yarn add @aegenet/belt-binary-search@^1.2.0
+# or
+npm i @aegenet/belt-binary-search@^1.2.0
+```
+
+## 📝 Usage
+
 ```typescript
 import { binarySearch } from '@aegenet/belt-binary-search';
 

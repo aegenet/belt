@@ -5,6 +5,16 @@
 
 > Promise toolkit
 
+## 💾 Installation
+
+```shell
+yarn add @aegenet/belt-promise@^1.2.0
+# or
+npm i @aegenet/belt-promise@^1.2.0
+```
+
+## 📝 Usage
+
 ### isPromise
 
 ```typescript

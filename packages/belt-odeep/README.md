@@ -5,6 +5,16 @@
 
 > odeep brings tools to set and get values with a string path.
 
+## 💾 Installation
+
+```shell
+yarn add @aegenet/belt-odeep@^1.2.0
+# or
+npm i @aegenet/belt-odeep@^1.2.0
+```
+
+## 📝 Usage
+
 ### Get
 
 ```typescript

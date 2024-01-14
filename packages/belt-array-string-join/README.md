@@ -7,6 +7,16 @@
 >
 > /!\ The performance improvement is NOT relevant if you use ts-node.
 
+## 💾 Installation
+
+```shell
+yarn add @aegenet/belt-array-string-join@^1.2.0
+# or
+npm i @aegenet/belt-array-string-join@^1.2.0
+```
+
+## 📝 Usage
+
 ```typescript
 import { stringJoin, stringConcat } from '@aegenet/belt-array-string-join';
 
