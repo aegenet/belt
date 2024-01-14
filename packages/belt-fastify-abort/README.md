@@ -1,3 +1,6 @@
+[![npm version](https://img.shields.io/npm/v/@aegenet/belt-fastify-abort.svg)](https://www.npmjs.com/package/@aegenet/belt-fastify-abort)
+<br>
+
 # @aegenet/belt-fastify-abort
 
 Auto add an AbortController on all Fastify Request

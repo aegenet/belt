@@ -1,3 +1,6 @@
+[![npm version](https://img.shields.io/npm/v/@aegenet/belt-array-async-map.svg)](https://www.npmjs.com/package/@aegenet/belt-array-async-map)
+<br>
+
 # @aegenet/belt-array-async-map
 
 > Array async map (sequentially)

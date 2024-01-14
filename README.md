@@ -1,3 +1,4 @@
+[![npm version](https://img.shields.io/npm/v/@aegenet/belt.svg)](https://www.npmjs.com/package/@aegenet/belt)
 [![Build Status](https://github.com/aegenet/belt/actions/workflows/ci.yml/badge.svg)](https://github.com/aegenet/belt/actions)
 [![codecov](https://codecov.io/gh/aegenet/belt/branch/master/graph/badge.svg?token=XWMNA00XFY)](https://codecov.io/gh/aegenet/belt)
 <br />
@@ -80,6 +81,4 @@
 
 # License
 
-ATM, this project is **NOT** an open-source project (like MIT & co).
-
-**Commercial use is prohibited without a specific license** (*not available yet*).
+[The MIT License](LICENSE) - Copyright © 2024 [Alexandre Genet](https://github.com/aegenet).

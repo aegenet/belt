@@ -1,3 +1,6 @@
+[![npm version](https://img.shields.io/npm/v/@aegenet/belt-error.svg)](https://www.npmjs.com/package/@aegenet/belt-error)
+<br>
+
 # @aegenet/belt-error
 
 > Error tools

@@ -1,3 +1,6 @@
+[![npm version](https://img.shields.io/npm/v/@aegenet/belt-odeep.svg)](https://www.npmjs.com/package/@aegenet/belt-odeep)
+<br>
+
 # @aegenet/belt-odeep
 
 > odeep brings tools to set and get values with a string path.

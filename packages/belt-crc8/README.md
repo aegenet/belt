@@ -1,3 +1,6 @@
+[![npm version](https://img.shields.io/npm/v/@aegenet/belt-crc8.svg)](https://www.npmjs.com/package/@aegenet/belt-crc8)
+<br>
+
 # @aegenet/belt-crc8
 
 > Very simple crc8

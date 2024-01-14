@@ -1,3 +1,6 @@
+[![npm version](https://img.shields.io/npm/v/@aegenet/belt-obj-is-empty.svg)](https://www.npmjs.com/package/@aegenet/belt-obj-is-empty)
+<br>
+
 # @aegenet/belt-obj-is-empty
 
 > Object is empty ?

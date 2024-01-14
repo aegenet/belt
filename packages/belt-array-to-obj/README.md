@@ -1,3 +1,6 @@
+[![npm version](https://img.shields.io/npm/v/@aegenet/belt-array-to-obj.svg)](https://www.npmjs.com/package/@aegenet/belt-array-to-obj)
+<br>
+
 # @aegenet/belt-array-to-obj
 
 > Array to object

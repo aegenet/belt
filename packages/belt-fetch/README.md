@@ -1,3 +1,6 @@
+[![npm version](https://img.shields.io/npm/v/@aegenet/belt-fetch.svg)](https://www.npmjs.com/package/@aegenet/belt-fetch)
+<br>
+
 # @aegenet/belt-fetch
 
 > Belt fetch

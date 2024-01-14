@@ -1,3 +1,6 @@
+[![npm version](https://img.shields.io/npm/v/@aegenet/belt-promise.svg)](https://www.npmjs.com/package/@aegenet/belt-promise)
+<br>
+
 # @aegenet/belt-promise
 
 > Promise toolkit

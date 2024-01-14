@@ -1,3 +1,6 @@
+[![npm version](https://img.shields.io/npm/v/@aegenet/belt-obj-to-map.svg)](https://www.npmjs.com/package/@aegenet/belt-obj-to-map)
+<br>
+
 # @aegenet/belt-obj-to-map
 
 > Object to Map

@@ -1,3 +1,6 @@
+[![npm version](https://img.shields.io/npm/v/@aegenet/belt-binary-search.svg)](https://www.npmjs.com/package/@aegenet/belt-binary-search)
+<br>
+
 # @aegenet/belt-binary-search
 
 > Binary search

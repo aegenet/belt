@@ -1,3 +1,6 @@
+[![npm version](https://img.shields.io/npm/v/@aegenet/belt-obj-monitoring.svg)](https://www.npmjs.com/package/@aegenet/belt-obj-monitoring)
+<br>
+
 # @aegenet/belt-obj-monitoring
 
 > Object Monitoring

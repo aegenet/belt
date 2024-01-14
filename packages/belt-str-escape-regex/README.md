@@ -1,3 +1,6 @@
+[![npm version](https://img.shields.io/npm/v/@aegenet/belt-str-escape-regex.svg)](https://www.npmjs.com/package/@aegenet/belt-str-escape-regex)
+<br>
+
 # @aegenet/belt-str-escape-regex
 
 > Escape String RegExp

@@ -1,3 +1,6 @@
+[![npm version](https://img.shields.io/npm/v/@aegenet/belt-hide-sensitive.svg)](https://www.npmjs.com/package/@aegenet/belt-hide-sensitive)
+<br>
+
 # @aegenet/belt-hide-sensitive
 
 > Hide Sensititve data from string

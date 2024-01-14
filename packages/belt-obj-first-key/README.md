@@ -1,3 +1,6 @@
+[![npm version](https://img.shields.io/npm/v/@aegenet/belt-obj-first-key.svg)](https://www.npmjs.com/package/@aegenet/belt-obj-first-key)
+<br>
+
 # @aegenet/belt-obj-first-key
 
 > Object first key

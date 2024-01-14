@@ -1,3 +1,6 @@
+[![npm version](https://img.shields.io/npm/v/@aegenet/belt-interpolation.svg)](https://www.npmjs.com/package/@aegenet/belt-interpolation)
+<br>
+
 # @aegenet/belt-interpolation
 
 > Simple ECMAScript Interpolation

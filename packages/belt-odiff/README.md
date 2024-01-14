@@ -1,3 +1,6 @@
+[![npm version](https://img.shields.io/npm/v/@aegenet/belt-odiff.svg)](https://www.npmjs.com/package/@aegenet/belt-odiff)
+<br>
+
 # @aegenet/belt-odiff
 
 > Simple objects differences

@@ -1,3 +1,6 @@
+[![npm version](https://img.shields.io/npm/v/@aegenet/belt-array-string-join.svg)](https://www.npmjs.com/package/@aegenet/belt-array-string-join)
+<br>
+
 # @aegenet/belt-array-string-join
 
 > Join & Concat Array of Strings

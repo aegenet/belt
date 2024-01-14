@@ -1,3 +1,6 @@
+[![npm version](https://img.shields.io/npm/v/@aegenet/belt-hook.svg)](https://www.npmjs.com/package/@aegenet/belt-hook)
+<br>
+
 # @aegenet/belt-hook
 
 > Hook function -> Not for production use! TESTS ONLY!

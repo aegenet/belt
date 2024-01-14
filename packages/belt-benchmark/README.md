@@ -1,3 +1,6 @@
+[![npm version](https://img.shields.io/npm/v/@aegenet/belt-benchmark.svg)](https://www.npmjs.com/package/@aegenet/belt-benchmark)
+<br>
+
 # @aegenet/belt-benchmark
 
 > Benchmark your functions like an F1 driver

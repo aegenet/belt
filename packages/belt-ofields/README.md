@@ -1,3 +1,6 @@
+[![npm version](https://img.shields.io/npm/v/@aegenet/belt-ofields.svg)](https://www.npmjs.com/package/@aegenet/belt-ofields)
+<br>
+
 # @aegenet/belt-ofields
 
 > Object fields, retrieve fields of an object with values

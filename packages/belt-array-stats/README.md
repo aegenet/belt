@@ -1,3 +1,6 @@
+[![npm version](https://img.shields.io/npm/v/@aegenet/belt-array-stats.svg)](https://www.npmjs.com/package/@aegenet/belt-array-stats)
+<br>
+
 # @aegenet/belt-array-stats
 
 > Stats from array.

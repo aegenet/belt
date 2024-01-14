@@ -1,3 +1,6 @@
+[![npm version](https://img.shields.io/npm/v/@aegenet/belt-string-split.svg)](https://www.npmjs.com/package/@aegenet/belt-string-split)
+<br>
+
 # @aegenet/belt-string-split
 
 String Split is an alternative to String.split, with the ability to ignore the split character inside 'tags'

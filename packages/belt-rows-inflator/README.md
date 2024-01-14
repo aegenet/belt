@@ -1,3 +1,6 @@
+[![npm version](https://img.shields.io/npm/v/@aegenet/belt-rows-inflator.svg)](https://www.npmjs.com/package/@aegenet/belt-rows-inflator)
+<br>
+
 # @aegenet/belt-rows-inflator
 
 > Rows Inflator, transforms SQL results into nested objects

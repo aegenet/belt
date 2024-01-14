@@ -1,3 +1,6 @@
+[![npm version](https://img.shields.io/npm/v/@aegenet/belt-anti-bounce.svg)](https://www.npmjs.com/package/@aegenet/belt-anti-bounce)
+<br>
+
 # @aegenet/belt-anti-bounce
 
 > `@antiBounce` decorator

@@ -1,3 +1,6 @@
+[![npm version](https://img.shields.io/npm/v/@aegenet/belt-extract-domain.svg)](https://www.npmjs.com/package/@aegenet/belt-extract-domain)
+<br>
+
 # @aegenet/belt-extract-domain
 
 > Extract domain informations

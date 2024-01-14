@@ -1,3 +1,6 @@
+[![npm version](https://img.shields.io/npm/v/@aegenet/belt-crc32.svg)](https://www.npmjs.com/package/@aegenet/belt-crc32)
+<br>
+
 # @aegenet/belt-crc32
 
 > crc32

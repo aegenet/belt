@@ -1,3 +1,6 @@
+[![npm version](https://img.shields.io/npm/v/@aegenet/belt-array-async-filter.svg)](https://www.npmjs.com/package/@aegenet/belt-array-async-filter)
+<br>
+
 # @aegenet/belt-array-async-filter
 
 > Array async filter (sequentially)

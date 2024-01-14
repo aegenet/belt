@@ -1,3 +1,6 @@
+[![npm version](https://img.shields.io/npm/v/@aegenet/belt-oclone.svg)](https://www.npmjs.com/package/@aegenet/belt-oclone)
+<br>
+
 # @aegenet/belt-oclone
 
 > Simple clone

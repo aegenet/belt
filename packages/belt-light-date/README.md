@@ -1,3 +1,6 @@
+[![npm version](https://img.shields.io/npm/v/@aegenet/belt-light-date.svg)](https://www.npmjs.com/package/@aegenet/belt-light-date)
+<br>
+
 # @aegenet/belt-light-date
 
 > (Very) light `Date` tools

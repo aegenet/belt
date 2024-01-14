@@ -1,3 +1,6 @@
+[![npm version](https://img.shields.io/npm/v/@aegenet/belt-json-ignore.svg)](https://www.npmjs.com/package/@aegenet/belt-json-ignore)
+<br>
+
 # @aegenet/belt-json-ignore
 
 > `@jsonIgnore` decorator
