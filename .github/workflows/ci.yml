@@ -56,10 +56,9 @@ jobs:
     - name: Coverage
       run: yarn run cover
 
-    - name: Upload coverage
-      run: yarn run codecov
+    - name: Upload coverage reports to Codecov
+      uses: codecov/codecov-action@v3
       env:
-        CI: true
         CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
 
     - name: Publish dev packages

@@ -24,6 +24,6 @@ jobs:
           package-names: ${{ env.DELETE_PACKAGE_NAMES }}
           package-type: 'npm'
           min-versions-to-keep: 5
-          include-versions: '^0\.|^999\.'
-          token: ${{ secrets.DELETE_PACKAGES_TOKEN }}
+          include-versions: '^999\.|\-dev$'
+          token: ${{ secrets.NPM_AUTH_TOKEN }}
           sleep-interval: 10000
