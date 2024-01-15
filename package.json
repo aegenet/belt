@@ -4,7 +4,7 @@
   "description": "Belt monorepo",
   "main": "index.js",
   "author": "Alexandre Genet",
-  "license": "UNLICENSED",
+  "license": "MIT",
   "nyc": {
     "report-dir": "./coverage",
     "temp-dir": "./.nyc_output",

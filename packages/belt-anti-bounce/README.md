@@ -1,6 +1,19 @@
+[![npm version](https://img.shields.io/npm/v/@aegenet/belt-anti-bounce.svg)](https://www.npmjs.com/package/@aegenet/belt-anti-bounce)
+<br>
+
 # @aegenet/belt-anti-bounce
 
 > `@antiBounce` decorator
+
+## 💾 Installation
+
+```shell
+yarn add @aegenet/belt-anti-bounce@^1.2.0
+# or
+npm i @aegenet/belt-anti-bounce@^1.2.0
+```
+
+## 📝 Usage
 
 ```typescript
 import { IAntiBounceSupport, IAntiBounce, disposeAntiBounces } from '@aegenet/belt-anti-bounce';

@@ -1,6 +1,19 @@
+[![npm version](https://img.shields.io/npm/v/@aegenet/belt-odiff.svg)](https://www.npmjs.com/package/@aegenet/belt-odiff)
+<br>
+
 # @aegenet/belt-odiff
 
 > Simple objects differences
+
+## 💾 Installation
+
+```shell
+yarn add @aegenet/belt-odiff@^1.2.0
+# or
+npm i @aegenet/belt-odiff@^1.2.0
+```
+
+## 📝 Usage
 
 _Note: the field `type` must be either `number`, `string`, `date`, `object`, or `array`_
 

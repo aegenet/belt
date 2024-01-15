@@ -1,8 +1,21 @@
+[![npm version](https://img.shields.io/npm/v/@aegenet/belt-light-date.svg)](https://www.npmjs.com/package/@aegenet/belt-light-date)
+<br>
+
 # @aegenet/belt-light-date
 
 > (Very) light `Date` tools
 
-## LightDate
+## 💾 Installation
+
+```shell
+yarn add @aegenet/belt-light-date@^1.2.0
+# or
+npm i @aegenet/belt-light-date@^1.2.0
+```
+
+## 📝 Usage
+
+### LightDate
 
 ```typescript
 import { lightDate } from '@aegenet/belt-light-date';
@@ -62,7 +75,7 @@ lightDate.prevMonthEnd('2022-04-20T12:14:00.072Z').toLocaleString('fr'); // '31/
 getIntlLocale(); // Object
 ```
 
-## isLeapYear
+### isLeapYear
 
 ```typescript
 import { isLeapYear } from '@aegenet/belt-light-date';
@@ -75,7 +88,7 @@ isLeapYear(2024); // true
 isLeapYear(2027); // false
 ```
 
-## getDaysArrayInMonth
+### getDaysArrayInMonth
 
 ```typescript
 import { getDaysArrayInMonth } from '@aegenet/belt-light-date';
@@ -83,7 +96,7 @@ getDaysArrayInMonth(2021); // [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
 getDaysArrayInMonth(2020); // [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
 ```
 
-## getDaysInMonth
+### getDaysInMonth
 
 ```typescript
 import { getDaysInMonth } from '@aegenet/belt-light-date';
@@ -94,7 +107,7 @@ getDaysInMonth(new Date(2020, 0)); // 31
 getDaysInMonth(new Date(2020, 1)); // 29
 ```
 
-## getDayNames
+### getDayNames
 
 ```typescript
 import { getDayNames } from '@aegenet/belt-light-date';
@@ -117,7 +130,7 @@ getDayNames('long', 'fr');
 // ['lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi', 'dimanche']);
 ```
 
-## getMonthNames
+### getMonthNames
 
 ```typescript
 import { getMonthNames } from '@aegenet/belt-light-date';
@@ -141,7 +154,7 @@ getMonthNames('long', 'fr');
 
 ```
 
-## splitDate
+### splitDate
 
 ```typescript
 import { splitDate } from '@aegenet/belt-light-date';
@@ -157,7 +170,7 @@ splited.start.toLocaleString('fr'); // '18/10/2021, 00:00:00'
 splited.end.toLocaleString('fr'); // '23/10/2022, 23:59:59'
 ```
 
-## Input date utils
+### Input date utils
 
 ```typescript
 import { dateToInputDate, inputDateToDate } from '@aegenet/belt-light-date';
@@ -169,7 +182,7 @@ dateToInputDate(new Date()); // YYYY-MM-dd
 inputDateToDate('YYYY-MM-dd'); // Date object
 ```
 
-## Input date time utils
+### Input date time utils
 
 ```typescript
 import { dateToInputDateTime, inputDateTimeToDate } from '@aegenet/belt-light-date';
@@ -181,7 +194,7 @@ dateToInputDateTime(new Date()); // YYYY-MM-ddTHH:mm
 inputDateToDate('YYYY-MM-ddTHH:mm'); // Date object
 ```
 
-## getCurrentTimezone
+### getCurrentTimezone
 
 ```typescript
 import { getCurrentTimezone } from '@aegenet/belt-light-date';

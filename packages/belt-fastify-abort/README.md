@@ -1,8 +1,21 @@
+[![npm version](https://img.shields.io/npm/v/@aegenet/belt-fastify-abort.svg)](https://www.npmjs.com/package/@aegenet/belt-fastify-abort)
+<br>
+
 # @aegenet/belt-fastify-abort
 
 Auto add an AbortController on all Fastify Request
 
 > Node only!
+
+## 💾 Installation
+
+```shell
+yarn add @aegenet/belt-fastify-abort@^1.2.0
+# or
+npm i @aegenet/belt-fastify-abort@^1.2.0
+```
+
+## 📝 Usage
 
 ### Node.js
 

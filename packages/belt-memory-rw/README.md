@@ -1,13 +1,26 @@
+[![npm version](https://img.shields.io/npm/v/@aegenet/belt-memory-rw.svg)](https://www.npmjs.com/package/@aegenet/belt-memory-rw)
+<br>
+
 # @aegenet/belt-memory-rw
 
 Memory RW helps to read/write a buffer sequentially.
 Little endian and Big endian are supported.
 
+## 💾 Installation
+
+```shell
+yarn add @aegenet/belt-memory-rw@^1.2.0
+# or
+npm i @aegenet/belt-memory-rw@^1.2.0
+```
+
+## 📝 Usage
+
 ### TLDR;
 
 - `MemoryReader` read a buffer sequentially.
 - `MemoryWriter` write a buffer sequentially.
-- `MemoryWriter` create a dynamic buffer (without specifying the size).
+- `MemoryCreator` create a dynamic buffer (without specifying the size).
 
 ### **Note**
 
@@ -15,6 +28,7 @@ Little endian and Big endian are supported.
 > - The Browser version uses `ArrayBuffer` / `DataView`.
 
 ### Node.js
+
 #### Write & read stuff
 
 ```typescript

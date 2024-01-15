@@ -2,6 +2,16 @@
 
 > The Belt - All In One bundle.
 
+## 💾 Installation
+
+```shell
+yarn add @aegenet/belt@^1.2.0
+# or
+npm i @aegenet/belt@^1.2.0
+```
+
+## 📝 Usage
+
 ```typescript
 import {
   crc8,

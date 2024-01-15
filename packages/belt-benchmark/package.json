@@ -17,7 +17,7 @@
   },
   "typings": "./dist/node/bundle.d.ts",
   "author": "Alexandre Genet",
-  "license": "UNLICENSED",
+  "license": "MIT",
   "files": [
     "dist"
   ],

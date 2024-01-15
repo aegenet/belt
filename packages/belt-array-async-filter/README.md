@@ -1,6 +1,19 @@
+[![npm version](https://img.shields.io/npm/v/@aegenet/belt-array-async-filter.svg)](https://www.npmjs.com/package/@aegenet/belt-array-async-filter)
+<br>
+
 # @aegenet/belt-array-async-filter
 
 > Array async filter (sequentially)
+
+## 💾 Installation
+
+```shell
+yarn add @aegenet/belt-array-async-filter@^1.2.0
+# or
+npm i @aegenet/belt-array-async-filter@^1.2.0
+```
+
+## 📝 Usage
 
 ```typescript
 import { arrayAsyncFilter } from '@aegenet/belt-array-async-filter';

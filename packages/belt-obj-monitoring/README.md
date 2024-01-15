@@ -1,14 +1,25 @@
+[![npm version](https://img.shields.io/npm/v/@aegenet/belt-obj-monitoring.svg)](https://www.npmjs.com/package/@aegenet/belt-obj-monitoring)
+<br>
+
 # @aegenet/belt-obj-monitoring
 
 > Object Monitoring
 
+## 💾 Installation
 
-## Two ways:
+```shell
+yarn add @aegenet/belt-obj-monitoring@^1.2.0
+# or
+npm i @aegenet/belt-obj-monitoring@^1.2.0
+```
 
+## 📝 Usage
+
+**Two ways:**
 - One that mutates your original object (and you can use it normally): `mutate`.
 - One that uses a proxy to access your original object. You must use the proxy, not the original object: `asProxy`.
 
-## With Mutation
+### With Mutation
 
 - **Caution**: this mutates your data.
 - **Limitation**: if a property is added to the original data, we cannot track it.
@@ -43,7 +54,7 @@ data.title = 'Maurice2';
 ```
 
 
-## With Proxy
+### With Proxy
 
 - **Limitation**: You must use the proxied data, not the original data.
 

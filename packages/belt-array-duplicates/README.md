@@ -1,6 +1,19 @@
+[![npm version](https://img.shields.io/npm/v/@aegenet/belt-array-duplicates.svg)](https://www.npmjs.com/package/@aegenet/belt-array-duplicates)
+<br>
+
 # @aegenet/belt-array-duplicates
 
 > Strip duplicates from array / get duplicates of an array.
+
+## 💾 Installation
+
+```shell
+yarn add @aegenet/belt-array-duplicates@^1.2.0
+# or
+npm i @aegenet/belt-array-duplicates@^1.2.0
+```
+
+## 📝 Usage
 
 ### getDuplicates
 

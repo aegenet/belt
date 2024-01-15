@@ -1,6 +1,19 @@
+[![npm version](https://img.shields.io/npm/v/@aegenet/belt-obj-is-equals.svg)](https://www.npmjs.com/package/@aegenet/belt-obj-is-equals)
+<br>
+
 # @aegenet/belt-obj-is-equals
 
 > objectsIsEquals ?
+
+## 💾 Installation
+
+```shell
+yarn add @aegenet/belt-obj-is-equals@^1.2.0
+# or
+npm i @aegenet/belt-obj-is-equals@^1.2.0
+```
+
+## 📝 Usage
 
 ```typescript
 import { objectsIsEquals } from '@aegenet/belt-obj-is-equals';

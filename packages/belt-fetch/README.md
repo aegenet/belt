@@ -1,6 +1,17 @@
+[![npm version](https://img.shields.io/npm/v/@aegenet/belt-fetch.svg)](https://www.npmjs.com/package/@aegenet/belt-fetch)
+<br>
+
 # @aegenet/belt-fetch
 
 > Belt fetch
+
+## 💾 Installation
+
+```shell
+yarn add @aegenet/belt-fetch@^1.2.0
+# or
+npm i @aegenet/belt-fetch@^1.2.0
+```
 
 ## `bFetch`
 

@@ -1,8 +1,21 @@
+[![npm version](https://img.shields.io/npm/v/@aegenet/belt-array-string-join.svg)](https://www.npmjs.com/package/@aegenet/belt-array-string-join)
+<br>
+
 # @aegenet/belt-array-string-join
 
 > Join & Concat Array of Strings
 >
 > /!\ The performance improvement is NOT relevant if you use ts-node.
+
+## 💾 Installation
+
+```shell
+yarn add @aegenet/belt-array-string-join@^1.2.0
+# or
+npm i @aegenet/belt-array-string-join@^1.2.0
+```
+
+## 📝 Usage
 
 ```typescript
 import { stringJoin, stringConcat } from '@aegenet/belt-array-string-join';

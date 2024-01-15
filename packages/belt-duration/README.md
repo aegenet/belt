@@ -1,6 +1,19 @@
+[![npm version](https://img.shields.io/npm/v/@aegenet/belt-duration.svg)](https://www.npmjs.com/package/@aegenet/belt-duration)
+<br>
+
 # @aegenet/belt-duration
 
 > Helps to convert or format durations
+
+## 💾 Installation
+
+```shell
+yarn add @aegenet/belt-duration@^1.2.0
+# or
+npm i @aegenet/belt-duration@^1.2.0
+```
+
+## 📝 Usage
 
 ```typescript
 import { toDuration, EDurationFormat, EDurationFormatMask } from '@aegenet/belt-duration';

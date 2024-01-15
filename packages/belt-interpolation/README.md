@@ -1,6 +1,19 @@
+[![npm version](https://img.shields.io/npm/v/@aegenet/belt-interpolation.svg)](https://www.npmjs.com/package/@aegenet/belt-interpolation)
+<br>
+
 # @aegenet/belt-interpolation
 
 > Simple ECMAScript Interpolation
+
+## 💾 Installation
+
+```shell
+yarn add @aegenet/belt-interpolation@^1.2.0
+# or
+npm i @aegenet/belt-interpolation@^1.2.0
+```
+
+## 📝 Usage
 
 ```typescript
 import { Interpolation, transform } from '@aegenet/belt-interpolation';

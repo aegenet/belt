@@ -1,6 +1,19 @@
+[![npm version](https://img.shields.io/npm/v/@aegenet/belt-promise.svg)](https://www.npmjs.com/package/@aegenet/belt-promise)
+<br>
+
 # @aegenet/belt-promise
 
 > Promise toolkit
+
+## 💾 Installation
+
+```shell
+yarn add @aegenet/belt-promise@^1.2.0
+# or
+npm i @aegenet/belt-promise@^1.2.0
+```
+
+## 📝 Usage
 
 ### isPromise
 

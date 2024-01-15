@@ -1,8 +1,22 @@
+[![npm version](https://img.shields.io/npm/v/@aegenet/belt-str-escape-regex.svg)](https://www.npmjs.com/package/@aegenet/belt-str-escape-regex)
+<br>
+
 # @aegenet/belt-str-escape-regex
 
 > Escape String RegExp
 
-*Inspired by https://github.com/sindresorhus/escape-string-regexp/ (this project, unfortunately, does not work well with TypeScript...)* 
+*Fork of https://github.com/sindresorhus/escape-string-regexp/ (this project, unfortunately, does not work well with TypeScript)*
+
+## 💾 Installation
+
+```shell
+yarn add @aegenet/belt-str-escape-regex@^1.2.0
+# or
+npm i @aegenet/belt-str-escape-regex@^1.2.0
+```
+
+## 📝 Usage
+
 
 ```typescript
 import { escapeRegex } from '@aegenet/belt-str-escape-regex';
@@ -12,7 +26,7 @@ const result = escapeRegex('Hello');
 ```
 
 ```typescript
-const result = (escapeRegex('Hell{o} [you]');
+const result = escapeRegex('Hell{o} [you]');
 // result = 'Hell\{o\} \[you\]'
 ```
 
