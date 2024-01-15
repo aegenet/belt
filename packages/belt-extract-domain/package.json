@@ -1,6 +1,7 @@
 {
   "name": "@aegenet/belt-extract-domain",
   "description": "Extract domain informations",
+  "keywords": ["extract", "domain", "dns"],
   "version": "0.0.0-dev",
   "main": "dist/index.cjs",
   "module": "dist/index.mjs",

@@ -1,6 +1,7 @@
 {
   "name": "@aegenet/belt-symbols-is-balanced",
   "description": "Symbols is balanced ?",
+  "keywords": ["string", "symbols", "balanced"],
   "version": "0.0.0-dev",
   "main": "dist/index.cjs",
   "module": "dist/index.mjs",

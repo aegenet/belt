@@ -1,6 +1,7 @@
 {
   "name": "@aegenet/belt-array-to-obj",
   "description": "Array to object",
+  "keywords": ["array", "object"],
   "version": "0.0.0-dev",
   "main": "dist/index.cjs",
   "module": "dist/index.mjs",

@@ -3,7 +3,7 @@
 
 # @aegenet/belt-obj-is-equals
 
-> objectsIsEquals ?
+> Objects is equals?
 
 ## 💾 Installation
 

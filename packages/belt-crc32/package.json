@@ -1,6 +1,7 @@
 {
   "name": "@aegenet/belt-crc32",
   "description": "CRC32",
+  "keywords": ["crc32", "javascript", "typescript"],
   "version": "0.0.0-dev",
   "main": "dist/index.cjs",
   "module": "dist/index.mjs",

@@ -3,7 +3,7 @@
 
 # @aegenet/belt-ofields
 
-> Object fields, retrieve fields of an object with values
+> Object fields, retrieve fields (and values) of an object
 
 ## 💾 Installation
 
@@ -27,7 +27,7 @@ const result = odiff({
   id: 5,
   code: 'Trotro',
   another: 1,
-}, { fields: ['id''code'] });
+}, { fields: ['id', 'code'] });
 // result = [
 //   ['id', 5],
 //   ['code', 'Trotro'],

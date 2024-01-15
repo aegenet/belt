@@ -1,6 +1,7 @@
 {
   "name": "@aegenet/belt-duration",
-  "description": "CRC8",
+  "description": "Helps to convert or format durations",
+  "keywords": ["duration", "datetime", "convert", "format"],
   "version": "0.0.0-dev",
   "main": "dist/index.cjs",
   "module": "dist/index.mjs",

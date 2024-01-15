@@ -1,6 +1,7 @@
 {
   "name": "@aegenet/belt-obj-is-equals",
-  "description": "Objects is equals ?",
+  "description": "Objects is equals?",
+  "keywords": ["object", "equals"],
   "version": "0.0.0-dev",
   "main": "dist/index.cjs",
   "module": "dist/index.mjs",

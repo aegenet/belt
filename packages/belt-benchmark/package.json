@@ -1,6 +1,7 @@
 {
   "name": "@aegenet/belt-benchmark",
-  "description": "Benchmark your functions like an F1 driver",
+  "description": "Benchmark your javascript functions",
+  "keywords": ["benchmark", "nodejs", "browser"],
   "version": "0.0.0-dev",
   "main": "dist/node/node.cjs",
   "module": "dist/node/node.mjs",

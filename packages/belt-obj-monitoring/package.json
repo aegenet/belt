@@ -1,6 +1,7 @@
 {
   "name": "@aegenet/belt-obj-monitoring",
   "description": "Object monitoring",
+  "keywords": ["object", "monitoring", "watch"],
   "version": "0.0.0-dev",
   "main": "dist/index.cjs",
   "module": "dist/index.mjs",

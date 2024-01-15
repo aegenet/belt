@@ -1,6 +1,7 @@
 {
   "name": "@aegenet/belt-memory-rw",
-  "description": "Memory RW",
+  "description": "Memory RW helps to read/write a buffer sequentially",
+  "keywords": ["memory", "data", "read", "write", "binary"],
   "version": "0.0.0-dev",
   "main": "dist/node/node.cjs",
   "module": "dist/node/node.mjs",

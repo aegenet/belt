@@ -1,6 +1,7 @@
 {
   "name": "@aegenet/belt-fastify-abort",
   "description": "Auto add an AbortController on all Fastify Request",
+  "keywords": ["fastify", "abort", "AbortController"],
   "version": "0.0.0-dev",
   "main": "dist/node/node.cjs",
   "module": "dist/node/node.mjs",

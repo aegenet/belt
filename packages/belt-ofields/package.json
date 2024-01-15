@@ -1,10 +1,11 @@
 {
   "name": "@aegenet/belt-ofields",
-  "description": "Object fields, retrieve fields of an object with values",
+  "description": "Object fields, retrieve fields (and values) of an object",
   "version": "0.0.0-dev",
   "main": "dist/index.cjs",
   "module": "dist/index.mjs",
   "browser": "dist/index.mjs",
+  "keywords": ["object", "fields", "properties"],
   "exports": {
     "node": {
         "require": "./dist/index.cjs",

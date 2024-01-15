@@ -1,10 +1,11 @@
 {
   "name": "@aegenet/belt-string-split",
-  "description": "String split enhanced",
+  "description": "String Split is an alternative to String.split, with the ability to ignore the split character inside 'tags'",
   "version": "0.0.0-dev",
   "main": "dist/index.cjs",
   "module": "dist/index.mjs",
   "browser": "dist/index.mjs",
+  "keywords": ["string", "split"],
   "exports": {
     "node": {
         "require": "./dist/index.cjs",

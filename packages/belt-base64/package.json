@@ -1,6 +1,7 @@
 {
   "name": "@aegenet/belt-base64",
   "description": "Base64",
+  "keywords": ["base64"],
   "version": "0.0.0-dev",
   "main": "dist/node/node.cjs",
   "module": "dist/node/node.mjs",
