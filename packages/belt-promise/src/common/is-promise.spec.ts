@@ -1,5 +1,5 @@
 import * as assert from 'node:assert';
-import { isPromise } from './index';
+import { isPromise } from '../browser';
 
 describe('is-promise', function () {
   it('yes', async function () {

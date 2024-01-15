@@ -1,22 +1,22 @@
 {
   "name": "@aegenet/belt-promise",
   "description": "Promise toolkit",
-  "version": "0.0.0-dev",
-  "main": "dist/index.cjs",
-  "module": "dist/index.mjs",
-  "browser": "dist/index.mjs",
   "keywords": ["promise"],
+  "version": "0.0.0-dev",
+  "main": "dist/node/node.cjs",
+  "module": "dist/node/node.mjs",
+  "browser": "dist/web/browser.mjs",
   "exports": {
     "node": {
-        "require": "./dist/index.cjs",
-        "import": "./dist/index.mjs"
+        "require": "./dist/node/node.cjs",
+        "import": "./dist/node/node.mjs"
     },
     "default": {
-        "require": "./dist/index.cjs",
-        "import": "./dist/index.mjs"
+        "require": "./dist/web/browser.cjs",
+        "import": "./dist/web/browser.mjs"
     }
   },
-  "typings": "./dist/bundle.d.ts",
+  "typings": "./dist/node/bundle.d.ts",
   "author": "Alexandre Genet",
   "license": "MIT",
   "files": [
@@ -42,6 +42,6 @@
     "build": "yarn tsc && yarn run build:vite && yarn run build:dts  --bundleConfigAsCjs",
     "tsc": "node ./../../node_modules/rimraf/dist/esm/bin.mjs build && node ./../../node_modules/typescript/bin/tsc",
     "build:dts": "node ./../../node_modules/rollup/dist/bin/rollup -c rollup.config.dts.js",
-    "build:vite": "node ./../../node_modules/vite/bin/vite build"
+    "build:vite": "node ./../../node_modules/rimraf/dist/esm/bin.mjs dist && node ./../../node_modules/vite/bin/vite build -c ./vite.node.config.js && node ./../../node_modules/vite/bin/vite build -c ./vite.web.config.js"
   }
 }

@@ -1,5 +1,6 @@
 import * as assert from 'node:assert';
-import { randomUUID } from 'crypto';
+import { setTimeout } from 'node:timers/promises';
+import { randomUUID } from 'node:crypto';
 import { ILapContext, NodeRacetrack } from '../node';
 
 describe('Node Racetrack', () => {
@@ -106,7 +107,7 @@ describe('Node Racetrack', () => {
       await racetrack.race({
         async: true,
         spec: async () => {
-          await new Promise(resolve => setTimeout(resolve, 5000));
+          await setTimeout(5000);
         },
       });
       throw new Error('Must failed.');

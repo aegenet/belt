@@ -1,5 +1,5 @@
 import * as assert from 'node:assert';
-import { collectSequentially } from './index';
+import { collectSequentially } from '../browser';
 
 describe('collectSequentially', () => {
   it(`Promises`, async () => {

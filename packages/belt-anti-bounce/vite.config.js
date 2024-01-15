@@ -4,6 +4,6 @@ const { config } = require('./../../.build/vite.configurator');
 export default config({
   cwd: __dirname,
   libName: '@aegenet/belt-anti-bounce',
-  entryPoint: 'belt-anti-bounce/src/index',
+  entryPoint: 'index',
   nodeExternal: true,
 });

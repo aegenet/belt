@@ -1,5 +1,5 @@
 import * as assert from 'node:assert';
-import { runSequentially } from './index';
+import { runSequentially } from '../browser';
 
 describe('runSequentially', () => {
   it(`Promises`, async () => {
