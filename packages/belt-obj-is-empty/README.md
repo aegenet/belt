@@ -3,7 +3,7 @@
 
 # @aegenet/belt-obj-is-empty
 
-> Object is empty ?
+> Object is empty?
 
 ## 💾 Installation
 

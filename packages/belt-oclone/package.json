@@ -5,6 +5,7 @@
   "main": "dist/index.cjs",
   "module": "dist/index.mjs",
   "browser": "dist/index.mjs",
+  "keywords": ["object", "clone"],
   "exports": {
     "node": {
         "require": "./dist/index.cjs",

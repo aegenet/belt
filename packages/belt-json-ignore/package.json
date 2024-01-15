@@ -1,6 +1,7 @@
 {
   "name": "@aegenet/belt-json-ignore",
   "description": "JSON Ignore",
+  "keywords": ["object", "json", "ignore"],
   "version": "0.0.0-dev",
   "main": "dist/index.cjs",
   "module": "dist/index.mjs",

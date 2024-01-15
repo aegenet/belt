@@ -1,6 +1,7 @@
 {
   "name": "@aegenet/belt-array-async-foreach",
-  "description": "Array async filter (sequentially)",
+  "description": "Array async foreach (sequentially)",
+  "keywords": ["array", "async", "foreach"],
   "version": "0.0.0-dev",
   "main": "dist/index.cjs",
   "module": "dist/index.mjs",

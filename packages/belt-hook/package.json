@@ -1,6 +1,7 @@
 {
   "name": "@aegenet/belt-hook",
-  "description": "Hook function -> Don't use this stuff in production ! TESTS ONLY !",
+  "description": "Hook function -> Not for production use! TESTS ONLY!",
+  "keywords": ["object", "function", "hook"],
   "version": "0.0.0-dev",
   "main": "dist/index.cjs",
   "module": "dist/index.mjs",

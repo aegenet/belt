@@ -1,6 +1,7 @@
 {
   "name": "@aegenet/belt-array-string-join",
   "description": "Array.join() is slow, this tool helps you to join() your string array faster.",
+  "keywords": ["array", "join"],
   "version": "0.0.0-dev",
   "main": "dist/index.cjs",
   "module": "dist/index.mjs",

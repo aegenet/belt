@@ -1,6 +1,7 @@
 {
   "name": "@aegenet/belt-interpolation",
   "description": "String interpolation",
+  "keywords": ["string", "interpolation"],
   "version": "0.0.0-dev",
   "main": "dist/index.cjs",
   "module": "dist/index.mjs",

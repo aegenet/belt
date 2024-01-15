@@ -1,6 +1,7 @@
 {
   "name": "@aegenet/belt-array-duplicates",
   "description": "Strip duplicates from array / get duplicates of an array.",
+  "keywords": ["array", "duplicate"],
   "version": "0.0.0-dev",
   "main": "dist/index.cjs",
   "module": "dist/index.mjs",

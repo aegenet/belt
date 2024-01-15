@@ -1,6 +1,7 @@
 {
   "name": "@aegenet/belt-obj-first-key",
   "description": "Object first key",
+  "keywords": ["object", "first"],
   "version": "0.0.0-dev",
   "main": "dist/index.cjs",
   "module": "dist/index.mjs",

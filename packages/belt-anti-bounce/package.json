@@ -1,6 +1,7 @@
 {
   "name": "@aegenet/belt-anti-bounce",
-  "description": "Anti-bounce",
+  "description": "Anti-bounce, debounce",
+  "keywords": ["anti-bounce", "debounce"],
   "version": "0.0.0-dev",
   "main": "dist/index.cjs",
   "module": "dist/index.mjs",

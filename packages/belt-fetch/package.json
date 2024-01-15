@@ -1,6 +1,7 @@
 {
   "name": "@aegenet/belt-fetch",
-  "description": "Ensure fetch response is ok",
+  "description": "bFetch is fetch with a default timeout and an asynchronous DNS resolver (node only). +fetch utility: ensureFetch response",
+  "keywords": ["fetch", "tools"],
   "version": "0.0.0-dev",
   "main": "dist/node/node.cjs",
   "module": "dist/node/node.mjs",

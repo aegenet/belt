@@ -1,10 +1,11 @@
 {
   "name": "@aegenet/belt-promise",
-  "description": "Promise belt",
+  "description": "Promise toolkit",
   "version": "0.0.0-dev",
   "main": "dist/index.cjs",
   "module": "dist/index.mjs",
   "browser": "dist/index.mjs",
+  "keywords": ["promise"],
   "exports": {
     "node": {
         "require": "./dist/index.cjs",

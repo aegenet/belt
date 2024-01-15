@@ -1,6 +1,7 @@
 {
   "name": "@aegenet/belt-hide-sensitive",
-  "description": "Hide Sensitive",
+  "description": "Hide Sensititve data from string",
+  "keywords": ["string", "cli", "hide", "environment"],
   "version": "0.0.0-dev",
   "main": "dist/index.cjs",
   "module": "dist/index.mjs",

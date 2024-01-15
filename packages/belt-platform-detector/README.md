@@ -3,7 +3,7 @@
 
 # @aegenet/belt-platform-detector
 
-> Platform detector - `isNodeJS` ? `isMobileDevice` ?
+> Platform detector - `isNodeJS` ? `isMobileDevice`?
 
 ## 💾 Installation
 

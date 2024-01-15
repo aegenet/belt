@@ -3,7 +3,7 @@
 
 # @aegenet/belt-benchmark
 
-> Benchmark your functions like an F1 driver
+> Benchmark your javascript functions
 > Specify the duration, setup the <s>cars</s> functions and start your engine.
 
 ## 💾 Installation
