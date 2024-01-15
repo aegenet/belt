@@ -1,6 +1,6 @@
 import * as assert from 'node:assert';
 import { AntiBounce } from './index';
-import { delay } from '../../belt-promise/src/delay';
+import { setTimeout } from 'node:timers/promises';
 
 describe('anti-bounce', () => {
   it('Inc !', async () => {
@@ -14,7 +14,7 @@ describe('anti-bounce', () => {
     diposable.call();
     // ? Must be 0
     assert.strictEqual(i, 0);
-    await delay(300);
+    await setTimeout(300);
     assert.strictEqual(i, 1);
     diposable.dispose();
   });

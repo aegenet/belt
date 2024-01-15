@@ -3,4 +3,5 @@ const configurator = require('../../.build/jest.web.configurator');
 
 module.exports = configurator({
   directory: __dirname,
+  testRegex: 'src/(.*)\\.spec\\.(ts|js)$',
 });

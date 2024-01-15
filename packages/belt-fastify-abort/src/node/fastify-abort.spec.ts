@@ -1,8 +1,8 @@
 import * as assert from 'node:assert';
+import { setTimeout } from 'node:timers/promises';
 import fastify from 'fastify';
 import { fastifyAbortRegister, type FastifyRequestAbortCtrl } from '../node';
 import { connect } from 'net';
-import { promisify } from 'node:util';
 
 describe('fastify-abort/node', () => {
   it('get', async () => {
@@ -61,11 +61,10 @@ describe('fastify-abort/node', () => {
   it('get abort real', async () => {
     const app = fastify();
     try {
-      const sleep = promisify(setTimeout);
       fastifyAbortRegister(app);
 
       app.get('/', async (req: FastifyRequestAbortCtrl, reply) => {
-        await sleep(1000);
+        await setTimeout(1000);
         assert.ok(req.abortCtrl);
         assert.ok(req.abortCtrl.signal);
         assert.ok(req.abortCtrl.signal.aborted);
@@ -78,7 +77,7 @@ describe('fastify-abort/node', () => {
       const socket = connect((app.server.address()! as unknown as { port: string }).port);
       socket.write('GET / HTTP/1.1\r\nHost: example.com\r\n\r\n');
 
-      await sleep(500);
+      await setTimeout(500);
       socket.destroy();
     } catch (error) {
       console.dir(error);

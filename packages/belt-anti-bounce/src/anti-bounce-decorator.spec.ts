@@ -1,7 +1,7 @@
 import * as assert from 'node:assert';
 import { AntiBounce } from './index';
 import { antiBounce, disposeAntiBounces, IAntiBounceSupport } from './anti-bounce-decorator';
-import { delay } from './../../belt-promise/src/delay';
+import { setTimeout } from 'node:timers/promises';
 
 class Sample implements IAntiBounceSupport {
   public $antiBounces?: Map<string, AntiBounce>;
@@ -46,7 +46,7 @@ describe('anti-bounce-decorator', () => {
     sample.main();
     // ? Must be 0
     assert.strictEqual(sample.i, 0);
-    await delay(300);
+    await setTimeout(300);
     assert.strictEqual(sample.i, 1);
   });
 
@@ -59,7 +59,7 @@ describe('anti-bounce-decorator', () => {
     sample.incDefault();
     // ? Must be 0
     assert.strictEqual(sample.i, 0);
-    await delay(300);
+    await setTimeout(300);
     assert.strictEqual(sample.i, 1);
   });
 
@@ -72,7 +72,7 @@ describe('anti-bounce-decorator', () => {
     sample.incCheated();
     // ? Must be 1
     assert.strictEqual(sample.i, 1);
-    await delay(300);
+    await setTimeout(300);
     assert.strictEqual(sample.i, 2);
   });
 
@@ -85,7 +85,7 @@ describe('anti-bounce-decorator', () => {
     assert.strictEqual(sample.i, 0);
     // We dispose all ! Thus, the method cannot be called
     disposeAntiBounces(sample);
-    await delay(300);
+    await setTimeout(300);
     assert.strictEqual(sample.i, 0);
   });
 

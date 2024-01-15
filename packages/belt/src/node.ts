@@ -1,6 +1,6 @@
 export * from '../../belt-crc8/src/index';
 export * from '../../belt-crc32/src/index';
-export * from '../../belt-promise/src/index';
+export * from '../../belt-promise/src/node';
 export * from '../../belt-odeep/src/index';
 export * from '../../belt-ofields/src/index';
 export * from '../../belt-odiff/src/index';
