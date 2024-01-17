@@ -3,8 +3,8 @@
  *
  * @internal
  */
-export function getIPFromDNSMap(dnsMap: Record<string, string>, hostname: string): string[] {
-  return dnsMap.hasOwnProperty(hostname) ? [dnsMap[hostname]] : [];
+export function getIPsFromDNSMap(dnsMap: Record<string, string>, hostname: string): string[] | undefined {
+  return dnsMap.hasOwnProperty(hostname) ? [dnsMap[hostname]] : undefined;
 }
 
 /** Kudos https://medium.com/@stheodorejohn */
