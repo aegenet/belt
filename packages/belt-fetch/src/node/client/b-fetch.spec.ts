@@ -1,6 +1,7 @@
 import * as assert from 'node:assert';
 import * as http from 'http';
-import { fetchEnsure, bFetch } from '../../node';
+import { fetchEnsure, bFetch, bFetchSharedCache } from '../../node';
+import { setTimeout as wait } from 'node:timers/promises';
 
 const beforeAll = global.beforeAll ?? global.before;
 const afterAll = global.afterAll ?? global.after;
@@ -51,7 +52,7 @@ describe('bFetch node', () => {
         }
         res.end();
       })
-      .listen(3030, () => done());
+      .listen(3031, () => done());
   });
 
   afterAll(done => {
@@ -63,7 +64,7 @@ describe('bFetch node', () => {
     it('Server respond but too long', async () => {
       try {
         await bFetch(
-          'http://127.0.0.1:3030/timeout/5000',
+          'http://127.0.0.1:3031/timeout/5000',
           {},
           {
             timeout: 200,
@@ -79,7 +80,7 @@ describe('bFetch node', () => {
       try {
         await bFetch(
           {
-            url: 'http://127.0.0.1:3030/timeout/5000',
+            url: 'http://127.0.0.1:3031/timeout/5000',
           } as any,
           {},
           {
@@ -107,7 +108,7 @@ describe('bFetch node', () => {
         );
         throw new Error('Must failed!');
       } catch (error) {
-        assert.strictEqual((error as Error).message, 'queryA ENOTFOUND invaliddns.test');
+        assert.strictEqual((error as Error).message, 'bFetch: ENOTFOUND invaliddns.test');
       }
     });
 
@@ -125,7 +126,7 @@ describe('bFetch node', () => {
 
     it('Resolve dns with dnsMap fallback', async () => {
       const resp = await bFetch(
-        'http://dontexistbutmapped:3030/text',
+        'http://dontexistbutmapped:3031/text',
         {},
         {
           timeout: 200,
@@ -142,7 +143,7 @@ describe('bFetch node', () => {
 
     it('Resolve dns with dnsMap as primary resolver: fake github.com', async () => {
       const resp = await bFetch(
-        'http://github.com:3030/text',
+        'http://github.com:3031/text',
         {},
         {
           timeout: 200,
@@ -156,17 +157,129 @@ describe('bFetch node', () => {
       assert.strictEqual(resp.status, 200);
       assert.strictEqual(await fetchEnsure(resp), 'Hello World!');
     });
+
+    it('Resolve dns with dnsMap as primary resolver: unknown entry', async () => {
+      try {
+        await bFetch(
+          'http://itsnothereanddontexist.test:3031/text',
+          {},
+          {
+            timeout: 200,
+            replaceDNSByIP: true,
+            dnsMapAsFallback: false,
+            dnsMap: {
+              'github.com': '127.0.0.1',
+            },
+          }
+        );
+        throw new Error('Must failed!');
+      } catch (error) {
+        assert.strictEqual((error as Error).message, 'bFetch: ENOTFOUND itsnothereanddontexist.test');
+      }
+    });
+  });
+
+  describe('Cache', () => {
+    it('Without cache', async () => {
+      let resp = await bFetch(
+        'https://jsonplaceholder.typicode.com/todos/1',
+        {},
+        {
+          timeout: 200,
+          replaceDNSByIP: true,
+        }
+      );
+      assert.strictEqual(resp.status, 200);
+      resp = await bFetch(
+        'https://jsonplaceholder.typicode.com/todos/1',
+        {},
+        {
+          timeout: 200,
+          replaceDNSByIP: true,
+        }
+      );
+      assert.strictEqual(resp.status, 200);
+    });
+
+    it('With cache', async () => {
+      const cacheTTL = 1000;
+      let resp = await bFetch(
+        'https://jsonplaceholder.typicode.com/todos/1',
+        {},
+        {
+          dnsCacheTTL: cacheTTL,
+          timeout: 200,
+          replaceDNSByIP: true,
+        }
+      );
+      assert.strictEqual(resp.status, 200);
+      resp = await bFetch(
+        'https://jsonplaceholder.typicode.com/todos/1',
+        {},
+        {
+          dnsCacheTTL: cacheTTL,
+          timeout: 200,
+          replaceDNSByIP: true,
+        }
+      );
+      assert.strictEqual(resp.status, 200);
+    });
+
+    it('With expired cache', async () => {
+      const cacheTTL = 500;
+      let resp = await bFetch(
+        'https://jsonplaceholder.typicode.com/todos/1',
+        {},
+        {
+          dnsCacheTTL: cacheTTL,
+          timeout: 200,
+          replaceDNSByIP: true,
+        }
+      );
+      assert.strictEqual(resp.status, 200);
+
+      await wait(1000);
+      // not from cache
+      resp = await bFetch(
+        'https://jsonplaceholder.typicode.com/todos/1',
+        {},
+        {
+          dnsCacheTTL: cacheTTL,
+          timeout: 200,
+          replaceDNSByIP: true,
+        }
+      );
+      assert.strictEqual(resp.status, 200);
+    });
+
+    it('Clear shared cache', async () => {
+      const resp = await bFetch(
+        'https://jsonplaceholder.typicode.com/todos/1',
+        {},
+        {
+          dnsCacheTTL: 1000,
+          timeout: 200,
+          replaceDNSByIP: true,
+        }
+      );
+      assert.strictEqual(resp.status, 200);
+      assert.ok(bFetchSharedCache.has('jsonplaceholder.typicode.com'));
+      // Clear
+      bFetchSharedCache.clear();
+      // ...
+      assert.ok(!bFetchSharedCache.has('jsonplaceholder.typicode.com'));
+    });
   });
 
   describe('ok', () => {
     it('text', async () => {
-      const resp = await bFetch('http://127.0.0.1:3030/text');
+      const resp = await bFetch('http://127.0.0.1:3031/text');
       assert.strictEqual(resp.status, 200);
       assert.strictEqual(await fetchEnsure(resp), 'Hello World!');
     });
 
     it('json', async () => {
-      const resp = await bFetch('http://127.0.0.1:3030/json');
+      const resp = await bFetch('http://127.0.0.1:3031/json');
       assert.strictEqual(resp.status, 200);
       const results = await fetchEnsure<{ message: string }>(resp);
       assert.ok(results);
@@ -174,13 +287,13 @@ describe('bFetch node', () => {
     });
 
     it('custom without mapper (get a raw text)', async () => {
-      const resp = await bFetch('http://127.0.0.1:3030/custom');
+      const resp = await bFetch('http://127.0.0.1:3031/custom');
       assert.strictEqual(resp.status, 200);
       assert.deepStrictEqual(await fetchEnsure(resp), '"a:1;c:2"');
     });
 
     it('custom with mapper', async () => {
-      const resp = await bFetch('http://127.0.0.1:3030/custom');
+      const resp = await bFetch('http://127.0.0.1:3031/custom');
       assert.strictEqual(resp.status, 200);
       assert.deepStrictEqual(
         await fetchEnsure(resp, {
@@ -193,7 +306,7 @@ describe('bFetch node', () => {
 
   describe('ko', () => {
     it('throw text', async () => {
-      const resp = await bFetch('http://127.0.0.1:3030/throw/text');
+      const resp = await bFetch('http://127.0.0.1:3031/throw/text');
       assert.strictEqual(resp.status, 401);
       try {
         await fetchEnsure(resp);
@@ -203,7 +316,7 @@ describe('bFetch node', () => {
     });
 
     it('throw json', async () => {
-      const resp = await bFetch('http://127.0.0.1:3030/throw/json');
+      const resp = await bFetch('http://127.0.0.1:3031/throw/json');
       assert.strictEqual(resp.status, 401);
       try {
         await fetchEnsure(resp);
@@ -214,7 +327,7 @@ describe('bFetch node', () => {
     });
 
     it('throw custom without mapper (get a raw text)', async () => {
-      const resp = await bFetch('http://127.0.0.1:3030/throw/custom');
+      const resp = await bFetch('http://127.0.0.1:3031/throw/custom');
       assert.strictEqual(resp.status, 401);
       try {
         await fetchEnsure(resp);
@@ -224,7 +337,7 @@ describe('bFetch node', () => {
     });
 
     it('throw custom with mapper', async () => {
-      const resp = await bFetch('http://127.0.0.1:3030/throw/custom');
+      const resp = await bFetch('http://127.0.0.1:3031/throw/custom');
       assert.strictEqual(resp.status, 401);
       try {
         await fetchEnsure(resp, {
@@ -239,7 +352,7 @@ describe('bFetch node', () => {
 
   describe('crash', () => {
     it('throw text', async () => {
-      const resp = await bFetch('http://127.0.0.1:3030/crash/502');
+      const resp = await bFetch('http://127.0.0.1:3031/crash/502');
       assert.strictEqual(resp.status, 502);
       try {
         await fetchEnsure(resp);
@@ -249,7 +362,7 @@ describe('bFetch node', () => {
     });
 
     it('throw 533 (special)', async () => {
-      const resp = await bFetch('http://127.0.0.1:3030/crash/533');
+      const resp = await bFetch('http://127.0.0.1:3031/crash/533');
       assert.strictEqual(resp.status, 533);
       try {
         await fetchEnsure(resp);
@@ -260,7 +373,7 @@ describe('bFetch node', () => {
 
     it('throw boom, closed connection', async () => {
       try {
-        await bFetch('http://127.0.0.1:3030/crash/boom');
+        await bFetch('http://127.0.0.1:3031/crash/boom');
         throw new Error('Must failed!');
       } catch (error) {
         assert.ok(error);

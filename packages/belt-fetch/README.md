@@ -43,6 +43,24 @@ const results = await fetchEnsure(response);
 }
 ```
 
+### DNS Cache
+
+```typescript
+import { bFetch, fetchEnsure } from '@aegenet/belt-fetch';
+
+const response = await bFetch('https://jsonplaceholder.typicode.com/todos/1', {
+  dnsCacheTTL: 10000
+});
+const results = await fetchEnsure(response);
+// ->
+{
+  "userId": 1,
+  "id": 1,
+  "title": "delectus aut autem",
+  "completed": false
+}
+```
+
 ### Custom DNS resolution
 
 ```typescript
@@ -80,6 +98,49 @@ const resp = await bFetch(
   }
 );
 // resp.status 200 (Hello World!)
+```
+
+### API
+
+```typescript
+export type bFetchOptions = {
+  /**
+   * Timeout in milliseconds
+   *
+   * @default 10000
+   *
+   * @kind Browser/Node.js
+   */
+  timeout?: number;
+  /**
+   * Make the request using the IP address instead of the DNS name
+   *
+   * @kind Browser/Node.js
+   */
+  replaceDNSByIP?: boolean;
+  /**
+   * DNS Map { 'github.com': '127.0.0.1' }
+   *
+   * @kind Browser/Node.js
+   */
+  dnsMap?: Record<string, string>;
+  /**
+   * DNS Map as fallback or as a primary resolver
+   *
+   * @default true
+   *
+   * @kind Node.js
+   */
+  dnsMapAsFallback?: boolean;
+  /**
+   * DNS Cache TTL (ms)
+   *
+   * @default 0
+   *
+   * @kind Node.js
+   */
+  dnsCacheTTL?: number;
+};
 ```
 
 ## `fetchEnsure`

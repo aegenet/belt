@@ -43,7 +43,7 @@ describe('fetchEnsure', () => {
         }
         res.end();
       })
-      .listen(3030, () => done());
+      .listen(3032, () => done());
   });
 
   afterAll(done => {
@@ -52,13 +52,13 @@ describe('fetchEnsure', () => {
 
   describe('ok', () => {
     it('text', async () => {
-      const resp = await fetch('http://127.0.0.1:3030/text');
+      const resp = await fetch('http://127.0.0.1:3032/text');
       assert.strictEqual(resp.status, 200);
       assert.strictEqual(await fetchEnsure(resp), 'Hello World!');
     });
 
     it('json', async () => {
-      const resp = await fetch('http://127.0.0.1:3030/json');
+      const resp = await fetch('http://127.0.0.1:3032/json');
       assert.strictEqual(resp.status, 200);
       const results = await fetchEnsure<{ message: string }>(resp);
       assert.ok(results);
@@ -66,13 +66,13 @@ describe('fetchEnsure', () => {
     });
 
     it('custom without mapper (get a raw text)', async () => {
-      const resp = await fetch('http://127.0.0.1:3030/custom');
+      const resp = await fetch('http://127.0.0.1:3032/custom');
       assert.strictEqual(resp.status, 200);
       assert.deepStrictEqual(await fetchEnsure(resp), '"a:1;c:2"');
     });
 
     it('custom with mapper', async () => {
-      const resp = await fetch('http://127.0.0.1:3030/custom');
+      const resp = await fetch('http://127.0.0.1:3032/custom');
       assert.strictEqual(resp.status, 200);
       assert.deepStrictEqual(
         await fetchEnsure(resp, {
@@ -85,7 +85,7 @@ describe('fetchEnsure', () => {
 
   describe('ko', () => {
     it('throw text', async () => {
-      const resp = await fetch('http://127.0.0.1:3030/throw/text');
+      const resp = await fetch('http://127.0.0.1:3032/throw/text');
       assert.strictEqual(resp.status, 401);
       try {
         await fetchEnsure(resp);
@@ -95,7 +95,7 @@ describe('fetchEnsure', () => {
     });
 
     it('throw json', async () => {
-      const resp = await fetch('http://127.0.0.1:3030/throw/json');
+      const resp = await fetch('http://127.0.0.1:3032/throw/json');
       assert.strictEqual(resp.status, 401);
       try {
         await fetchEnsure(resp);
@@ -106,7 +106,7 @@ describe('fetchEnsure', () => {
     });
 
     it('throw custom without mapper (get a raw text)', async () => {
-      const resp = await fetch('http://127.0.0.1:3030/throw/custom');
+      const resp = await fetch('http://127.0.0.1:3032/throw/custom');
       assert.strictEqual(resp.status, 401);
       try {
         await fetchEnsure(resp);
@@ -116,7 +116,7 @@ describe('fetchEnsure', () => {
     });
 
     it('throw custom with mapper', async () => {
-      const resp = await fetch('http://127.0.0.1:3030/throw/custom');
+      const resp = await fetch('http://127.0.0.1:3032/throw/custom');
       assert.strictEqual(resp.status, 401);
       try {
         await fetchEnsure(resp, {
@@ -131,7 +131,7 @@ describe('fetchEnsure', () => {
 
   describe('crash', () => {
     it('throw text', async () => {
-      const resp = await fetch('http://127.0.0.1:3030/crash/502');
+      const resp = await fetch('http://127.0.0.1:3032/crash/502');
       assert.strictEqual(resp.status, 502);
       try {
         await fetchEnsure(resp);
@@ -141,7 +141,7 @@ describe('fetchEnsure', () => {
     });
 
     it('throw 533 (special)', async () => {
-      const resp = await fetch('http://127.0.0.1:3030/crash/533');
+      const resp = await fetch('http://127.0.0.1:3032/crash/533');
       assert.strictEqual(resp.status, 533);
       try {
         await fetchEnsure(resp);
@@ -152,7 +152,7 @@ describe('fetchEnsure', () => {
 
     it('throw boom, closed connection', async () => {
       try {
-        await fetch('http://127.0.0.1:3030/crash/boom');
+        await fetch('http://127.0.0.1:3032/crash/boom');
         throw new Error('Must failed!');
       } catch (error) {
         assert.ok(error);
