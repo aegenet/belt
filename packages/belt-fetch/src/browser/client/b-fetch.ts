@@ -42,8 +42,12 @@ export async function bFetch(input: RequestInfo | URL, init: RequestInit = {}, o
     throw new Error('bFetch is not compatible atm with Request object');
   }
 
-  return await fetch(urlInput, {
+  const fetchOpts: RequestInit = {
     ...init,
-    signal: AbortSignal.timeout(options.timeout!),
-  });
+  };
+
+  if (!fetchOpts.signal) {
+    fetchOpts.signal = AbortSignal.timeout(options.timeout!);
+  }
+  return await fetch(urlInput, fetchOpts);
 }
