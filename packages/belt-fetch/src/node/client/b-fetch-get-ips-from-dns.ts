@@ -1,7 +1,6 @@
 import { resolve4, resolve6 } from 'node:dns/promises';
 import type { bFetchOptions } from '../../common/client/b-fetch-options';
 import { getIPsFromDNSMap } from '../../common/client/b-fetch-utils';
-import { bFetchSharedCache } from './b-fetch-shared-cache';
 
 /** Get DNS strategies */
 const strategies: Array<(hostname: string, options: bFetchOptions) => Promise<string[] | undefined>> = [
@@ -34,36 +33,18 @@ const strategies: Array<(hostname: string, options: bFetchOptions) => Promise<st
 ];
 
 /** Get IPs from DNS */
-export async function bFetchGetIPsFromDNS(urlInput: URL, options: bFetchOptions): Promise<string[]> {
+export async function bFetchGetIPsFromDNS(urlInput: URL, options: bFetchOptions): Promise<string[] | undefined> {
   let ips: string[] | undefined;
 
-  // From cache?
-  if (options.dnsCacheTTL && bFetchSharedCache?.has(urlInput.hostname)) {
-    const cache = bFetchSharedCache.get(urlInput.hostname);
-    if (cache!.ttl > Date.now()) {
-      ips = cache!.ips;
-    } else {
-      bFetchSharedCache.delete(urlInput.hostname);
+  for (const strat of strategies) {
+    if ((ips = await strat(urlInput.hostname, options)) && ips.length) {
+      break;
     }
   }
 
-  if (!ips) {
-    for (const strat of strategies) {
-      if ((ips = await strat(urlInput.hostname, options)) && ips.length) {
-        if (options.dnsCacheTTL) {
-          bFetchSharedCache.set(urlInput.hostname, {
-            ips,
-            ttl: Date.now() + options.dnsCacheTTL,
-          });
-        }
-        break;
-      }
-    }
-
-    if (!ips || ips.length == 0) {
-      throw new Error(`bFetch: ENOTFOUND ${urlInput.hostname}`);
-    }
+  if (ips?.length) {
+    return ips;
+  } else {
+    return undefined;
   }
-
-  return ips;
 }

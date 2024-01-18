@@ -179,7 +179,7 @@ describe('bFetch node', () => {
     });
   });
 
-  describe('Cache', () => {
+  describe('DNS Cache', () => {
     it('Without cache', async () => {
       let resp = await bFetch(
         'https://jsonplaceholder.typicode.com/todos/1',
@@ -268,6 +268,34 @@ describe('bFetch node', () => {
       bFetchSharedCache.clear();
       // ...
       assert.ok(!bFetchSharedCache.has('jsonplaceholder.typicode.com'));
+    });
+
+    it('With invalid dns cache', async () => {
+      bFetchSharedCache.set('trotrosamsam.test', {
+        ips: ['127.0.0.1'],
+        eAt: Date.now() + 100000,
+      });
+      bFetchSharedCache.set('otherdns.test', {
+        ips: ['127.0.0.1'],
+        eAt: Date.now() + 100000,
+      });
+      const cacheTTL = 500;
+      try {
+        await bFetch(
+          'https://trotrosamsam.test:9999/todos/1',
+          {},
+          {
+            dnsCacheTTL: cacheTTL,
+            timeout: 200,
+            replaceDNSByIP: true,
+          }
+        );
+        throw new Error('Must failed!');
+      } catch (error) {
+        assert.strictEqual((error as Error).message, 'fetch failed');
+        assert.ok(!bFetchSharedCache.has('trotrosamsam.test'));
+        assert.ok(bFetchSharedCache.has('otherdns.test'));
+      }
     });
   });
 

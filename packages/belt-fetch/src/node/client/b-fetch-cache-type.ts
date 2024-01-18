@@ -1,7 +1,9 @@
 export type bFetchCacheType = Map<
   string,
   {
+    /** ips */
     ips: string[];
-    ttl: number;
+    /** expires at */
+    eAt: number;
   }
 >;
