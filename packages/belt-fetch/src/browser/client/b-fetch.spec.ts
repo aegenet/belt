@@ -135,6 +135,14 @@ describe('bFetch browser', () => {
       assert.strictEqual(await fetchEnsure(resp), 'Hello World!');
     });
 
+    it('text with own signal', async () => {
+      const resp = await bFetch('http://127.0.0.1:3030/text', {
+        signal: AbortSignal.timeout(10000),
+      });
+      assert.strictEqual(resp.status, 200);
+      assert.strictEqual(await fetchEnsure(resp), 'Hello World!');
+    });
+
     it('json', async () => {
       const resp = await bFetch('http://127.0.0.1:3030/json');
       assert.strictEqual(resp.status, 200);
