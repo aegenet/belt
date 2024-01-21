@@ -84,10 +84,9 @@ export class StringSplit implements IStringSplit {
     .filter(f => !f.same)
     .map(
       f => `      case ${JSON.stringify(f.close)}:
-          if (lifo.length === 0 || ${JSON.stringify(f.close)} != lifo[lifo.length - 1]) {
-            // Not open or we try to close an other symbol
-            throw new Error('StringSplit cannot ignores tags with unbalanced symbols');
-          } else {
+          if (lifo.length === 0) {
+            throw new Error('StringSplit, unopened tags found: ${JSON.stringify(f.open)}, ${JSON.stringify(f.close)}');
+          } else if (${JSON.stringify(f.close)} === lifo[lifo.length - 1]) {
             // Fine, we pop
             lifo.pop();
           }
@@ -114,10 +113,9 @@ export class StringSplit implements IStringSplit {
         .split('')
         .map((c, cidx) => `${JSON.stringify(c)} === str[i + ${cidx}]`)
         .join(' && ')}) {
-            if (lifo.length === 0 || !mapperCl[lifo[lifo.length - 1]](str, i)) {
-              // Not open or we try to close an other symbol
-              throw new Error('StringSplit cannot ignores tags with unbalanced symbols');
-            } else {
+            if (lifo.length === 0) {
+              throw new Error('StringSplit, unopened tags found: ${JSON.stringify(f.open)}, ${JSON.stringify(f.close)}');
+            } else if (mapperCl[lifo[lifo.length - 1]](str, i)) {
               // Fine, we pop
               lifo.pop();
               char = ${JSON.stringify(f.close)};
@@ -135,6 +133,8 @@ export class StringSplit implements IStringSplit {
           addChar = false;
           currentWord = '';
         }
+        
+        break;
       }
 
       if (addChar) {
@@ -143,7 +143,11 @@ export class StringSplit implements IStringSplit {
     }
   
     ${ignoreEmpty ? 'if (currentWord.length) { splited.push(currentWord); }' : 'splited.push(currentWord);'}
-  
+
+    if (lifo.length) {
+      throw new Error(\`StringSplit, unclosed tags are found: \${lifo.join(',')}\`);
+    }
+
     return splited;
   `
     ) as (str: string) => string[];

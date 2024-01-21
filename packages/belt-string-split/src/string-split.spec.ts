@@ -1,4 +1,4 @@
-import * as assert from 'node:assert';
+import assert from 'node:assert';
 import { StringSplit, type IStringSplitOptions, type IStringSplit } from './index';
 
 describe('string-split', () => {
@@ -164,7 +164,20 @@ describe('string-split', () => {
     );
   });
 
-  it('Unbalanced', () => {
+  it('Unbalanced same character', () => {
+    try {
+      new StringSplit({
+        separator: ' ',
+        ignoreTags: {
+          '"': '"',
+        },
+      }).split('Hello Brian "Something Else or something""');
+    } catch (error: any) {
+      assert.strictEqual(error.message, 'StringSplit, unclosed tags are found: "');
+    }
+  });
+
+  it('Unbalanced simple', () => {
     try {
       new StringSplit({
         separator: ' ',
@@ -173,7 +186,20 @@ describe('string-split', () => {
         },
       }).split('Hello Brian (Something Else or something))');
     } catch (error: any) {
-      assert.strictEqual(error.message, 'StringSplit cannot ignores tags with unbalanced symbols');
+      assert.strictEqual(error.message, 'StringSplit, unopened tags found: "(", ")"');
+    }
+  });
+
+  it('Unbalanced complex', () => {
+    try {
+      new StringSplit({
+        separator: ' ',
+        ignoreTags: {
+          '$(': ')',
+        },
+      }).split('Hello Brian $(Something Else or something))');
+    } catch (error: any) {
+      assert.strictEqual(error.message, 'StringSplit, unopened tags found: "$(", ")"');
     }
   });
 
