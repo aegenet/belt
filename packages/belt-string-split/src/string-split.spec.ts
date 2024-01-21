@@ -1,4 +1,4 @@
-import * as assert from 'node:assert';
+import assert from 'node:assert';
 import { StringSplit, type IStringSplitOptions, type IStringSplit } from './index';
 
 describe('string-split', () => {
@@ -164,17 +164,40 @@ describe('string-split', () => {
     );
   });
 
-  it('Unbalanced', () => {
+  it('Unbalanced same character', () => {
     try {
       new StringSplit({
         separator: ' ',
         ignoreTags: {
-          '(': ')',
+          '"': '"',
         },
-      }).split('Hello Brian (Something Else or something))');
+      }).split('Hello Brian "Something Else or something""');
+      throw new Error('Must failed');
     } catch (error: any) {
-      assert.strictEqual(error.message, 'StringSplit cannot ignores tags with unbalanced symbols');
+      assert.strictEqual(error.message, 'StringSplit, unclosed tags are found: "');
     }
+  });
+
+  it('Unbalanced simple', () => {
+    const stringSplit = new StringSplit({
+      separator: ' ',
+      ignoreTags: {
+        '(': ')',
+      },
+    });
+
+    assert.deepStrictEqual(stringSplit.split('Hello Brian (Something Else or something))'), ['Hello', 'Brian', '(Something Else or something))']);
+  });
+
+  it('Unbalanced complex', () => {
+    const stringSplit = new StringSplit({
+      separator: ' ',
+      ignoreTags: {
+        '$(': ')',
+      },
+    });
+
+    assert.deepStrictEqual(stringSplit.split('Hello Brian $(Something Else or something))'), ['Hello', 'Brian', '$(Something Else or something))']);
   });
 
   it('${$this.sizes.len() > 0}', () => {
@@ -236,5 +259,20 @@ describe('string-split', () => {
       },
     });
     assert.deepStrictEqual(stringSplit.split('mapped ${$this._count}, [id:value] <% Toto %>'), ['mapped ${$this._count}', ',', ' [id:value] <% Toto %>']);
+  });
+
+  it('Ignore unopened tags', () => {
+    const stringSplit = new StringSplit({
+      separator: ' ',
+      ignoreTags: {
+        '"': '"',
+        '${': '}',
+        '$(': ')',
+      },
+    });
+
+    assert.deepStrictEqual(stringSplit.split('ABC "DEF" "{G H I}"'), ['ABC', '"DEF"', '"{G H I}"']);
+    assert.deepStrictEqual(stringSplit.split('ABC "DEF" {G H I}'), ['ABC', '"DEF"', '{G', 'H', 'I}']);
+    assert.deepStrictEqual(stringSplit.split('ABC "DEF" "${G H I}"'), ['ABC', '"DEF"', '"${G H I}"']);
   });
 });
