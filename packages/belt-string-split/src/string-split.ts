@@ -84,9 +84,7 @@ export class StringSplit implements IStringSplit {
     .filter(f => !f.same)
     .map(
       f => `      case ${JSON.stringify(f.close)}:
-          if (lifo.length === 0) {
-            throw new Error('StringSplit, unopened tags found: ${JSON.stringify(f.open)}, ${JSON.stringify(f.close)}');
-          } else if (${JSON.stringify(f.close)} === lifo[lifo.length - 1]) {
+          if (lifo.length && ${JSON.stringify(f.close)} === lifo[lifo.length - 1]) {
             // Fine, we pop
             lifo.pop();
           }
@@ -113,9 +111,7 @@ export class StringSplit implements IStringSplit {
         .split('')
         .map((c, cidx) => `${JSON.stringify(c)} === str[i + ${cidx}]`)
         .join(' && ')}) {
-            if (lifo.length === 0) {
-              throw new Error('StringSplit, unopened tags found: ${JSON.stringify(f.open)}, ${JSON.stringify(f.close)}');
-            } else if (mapperCl[lifo[lifo.length - 1]](str, i)) {
+            if (lifo.length && mapperCl[lifo[lifo.length - 1]](str, i)) {
               // Fine, we pop
               lifo.pop();
               char = ${JSON.stringify(f.close)};
