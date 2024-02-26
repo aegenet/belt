@@ -39,9 +39,9 @@
     "test-browser": "node ./../../node_modules/jest/bin/jest --config ./jest.web.config.js",
     "test-node": "node ./../../node_modules/jest/bin/jest --config ./jest.config.js",
     "test-local": "node ./../../node_modules/ts-mocha/bin/ts-mocha \"src/**/*.spec.ts\"",
-    "build": "yarn tsc && yarn run build:vite && yarn run build:dts --bundleConfigAsCjs",
+    "build": "yarn tsc && yarn run build:vite && yarn run build:dts",
     "tsc": "node ./../../node_modules/rimraf/dist/esm/bin.mjs build && node ./../../node_modules/typescript/bin/tsc",
-    "build:dts": "node ./../../node_modules/rollup/dist/bin/rollup -c rollup.config.dts.js",
+    "build:dts": "node ./../../node_modules/rollup/dist/bin/rollup -c rollup.config.dts.mjs",
     "build:vite": "node ./../../node_modules/vite/bin/vite build"
   }
 }

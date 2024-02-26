@@ -1,2 +1,2 @@
 export { readdir } from './browser/readdir';
-export { IReaddirEntry } from './common/i-readdir-entry';
+export type { IReaddirEntry } from './common/i-readdir-entry';

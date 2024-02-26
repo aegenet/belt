@@ -8,9 +8,9 @@
 ## 💾 Installation
 
 ```shell
-yarn add @aegenet/belt-obj-is-equals@^1.2.0
+yarn add @aegenet/belt-obj-is-equals@^1.4.0
 # or
-npm i @aegenet/belt-obj-is-equals@^1.2.0
+npm i @aegenet/belt-obj-is-equals@^1.4.0
 ```
 
 ## 📝 Usage

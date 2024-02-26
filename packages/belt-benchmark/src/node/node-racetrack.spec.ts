@@ -1,7 +1,7 @@
 import * as assert from 'node:assert';
 import { setTimeout } from 'node:timers/promises';
 import { randomUUID } from 'node:crypto';
-import { ILapContext, NodeRacetrack } from '../node';
+import { type ILapContext, NodeRacetrack } from '../node';
 
 describe('Node Racetrack', () => {
   it('inc me', async () => {

@@ -100,15 +100,14 @@
     "cover:clean": "rimraf ./coverage/ && rimraf ./.nyc_output/",
     "cover:merge": "node ./.build/coverage.merge.js",
     "cover:report": "nyc report -t ./.nyc_output/ --reporter html --reporter text-summary",
-    "cover": "yarn run cover:clean && yarn run cover:merge && yarn run cover:report",
-    "generate:readme": "node ./packages/rql-tools-samples-generator/build/cli --dataFile \"./packages/rql-app-playground/public/files/data.yml\" --schemaFile \"./packages/rql-app-playground/public/files/schema.yml\" --rqlFile \"./packages/rql-app-playground/public/files/read.yml\" --rqlFile \"./packages/rql-app-playground/public/files/update.yml\" --rqlFile \"./packages/rql-app-playground/public/files/create.yml\" --rqlFile \"./packages/rql-app-playground/public/files/delete.yml\" --rqlFile \"./packages/rql-app-playground/public/files/functions.yml\" --rqlFile \"./packages/rql-app-playground/public/files/date.yml\" --rqlFile \"./packages/rql-app-playground/public/files/math.yml\" --outDir \"./docs/\" --ejsFile \"./.assets/docs/samples.md.ejs\" "
+    "cover": "yarn run cover:clean && yarn run cover:merge && yarn run cover:report"
   },
   "devDependencies": {
     "@aegenet/ya-node-externals": "^1.0.0",
     "@aegenet/ya-vite-banner": "^1.0.1",
     "@commitlint/cli": "^18.4.4",
     "@fastify/pre-commit": "^2.1.0",
-    "@types/jest": "^29.5.11",
+    "@types/jest": "^29.5.12",
     "@types/mocha": "^10.0.6",
     "@types/node": "^20.11.2",
     "@typescript-eslint/eslint-plugin": "^6.18.1",
@@ -129,11 +128,11 @@
     "rollup-plugin-dts": "^6.1.0",
     "source-map-loader": "^4.0.2",
     "source-map-support": "^0.5.21",
-    "terser": "^5.26.0",
+    "terser": "^5.28.1",
     "ts-jest": "^29.1.1",
     "ts-loader": "^9.5.1",
     "ts-mocha": "^10.0.0",
     "typescript": "^5.3.3",
-    "vite": "^5.0.12"
+    "vite": "^5.1.4"
   }
 }

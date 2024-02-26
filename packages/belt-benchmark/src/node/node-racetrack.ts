@@ -1,4 +1,4 @@
-import type { IRaceOptions } from '../common';
+import type { IRaceOptions } from '../common/i-race-options';
 import { Racetrack } from '../common/racetrack';
 import { performance as nodePerformance } from 'node:perf_hooks';
 

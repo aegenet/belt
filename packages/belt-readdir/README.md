@@ -10,9 +10,9 @@ Get all files from a root directory (recursively).
 ## 💾 Installation
 
 ```shell
-yarn add @aegenet/belt-readdir@^1.2.0
+yarn add @aegenet/belt-readdir@^1.4.0
 # or
-npm i @aegenet/belt-readdir@^1.2.0
+npm i @aegenet/belt-readdir@^1.4.0
 ```
 
 ## 📝 Usage (Node.js)
