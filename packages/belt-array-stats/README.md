@@ -8,9 +8,9 @@
 ## 💾 Installation
 
 ```shell
-yarn add @aegenet/belt-array-stats@^1.2.0
+yarn add @aegenet/belt-array-stats@^1.4.0
 # or
-npm i @aegenet/belt-array-stats@^1.2.0
+npm i @aegenet/belt-array-stats@^1.4.0
 ```
 
 ## 📝 Usage

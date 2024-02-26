@@ -10,9 +10,9 @@
 ## 💾 Installation
 
 ```shell
-yarn add @aegenet/belt-str-escape-regex@^1.2.0
+yarn add @aegenet/belt-str-escape-regex@^1.4.0
 # or
-npm i @aegenet/belt-str-escape-regex@^1.2.0
+npm i @aegenet/belt-str-escape-regex@^1.4.0
 ```
 
 ## 📝 Usage
