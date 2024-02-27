@@ -24,6 +24,7 @@ npm i @aegenet/belt-benchmark@^1.4.0
 >
 
 ### Bench a function
+
 ```typescript
 import { Racetrack } from '@aegenet/belt-benchmark';
 
@@ -41,6 +42,7 @@ console.table(stats.map(f => f.humanize()));
 ```
 
 ### Bench WAR
+
 ```typescript
 import { Racetrack } from '@aegenet/belt-benchmark';
 
@@ -88,6 +90,7 @@ console.table(stats.map(f => f.humanize()));
 ## Node.js
 
 ### Bench a function
+
 ```typescript
 import { NodeRacetrack } from '@aegenet/belt-benchmark';
 
@@ -105,7 +108,10 @@ console.table(stats.map(f => f.humanize()));
 ```
 
 ### Bench WAR
+
 ```typescript
+import { NodeRacetrack } from '@aegenet/belt-benchmark';
+
 const samples = [8, 3, 4, 1, 0, 5, 2, 6, 9, 7];
 
 const racetrack = new NodeRacetrack({
@@ -145,4 +151,66 @@ const stats = await racetrack.race(
 );
 
 console.table(stats.map(f => f.humanize()));
+```
+
+### Reporters
+
+#### Console output
+
+```typescript
+import { NodeRacetrack } from '@aegenet/belt-benchmark';
+import { consoleOutput } from '@aegenet/belt-benchmark/reporter';
+
+const racetrack = new NodeRacetrack({
+  name: 'The destiny',
+  duration: 6000,
+});
+
+await consoleOutput(async () => {
+    return await racetrack.race({
+      spec: ctx => {
+        // Something
+      },
+    });
+  });
+```
+
+#### Markdown / HTML
+
+```typescript
+import { NodeRacetrack } from '@aegenet/belt-benchmark';
+import { createMarkdown } from '@aegenet/belt-benchmark/reporter';
+
+const racetrack = new NodeRacetrack({
+  name: 'The destiny',
+  duration: 6000,
+});
+
+await createMarkdown('out.html' /* 'out.md' */, async () => {
+  return await racetrack.race({
+    spec: () => {
+      // Something
+    },
+  });
+});
+```
+
+#### JSON
+
+```typescript
+import { NodeRacetrack } from '@aegenet/belt-benchmark';
+import { createMarkdown } from '@aegenet/belt-benchmark/reporter';
+
+const racetrack = new NodeRacetrack({
+  name: 'The destiny',
+  duration: 6000,
+});
+
+await createJSON('out.json', async () => {
+  return await racetrack.race({
+    spec: () => {
+      // Something
+    },
+  });
+});
 ```
