@@ -5,6 +5,6 @@ import { fileURLToPath } from 'node:url';
 export default config({
   cwd: dirname(fileURLToPath(import.meta.url)),
   libName: '@aegenet/belt-symbols-is-balanced',
-  entryPoint: 'index.ts',
+  entryPoint: 'src/index.ts',
   nodeExternal: true,
 });

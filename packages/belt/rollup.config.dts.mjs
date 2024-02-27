@@ -6,7 +6,7 @@ export default config({
   cwd: dirname(fileURLToPath(import.meta.url)),
   libName: '@aegenet/belt',
   folder: 'node',
-  entryPoint: 'node.ts',
+  entryPoint: 'src/node.ts',
   external: ['node:perf_hooks'],
   nodeExternal: true,
 });

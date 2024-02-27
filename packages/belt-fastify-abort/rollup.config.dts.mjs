@@ -6,6 +6,6 @@ export default config({
   cwd: dirname(fileURLToPath(import.meta.url)),
   libName: '@aegenet/belt-fastify-abort',
   folder: 'node',
-  entryPoint: 'node.ts',
+  entryPoint: 'src/node.ts',
   nodeExternal: true,
 });
