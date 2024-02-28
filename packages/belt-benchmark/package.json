@@ -7,18 +7,20 @@
   "module": "dist/node/node.mjs",
   "browser": "dist/web/browser.mjs",
   "exports": {
-    "node": {
-      "require": "./dist/node/node.cjs",
-      "import": "./dist/node/node.mjs"
+    ".": {
+      "node": {
+        "require": "./dist/node/node.cjs",
+        "import": "./dist/node/node.mjs"
+      },
+      "default": {
+        "require": "./dist/web/browser.cjs",
+        "import": "./dist/web/browser.mjs"
+      }
     },
-    "reporter": {
+    "./reporter": {
       "require": "./dist/reporter/index.cjs",
       "import": "./dist/reporter/index.mjs",
       "types": "./dist/reporter/bundle.d.ts"
-    },
-    "default": {
-      "require": "./dist/web/browser.cjs",
-      "import": "./dist/web/browser.mjs"
     }
   },
   "typings": "./dist/node/bundle.d.ts",

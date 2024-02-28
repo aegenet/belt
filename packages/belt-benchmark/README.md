@@ -186,7 +186,7 @@ const racetrack = new NodeRacetrack({
   duration: 6000,
 });
 
-await createMarkdown('out.html' /* 'out.md' */, async () => {
+await createMarkdown({ fileName: 'out.html' /* 'out.md' */ }, async () => {
   return await racetrack.race({
     spec: () => {
       // Something

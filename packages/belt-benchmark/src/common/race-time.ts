@@ -9,8 +9,12 @@ export class RaceTime {
   public m: number;
 
   constructor(
-    /** nanoseconds */ public ns: number,
-    /** Lap of this time */ public lap?: number
+    /** nanoseconds */
+    public ns: number,
+    /** Lap of this time */
+    public lap?: number,
+    /** Custom fields/stats) */
+    public cFields: Record<string, number> = {}
   ) {
     this.us = ns / 1000;
     this.ms = this.us / 1000;
