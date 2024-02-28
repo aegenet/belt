@@ -4,4 +4,6 @@ export interface ILapContext<T = any> {
   lapTime: number;
   setLapTime(lapTime: number): void;
   readonly shared: Map<string, unknown>;
+  /** Custom fields/stats) */
+  readonly cFields: Record<string, number>;
 }

@@ -155,7 +155,7 @@ export async function benchmark(
     } else if (options.fileName.endsWith('.json')) {
       await createJSON(options.fileName, async () => await allBench[options.benchName](options.duration));
     } else {
-      await createMarkdown(options.fileName, async () => await allBench[options.benchName](options.duration));
+      await createMarkdown({ fileName: options.fileName }, async () => await allBench[options.benchName](options.duration));
     }
   } else {
     if (!options.fileName) {
@@ -163,7 +163,7 @@ export async function benchmark(
     } else if (options.fileName.endsWith('.json')) {
       await createJSON(options.fileName, ...Object.values(allBench).map(f => async () => await f(options.duration)));
     } else {
-      await createMarkdown(options.fileName, ...Object.values(allBench).map(f => async () => await f(options.duration)));
+      await createMarkdown({ fileName: options.fileName }, ...Object.values(allBench).map(f => async () => await f(options.duration)));
     }
   }
 }

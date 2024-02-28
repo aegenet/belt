@@ -70,15 +70,18 @@ const tasks = {
         throw new Error(`package.json/${key} must exists (${pkgProject[key]})`);
       }
     }
-    for (const key of ['require', 'import']) {
-      if (!fs.existsSync(path.join(projectPath, pkgProject.exports.node[key]))) {
-        throw new Error(`package.json/node/${key} must exists (${pkgProject.exports.node[key]})`);
+    if (pkgProject.exports["."]) {
+      for (const root in pkgProject.exports) {
+        if (root === ".") {
+          ensureExports(projectPath, pkgProject.exports[root], "node");
+          ensureExports(projectPath, pkgProject.exports[root], "default");
+        } else {
+          ensureExports(projectPath, pkgProject.exports, root);
+        }
       }
-    }
-    for (const key of ['require', 'import']) {
-      if (!fs.existsSync(path.join(projectPath, pkgProject.exports.default[key]))) {
-        throw new Error(`package.json/default/${key} must exists (${pkgProject.exports.default[key]})`);
-      }
+    } else {
+      ensureExports(projectPath, pkgProject.exports, "node");
+      ensureExports(projectPath, pkgProject.exports, "default");
     }
 
     return `cd ./packages/${project.name}/ && npm run test-node`;
@@ -110,6 +113,19 @@ const tasks = {
       return cmds.join(' && ');
     } else {
       return '';
+    }
+  }
+}
+
+function ensureExports(projectPath, pkgExports, folder) {
+  for (const key of ['require', 'import']) {
+    if (!fs.existsSync(path.join(projectPath, pkgExports[folder][key]))) {
+      throw new Error(`package.json/${folder}/${key} must exists (${pkgExports[folder][key]})`);
+    }
+  }
+  if (pkgExports[folder].types) {
+    if (!fs.existsSync(path.join(projectPath, pkgExports[folder].types))) {
+      throw new Error(`package.json/${folder}/types must exists (${pkgExports[folder].types})`);
     }
   }
 }

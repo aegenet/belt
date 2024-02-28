@@ -18,7 +18,7 @@ export async function createJSON(fileName: string, ...races: (() => Promise<Race
         JSON.stringify({
           name: raceResults[0].raceName,
           cars: raceResults.map(result => {
-            return {
+            const remap = {
               name: result.car.name,
               code: result.car.explain,
               laps: result.laps.length,
@@ -38,7 +38,19 @@ export async function createJSON(fileName: string, ...races: (() => Promise<Race
                 result.laps.map(f => f.us),
                 samplesCount
               ),
+              cData: {},
             };
+
+            for (const cField in result.cFieldsMin) {
+              remap.stats[`min ${cField}`] = result.cFieldsMin[cField];
+              remap.stats[`max ${cField}`] = result.cFieldsMax?.[cField];
+              remap.cData[cField] = reSamplesData(
+                result.laps.map(f => f.cFields?.[cField] || 0),
+                samplesCount
+              );
+            }
+
+            return remap;
           }),
         }),
       {

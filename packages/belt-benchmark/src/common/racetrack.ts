@@ -196,7 +196,7 @@ export class Racetrack {
       await this._options.afterLap(lapCtx);
     }
 
-    return new RaceTime(lapCtx.lapTime, currentLap);
+    return new RaceTime(lapCtx.lapTime, currentLap, lapCtx.cFields);
   }
 
   /**
