@@ -54,7 +54,7 @@
 | [@aegenet/belt-str-escape-regex](./packages/belt-str-escape-regex/README.md) | String Escape Regex |
 | [@aegenet/belt-string-split](./packages/belt-string-split/README.md) | String Split is an alternative to String.split, with the ability to ignore the split character inside 'tags' |
 | [@aegenet/belt-symbols-is-balanced](./packages/belt-symbols-is-balanced/README.md) | Symbols is balanced (`[`, `(` `{`)?  |
-
+| [@aegenet/belt-task-flow](./packages/belt-task-flow/README.md) | Enables loosely coupled publish/subscribe messaging. Awaiting version with FIFO (first in first out) |
 
 #### Node only
 

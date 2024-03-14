@@ -166,4 +166,10 @@ describe('all-in-one', () => {
   it('belt_string_split', () => {
     assert.ok(belt.StringSplit);
   });
+  it('belt_task_flow', () => {
+    assert.ok(belt.taskFlowMethod);
+    assert.ok(belt.TaskFlow);
+    assert.ok(belt.TaskFlowHandler);
+    assert.ok(belt.TaskFlowListener);
+  });
 });

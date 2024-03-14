@@ -169,6 +169,10 @@
       "path": "./packages/belt-duration"
     },
     {
+      "name": "Task Flow",
+      "path": "./packages/belt-task-flow"
+    },
+    {
       "name": "Root",
       "path": "."
     }

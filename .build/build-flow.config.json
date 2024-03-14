@@ -163,6 +163,10 @@
   "links": [],
   "publish": true
 }, {
+  "name": "belt-task-flow",
+  "links": [],
+  "publish": true
+}, {
   "name": "belt",
   "links": [],
   "publish": true
