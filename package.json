@@ -93,6 +93,7 @@
     "test": "vitest run",
     "test:coverage": "vitest run --coverage --coverage.provider=v8 --coverage.extension=.ts --coverage.exclude=\"**/packages/{rql-app-playground,rql-http-json,rql-mongodb,rql-knex}/**\"",
     "publish": "yawt --task=publish",
+    "version": "yawt --task=version",
     "upgrade": "npm cache clean && yawt --task=upgrade",
     "delete": "yawt --task=deleteNodeModules",
     "build-n-test": "npm run cover:clean && npm run lint && npm run build && npm run test && npm run cover",

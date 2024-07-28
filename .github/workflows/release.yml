@@ -23,22 +23,25 @@ jobs:
           # Defaults to the user or organization that owns the workflow file
           scope: '@aegenet'
 
-      - name: Install dependencies
-        env:
-          CI: true
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
-        run: npm run dependencies
-      - name: Our dependencies
+      - name: Install workspace dependencies
         env:
           CI: true
           NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
         run: npm i
+      - name: Packages dependencies
+        env:
+          CI: true
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
+        run: npm run dependencies
 
       - name: Clean coverages
         run: npm run cover:clean
 
       - name: Lint
         run: npm run lint
+
+      - name: Version
+        run: npm run version
 
       - name: Build
         run: npm run build
