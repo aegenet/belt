@@ -1,4 +1,7 @@
-import * as assert from 'node:assert';
+/**
+ * @vitest-environment node
+ */
+import { describe, it, assert } from 'vitest';
 import { isLeapYear } from './is-leap-year';
 
 describe('is-leap-year', () => {

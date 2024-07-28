@@ -25,7 +25,9 @@ export function mutateErrorWithRef<T, D extends Record<string, unknown>>(
 ): RefError<T & D> {
   const err: RefError<T & D> = asError(error) as RefError<T & D>;
   if (!err.refError) {
-    err.refError = `E-${(Date.now().toString(16) + _I_E_C.toString(16)).toUpperCase()}` + (options.identifier ? `.${options.identifier}` : '');
+    err.refError =
+      `E-${(Date.now().toString(16) + _I_E_C.toString(16)).toUpperCase()}` +
+      (options.identifier ? `.${options.identifier}` : '');
     _I_E_C = _I_E_C + 1 > 4095 ? 1 : _I_E_C + 1;
 
     if (options.prefixWithRef) {

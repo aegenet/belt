@@ -1,21 +1,5 @@
 {
-  "compileOnSave": true,
-  "compilerOptions": {
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
-    "moduleResolution": "node",
-    "skipLibCheck": true,
-    "target": "ES2020",
-    "esModuleInterop": true,
-    "resolveJsonModule": true,
-    "strict": true,
-    "sourceMap": true,
-    "newLine": "LF",
-    "outDir": "./build",
-    "typeRoots": [
-      "../../node_modules/@types"
-    ]
-  },
+  "extends": "./../../node_modules/@aegenet/yawt/tsconfig.base.json",
   "exclude": [
     "./node_modules",
     "./samples"

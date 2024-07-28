@@ -1,5 +1,7 @@
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
-import * as assert from 'node:assert';
+/**
+ * @vitest-environment node
+ */
+import { describe, it, assert } from 'vitest';
 import { ODeepSet } from './index';
 
 describe('odeep-set', () => {

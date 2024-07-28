@@ -1,63 +1,73 @@
-import * as assert from 'node:assert';
+/**
+ * @vitest-environment node
+ */
+import { describe, it, assert, beforeAll, afterAll } from 'vitest';
 import * as http from 'http';
 import { fetchEnsure, bFetch, bFetchSharedCache } from '../../node';
 import { setTimeout as wait } from 'node:timers/promises';
-
-const beforeAll = global.beforeAll ?? global.before;
-const afterAll = global.afterAll ?? global.after;
 
 describe('bFetch node', () => {
   let server: http.Server;
   let timeoutToken: any;
 
-  beforeAll(done => {
-    server = http
-      .createServer(function (req, res) {
-        if (req.url) {
-          if (req.url.startsWith('/text')) {
-            res.writeHead(200, { 'Content-Type': 'text/plain' });
-            res.write('Hello World!');
-          } else if (req.url.startsWith('/json')) {
-            res.writeHead(200, { 'Content-Type': 'application/json' });
-            res.write(JSON.stringify({ message: 'Hello World!' }));
-          } else if (req.url.startsWith('/custom')) {
-            res.writeHead(200, { 'Content-Type': 'application/custom' });
-            res.write(JSON.stringify('a:1;c:2'));
-          } else if (req.url.startsWith('/throw/text')) {
-            res.writeHead(401, { 'Content-Type': 'text/plain' });
-            res.write('Error!!!');
-          } else if (req.url.startsWith('/throw/json')) {
-            res.writeHead(401, { 'Content-Type': 'application/json' });
-            res.write(JSON.stringify({ message: 'Error!' }));
-          } else if (req.url.startsWith('/throw/custom')) {
-            res.writeHead(401, { 'Content-Type': 'application/custom' });
-            res.write(JSON.stringify({ message: 'Error!' }));
-          } else if (req.url.startsWith('/crash/502')) {
-            res.writeHead(502);
-          } else if (req.url.startsWith('/crash/533')) {
-            res.writeHead(533, '');
-          } else if (req.url.startsWith('/timeout/5000')) {
-            timeoutToken = setTimeout(() => {
+  beforeAll(async () => {
+    await new Promise<void>(resolve => {
+      server = http
+        .createServer(function (req, res) {
+          if (req.url) {
+            if (req.url.startsWith('/text')) {
+              res.writeHead(200, { 'Content-Type': 'text/plain' });
+              res.write('Hello World!');
+            } else if (req.url.startsWith('/json')) {
               res.writeHead(200, { 'Content-Type': 'application/json' });
-              res.write(JSON.stringify({ message: 'Long task.' }));
-              res.end();
-            }, 5000);
-            return;
-          } else if (req.url.startsWith('/crash/boom')) {
-            res.destroy();
+              res.write(JSON.stringify({ message: 'Hello World!' }));
+            } else if (req.url.startsWith('/custom')) {
+              res.writeHead(200, { 'Content-Type': 'application/custom' });
+              res.write(JSON.stringify('a:1;c:2'));
+            } else if (req.url.startsWith('/throw/text')) {
+              res.writeHead(401, { 'Content-Type': 'text/plain' });
+              res.write('Error!!!');
+            } else if (req.url.startsWith('/throw/json')) {
+              res.writeHead(401, { 'Content-Type': 'application/json' });
+              res.write(JSON.stringify({ message: 'Error!' }));
+            } else if (req.url.startsWith('/throw/custom')) {
+              res.writeHead(401, { 'Content-Type': 'application/custom' });
+              res.write(JSON.stringify({ message: 'Error!' }));
+            } else if (req.url.startsWith('/crash/502')) {
+              res.writeHead(502);
+            } else if (req.url.startsWith('/crash/533')) {
+              res.writeHead(533, '');
+            } else if (req.url.startsWith('/timeout/5000')) {
+              timeoutToken = setTimeout(() => {
+                res.writeHead(200, { 'Content-Type': 'application/json' });
+                res.write(JSON.stringify({ message: 'Long task.' }));
+                res.end();
+              }, 5000);
+              return;
+            } else if (req.url.startsWith('/crash/boom')) {
+              res.destroy();
+            }
+          } else {
+            res.writeHead(404, { 'Content-Type': 'application/json' });
+            res.write(JSON.stringify({ message: 'Alarma! Invalid url.' }));
           }
-        } else {
-          res.writeHead(404, { 'Content-Type': 'application/json' });
-          res.write(JSON.stringify({ message: 'Alarma! Invalid url.' }));
-        }
-        res.end();
-      })
-      .listen(3031, () => done());
+          res.end();
+        })
+        .listen(3031, () => resolve());
+    });
   });
 
-  afterAll(done => {
+  afterAll(async () => {
     clearTimeout(timeoutToken);
-    server.close(done);
+    await new Promise<void>((resolve, reject) => {
+      server.close(err => {
+        if (err) {
+          reject(err);
+        } else {
+          resolve();
+        }
+      });
+    });
   });
 
   describe('timeout', () => {

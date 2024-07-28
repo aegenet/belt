@@ -8,9 +8,9 @@
 ## 💾 Installation
 
 ```shell
-yarn add @aegenet/belt-json-ignore@^1.4.0
+yarn add @aegenet/belt-json-ignore@^1.6.0
 # or
-npm i @aegenet/belt-json-ignore@^1.4.0
+npm i @aegenet/belt-json-ignore@^1.6.0
 ```
 
 ## 📝 Usage
@@ -20,8 +20,12 @@ import { jsonIgnore } from '@aegenet/belt-json-ignore';
 
 class MyClass {
   @jsonIgnore
-  public mySubPrivateField: string = 'abcdefg';
+  public declare mySubPrivateField: string;
   public something: string = 'ok';
+
+  constructor() {
+    this.mySubPrivateField = 'abcdefg';
+  }
 }
 
 const instance = new MyClass();

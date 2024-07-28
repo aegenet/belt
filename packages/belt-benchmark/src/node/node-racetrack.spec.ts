@@ -1,4 +1,8 @@
-import * as assert from 'node:assert';
+/**
+ * @vitest-environment node
+ */
+// eslint-disable no-console
+import { describe, it, assert } from 'vitest';
 import { setTimeout } from 'node:timers/promises';
 import { randomUUID } from 'node:crypto';
 import { type ILapContext, NodeRacetrack } from '../node';
@@ -48,7 +52,7 @@ describe('Node Racetrack', () => {
     });
     let i = 0;
     const stats = await racetrack.race({
-      spec: ctx => {
+      spec: () => {
         i++;
       },
     });
@@ -67,7 +71,7 @@ describe('Node Racetrack', () => {
     });
     let i = 0;
     const stats = await racetrack.race({
-      spec: ctx => {
+      spec: () => {
         i++;
       },
     });
@@ -86,7 +90,7 @@ describe('Node Racetrack', () => {
     });
     let i = 0;
     const stats = await racetrack.race({
-      spec: ctx => {
+      spec: () => {
         i++;
       },
     });
@@ -184,7 +188,7 @@ describe('Node Racetrack', () => {
     const stats = await racetrack.race(
       {
         name: 'Object.keys() + for i',
-        spec: (ctx: ILapContext<number>) => {
+        spec: () => {
           const map = new Map<string, number>();
           // // ctx.begin();
           const keys = Object.keys(samples);
@@ -198,7 +202,7 @@ describe('Node Racetrack', () => {
       },
       {
         name: 'Object.keys().forEach',
-        spec: (ctx: ILapContext<number>) => {
+        spec: () => {
           const map = new Map<string, number>();
           // // ctx.begin();
           Object.keys(samples).forEach(key => {
@@ -211,7 +215,7 @@ describe('Node Racetrack', () => {
       },
       {
         name: 'for of Object.keys()',
-        spec: (ctx: ILapContext<number>) => {
+        spec: () => {
           const map = new Map<string, number>();
           // // ctx.begin();
           for (const key of Object.keys(samples)) {
@@ -224,7 +228,7 @@ describe('Node Racetrack', () => {
       },
       {
         name: 'for of Object.entries()',
-        spec: (ctx: ILapContext<number>) => {
+        spec: () => {
           const map = new Map<string, number>();
           // ctx.begin();
           for (const [key, value] of Object.entries(samples)) {
@@ -237,7 +241,7 @@ describe('Node Racetrack', () => {
       },
       {
         name: 'for in',
-        spec: (ctx: ILapContext<number>) => {
+        spec: () => {
           const map = new Map<string, number>();
           // ctx.begin();
           for (const key in samples) {

@@ -41,7 +41,9 @@ export function taskFlowMethod(
     const actions: ITaskFlowSubscription[] = target.__tfSubs;
 
     const prefix = options.prefix ?? 'tf';
-    const channel = options.channel?.length ? `${options.prefix ? options.prefix + '.' : ''}${options.channel}` : `${prefix && prefix != '' ? prefix + '.' : ''}${`${target.constructor.name}:${propertyKey.toString()}`}`;
+    const channel = options.channel?.length
+      ? `${options.prefix ? options.prefix + '.' : ''}${options.channel}`
+      : `${prefix && prefix != '' ? prefix + '.' : ''}${`${target.constructor.name}:${propertyKey.toString()}`}`;
 
     if (actions) {
       actions.push({

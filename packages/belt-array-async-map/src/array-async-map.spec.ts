@@ -1,16 +1,19 @@
-import * as assert from 'node:assert';
+/**
+ * @vitest-environment node
+ */
+import { describe, it, assert } from 'vitest';
 import { arrayAsyncMap } from './index';
 
 describe('arrayAsyncMap', function () {
   describe('bad way', () => {
     it('null array', async () => {
-      assert.deepStrictEqual(await arrayAsyncMap(null as any, f => true), []);
+      assert.deepStrictEqual(await arrayAsyncMap(null as any, () => true), []);
     });
     it('undefined array', async () => {
-      assert.deepStrictEqual(await arrayAsyncMap(undefined as any, f => true), []);
+      assert.deepStrictEqual(await arrayAsyncMap(undefined as any, () => true), []);
     });
     it('empty array', async () => {
-      assert.deepStrictEqual(await arrayAsyncMap([], f => true), []);
+      assert.deepStrictEqual(await arrayAsyncMap([], () => true), []);
     });
   });
 
@@ -82,7 +85,7 @@ describe('arrayAsyncMap', function () {
               value: 'Yo',
             },
           ],
-          f => null
+          () => null
         ),
         [null]
       );
@@ -187,7 +190,7 @@ describe('arrayAsyncMap', function () {
             null,
           ],
           // in js... a guy can do that, so, let's check
-          f => null
+          () => null
         ),
         [null, null]
       );

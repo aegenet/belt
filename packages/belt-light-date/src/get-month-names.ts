@@ -8,7 +8,10 @@ const monthsMap: Map<string, string[]> = new Map();
  * @param format 'long' | 'numeric' | '2-digit' | 'short' | 'narrow'
  * @returns Array<string>
  */
-export function getMonthNames(format: 'long' | 'numeric' | '2-digit' | 'short' | 'narrow' = 'long', locales?: string | string[]) {
+export function getMonthNames(
+  format: 'long' | 'numeric' | '2-digit' | 'short' | 'narrow' = 'long',
+  locales?: string | string[]
+) {
   const cacheKey = `${new Intl.NumberFormat().resolvedOptions().locale}_${format}_${locales}`;
   if (monthsMap.has(cacheKey)) {
     return monthsMap.get(cacheKey);

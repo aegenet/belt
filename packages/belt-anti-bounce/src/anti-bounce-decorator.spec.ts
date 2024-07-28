@@ -1,4 +1,7 @@
-import * as assert from 'node:assert';
+/**
+ * @vitest-environment node
+ */
+import { describe, it, assert } from 'vitest';
 import { AntiBounce } from './index';
 import { antiBounce, disposeAntiBounces, IAntiBounceSupport } from './anti-bounce-decorator';
 import { setTimeout } from 'node:timers/promises';

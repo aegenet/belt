@@ -12,7 +12,11 @@ import type { IDuration } from './i-duration';
  * @param { DurationSourceType } from Duration time type. Default milliseconds
  * @returns IDuration | undefined
  */
-export function toDuration(value: string | number, from: EDurationFormat = EDurationFormat.MILLISECONDS, options?: IDurationOptions): IDuration | undefined {
+export function toDuration(
+  value: string | number,
+  from: EDurationFormat = EDurationFormat.MILLISECONDS,
+  options?: IDurationOptions
+): IDuration | undefined {
   options ||= {};
   options.mask ||= EDurationFormatMask.Y_M_W_D_H_M_S;
   options.precision ||= 0.5;
@@ -25,21 +29,35 @@ export function toDuration(value: string | number, from: EDurationFormat = EDura
       throw new Error('The input value must be less than or equal to MAX_SAFE_INTEGER.');
     }
     const duration = createDurationTable(from, options);
-    const response: IDuration = { years: 0, months: 0, weeks: 0, days: 0, hours: 0, minutes: 0, seconds: 0, milliseconds: 0, hoursPerDay: options?.hoursPerDay || 24, daysPerWeek: options?.daysPerWeek || 7 };
+    const response: IDuration = {
+      years: 0,
+      months: 0,
+      weeks: 0,
+      days: 0,
+      hours: 0,
+      minutes: 0,
+      seconds: 0,
+      milliseconds: 0,
+      hoursPerDay: options?.hoursPerDay || 24,
+      daysPerWeek: options?.daysPerWeek || 7,
+    };
 
     let lastDurFormat: { key: EDurationFormat; field: string } | undefined;
     for (let i = 0; i < SUPPORTED_DURATIONS.length; i++) {
-      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       if (options.mask! & SUPPORTED_DURATIONS[i].key) {
         lastDurFormat = SUPPORTED_DURATIONS[i];
 
         if (duration[lastDurFormat.key].div) {
-          (response as unknown as Record<string, number>)[lastDurFormat.field] = Math.trunc(value / duration[lastDurFormat.key].ratio);
+          (response as unknown as Record<string, number>)[lastDurFormat.field] = Math.trunc(
+            value / duration[lastDurFormat.key].ratio
+          );
           if ((response as unknown as Record<string, number>)[lastDurFormat.field]) {
             value = value % duration[lastDurFormat.key].ratio || 0;
           }
         } else {
-          (response as unknown as Record<string, number>)[lastDurFormat.field] = Math.trunc(value * duration[lastDurFormat.key].ratio);
+          (response as unknown as Record<string, number>)[lastDurFormat.field] = Math.trunc(
+            value * duration[lastDurFormat.key].ratio
+          );
           if ((response as unknown as Record<string, number>)[lastDurFormat.field]) {
             value = value % (1 / duration[lastDurFormat.key].ratio) || 0;
           }
@@ -54,11 +72,16 @@ export function toDuration(value: string | number, from: EDurationFormat = EDura
     if (value && lastDurFormat) {
       // A rest of division & it was the last... we recompute the last part
       if (duration[lastDurFormat.key].div) {
-        (response as unknown as Record<string, number>)[lastDurFormat.field] += value / duration[lastDurFormat.key].ratio;
+        (response as unknown as Record<string, number>)[lastDurFormat.field] +=
+          value / duration[lastDurFormat.key].ratio;
       } else {
-        (response as unknown as Record<string, number>)[lastDurFormat.field] += value * duration[lastDurFormat.key].ratio;
+        (response as unknown as Record<string, number>)[lastDurFormat.field] +=
+          value * duration[lastDurFormat.key].ratio;
       }
-      (response as unknown as Record<string, number>)[lastDurFormat.field] = roundStep((response as unknown as Record<string, number>)[lastDurFormat.field], options.precision);
+      (response as unknown as Record<string, number>)[lastDurFormat.field] = roundStep(
+        (response as unknown as Record<string, number>)[lastDurFormat.field],
+        options.precision
+      );
     }
 
     return response;

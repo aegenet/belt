@@ -1,4 +1,7 @@
-import * as assert from 'node:assert';
+/**
+ * @vitest-environment node
+ */
+import { describe, it, assert } from 'vitest';
 import { setTimeout } from 'node:timers/promises';
 import fastify from 'fastify';
 import { fastifyAbortRegister, type FastifyRequestAbortCtrl } from '../node';
@@ -10,10 +13,10 @@ describe('fastify-abort/node', () => {
     try {
       fastifyAbortRegister(app);
 
-      app.get('/api/random', (req: FastifyRequestAbortCtrl, reply) => {
+      app.get('/api/random', (req: FastifyRequestAbortCtrl) => {
         assert.ok(req.abortCtrl);
-        assert.ok(req.abortCtrl.signal);
-        assert.ok(!req.abortCtrl.signal.aborted);
+        assert.ok(req.abortCtrl!.signal);
+        assert.ok(!req.abortCtrl!.signal.aborted);
         return { ok: true };
       });
 
@@ -24,7 +27,7 @@ describe('fastify-abort/node', () => {
       assert.strictEqual(response.statusCode, 200);
       assert.deepStrictEqual(response.json(), { ok: true });
     } finally {
-      app.close();
+      await app.close();
     }
   });
 
@@ -36,15 +39,15 @@ describe('fastify-abort/node', () => {
       app.addHook('onRequest', (req: FastifyRequestAbortCtrl, reply, done) => {
         assert.ok(req.abortCtrl);
         // Abort!
-        req.abortCtrl.abort();
+        req.abortCtrl!.abort();
         done();
       });
 
-      app.get('/api/random', (req: FastifyRequestAbortCtrl, reply) => {
+      app.get('/api/random', (req: FastifyRequestAbortCtrl) => {
         assert.ok(req.abortCtrl);
-        assert.ok(req.abortCtrl.signal);
-        assert.ok(req.abortCtrl.signal.aborted);
-        return { ok: req.abortCtrl.signal.aborted };
+        assert.ok(req.abortCtrl!.signal);
+        assert.ok(req.abortCtrl!.signal.aborted);
+        return { ok: req.abortCtrl!.signal.aborted };
       });
 
       const response = await app.inject({
@@ -54,7 +57,7 @@ describe('fastify-abort/node', () => {
       assert.strictEqual(response.statusCode, 200);
       assert.deepStrictEqual(response.json(), { ok: true });
     } finally {
-      app.close();
+      await app.close();
     }
   });
 
@@ -63,23 +66,23 @@ describe('fastify-abort/node', () => {
     try {
       fastifyAbortRegister(app);
 
-      app.get('/', async (req: FastifyRequestAbortCtrl, reply) => {
+      app.get('/', async (req: FastifyRequestAbortCtrl) => {
         await setTimeout(1000);
         assert.ok(req.abortCtrl);
-        assert.ok(req.abortCtrl.signal);
-        assert.ok(req.abortCtrl.signal.aborted);
-        return { ok: req.abortCtrl.signal.aborted };
+        assert.ok(req.abortCtrl!.signal);
+        assert.ok(req.abortCtrl!.signal.aborted);
+        return { ok: req.abortCtrl!.signal.aborted };
       });
 
       await app.listen({ host: '::', port: 0 });
 
-      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       const socket = connect((app.server.address()! as unknown as { port: string }).port);
       socket.write('GET / HTTP/1.1\r\nHost: example.com\r\n\r\n');
 
       await setTimeout(500);
       socket.destroy();
     } catch (error) {
+      // eslint-disable-next-line no-console
       console.dir(error);
     } finally {
       await app.close();
@@ -91,10 +94,10 @@ describe('fastify-abort/node', () => {
     try {
       fastifyAbortRegister(app);
 
-      app.post('/api/random', (req: FastifyRequestAbortCtrl, reply) => {
+      app.post('/api/random', (req: FastifyRequestAbortCtrl) => {
         assert.ok(req.abortCtrl);
-        assert.ok(req.abortCtrl.signal);
-        assert.ok(!req.abortCtrl.signal.aborted);
+        assert.ok(req.abortCtrl!.signal);
+        assert.ok(!req.abortCtrl!.signal.aborted);
         return { ok: true };
       });
 
@@ -106,7 +109,7 @@ describe('fastify-abort/node', () => {
       assert.strictEqual(response.statusCode, 200);
       assert.deepStrictEqual(response.json(), { ok: true });
     } finally {
-      app.close();
+      await app.close();
     }
   });
 });

@@ -1,5 +1,8 @@
 // tslint:disable:no-big-function no-duplicate-string no-identical-functions
-import * as assert from 'node:assert';
+/**
+ * @vitest-environment node
+ */
+import { describe, it, assert } from 'vitest';
 import { hook } from './index';
 
 describe('Hook', function () {
@@ -90,7 +93,7 @@ describe('Hook', function () {
     };
 
     assert.strictEqual(context.cpt, 0);
-    context.inc();
+    await context.inc();
     assert.strictEqual(context.cpt, 1);
 
     const token = hook({

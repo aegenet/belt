@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
 export type GetValueOptions = {
   /** Fast, pre-parse, but use memory */
   memoize?: boolean;
@@ -26,7 +25,11 @@ export class ODeepGet {
   /**
    * Set value into an object
    */
-  public getValue<C = Record<string, any>, O = unknown>(context: C, pathFlow: Array<string | number>, options?: GetValueOptions): O | undefined {
+  public getValue<C = Record<string, any>, O = unknown>(
+    context: C,
+    pathFlow: Array<string | number>,
+    options?: GetValueOptions
+  ): O | undefined {
     options = options || {};
 
     if (!context || !pathFlow) {
@@ -143,10 +146,22 @@ export class ODeepGet {
     }
 
     if (options.shallowError) {
-      return pathFlow.reduce<any>((prev, curr) => (prev && this._safePropertyRE.test(curr as string) && (prev as object).hasOwnProperty(curr) ? prev[curr] : undefined), context);
+      return pathFlow.reduce<any>(
+        (prev, curr) =>
+          prev &&
+          this._safePropertyRE.test(curr as string) &&
+          Object.prototype.hasOwnProperty.call(prev as object, curr)
+            ? prev[curr]
+            : undefined,
+        context
+      );
     } else {
       return pathFlow.reduce<any>((prev, curr) => {
-        if (prev && this._safePropertyRE.test(curr as string) && (prev as object).hasOwnProperty(curr)) {
+        if (
+          prev &&
+          this._safePropertyRE.test(curr as string) &&
+          Object.prototype.hasOwnProperty.call(prev as object, curr)
+        ) {
           return prev[curr];
         } else {
           throw new Error(`The property path (${pathFlow.join('.')}) seems invalid`);

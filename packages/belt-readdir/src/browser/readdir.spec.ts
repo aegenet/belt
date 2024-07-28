@@ -1,4 +1,7 @@
-import * as assert from 'node:assert';
+/**
+ * @vitest-environment jsdom
+ */
+import { describe, it, assert } from 'vitest';
 import * as path from 'node:path';
 import { readdir } from '../browser';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars

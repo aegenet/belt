@@ -1,4 +1,7 @@
-import * as assert from 'node:assert';
+/**
+ * @vitest-environment node
+ */
+import { describe, it, assert } from 'vitest';
 import { extractDomain, IDomain } from './index';
 
 describe('extract-domain', function () {

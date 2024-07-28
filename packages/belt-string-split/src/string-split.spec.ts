@@ -1,4 +1,7 @@
-import assert from 'node:assert';
+/**
+ * @vitest-environment node
+ */
+import { describe, it, assert } from 'vitest';
 import { StringSplit, type IStringSplitOptions, type IStringSplit } from './index';
 
 describe('string-split', () => {
@@ -186,7 +189,11 @@ describe('string-split', () => {
       },
     });
 
-    assert.deepStrictEqual(stringSplit.split('Hello Brian (Something Else or something))'), ['Hello', 'Brian', '(Something Else or something))']);
+    assert.deepStrictEqual(stringSplit.split('Hello Brian (Something Else or something))'), [
+      'Hello',
+      'Brian',
+      '(Something Else or something))',
+    ]);
   });
 
   it('Unbalanced complex', () => {
@@ -197,7 +204,11 @@ describe('string-split', () => {
       },
     });
 
-    assert.deepStrictEqual(stringSplit.split('Hello Brian $(Something Else or something))'), ['Hello', 'Brian', '$(Something Else or something))']);
+    assert.deepStrictEqual(stringSplit.split('Hello Brian $(Something Else or something))'), [
+      'Hello',
+      'Brian',
+      '$(Something Else or something))',
+    ]);
   });
 
   it('${$this.sizes.len() > 0}', () => {
@@ -208,7 +219,10 @@ describe('string-split', () => {
       },
     });
     assert.deepStrictEqual(stringSplit.split('${$this.sizes.len() > 0}'), ['${$this.sizes.len() > 0}']);
-    assert.deepStrictEqual(stringSplit.split('${$this.sizes.len() > 0} ${$this.sizes.len() < 255}'), ['${$this.sizes.len() > 0}', '${$this.sizes.len() < 255}']);
+    assert.deepStrictEqual(stringSplit.split('${$this.sizes.len() > 0} ${$this.sizes.len() < 255}'), [
+      '${$this.sizes.len() > 0}',
+      '${$this.sizes.len() < 255}',
+    ]);
   });
 
   it('mapped ${$this._count} [id:value]', () => {
@@ -219,7 +233,11 @@ describe('string-split', () => {
         '${': '}',
       },
     });
-    assert.deepStrictEqual(stringSplit.split('mapped ${$this._count} [id:value]'), ['mapped', '${$this._count}', '[id:value]']);
+    assert.deepStrictEqual(stringSplit.split('mapped ${$this._count} [id:value]'), [
+      'mapped',
+      '${$this._count}',
+      '[id:value]',
+    ]);
   });
 
   it('mapped ${$this._count} [id:value] <% Toto %>', () => {
@@ -231,7 +249,12 @@ describe('string-split', () => {
         '<%': '%>',
       },
     });
-    assert.deepStrictEqual(stringSplit.split('mapped ${$this._count} [id:value] <% Toto %>'), ['mapped', '${$this._count}', '[id:value]', '<% Toto %>']);
+    assert.deepStrictEqual(stringSplit.split('mapped ${$this._count} [id:value] <% Toto %>'), [
+      'mapped',
+      '${$this._count}',
+      '[id:value]',
+      '<% Toto %>',
+    ]);
   });
 
   it('Multiple separators', () => {
@@ -244,7 +267,10 @@ describe('string-split', () => {
         '[': ']',
       },
     });
-    assert.deepStrictEqual(stringSplit.split('mapped ${$this._count}, [id:value] <% Toto %>'), ['mapped ${$this._count}', ' [id:value] <% Toto %>']);
+    assert.deepStrictEqual(stringSplit.split('mapped ${$this._count}, [id:value] <% Toto %>'), [
+      'mapped ${$this._count}',
+      ' [id:value] <% Toto %>',
+    ]);
   });
 
   it('Multiple separators, includeSep', () => {
@@ -258,7 +284,11 @@ describe('string-split', () => {
         '[': ']',
       },
     });
-    assert.deepStrictEqual(stringSplit.split('mapped ${$this._count}, [id:value] <% Toto %>'), ['mapped ${$this._count}', ',', ' [id:value] <% Toto %>']);
+    assert.deepStrictEqual(stringSplit.split('mapped ${$this._count}, [id:value] <% Toto %>'), [
+      'mapped ${$this._count}',
+      ',',
+      ' [id:value] <% Toto %>',
+    ]);
   });
 
   it('Ignore unopened tags', () => {

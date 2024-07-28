@@ -8,9 +8,9 @@
 ## 💾 Installation
 
 ```shell
-yarn add @aegenet/belt-string-split@^1.4.0
+yarn add @aegenet/belt-string-split@^1.6.0
 # or
-npm i @aegenet/belt-string-split@^1.4.0
+npm i @aegenet/belt-string-split@^1.6.0
 ```
 
 ## 📝 Usage

@@ -1,7 +1,10 @@
 /**
  * Object first key
  */
-export function objectFirstKey<I = Record<PropertyKey, unknown>>(input: I, predicate?: (key: string, index: number, input: I) => boolean): string | null {
+export function objectFirstKey<I = Record<PropertyKey, unknown>>(
+  input: I,
+  predicate?: (key: string, index: number, input: I) => boolean
+): string | null {
   if (input) {
     if (predicate) {
       let i = 0;

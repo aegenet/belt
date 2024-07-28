@@ -1,4 +1,7 @@
-import assert from 'node:assert';
+/**
+ * @vitest-environment jsdom
+ */
+import { describe, it, assert } from 'vitest';
 import { MemoryWriter } from '../browser';
 import { MemoryReader } from '../browser';
 

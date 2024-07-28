@@ -27,15 +27,25 @@ import type { IAntiBounce } from './i-anti-bounce';
 export function antiBounce(options: IAntiBounceOptions) {
   options = options ?? {};
 
-  function _wrapAntiBounce(instance: IAntiBounceSupport, descriptor: PropertyDescriptor, propertyKey: string): IAntiBounce {
+  function _wrapAntiBounce(
+    instance: IAntiBounceSupport,
+    descriptor: PropertyDescriptor,
+    propertyKey: string
+  ): IAntiBounce {
     if (!instance.$antiBounces) {
       instance.$antiBounces = new Map();
     }
 
     if (!instance.$antiBounces.has(propertyKey)) {
-      instance.$antiBounces.set(propertyKey, new AntiBounce(descriptor.value.bind(instance), options.duration, options.checker ? (instance as any)[options.checker].bind(instance) : undefined));
+      instance.$antiBounces.set(
+        propertyKey,
+        new AntiBounce(
+          descriptor.value.bind(instance),
+          options.duration,
+          options.checker ? (instance as any)[options.checker].bind(instance) : undefined
+        )
+      );
     }
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     return instance.$antiBounces.get(propertyKey)!;
   }
 

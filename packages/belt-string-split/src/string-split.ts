@@ -10,7 +10,11 @@ export class StringSplit implements IStringSplit {
   public readonly split: (str: string) => string[];
 
   constructor(private readonly _options: IStringSplitOptions) {
-    if (typeof this._options.separator === 'string' && (!this._options.ignoreTags || Object.keys(this._options.ignoreTags).length === 0) && this._options.ignoreEmpty !== true) {
+    if (
+      typeof this._options.separator === 'string' &&
+      (!this._options.ignoreTags || Object.keys(this._options.ignoreTags).length === 0) &&
+      this._options.ignoreEmpty !== true
+    ) {
       this.split = str => {
         if (str != null) {
           return str.split(this._options.separator as string);
@@ -23,7 +27,12 @@ export class StringSplit implements IStringSplit {
     }
   }
 
-  private _createStringSplit({ separator, includeSep = false, ignoreTags = {}, ignoreEmpty = false }: IStringSplitOptions): (str: string) => string[] {
+  private _createStringSplit({
+    separator,
+    includeSep = false,
+    ignoreTags = {},
+    ignoreEmpty = false,
+  }: IStringSplitOptions): (str: string) => string[] {
     /** Optimize one chars tags */
     const optimizeTags: Array<{ open: string; close: string; same: boolean }> = [];
     const slowTags: Array<{ open: string; close: string; same: boolean }> = [];
@@ -77,7 +86,8 @@ export class StringSplit implements IStringSplit {
       switch (char) {
   ${optimizeTags
     .map(
-      f => `     case ${JSON.stringify(f.open)}:\n       ${f.same ? `if (lifo.length && lifo[lifo.length - 1] === ${JSON.stringify(f.close)}) { lifo.pop(); } else { ` : ''}lifo.push(${JSON.stringify(f.close)}); ${f.same ? '}' : ''} break;`
+      f =>
+        `     case ${JSON.stringify(f.open)}:\n       ${f.same ? `if (lifo.length && lifo[lifo.length - 1] === ${JSON.stringify(f.close)}) { lifo.pop(); } else { ` : ''}lifo.push(${JSON.stringify(f.close)}); ${f.same ? '}' : ''} break;`
     )
     .join('\n')}
   ${optimizeTags
@@ -99,7 +109,9 @@ export class StringSplit implements IStringSplit {
         `        ${i > 0 ? 'else ' : ''}if (${f.open
           .split('')
           .map((c, cidx) => `${JSON.stringify(c)} === str[i + ${cidx}]`)
-          .join(' && ')}) { ${f.same ? `if (lifo.length && lifo[lifo.length - 1] === ${JSON.stringify(f.close)}) { lifo.pop(); char = ${JSON.stringify(f.close)}; i+=${f.close.length - 1}; } else { ` : ''}lifo.push(${JSON.stringify(
+          .join(
+            ' && '
+          )}) { ${f.same ? `if (lifo.length && lifo[lifo.length - 1] === ${JSON.stringify(f.close)}) { lifo.pop(); char = ${JSON.stringify(f.close)}; i+=${f.close.length - 1}; } else { ` : ''}lifo.push(${JSON.stringify(
           f.close
         )}); char = ${JSON.stringify(f.open)}; i+=${f.open.length - 1}; ${f.same ? ' }' : ''} }`
     )

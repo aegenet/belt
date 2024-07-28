@@ -1,3 +1,7 @@
+/**
+ * @vitest-environment node
+ */
+import { describe, it } from 'vitest';
 import { benchmark } from './../../bench/benchmark';
 import * as fs from 'fs/promises';
 

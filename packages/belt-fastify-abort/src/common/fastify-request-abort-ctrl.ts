@@ -1,4 +1,15 @@
-import type { ContextConfigDefault, FastifyBaseLogger, FastifyRequest, FastifySchema, FastifyTypeProvider, FastifyTypeProviderDefault, RawRequestDefaultExpression, RawServerBase, RawServerDefault, RouteGenericInterface } from 'fastify';
+import type {
+  ContextConfigDefault,
+  FastifyBaseLogger,
+  FastifyRequest,
+  FastifySchema,
+  FastifyTypeProvider,
+  FastifyTypeProviderDefault,
+  RawRequestDefaultExpression,
+  RawServerBase,
+  RawServerDefault,
+  RouteGenericInterface,
+} from 'fastify';
 import type { FastifyRequestType, ResolveFastifyRequestType } from 'fastify/types/type-provider';
 
 /** FastifyRequest With AbortController */
@@ -17,7 +28,16 @@ export type FastifyRequestAbortCtrl<
   //   arguments. Implementations that already pass this argument can either omit
   //   the RequestType (preferred) or swap Logger and RequestType arguments when
   //   creating custom types of FastifyRequest. Related issue #4123
-> = FastifyRequest<RouteGeneric, RawServer, RawRequest, SchemaCompiler, TypeProvider, ContextConfig, Logger, RequestType> & {
+> = FastifyRequest<
+  RouteGeneric,
+  RawServer,
+  RawRequest,
+  SchemaCompiler,
+  TypeProvider,
+  ContextConfig,
+  Logger,
+  RequestType
+> & {
   /** AbortController */
   abortCtrl?: AbortController;
 };

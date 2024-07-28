@@ -1,4 +1,7 @@
-import * as assert from 'node:assert';
+/**
+ * @vitest-environment node
+ */
+import { describe, it, assert } from 'vitest';
 import { Interpolation, transform } from './index';
 
 describe('interpolation', function () {
@@ -78,6 +81,7 @@ describe('interpolation', function () {
     it('Custom language', () => {
       const interpolation = new Interpolation({
         customDialects: {
+          // eslint-disable-next-line no-useless-escape
           spider: /(\\{0,1})¤¤([\w\._\-]{1,})¤¤/,
         },
       });
@@ -140,4 +144,16 @@ describe('interpolation', function () {
       );
     });
   });
+
+  // describe.only('RawTransform', () => {
+  //   it('Simple', () => {
+  //     const interpolation = new Interpolation();
+  //     assert.strictEqual(
+  //       interpolation.rawTransform('Hello ${name}', {
+  //         name: 'David',
+  //       }),
+  //       'Hello David'
+  //     );
+  //   });
+  // });
 });

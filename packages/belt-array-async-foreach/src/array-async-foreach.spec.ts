@@ -1,3 +1,7 @@
+/**
+ * @vitest-environment node
+ */
+import { describe, it } from 'vitest';
 import * as assert from 'node:assert';
 import { arrayAsyncForEach } from './index';
 
@@ -5,8 +9,8 @@ describe('asyncForEach', function () {
   describe('bad way', () => {
     it('null array', async () => {
       let i = 0;
-      assert.doesNotReject(async () => {
-        await arrayAsyncForEach(null as any, f => {
+      await assert.doesNotReject(async () => {
+        await arrayAsyncForEach(null as any, () => {
           i++;
         });
       });
@@ -14,8 +18,8 @@ describe('asyncForEach', function () {
     });
     it('undefined array', async () => {
       let i = 0;
-      assert.doesNotReject(async () => {
-        await arrayAsyncForEach(undefined as any, f => {
+      await assert.doesNotReject(async () => {
+        await arrayAsyncForEach(undefined as any, () => {
           i++;
         });
       });
@@ -23,8 +27,8 @@ describe('asyncForEach', function () {
     });
     it('empty array', async () => {
       let i = 0;
-      assert.doesNotReject(async () => {
-        await arrayAsyncForEach([], f => {
+      await assert.doesNotReject(async () => {
+        await arrayAsyncForEach([], () => {
           i++;
         });
       });

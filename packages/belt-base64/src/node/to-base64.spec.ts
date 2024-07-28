@@ -1,5 +1,8 @@
+/**
+ * @vitest-environment node
+ */
+import { describe, it, assert } from 'vitest';
 import { toBase64 } from '../node';
-import * as assert from 'node:assert';
 
 describe('node - to-base64', () => {
   it('Null, undefined, empty', () => {

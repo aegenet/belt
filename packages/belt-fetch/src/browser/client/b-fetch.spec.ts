@@ -1,62 +1,72 @@
-import * as assert from 'node:assert';
+/**
+ * @vitest-environment jsdom
+ */
+import { describe, it, assert, beforeAll, afterAll } from 'vitest';
 import * as http from 'http';
 import { fetchEnsure, bFetch } from '../../browser';
-
-const beforeAll = global.beforeAll ?? global.before;
-const afterAll = global.afterAll ?? global.after;
 
 describe('bFetch browser', () => {
   let server: http.Server;
   let timeoutToken: any;
 
-  beforeAll(done => {
-    server = http
-      .createServer(function (req, res) {
-        if (req.url) {
-          if (req.url.startsWith('/text')) {
-            res.writeHead(200, { 'Content-Type': 'text/plain' });
-            res.write('Hello World!');
-          } else if (req.url.startsWith('/json')) {
-            res.writeHead(200, { 'Content-Type': 'application/json' });
-            res.write(JSON.stringify({ message: 'Hello World!' }));
-          } else if (req.url.startsWith('/custom')) {
-            res.writeHead(200, { 'Content-Type': 'application/custom' });
-            res.write(JSON.stringify('a:1;c:2'));
-          } else if (req.url.startsWith('/throw/text')) {
-            res.writeHead(401, { 'Content-Type': 'text/plain' });
-            res.write('Error!!!');
-          } else if (req.url.startsWith('/throw/json')) {
-            res.writeHead(401, { 'Content-Type': 'application/json' });
-            res.write(JSON.stringify({ message: 'Error!' }));
-          } else if (req.url.startsWith('/throw/custom')) {
-            res.writeHead(401, { 'Content-Type': 'application/custom' });
-            res.write(JSON.stringify({ message: 'Error!' }));
-          } else if (req.url.startsWith('/crash/502')) {
-            res.writeHead(502);
-          } else if (req.url.startsWith('/crash/533')) {
-            res.writeHead(533, '');
-          } else if (req.url.startsWith('/crash/boom')) {
-            res.destroy();
-          } else if (req.url.startsWith('/timeout/5000')) {
-            timeoutToken = setTimeout(() => {
+  beforeAll(async () => {
+    await new Promise<void>(resolve => {
+      server = http
+        .createServer(function (req, res) {
+          if (req.url) {
+            if (req.url.startsWith('/text')) {
+              res.writeHead(200, { 'Content-Type': 'text/plain' });
+              res.write('Hello World!');
+            } else if (req.url.startsWith('/json')) {
               res.writeHead(200, { 'Content-Type': 'application/json' });
-              res.write(JSON.stringify({ message: 'Long task.' }));
-              res.end();
-            }, 5000);
-            return;
+              res.write(JSON.stringify({ message: 'Hello World!' }));
+            } else if (req.url.startsWith('/custom')) {
+              res.writeHead(200, { 'Content-Type': 'application/custom' });
+              res.write(JSON.stringify('a:1;c:2'));
+            } else if (req.url.startsWith('/throw/text')) {
+              res.writeHead(401, { 'Content-Type': 'text/plain' });
+              res.write('Error!!!');
+            } else if (req.url.startsWith('/throw/json')) {
+              res.writeHead(401, { 'Content-Type': 'application/json' });
+              res.write(JSON.stringify({ message: 'Error!' }));
+            } else if (req.url.startsWith('/throw/custom')) {
+              res.writeHead(401, { 'Content-Type': 'application/custom' });
+              res.write(JSON.stringify({ message: 'Error!' }));
+            } else if (req.url.startsWith('/crash/502')) {
+              res.writeHead(502);
+            } else if (req.url.startsWith('/crash/533')) {
+              res.writeHead(533, '');
+            } else if (req.url.startsWith('/crash/boom')) {
+              res.destroy();
+            } else if (req.url.startsWith('/timeout/5000')) {
+              timeoutToken = setTimeout(() => {
+                res.writeHead(200, { 'Content-Type': 'application/json' });
+                res.write(JSON.stringify({ message: 'Long task.' }));
+                res.end();
+              }, 5000);
+              return;
+            }
+          } else {
+            res.writeHead(404, { 'Content-Type': 'application/json' });
+            res.write(JSON.stringify({ message: 'Alarma! Invalid url.' }));
           }
-        } else {
-          res.writeHead(404, { 'Content-Type': 'application/json' });
-          res.write(JSON.stringify({ message: 'Alarma! Invalid url.' }));
-        }
-        res.end();
-      })
-      .listen(3030, () => done());
+          res.end();
+        })
+        .listen(3030, () => resolve());
+    });
   });
 
-  afterAll(done => {
+  afterAll(async () => {
     clearTimeout(timeoutToken);
-    server.close(done);
+    await new Promise<void>((resolve, reject) => {
+      server.close(err => {
+        if (err) {
+          reject(err);
+        } else {
+          resolve();
+        }
+      });
+    });
   });
 
   describe('timeout', () => {
@@ -71,7 +81,7 @@ describe('bFetch browser', () => {
         );
         throw new Error('Must failed!');
       } catch (error) {
-        assert.strictEqual((error as Error).message, 'The operation was aborted due to timeout');
+        assert.strictEqual((error as Error).message, 'The operation timed out.');
       }
     });
 
@@ -107,7 +117,10 @@ describe('bFetch browser', () => {
         );
         throw new Error('Must failed!');
       } catch (error) {
-        assert.strictEqual((error as Error).message, 'bFetch is not compatible with `replaceDNSByIP` and an empty `dnsMap` in a browser environment');
+        assert.strictEqual(
+          (error as Error).message,
+          'bFetch is not compatible with `replaceDNSByIP` and an empty `dnsMap` in a browser environment'
+        );
       }
     });
 

@@ -1,4 +1,7 @@
-import * as assert from 'node:assert';
+/**
+ * @vitest-environment node
+ */
+import { describe, it, assert } from 'vitest';
 import { binarySearch, safeBinarySearch } from './index';
 
 describe('binary-search & safe', () => {
@@ -78,15 +81,30 @@ describe('binary-search & safe', () => {
         },
       ].sort();
 
-      assert.strictEqual(binarySearch<{ id: number; code?: string }>(sample, { id: 111 }, (a, b) => a.id - b.id)?.value.code, undefined);
+      assert.strictEqual(
+        binarySearch<{ id: number; code?: string }>(sample, { id: 111 }, (a, b) => a.id - b.id)?.value.code,
+        undefined
+      );
 
-      assert.strictEqual(binarySearch<{ id: number; code?: string }>(sample, { id: 1 }, (a, b) => a.id - b.id)?.value.code, 'Arti');
+      assert.strictEqual(
+        binarySearch<{ id: number; code?: string }>(sample, { id: 1 }, (a, b) => a.id - b.id)?.value.code,
+        'Arti'
+      );
 
-      assert.strictEqual(binarySearch<{ id: number; code?: string }>(sample, { id: 4 }, (a, b) => a.id - b.id)?.value.code, 'Yolo');
+      assert.strictEqual(
+        binarySearch<{ id: number; code?: string }>(sample, { id: 4 }, (a, b) => a.id - b.id)?.value.code,
+        'Yolo'
+      );
 
-      assert.strictEqual(binarySearch<{ id: number; code?: string }>(sample, { id: 7 }, (a, b) => a.id - b.id)?.value.code, 'Iago');
+      assert.strictEqual(
+        binarySearch<{ id: number; code?: string }>(sample, { id: 7 }, (a, b) => a.id - b.id)?.value.code,
+        'Iago'
+      );
 
-      assert.strictEqual(binarySearch<{ id: number; code?: string }>(sample, { id: 11 }, (a, b) => a.id - b.id)?.value.code, 'Guru');
+      assert.strictEqual(
+        binarySearch<{ id: number; code?: string }>(sample, { id: 11 }, (a, b) => a.id - b.id)?.value.code,
+        'Guru'
+      );
     });
   });
 
@@ -163,15 +181,30 @@ describe('binary-search & safe', () => {
         },
       ].sort();
 
-      assert.strictEqual(safeBinarySearch<{ id: number; code?: string }>(sample, { id: 111 }, (a, b) => a.id - b.id)?.value.code, undefined);
+      assert.strictEqual(
+        safeBinarySearch<{ id: number; code?: string }>(sample, { id: 111 }, (a, b) => a.id - b.id)?.value.code,
+        undefined
+      );
 
-      assert.strictEqual(safeBinarySearch<{ id: number; code?: string }>(sample, { id: 1 }, (a, b) => a.id - b.id)?.value.code, 'Arti');
+      assert.strictEqual(
+        safeBinarySearch<{ id: number; code?: string }>(sample, { id: 1 }, (a, b) => a.id - b.id)?.value.code,
+        'Arti'
+      );
 
-      assert.strictEqual(safeBinarySearch<{ id: number; code?: string }>(sample, { id: 4 }, (a, b) => a.id - b.id)?.value.code, 'Yolo');
+      assert.strictEqual(
+        safeBinarySearch<{ id: number; code?: string }>(sample, { id: 4 }, (a, b) => a.id - b.id)?.value.code,
+        'Yolo'
+      );
 
-      assert.strictEqual(safeBinarySearch<{ id: number; code?: string }>(sample, { id: 7 }, (a, b) => a.id - b.id)?.value.code, 'Iago');
+      assert.strictEqual(
+        safeBinarySearch<{ id: number; code?: string }>(sample, { id: 7 }, (a, b) => a.id - b.id)?.value.code,
+        'Iago'
+      );
 
-      assert.strictEqual(safeBinarySearch<{ id: number; code?: string }>(sample, { id: 11 }, (a, b) => a.id - b.id)?.value.code, 'Guru');
+      assert.strictEqual(
+        safeBinarySearch<{ id: number; code?: string }>(sample, { id: 11 }, (a, b) => a.id - b.id)?.value.code,
+        'Guru'
+      );
     });
 
     it('No comparator with object', () => {
@@ -179,7 +212,10 @@ describe('binary-search & safe', () => {
         safeBinarySearch<{ id: number; code?: string }>([], { id: 111 });
         throw new Error('Must failed.');
       } catch (error) {
-        assert.equal((error as Error).message, 'Invalid usage: you must specify a comparator if your searchValue is an object.');
+        assert.equal(
+          (error as Error).message,
+          'Invalid usage: you must specify a comparator if your searchValue is an object.'
+        );
       }
     });
   });

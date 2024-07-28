@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { ERowsInflatorAssociation } from './e-rows-inflator-association';
 import type { IRowsInflatorMapper } from './i-rows-inflator-mapper';
 import type { IRowsInflatorOptions } from './i-rows-inflator-options';
@@ -26,7 +25,15 @@ export function rowsInflator<I = any, O = any>(raws: I[], schema: IRowsInflatorO
   /** Main collection */
   const mainCollection: O[] = [];
   let assocUUID: string;
-  let raw: I, rowPathValues: any[], rowPathUUID: string[], rowMapper, depth, cache, map: <I>(row: I) => { value: any; uuid: string }, cachedData, formated;
+  let raw: I,
+    rowPathValues: any[],
+    rowPathUUID: string[],
+    rowMapper,
+    depth,
+    cache,
+    map: <I>(row: I) => { value: any; uuid: string },
+    cachedData,
+    formated;
 
   for (let i = 0; i < raws.length; i++) {
     raw = raws[i];
@@ -77,7 +84,12 @@ export function rowsInflator<I = any, O = any>(raws: I[], schema: IRowsInflatorO
 }
 
 /** We create the path to be taken by row (JIT) to parse all the elements */
-function _createJITRowMapper(rowMappers: IRowsInflatorMapper[], actualPath: string, levelSchema: IRowsInflatorOptions, depth: number = 0): Array<IRowsInflatorMapper> {
+function _createJITRowMapper(
+  rowMappers: IRowsInflatorMapper[],
+  actualPath: string,
+  levelSchema: IRowsInflatorOptions,
+  depth: number = 0
+): Array<IRowsInflatorMapper> {
   if (levelSchema) {
     const formatedPathWithU = actualPath ? `${actualPath}__` : '';
 
@@ -115,14 +127,17 @@ ${hasPKFields ? '' : `uuid += \`_\${val}\`;`}`;
     rowMappers.push({
       cache: new Map<string, any>(),
       depth,
-      map: (mapFunction as any) ?? (row => null),
+      map: (mapFunction as any) ?? (() => null),
       setValue: (mainCollection, rowPathValues, value) => {
         if (depth === 0) {
           mainCollection.push(value);
         } else {
           const parent = rowPathValues[depth - 1];
           // <= to take the hasOne & belongsTo
-          if (levelSchema.associationType != null && levelSchema.associationType <= ERowsInflatorAssociation.belongsTo) {
+          if (
+            levelSchema.associationType != null &&
+            levelSchema.associationType <= ERowsInflatorAssociation.belongsTo
+          ) {
             parent[levelSchema.as!] = value;
           } else {
             if (!parent[levelSchema.as!]) {

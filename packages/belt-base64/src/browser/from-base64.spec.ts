@@ -1,5 +1,8 @@
+/**
+ * @vitest-environment jsdom
+ */
+import { describe, it, assert } from 'vitest';
 import { fromBase64 } from '../browser';
-import * as assert from 'node:assert';
 
 describe('browser - from-base64', () => {
   it('Null, undefined, empty', () => {

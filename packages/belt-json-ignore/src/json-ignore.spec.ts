@@ -1,10 +1,17 @@
-import * as assert from 'node:assert';
+/**
+ * @vitest-environment node
+ */
+import { describe, it, assert } from 'vitest';
 import { jsonIgnore } from './index';
 
 class MyClass {
-  @jsonIgnore
-  public mySubPrivateField: string = 'abcdefg';
   public something: string = 'ok';
+  @jsonIgnore
+  public declare mySubPrivateField: string;
+
+  constructor() {
+    this.mySubPrivateField = 'abcdefg';
+  }
 }
 
 describe('jsonIgnore', () => {

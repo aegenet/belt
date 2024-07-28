@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
 /** Interpolation config */
 export type InterpolationConfig = {
   /** Custom dialects, the regex must captures two things: the "skip" and the property name */
@@ -18,6 +17,7 @@ export type InterpolationOptions = {
  */
 export class Interpolation {
   private static readonly _DEFAULT_DIALECTS = {
+    // eslint-disable-next-line no-useless-escape
     ECMAScript: /(\\{0,1})\${([\$\w_\.\-]{1,})}/,
   };
 
@@ -41,14 +41,20 @@ export class Interpolation {
     /** Data context */
     context: C,
     options?: InterpolationOptions
-  ) {
+  ): string {
     options = options ?? {};
     context = context ?? ({} as C);
     const dialectName = options.dialect || 'ECMAScript';
 
-    const dialect = dialectName in this._config.customDialects! ? this._config.customDialects![dialectName] : dialectName in Interpolation._DEFAULT_DIALECTS ? (Interpolation._DEFAULT_DIALECTS as Record<string, RegExp>)[dialectName] : null;
+    const dialect =
+      dialectName in this._config.customDialects!
+        ? this._config.customDialects![dialectName]
+        : dialectName in Interpolation._DEFAULT_DIALECTS
+          ? (Interpolation._DEFAULT_DIALECTS as Record<string, RegExp>)[dialectName]
+          : null;
     if (dialect) {
       const re = new RegExp(dialect, 'g');
+
       return text.replace(re, (substring: string, ...params: string[]) => {
         if (!params[0]) {
           return this._getValue(context, params[1], ...params.slice(1));
@@ -57,7 +63,47 @@ export class Interpolation {
         }
       });
     } else {
-      throw new Error(`Invalid usage: ${dialectName} language is not valid. You can add your own interpolation: constructor(config).`);
+      throw new Error(
+        `Invalid usage: ${dialectName} language is not valid. You can add your own interpolation: constructor(config).`
+      );
+    }
+  }
+
+  /** RawTranform with interpolation */
+  public rawTransform<C = Record<string, unknown>>(
+    /** String with interpolation */
+    text: string,
+    /** Data context */
+    context: C,
+    options?: InterpolationOptions
+  ): unknown[] {
+    options = options ?? {};
+    context = context ?? ({} as C);
+    const dialectName = options.dialect || 'ECMAScript';
+
+    const dialect =
+      dialectName in this._config.customDialects!
+        ? this._config.customDialects![dialectName]
+        : dialectName in Interpolation._DEFAULT_DIALECTS
+          ? (Interpolation._DEFAULT_DIALECTS as Record<string, RegExp>)[dialectName]
+          : null;
+    if (dialect) {
+      const re = new RegExp(dialect, 'g');
+      const results: unknown[] = [];
+
+      text.replace(re, (substring: string, ...params: string[]) => {
+        if (!params[0]) {
+          results.push(this._getValue(context, params[1], ...params.slice(1)));
+        } else {
+          results.push(substring);
+        }
+        return '';
+      });
+      return results;
+    } else {
+      throw new Error(
+        `Invalid usage: ${dialectName} language is not valid. You can add your own interpolation: constructor(config).`
+      );
     }
   }
 

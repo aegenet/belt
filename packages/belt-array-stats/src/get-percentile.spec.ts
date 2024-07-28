@@ -1,4 +1,7 @@
-import * as assert from 'node:assert';
+/**
+ * @vitest-environment node
+ */
+import { describe, it, assert } from 'vitest';
 import { p10, p25, p50, p75, p90 } from './index';
 
 describe('p10', function () {

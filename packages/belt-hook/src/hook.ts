@@ -11,8 +11,20 @@ function _createHookedName(funcName: string) {
   return `${BELT_HOOK_PREFIX}${funcName}${_HOOKED_COUNT++}`;
 }
 
-export type HookOptions<T = Record<string, unknown>> = { context: T; name: string; beforeCall?: (data: HookedFunctionStat) => void; afterCall?: (data: HookedFunctionStat) => void };
-export type HookedFunctionStat = { id: number; startedAt: Date; result?: any; error?: any; endedAt?: Date; duration?: number };
+export type HookOptions<T = Record<string, unknown>> = {
+  context: T;
+  name: string;
+  beforeCall?: (data: HookedFunctionStat) => void;
+  afterCall?: (data: HookedFunctionStat) => void;
+};
+export type HookedFunctionStat = {
+  id: number;
+  startedAt: Date;
+  result?: any;
+  error?: any;
+  endedAt?: Date;
+  duration?: number;
+};
 export type HookDisposable = { dispose: () => void };
 
 /**

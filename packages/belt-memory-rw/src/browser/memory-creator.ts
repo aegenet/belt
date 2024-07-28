@@ -93,7 +93,10 @@ export class MemoryCreator implements IMemoryCreator<ArrayBuffer> {
 
   /** @inheritdoc */
   public writeBytes(values: number[] | ArrayBuffer): void {
-    this._encapsWithBuffer(writer => writer.writeBytes(values), Array.isArray(values) ? values.length : values.byteLength);
+    this._encapsWithBuffer(
+      writer => writer.writeBytes(values),
+      Array.isArray(values) ? values.length : values.byteLength
+    );
   }
 
   /** @inheritdoc */
@@ -155,6 +158,7 @@ export class MemoryCreator implements IMemoryCreator<ArrayBuffer> {
     return this.length;
   }
   /** You can't seek right now */
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   public seek(offset: number): void {
     throw new Error('Method not implemented.');
   }

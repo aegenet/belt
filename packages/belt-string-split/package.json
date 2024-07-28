@@ -9,14 +9,17 @@
   "exports": {
     "node": {
         "require": "./dist/index.cjs",
-        "import": "./dist/index.mjs"
+        "import": "./dist/index.mjs",
+        "types": "./dist/bundle.d.ts"
     },
     "default": {
         "require": "./dist/index.cjs",
-        "import": "./dist/index.mjs"
+        "import": "./dist/index.mjs",
+        "types": "./dist/bundle.d.ts"
     }
   },
   "typings": "./dist/bundle.d.ts",
+  "types": "./dist/bundle.d.ts",
   "author": "Alexandre Genet",
   "license": "MIT",
   "files": [
@@ -36,13 +39,13 @@
     "clean": "node ./../../node_modules/rimraf/dist/esm/bin.mjs ./dist ./coverage ./.nyc_output ./node_modules",
     "lint": "node ./../../node_modules/eslint/bin/eslint ./src/**/*.{js,ts,tsx}",
     "lint:fix": "node ./../../node_modules/eslint/bin/eslint ./src/**/*.{js,ts,tsx} --fix",
-    "test-browser": "node ./../../node_modules/jest/bin/jest --config ./jest.web.config.js",
-    "test-node": "node ./../../node_modules/jest/bin/jest --config ./jest.config.js",
-    "test-local": "node ./../../node_modules/ts-mocha/bin/ts-mocha \"src/**/*.spec.ts\"",
-    "build": "yarn tsc && yarn run build:vite && yarn run build:dts",
-    "tsc": "node ./../../node_modules/rimraf/dist/esm/bin.mjs build && node ./../../node_modules/typescript/bin/tsc",
+    "test:vitest:browser": "vitest run --environment jsdom",
+    "test:vitest:watch": "vitest",
+    "test:vitest": "vitest run",
+    "build": "npm run tsc && npm run build:vite && npm run build:dts",
+    "tsc": "node ./../../node_modules/typescript/bin/tsc --noEmit",
     "build:dts": "node ./../../node_modules/rollup/dist/bin/rollup -c rollup.config.dts.mjs",
     "build:vite": "node ./../../node_modules/vite/bin/vite build",
-    "generate": "yarn tsc -- --project ./tsconfig.benchmark.json && node ./build/belt-string-split/bench/benchmark.js"
+    "generate": "node ./../../node_modules/rimraf/dist/esm/bin.mjs build && node ./../../node_modules/typescript/bin/tsc --project ./tsconfig.benchmark.json && node ./build/belt-string-split/bench/benchmark.js"
   }
 }

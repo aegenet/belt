@@ -3,7 +3,11 @@ import type { bFetchOptions } from '../../common/client/b-fetch-options';
 import { LOCALHOST, getIPsFromDNSMap, isIP } from '../../common/client/b-fetch-utils';
 
 /** Fetch with Timeout */
-export async function bFetch(input: RequestInfo | URL, init: RequestInit = {}, options: bFetchOptions = {}): Promise<Response> {
+export async function bFetch(
+  input: RequestInfo | URL,
+  init: RequestInit = {},
+  options: bFetchOptions = {}
+): Promise<Response> {
   bFetchApplyDefaultOptions(options, {
     ...bFetchDefaultOptions,
     /** Not compatible with browser atm */
@@ -18,7 +22,9 @@ export async function bFetch(input: RequestInfo | URL, init: RequestInit = {}, o
 
     if (options.replaceDNSByIP) {
       if (options.dnsMap == null) {
-        throw new Error('bFetch is not compatible with `replaceDNSByIP` and an empty `dnsMap` in a browser environment');
+        throw new Error(
+          'bFetch is not compatible with `replaceDNSByIP` and an empty `dnsMap` in a browser environment'
+        );
       }
 
       origHost = urlInput.host;

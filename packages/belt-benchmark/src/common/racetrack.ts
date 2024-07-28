@@ -14,9 +14,16 @@ const AsyncFunction = Object.getPrototypeOf(async function () {
 export class Racetrack {
   private readonly _performance: Performance;
   private readonly _accuracyPredicat: (f: RaceResult) => boolean;
-  private static readonly _DEFAULT_ACCURACY_PREDICAT = isNodeJS() ? (f: RaceResult) => !!(f.duration?.us && f.duration.us < 400) : (f: RaceResult) => !!(f.duration?.ms && f.duration.ms < 4.0);
+  private static readonly _DEFAULT_ACCURACY_PREDICAT = isNodeJS()
+    ? (f: RaceResult) => !!(f.duration?.us && f.duration.us < 400)
+    : (f: RaceResult) => !!(f.duration?.ms && f.duration.ms < 4.0);
 
-  private readonly onProgress: (data: { message: string; lap?: number; lapsCount?: number; phase?: ERacetrackPhase }) => void;
+  private readonly onProgress: (data: {
+    message: string;
+    lap?: number;
+    lapsCount?: number;
+    phase?: ERacetrackPhase;
+  }) => void;
 
   constructor(
     private _options: IRaceOptions,
@@ -238,7 +245,13 @@ export class Racetrack {
 
     // Positions
     results.sort((ao, bo) => {
-      return this._sortPredicat(ao.p50, bo.p50) || this._sortPredicat(ao.p75, bo.p75) || this._sortPredicat(ao.p90, bo.p90) || this._sortPredicat(ao.average, bo.average) || 0;
+      return (
+        this._sortPredicat(ao.p50, bo.p50) ||
+        this._sortPredicat(ao.p75, bo.p75) ||
+        this._sortPredicat(ao.p90, bo.p90) ||
+        this._sortPredicat(ao.average, bo.average) ||
+        0
+      );
     });
 
     // Compute ratio

@@ -12,7 +12,11 @@ import type { IDuration } from './i-duration';
  * @param { EDurationFormat } to Duration time type. Default milliseconds
  * @returns { number }
  */
-export function fromDuration(value: IDuration | undefined, to: EDurationFormat = EDurationFormat.MILLISECONDS, options?: IDurationOptions): number {
+export function fromDuration(
+  value: IDuration | undefined,
+  to: EDurationFormat = EDurationFormat.MILLISECONDS,
+  options?: IDurationOptions
+): number {
   options ||= {};
   options.mask ||= EDurationFormatMask.Y_M_W_D_H_M_S;
   options.precision ||= 0.5;

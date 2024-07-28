@@ -7,6 +7,10 @@ coverage/
 .vscode/
 .yalc/
 yarn-error.log
+.timestamp-
+exports.json
+out.json
+out.md
 packages/belt-crc8/.yalc/
 packages/belt-crc8/yalc.lock
 packages/belt-crc8/node_modules/

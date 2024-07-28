@@ -1,4 +1,8 @@
 // tslint:disable:no-big-function
+/**
+ * @vitest-environment node
+ */
+import { describe, it } from 'vitest';
 import { getErrorMessage } from './index';
 
 describe('get-error-message', () => {

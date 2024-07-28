@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
 export type StepType = 'object' | 'indice';
 
 export type SetValueOptions = {
@@ -24,7 +23,12 @@ export class ODeepSet {
   /**
    * Set value into an object
    */
-  public setValue<C = Record<string, any>>(context: C, pathFlow: Array<{ propName: string; type: StepType } | string | number>, value: unknown, options: SetValueOptions = {}): void {
+  public setValue<C = Record<string, any>>(
+    context: C,
+    pathFlow: Array<{ propName: string; type: StepType } | string | number>,
+    value: unknown,
+    options: SetValueOptions = {}
+  ): void {
     if (!context || !pathFlow) {
       // By choice, we don't throw an error, just ignore
       return;
@@ -47,11 +51,17 @@ export class ODeepSet {
     return jitFunc(context, value);
   }
 
-  private _getMemoizeKey(pathFlow: Array<{ propName: string; type: StepType } | string | number>, options: SetValueOptions): string {
+  private _getMemoizeKey(
+    pathFlow: Array<{ propName: string; type: StepType } | string | number>,
+    options: SetValueOptions
+  ): string {
     return JSON.stringify(pathFlow) + ',' + options.autoCreate;
   }
 
-  private _compileJIT(pathFlow: Array<{ propName: string; type: StepType } | string | number>, options: SetValueOptions): (context: unknown, value: unknown) => void {
+  private _compileJIT(
+    pathFlow: Array<{ propName: string; type: StepType } | string | number>,
+    options: SetValueOptions
+  ): (context: unknown, value: unknown) => void {
     let jit = '';
     if (!options.autoCreate) {
       jit = this._createJITFunc(pathFlow);
@@ -90,7 +100,10 @@ export class ODeepSet {
         continue;
       }
       const prevCtx = i === 0 ? 'context' : `a${i - 1}`;
-      const propPath = !isNaN(step.propName as any) || step.stepType === 'indice' ? `${prevCtx}[${step.propName}]` : `${prevCtx}.${step.propName}`;
+      const propPath =
+        !isNaN(step.propName as any) || step.stepType === 'indice'
+          ? `${prevCtx}[${step.propName}]`
+          : `${prevCtx}.${step.propName}`;
 
       if (!isLast) {
         jit += `if (${propPath} == null) { ${propPath} = ${step.stepType === 'indice' ? '[]' : '{}'}; }\n`;

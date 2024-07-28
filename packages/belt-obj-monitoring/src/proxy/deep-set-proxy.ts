@@ -1,4 +1,4 @@
-import type { ObjectMonitoringResult } from '../common/object-monitoring-result';
+import { ObjectMonitoringOptions } from '../common/object-monitoring-options';
 const symIsProxy: unique symbol = Symbol('__isp');
 
 /**
@@ -6,31 +6,31 @@ const symIsProxy: unique symbol = Symbol('__isp');
  *
  * @remarks The initial data are not mutated, you must use the proxied data.
  */
-export function deepSetProxy<T>(data: T, onSet: (options: ObjectMonitoringResult) => void): T {
-  return _deepSetProxy('', data, onSet);
+export function deepSetProxy<T>(data: T, options: ObjectMonitoringOptions<T>): T {
+  return _deepSetProxy('', data, options);
 }
 
-function _deepSetProxy<T>(parentPath: string, data: T, onSet: (options: ObjectMonitoringResult) => void): T {
+function _deepSetProxy<T>(parentPath: string, data: T, options: ObjectMonitoringOptions<T>): T {
   const proxied: any = {};
 
   if (data && typeof data === 'object') {
     for (const key in data) {
-      proxied[key] = _deepSetProxy(parentPath ? parentPath + '.' + key : key, data[key], onSet);
+      proxied[key] = _deepSetProxy<any>(parentPath ? parentPath + '.' + key : key, data[key], options);
     }
 
     const proxy = new Proxy(proxied, {
-      set: (target: any, p: string | symbol, newValue: any, receiver: any) => {
+      set: (target: any, p: string | symbol, newValue: any) => {
         const oldValue = target[p];
 
         const isObject = newValue != null && typeof newValue === 'object';
         if (isObject && !newValue[symIsProxy]) {
-          target[p] = _deepSetProxy(parentPath ? `${parentPath}.${String(p)}` : String(p), newValue, onSet);
+          target[p] = _deepSetProxy(parentPath ? `${parentPath}.${String(p)}` : String(p), newValue, options);
         } else {
           target[p] = newValue;
         }
 
         // Callback after actually set the var
-        onSet({
+        options.callback({
           newValue: isObject ? JSON.parse(JSON.stringify(newValue)) : newValue,
           oldValue: oldValue != null && typeof oldValue === 'object' ? JSON.parse(JSON.stringify(oldValue)) : oldValue,
           property: p,
