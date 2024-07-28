@@ -1,3 +1,7 @@
+/**
+ * @vitest-environment node
+ */
+import { describe, it } from 'vitest';
 import { stringSplitBench } from '../bench/bench/string-split-bench';
 
 describe('benchmark', () => {

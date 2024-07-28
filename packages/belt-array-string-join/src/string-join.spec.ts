@@ -1,4 +1,7 @@
-import * as assert from 'node:assert';
+/**
+ * @vitest-environment node
+ */
+import { describe, it, assert } from 'vitest';
 import { stringJoin } from './index';
 
 describe('string-join', () => {

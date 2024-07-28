@@ -1,4 +1,7 @@
-import assert from 'node:assert';
+/**
+ * @vitest-environment node
+ */
+import { describe, it, assert } from 'vitest';
 import type { IMemoryCreator } from '../common/i-memory-creator';
 import { MemoryCreator } from './memory-creator';
 import { MemoryReader } from './memory-reader';

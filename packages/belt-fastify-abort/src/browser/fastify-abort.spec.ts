@@ -1,4 +1,7 @@
-import * as assert from 'node:assert';
+/**
+ * @vitest-environment jsdom
+ */
+import { describe, it, assert } from 'vitest';
 import { fastifyAbortRegister } from '../browser';
 
 describe('fastify-abort/browser', () => {

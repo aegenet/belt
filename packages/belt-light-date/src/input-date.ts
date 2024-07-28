@@ -29,7 +29,11 @@ export function inputDateToDate(inputDate: string): Date {
  */
 export function dateToInputDateTime(dateFrom?: LightDateOptions): string {
   const dte = lightDate.dateOrNow(dateFrom);
-  return _dateToString(dte) + 'T' + `${dte.getHours().toString().padStart(2, '0')}:${dte.getMinutes().toString().padStart(2, '0')}`;
+  return (
+    _dateToString(dte) +
+    'T' +
+    `${dte.getHours().toString().padStart(2, '0')}:${dte.getMinutes().toString().padStart(2, '0')}`
+  );
 }
 
 /**
@@ -42,9 +46,11 @@ export function inputDateTimeToDate(inputDate: string): Date {
   if (!inputDate) {
     return new Date();
   } else {
-    const dteOnly = lightDate.dateOrNow(inputDate.slice(0, 10).replace(/\-/g, '/'));
+    const dteOnly = lightDate.dateOrNow(inputDate.slice(0, 10).replace(/-/g, '/'));
     if (inputDate.length > 10) {
-      return lightDate.dateOrNow(inputDate.replace(/\//g, '-') + ':00.000' + timezoneOffsetToISO(dteOnly.getTimezoneOffset()));
+      return lightDate.dateOrNow(
+        inputDate.replace(/\//g, '-') + ':00.000' + timezoneOffsetToISO(dteOnly.getTimezoneOffset())
+      );
     } else {
       return dteOnly;
     }

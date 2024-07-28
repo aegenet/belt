@@ -155,6 +155,7 @@ export class MemoryCreator implements IMemoryCreator<Buffer> {
     return this.length;
   }
   /** You can't seek right now */
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   public seek(offset: number): void {
     throw new Error('Method not implemented.');
   }

@@ -43,7 +43,9 @@ export function odiff<T = Record<string, unknown>>(
             }
             break;
           case 'date':
-            if (before instanceof Date && after instanceof Date ? before.getTime() !== after.getTime() : before !== after) {
+            if (
+              before instanceof Date && after instanceof Date ? before.getTime() !== after.getTime() : before !== after
+            ) {
               diff.push([field.name, before, after]);
             }
             break;

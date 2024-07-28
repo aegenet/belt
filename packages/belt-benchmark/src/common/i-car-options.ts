@@ -14,5 +14,10 @@ export interface ICarOptions {
    *
    * Generated dynamicaly
    */
-  bench?: (perf: Performance, samplesPerLap: number, spec: (ctx: ILapContext) => Promise<unknown> | unknown, lapCtx: ILapContext) => number | Promise<number>;
+  bench?: (
+    perf: Performance,
+    samplesPerLap: number,
+    spec: (ctx: ILapContext) => Promise<unknown> | unknown,
+    lapCtx: ILapContext
+  ) => number | Promise<number>;
 }

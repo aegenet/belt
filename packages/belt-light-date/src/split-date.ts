@@ -3,7 +3,12 @@ import { type LightDateOptions, lightDate } from './light-date';
 /**
  * From now or a date, compute the start & the end date with a number of days.
  */
-export function splitDate(options: { days: number; dateFrom?: LightDateOptions; startEndOf?: 'respect' | 'year' | 'month' | 'week'; locale?: string }): { start: Date; end: Date } {
+export function splitDate(options: {
+  days: number;
+  dateFrom?: LightDateOptions;
+  startEndOf?: 'respect' | 'year' | 'month' | 'week';
+  locale?: string;
+}): { start: Date; end: Date } {
   const start = lightDate.today(options.dateFrom);
   const end = lightDate.today(options.dateFrom);
   const daysPart = options.days / 2;

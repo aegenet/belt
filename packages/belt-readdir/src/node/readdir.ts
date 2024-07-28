@@ -8,7 +8,10 @@ import { IReaddirEntry } from '../node';
  * @param directory Root directory
  * @param action Action for each file path (optional). Can ignore files by returning `false`.
  */
-export async function readdir(directory: string, action?: (filePath: IReaddirEntry, currentList: IReaddirEntry[]) => Promise<boolean> | boolean): Promise<IReaddirEntry[]> {
+export async function readdir(
+  directory: string,
+  action?: (filePath: IReaddirEntry, currentList: IReaddirEntry[]) => Promise<boolean> | boolean
+): Promise<IReaddirEntry[]> {
   const files: IReaddirEntry[] = [];
 
   const dirents = await fs.readdir(directory, {

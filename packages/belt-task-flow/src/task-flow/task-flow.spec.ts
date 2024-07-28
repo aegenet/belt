@@ -1,3 +1,7 @@
+/**
+ * @vitest-environment node
+ */
+import { describe, it, beforeAll, afterAll } from 'vitest';
 import * as assert from 'node:assert';
 import { TaskFlow } from '../index';
 import type { ITaskFlow } from '../index';
@@ -7,20 +11,17 @@ function delay(duration: number): Promise<void> {
   return new Promise(resolve => setTimeout(resolve, duration));
 }
 
-const commonBefore = global.before ?? global.beforeAll;
-const commonAfter = global.after ?? global.afterAll;
-
 describe('task-flow', () => {
   class Something {
     constructor(public action: string) {}
   }
 
   let taskFlow: ITaskFlow | undefined;
-  commonBefore(() => {
+  beforeAll(() => {
     taskFlow = new TaskFlow();
   });
 
-  commonAfter(() => {
+  afterAll(() => {
     taskFlow = undefined;
   });
 
@@ -29,7 +30,7 @@ describe('task-flow', () => {
   });
 
   it('Invalid publish', async () => {
-    assert.rejects(async () => await taskFlow!.publish(null as any, async () => {}));
+    await assert.rejects(async () => await taskFlow!.publish(null as any, async () => {}));
   });
 
   it('Register & publish', async () => {
@@ -139,7 +140,12 @@ describe('task-flow', () => {
 
     await taskFlow!.publish(new Something('discreet'));
 
-    assert.deepStrictEqual(tabs, ['with delay discrète', 'without delay discrète', 'with delay discreet', 'without delay discreet']);
+    assert.deepStrictEqual(tabs, [
+      'with delay discrète',
+      'without delay discrète',
+      'with delay discreet',
+      'without delay discreet',
+    ]);
   });
 
   it('Class Message - Register & publish with order', async () => {
@@ -162,7 +168,12 @@ describe('task-flow', () => {
 
     await taskFlow!.publish(new Something('discreet'));
 
-    assert.deepStrictEqual(tabs, ['without delay discrète', 'with delay discrète', 'without delay discreet', 'with delay discreet']);
+    assert.deepStrictEqual(tabs, [
+      'without delay discrète',
+      'with delay discrète',
+      'without delay discreet',
+      'with delay discreet',
+    ]);
   });
 
   it('Class Message - RegisterOnce & publish', async () => {

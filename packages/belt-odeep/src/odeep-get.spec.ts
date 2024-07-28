@@ -1,5 +1,8 @@
 // tslint:disable:no-big-function no-duplicate-string no-identical-functions
-import * as assert from 'node:assert';
+/**
+ * @vitest-environment node
+ */
+import { describe, it, assert } from 'vitest';
 import { ODeepGet } from './index';
 
 describe('odeep-get', () => {
@@ -30,6 +33,23 @@ describe('odeep-get', () => {
         throw new Error('Must fail');
       } catch (error: any) {
         assert.strictEqual(error.message, 'The property path ( && ) seems invalid');
+      }
+
+      try {
+        new ODeepGet().getValue(
+          {
+            first: [{}, {}],
+          },
+          ['first', 'toString'],
+          {
+            safer: true,
+            memoize: true,
+            shallowError: false,
+          }
+        );
+        throw new Error('Must fail');
+      } catch (error: any) {
+        assert.strictEqual(error.message, 'The property path (first.toString) seems invalid');
       }
 
       assert.strictEqual(

@@ -1,4 +1,7 @@
-import * as assert from 'node:assert';
+/**
+ * @vitest-environment node
+ */
+import { describe, it, assert } from 'vitest';
 import { ERowsInflatorAssociation, IRowsInflatorOptions, rowsInflator } from './../index';
 
 describe('rows-inflator', () => {
@@ -62,9 +65,30 @@ describe('rows-inflator', () => {
 
   it('Nested many', () => {
     const raws: any[] = [
-      { id: 1, code: 'Luna', users__id: 1, users__code: 'wismerhill', users__subordinates__id: 3, users__subordinates__code: 'maurel' },
-      { id: 2, code: 'Sun', users__id: 2, users__code: 'pileouface', users__subordinates__id: null, users__subordinates__code: null },
-      { id: 1, code: 'Luna', users__id: 3, users__code: 'maurel', users__subordinates__id: null, users__subordinates__code: null },
+      {
+        id: 1,
+        code: 'Luna',
+        users__id: 1,
+        users__code: 'wismerhill',
+        users__subordinates__id: 3,
+        users__subordinates__code: 'maurel',
+      },
+      {
+        id: 2,
+        code: 'Sun',
+        users__id: 2,
+        users__code: 'pileouface',
+        users__subordinates__id: null,
+        users__subordinates__code: null,
+      },
+      {
+        id: 1,
+        code: 'Luna',
+        users__id: 3,
+        users__code: 'maurel',
+        users__subordinates__id: null,
+        users__subordinates__code: null,
+      },
     ];
     const results = rowsInflator(raws, rowsMergerSchema);
 
@@ -89,10 +113,38 @@ describe('rows-inflator', () => {
 
   it('Nested many and Same subordinates', () => {
     const raws: any[] = [
-      { id: 1, code: 'Luna', users__id: 1, users__code: 'wismerhill', users__subordinates__id: 3, users__subordinates__code: 'maurel' },
-      { id: 1, code: 'Luna', users__id: 1, users__code: 'wismerhill', users__subordinates__id: 4, users__subordinates__code: 'apower' },
-      { id: 2, code: 'Sun', users__id: 2, users__code: 'pileouface', users__subordinates__id: 3, users__subordinates__code: 'maurel' },
-      { id: 1, code: 'Luna', users__id: 3, users__code: 'maurel', users__subordinates__id: null, users__subordinates__code: null },
+      {
+        id: 1,
+        code: 'Luna',
+        users__id: 1,
+        users__code: 'wismerhill',
+        users__subordinates__id: 3,
+        users__subordinates__code: 'maurel',
+      },
+      {
+        id: 1,
+        code: 'Luna',
+        users__id: 1,
+        users__code: 'wismerhill',
+        users__subordinates__id: 4,
+        users__subordinates__code: 'apower',
+      },
+      {
+        id: 2,
+        code: 'Sun',
+        users__id: 2,
+        users__code: 'pileouface',
+        users__subordinates__id: 3,
+        users__subordinates__code: 'maurel',
+      },
+      {
+        id: 1,
+        code: 'Luna',
+        users__id: 3,
+        users__code: 'maurel',
+        users__subordinates__id: null,
+        users__subordinates__code: null,
+      },
     ];
     const results = rowsInflator(raws, rowsMergerSchema);
 
@@ -122,10 +174,46 @@ describe('rows-inflator', () => {
 
   it('Nested many and Same subordinates and address', () => {
     const raws: any[] = [
-      { id: 1, code: 'Luna', users__id: 1, users__code: 'wismerhill', users__subordinates__id: 3, users__subordinates__code: 'maurel', address__id: 1, address__code: 'Mulhouse' },
-      { id: 1, code: 'Luna', users__id: 1, users__code: 'wismerhill', users__subordinates__id: 4, users__subordinates__code: 'apower', address__id: 1, address__code: 'Mulhouse' },
-      { id: 2, code: 'Sun', users__id: 2, users__code: 'pileouface', users__subordinates__id: 3, users__subordinates__code: 'maurel', address__id: 1, address__code: 'Mulhouse' },
-      { id: 1, code: 'Luna', users__id: 3, users__code: 'maurel', users__subordinates__id: null, users__subordinates__code: null, address__id: 1, address__code: 'Mulhouse' },
+      {
+        id: 1,
+        code: 'Luna',
+        users__id: 1,
+        users__code: 'wismerhill',
+        users__subordinates__id: 3,
+        users__subordinates__code: 'maurel',
+        address__id: 1,
+        address__code: 'Mulhouse',
+      },
+      {
+        id: 1,
+        code: 'Luna',
+        users__id: 1,
+        users__code: 'wismerhill',
+        users__subordinates__id: 4,
+        users__subordinates__code: 'apower',
+        address__id: 1,
+        address__code: 'Mulhouse',
+      },
+      {
+        id: 2,
+        code: 'Sun',
+        users__id: 2,
+        users__code: 'pileouface',
+        users__subordinates__id: 3,
+        users__subordinates__code: 'maurel',
+        address__id: 1,
+        address__code: 'Mulhouse',
+      },
+      {
+        id: 1,
+        code: 'Luna',
+        users__id: 3,
+        users__code: 'maurel',
+        users__subordinates__id: null,
+        users__subordinates__code: null,
+        address__id: 1,
+        address__code: 'Mulhouse',
+      },
     ];
     const results = rowsInflator(raws, rowsMergerSchema);
 
@@ -160,9 +248,30 @@ describe('rows-inflator', () => {
   it('Nested many and hydration', () => {
     try {
       const raws: any[] = [
-        { id: 1, code: 'Luna', users__id: 1, users__code: 'wismerhill', users__subordinates__id: 3, users__subordinates__code: 'maurel' },
-        { id: 2, code: 'Sun', users__id: 2, users__code: 'pileouface', users__subordinates__id: null, users__subordinates__code: null },
-        { id: 1, code: 'Luna', users__id: 3, users__code: 'maurel', users__subordinates__id: null, users__subordinates__code: null },
+        {
+          id: 1,
+          code: 'Luna',
+          users__id: 1,
+          users__code: 'wismerhill',
+          users__subordinates__id: 3,
+          users__subordinates__code: 'maurel',
+        },
+        {
+          id: 2,
+          code: 'Sun',
+          users__id: 2,
+          users__code: 'pileouface',
+          users__subordinates__id: null,
+          users__subordinates__code: null,
+        },
+        {
+          id: 1,
+          code: 'Luna',
+          users__id: 3,
+          users__code: 'maurel',
+          users__subordinates__id: null,
+          users__subordinates__code: null,
+        },
       ];
       rowsMergerSchema.hydrate = value => {
         value.specialField = `${value.id}_${value.code}`;
@@ -196,9 +305,30 @@ describe('rows-inflator', () => {
     const fields = rowsMergerSchema.fields;
     try {
       const raws: any[] = [
-        { id: 1, code: 'Luna', users__id: 1, users__code: 'wismerhill', users__subordinates__id: 3, users__subordinates__code: 'maurel' },
-        { id: 2, code: 'Sun', users__id: 2, users__code: 'pileouface', users__subordinates__id: null, users__subordinates__code: null },
-        { id: 1, code: 'Luna', users__id: 3, users__code: 'maurel', users__subordinates__id: null, users__subordinates__code: null },
+        {
+          id: 1,
+          code: 'Luna',
+          users__id: 1,
+          users__code: 'wismerhill',
+          users__subordinates__id: 3,
+          users__subordinates__code: 'maurel',
+        },
+        {
+          id: 2,
+          code: 'Sun',
+          users__id: 2,
+          users__code: 'pileouface',
+          users__subordinates__id: null,
+          users__subordinates__code: null,
+        },
+        {
+          id: 1,
+          code: 'Luna',
+          users__id: 3,
+          users__code: 'maurel',
+          users__subordinates__id: null,
+          users__subordinates__code: null,
+        },
       ];
       rowsMergerSchema.fields = undefined as any;
       const results = rowsInflator(raws, rowsMergerSchema);
@@ -213,9 +343,30 @@ describe('rows-inflator', () => {
     const fields = rowsMergerSchema.fields;
     try {
       const raws: any[] = [
-        { id: 1, code: 'Luna', users__id: 1, users__code: 'wismerhill', users__subordinates__id: 3, users__subordinates__code: 'maurel' },
-        { id: 2, code: 'Sun', users__id: 2, users__code: 'pileouface', users__subordinates__id: null, users__subordinates__code: null },
-        { id: 1, code: 'Luna', users__id: 3, users__code: 'maurel', users__subordinates__id: null, users__subordinates__code: null },
+        {
+          id: 1,
+          code: 'Luna',
+          users__id: 1,
+          users__code: 'wismerhill',
+          users__subordinates__id: 3,
+          users__subordinates__code: 'maurel',
+        },
+        {
+          id: 2,
+          code: 'Sun',
+          users__id: 2,
+          users__code: 'pileouface',
+          users__subordinates__id: null,
+          users__subordinates__code: null,
+        },
+        {
+          id: 1,
+          code: 'Luna',
+          users__id: 3,
+          users__code: 'maurel',
+          users__subordinates__id: null,
+          users__subordinates__code: null,
+        },
       ];
       const results = rowsInflator(raws, null as any);
 

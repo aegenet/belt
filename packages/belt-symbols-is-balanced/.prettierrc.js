@@ -1,4 +1,4 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
-const configurator = require('./../../.build/prettier.configurator');
+const { prettierConfigurator: configurator } = require('@aegenet/yawt');
 
 module.exports = configurator();

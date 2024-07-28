@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/restrict-template-expressions */
-
 import type { ITaskFlow } from './i-task-flow';
 import { TaskFlowHandler } from './task-flow-handler';
 import type { TaskFlowSubOptions } from './task-flow-sub-options';
@@ -22,7 +20,10 @@ import type { TaskFlowConstructable, TaskFlowDisposable } from '../common/types'
  */
 export class TaskFlow implements ITaskFlow {
   /** @internal */
-  public readonly eventLookup: Record<string, { handle: (message: unknown, channel: string) => void; options: TaskFlowSubOptions }[]> = {};
+  public readonly eventLookup: Record<
+    string,
+    { handle: (message: unknown, channel: string) => void; options: TaskFlowSubOptions }[]
+  > = {};
   /** @internal */
   public readonly messageHandlers: TaskFlowHandler<TaskFlowConstructable>[] = [];
 
@@ -39,7 +40,10 @@ export class TaskFlow implements ITaskFlow {
    * @param instance - The instance to publish.
    */
   public async publish<T extends TaskFlowConstructable>(instance: InstanceType<T>): Promise<void>;
-  public async publish<T extends TaskFlowConstructable | string>(channelOrInstance: T extends TaskFlowConstructable ? InstanceType<T> : T, message?: unknown): Promise<void> {
+  public async publish<T extends TaskFlowConstructable | string>(
+    channelOrInstance: T extends TaskFlowConstructable ? InstanceType<T> : T,
+    message?: unknown
+  ): Promise<void> {
     if (!channelOrInstance) {
       throw new Error(`Invalid channel name or instance: ${channelOrInstance}.`);
     }
@@ -86,20 +90,34 @@ export class TaskFlow implements ITaskFlow {
    * @param channel - The event channel.
    * @param callback - The callback to be invoked when the specified message is published.
    */
-  public subscribe<T, C extends string>(channel: C, callback: (message: T, channel: C) => Promise<void> | void, options?: TaskFlowSubOptions): TaskFlowDisposable;
+  public subscribe<T, C extends string>(
+    channel: C,
+    callback: (message: T, channel: C) => Promise<void> | void,
+    options?: TaskFlowSubOptions
+  ): TaskFlowDisposable;
   /**
    * Subscribes to a message type (FIFO first in first out).
    *
    * @param type - The event message type.
    * @param callback - The callback to be invoked when the specified message is published.
    */
-  public subscribe<T extends TaskFlowConstructable>(type: T, callback: (message: InstanceType<T>) => Promise<void> | void, options?: TaskFlowSubOptions): TaskFlowDisposable;
-  public subscribe(channelOrType: string | TaskFlowConstructable, callback: (...args: unknown[]) => Promise<void> | void, options?: TaskFlowSubOptions): TaskFlowDisposable {
+  public subscribe<T extends TaskFlowConstructable>(
+    type: T,
+    callback: (message: InstanceType<T>) => Promise<void> | void,
+    options?: TaskFlowSubOptions
+  ): TaskFlowDisposable;
+  public subscribe(
+    channelOrType: string | TaskFlowConstructable,
+    callback: (...args: unknown[]) => Promise<void> | void,
+    options?: TaskFlowSubOptions
+  ): TaskFlowDisposable {
     if (!channelOrType) {
       throw new Error(`Invalid channel name or type: ${channelOrType}.`);
     }
 
-    let handler: TaskFlowHandler<any> | { handle: (...args: unknown[]) => Promise<void> | void; options: TaskFlowSubOptions };
+    let handler:
+      | TaskFlowHandler<any>
+      | { handle: (...args: unknown[]) => Promise<void> | void; options: TaskFlowSubOptions };
     let subscribers: unknown[];
 
     if (typeof channelOrType === 'string') {

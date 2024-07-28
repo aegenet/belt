@@ -18,7 +18,7 @@ const strategies: Array<(hostname: string, options: bFetchOptions) => Promise<st
     return await resolve6(hostname).catch(() => undefined);
   },
   // Resolve dns to ipv4
-  async (hostname, options) => {
+  async hostname => {
     return await resolve4(hostname).catch(() => undefined);
   },
   // DNS map as fallback (optional)

@@ -1,4 +1,7 @@
-import * as assert from 'node:assert';
+/**
+ * @vitest-environment node
+ */
+import { describe, it, assert, beforeEach, afterEach } from 'vitest';
 import { TaskFlow } from '../index';
 import type { ITaskFlow } from '../index';
 import { TaskFlowListener } from './task-flow-subscription';
@@ -8,9 +11,6 @@ import { taskFlowMethod } from './task-flow-method';
 function delay(duration: number): Promise<void> {
   return new Promise(resolve => setTimeout(resolve, duration));
 }
-
-const commonBefore = global.beforeEach;
-const commonAfter = global.afterEach;
 
 describe('task-flow-subscription', () => {
   let taskFlow: ITaskFlow | undefined;
@@ -97,12 +97,12 @@ describe('task-flow-subscription', () => {
   }
   let listenToMe: ListenToMe | undefined;
 
-  commonBefore(() => {
+  beforeEach(() => {
     taskFlow = new TaskFlow();
     listenToMe = new ListenToMe();
   });
 
-  commonAfter(() => {
+  afterEach(() => {
     taskFlow = undefined;
     listenToMe?.dispose();
     listenToMe = undefined;

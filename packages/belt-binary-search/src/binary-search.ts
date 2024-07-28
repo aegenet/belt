@@ -44,7 +44,10 @@ export function safeBinarySearch<EntityType = unknown>(
 } | null {
   if (!comparator) {
     if (typeof searchValue === 'string') {
-      comparator = ((a: string, b: string) => a.localeCompare(b)) as unknown as (a: EntityType, b: EntityType) => number;
+      comparator = ((a: string, b: string) => a.localeCompare(b)) as unknown as (
+        a: EntityType,
+        b: EntityType
+      ) => number;
     } else if (typeof searchValue === 'number' || typeof searchValue === 'bigint') {
       comparator = ((a: number, b: number) => a - b) as unknown as (a: EntityType, b: EntityType) => number;
     } else {

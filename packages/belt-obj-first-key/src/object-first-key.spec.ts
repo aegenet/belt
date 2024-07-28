@@ -1,4 +1,7 @@
-import * as assert from 'node:assert';
+/**
+ * @vitest-environment node
+ */
+import { describe, it, assert } from 'vitest';
 import { objectFirstKey } from './index';
 
 describe('objectFirstKey', () => {

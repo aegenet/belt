@@ -1,4 +1,7 @@
-import * as assert from 'node:assert';
+/**
+ * @vitest-environment node
+ */
+import { describe, it, assert } from 'vitest';
 import { bench100x10000PKs } from '../../bench/bench-100x10000-pks';
 import { bench100x10000WoPKs } from '../../bench/bench-100x10000-wo-pks';
 import { raws, rowsMergerSchemaWithPK } from '../../bench/bench-schema';

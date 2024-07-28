@@ -1,4 +1,7 @@
-import * as assert from 'node:assert';
+/**
+ * @vitest-environment node
+ */
+import { describe, it, assert } from 'vitest';
 import * as path from 'node:path';
 import { readdir } from '../node';
 import { IReaddirEntry } from '../node';
@@ -19,7 +22,10 @@ describe('readdir/node', () => {
   });
 
   it('With async action', async () => {
-    const files: IReaddirEntry[] = await readdir(path.join(__dirname, '..'), async file => !file.name.endsWith('.spec.ts'));
+    const files: IReaddirEntry[] = await readdir(
+      path.join(__dirname, '..'),
+      async file => !file.name.endsWith('.spec.ts')
+    );
     assert.strictEqual(files.length, 5);
     assert.strictEqual(files[0].name, 'readdir.ts');
     assert.ok(files[0].path.endsWith('readdir.ts'));

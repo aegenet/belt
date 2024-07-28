@@ -145,7 +145,6 @@ export class LightDate {
     const dayOfWeek = now.getDay();
     // properDayOfWeek 1 - monday - 7 sunday
     const properDayOfWeek = dayOfWeek === 0 ? 7 : dayOfWeek;
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     now.setDate(now.getDate() - properDayOfWeek + (lng.weekInfo!.firstDay === 7 ? 0 : lng.weekInfo!.firstDay));
     now.setHours(0, 0, 0, 0);
     return now;
@@ -249,8 +248,14 @@ export class LightDate {
   }
 }
 
-export type IntlLocaleBrowserOpt = Intl.Locale & { hourCycles?: string[]; weekInfo?: { firstDay: number; minimalDays: number; weekend: number[] } };
-export type IntlLocaleBrowser = Intl.Locale & { hourCycles: string[]; weekInfo: { firstDay: number; minimalDays: number; weekend: number[] } };
+export type IntlLocaleBrowserOpt = Intl.Locale & {
+  hourCycles?: string[];
+  weekInfo?: { firstDay: number; minimalDays: number; weekend: number[] };
+};
+export type IntlLocaleBrowser = Intl.Locale & {
+  hourCycles: string[];
+  weekInfo: { firstDay: number; minimalDays: number; weekend: number[] };
+};
 
 /**
  * Global instance of LightDate

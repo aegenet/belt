@@ -1,4 +1,7 @@
-import * as assert from 'node:assert';
+/**
+ * @vitest-environment node
+ */
+import { describe, it, assert } from 'vitest';
 import { lightDate } from './index';
 
 describe('light-date', () => {
@@ -60,20 +63,44 @@ describe('light-date', () => {
     assert.equal(lightDate.weekEnd('2022-04-20T12:14:00.072Z', 'en-US').toLocaleString('fr'), '23/04/2022 23:59:59');
   });
   it('prevWeekStart', () => {
-    assert.equal(lightDate.prevWeekStart('2022-04-20T12:14:00.072Z', 'fr-FR').toLocaleString('fr'), '11/04/2022 00:00:00');
-    assert.equal(lightDate.prevWeekStart('2022-04-20T12:14:00.072Z', 'en-US').toLocaleString('fr'), '10/04/2022 00:00:00');
+    assert.equal(
+      lightDate.prevWeekStart('2022-04-20T12:14:00.072Z', 'fr-FR').toLocaleString('fr'),
+      '11/04/2022 00:00:00'
+    );
+    assert.equal(
+      lightDate.prevWeekStart('2022-04-20T12:14:00.072Z', 'en-US').toLocaleString('fr'),
+      '10/04/2022 00:00:00'
+    );
   });
   it('prevWeekEnd', () => {
-    assert.equal(lightDate.prevWeekEnd('2022-04-20T12:14:00.072Z', 'fr-FR').toLocaleString('fr'), '17/04/2022 23:59:59');
-    assert.equal(lightDate.prevWeekEnd('2022-04-20T12:14:00.072Z', 'en-US').toLocaleString('fr'), '16/04/2022 23:59:59');
+    assert.equal(
+      lightDate.prevWeekEnd('2022-04-20T12:14:00.072Z', 'fr-FR').toLocaleString('fr'),
+      '17/04/2022 23:59:59'
+    );
+    assert.equal(
+      lightDate.prevWeekEnd('2022-04-20T12:14:00.072Z', 'en-US').toLocaleString('fr'),
+      '16/04/2022 23:59:59'
+    );
   });
   it('nextWeekStart', () => {
-    assert.equal(lightDate.nextWeekStart('2022-04-20T12:14:00.072Z', 'fr-FR').toLocaleString('fr'), '25/04/2022 00:00:00');
-    assert.equal(lightDate.nextWeekStart('2022-04-20T12:14:00.072Z', 'en-US').toLocaleString('fr'), '24/04/2022 00:00:00');
+    assert.equal(
+      lightDate.nextWeekStart('2022-04-20T12:14:00.072Z', 'fr-FR').toLocaleString('fr'),
+      '25/04/2022 00:00:00'
+    );
+    assert.equal(
+      lightDate.nextWeekStart('2022-04-20T12:14:00.072Z', 'en-US').toLocaleString('fr'),
+      '24/04/2022 00:00:00'
+    );
   });
   it('nextWeekEnd', () => {
-    assert.equal(lightDate.nextWeekEnd('2022-04-20T12:14:00.072Z', 'fr-FR').toLocaleString('fr'), '01/05/2022 23:59:59');
-    assert.equal(lightDate.nextWeekEnd('2022-04-20T12:14:00.072Z', 'en-US').toLocaleString('fr'), '30/04/2022 23:59:59');
+    assert.equal(
+      lightDate.nextWeekEnd('2022-04-20T12:14:00.072Z', 'fr-FR').toLocaleString('fr'),
+      '01/05/2022 23:59:59'
+    );
+    assert.equal(
+      lightDate.nextWeekEnd('2022-04-20T12:14:00.072Z', 'en-US').toLocaleString('fr'),
+      '30/04/2022 23:59:59'
+    );
   });
 
   it('getIntlLocale', () => {

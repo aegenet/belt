@@ -1,4 +1,7 @@
-import * as assert from 'node:assert';
+/**
+ * @vitest-environment node
+ */
+import { describe, it, assert } from 'vitest';
 import { EDurationFormat, fromDuration, toDuration } from '..';
 
 describe('fromDuration', () => {
@@ -14,8 +17,14 @@ describe('fromDuration', () => {
     });
 
     it('ms', () => {
-      assert.deepStrictEqual(fromDuration(toDuration('1000', EDurationFormat.MILLISECONDS), EDurationFormat.MILLISECONDS), 1000);
-      assert.deepStrictEqual(fromDuration(toDuration(1000, EDurationFormat.MILLISECONDS), EDurationFormat.MILLISECONDS), 1000);
+      assert.deepStrictEqual(
+        fromDuration(toDuration('1000', EDurationFormat.MILLISECONDS), EDurationFormat.MILLISECONDS),
+        1000
+      );
+      assert.deepStrictEqual(
+        fromDuration(toDuration(1000, EDurationFormat.MILLISECONDS), EDurationFormat.MILLISECONDS),
+        1000
+      );
     });
 
     it('seconds', () => {

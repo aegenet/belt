@@ -53,9 +53,6 @@ export async function stringSplitBench(laps: number) {
   const stats = await racetrack.race(
     {
       name: 'split()',
-      explain: `
-  str = sample.split(' ');
-  `,
       spec: (ctx: ILapContext<number>) => {
         str1 = sample1.split(' ');
         return str1;
@@ -63,8 +60,6 @@ export async function stringSplitBench(laps: number) {
     },
     {
       name: 'StringSplit.split 1',
-      explain: `str2 = stringSplit1.split(sample1);
-  `,
       spec: (ctx: ILapContext<number>) => {
         str2 = stringSplit1.split(sample1);
         return str2;
@@ -72,8 +67,6 @@ export async function stringSplitBench(laps: number) {
     },
     {
       name: 'StringSplit.split 2',
-      explain: `str2 = stringSplit2.split(sample2);
-  `,
       spec: (ctx: ILapContext<number>) => {
         str2 = stringSplit2.split(sample2);
         return str2;
@@ -81,8 +74,6 @@ export async function stringSplitBench(laps: number) {
     },
     {
       name: 'StringSplit.split 3',
-      explain: `str2 = stringSplit3.split(sample3);
-  `,
       spec: (ctx: ILapContext<number>) => {
         str2 = stringSplit3.split(sample3);
         return str2;
@@ -90,8 +81,6 @@ export async function stringSplitBench(laps: number) {
     },
     {
       name: 'StringSplit.split 4',
-      explain: `str2 = stringSplit4.split(sample4);
-  `,
       spec: (ctx: ILapContext<number>) => {
         str2 = stringSplit4.split(sample4);
         return str2;
@@ -99,8 +88,6 @@ export async function stringSplitBench(laps: number) {
     },
     {
       name: 'String.split 5',
-      explain: `str2 = sample5.split(' ');
-  `,
       spec: (ctx: ILapContext<number>) => {
         str2 = sample5.split(' ');
         return str2;
@@ -108,8 +95,6 @@ export async function stringSplitBench(laps: number) {
     },
     {
       name: 'StringSplit.split 5',
-      explain: `str2 = stringSplit5.split(sample5);
-  `,
       spec: (ctx: ILapContext<number>) => {
         str2 = stringSplit5.split(sample5);
         return str2;
@@ -117,8 +102,6 @@ export async function stringSplitBench(laps: number) {
     },
     {
       name: 'Nested 6',
-      explain: `str2 = stringSplit6.split(sample6);
-  `,
       spec: (ctx: ILapContext<number>) => {
         str2 = stringSplit6.split(sample6);
         return str2;

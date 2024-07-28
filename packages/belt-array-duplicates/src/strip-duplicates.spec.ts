@@ -1,4 +1,7 @@
-import * as assert from 'node:assert';
+/**
+ * @vitest-environment node
+ */
+import { describe, it, assert } from 'vitest';
 import { stripDuplicates } from './index';
 
 describe('stripDuplicates', function () {
@@ -59,7 +62,14 @@ describe('stripDuplicates', function () {
     });
 
     it('With null and undefined values', () => {
-      assert.deepStrictEqual(stripDuplicates([{ id: 1 }, null, { id: 2 }, { id: 3 }, { id: 4 }, undefined]), [{ id: 1 }, null, { id: 2 }, { id: 3 }, { id: 4 }, undefined]);
+      assert.deepStrictEqual(stripDuplicates([{ id: 1 }, null, { id: 2 }, { id: 3 }, { id: 4 }, undefined]), [
+        { id: 1 },
+        null,
+        { id: 2 },
+        { id: 3 },
+        { id: 4 },
+        undefined,
+      ]);
     });
 
     it('Invalid options', () => {
@@ -70,7 +80,10 @@ describe('stripDuplicates', function () {
         });
         throw new Error('Must failed');
       } catch (error) {
-        assert.strictEqual((error as Error).message, 'Invalid usage: compare function is only available with sorted array.');
+        assert.strictEqual(
+          (error as Error).message,
+          'Invalid usage: compare function is only available with sorted array.'
+        );
       }
     });
   });

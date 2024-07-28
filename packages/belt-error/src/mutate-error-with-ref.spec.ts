@@ -1,4 +1,7 @@
-import assert from 'node:assert';
+/**
+ * @vitest-environment node
+ */
+import { describe, it, assert } from 'vitest';
 import { mutateErrorWithRef } from './index';
 
 describe('mutate-error-with-ref', () => {
@@ -40,8 +43,8 @@ describe('mutate-error-with-ref', () => {
     });
     assert.strictEqual(mutateError, error);
     assert.ok(mutateError.refError);
-    assert.ok(mutateError.refError.startsWith('E-'));
-    assert.ok(mutateError.refError.endsWith('5c'));
+    assert.ok(mutateError.refError!.startsWith('E-'));
+    assert.ok(mutateError.refError!.endsWith('5c'));
     assert.deepStrictEqual(Object.keys(mutateError), ['refError']);
   });
 
@@ -52,7 +55,7 @@ describe('mutate-error-with-ref', () => {
     });
     assert.strictEqual(mutateError, error);
     assert.ok(mutateError.refError);
-    assert.ok(mutateError.message.startsWith(mutateError.refError));
+    assert.ok(mutateError.message.startsWith(mutateError.refError!));
     assert.deepStrictEqual(Object.keys(mutateError), ['refError']);
   });
 
@@ -63,7 +66,7 @@ describe('mutate-error-with-ref', () => {
     });
     assert.strictEqual(mutateError, error);
     assert.ok(mutateError.refError);
-    assert.ok(mutateError.message.startsWith(mutateError.refError));
+    assert.ok(mutateError.message.startsWith(mutateError.refError!));
     assert.deepStrictEqual(Object.keys(mutateError), ['refError']);
   });
 
@@ -76,7 +79,7 @@ describe('mutate-error-with-ref', () => {
     const mutateError2 = mutateErrorWithRef(mutateError);
     assert.strictEqual(refError, mutateError2.refError);
     assert.ok(mutateError.refError);
-    assert.ok(mutateError.message.startsWith(mutateError.refError));
+    assert.ok(mutateError.message.startsWith(mutateError.refError!));
     assert.deepStrictEqual(Object.keys(mutateError), ['refError']);
   });
 
@@ -95,7 +98,7 @@ describe('mutate-error-with-ref', () => {
     assert.ok(mutateError.refError);
     assert.strictEqual(mutateError.tenant, 'yolo');
     assert.strictEqual(mutateError.user, 'maurice');
-    assert.ok(mutateError.message.startsWith(mutateError.refError));
+    assert.ok(mutateError.message.startsWith(mutateError.refError!));
     assert.deepStrictEqual(Object.keys(mutateError), ['refError', 'tenant', 'user']);
   });
 
@@ -115,7 +118,7 @@ describe('mutate-error-with-ref', () => {
       assert.ok(mutateError.refError);
       assert.strictEqual(mutateError.tenant, 'yolo');
       assert.strictEqual(mutateError.user, 'maurice');
-      assert.ok(mutateError.message.startsWith(mutateError.refError));
+      assert.ok(mutateError.message.startsWith(mutateError.refError!));
       assert.deepStrictEqual(Object.keys(mutateError), ['refError', 'tenant', 'user']);
     }
   });

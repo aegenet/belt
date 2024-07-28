@@ -1,4 +1,7 @@
-import * as assert from 'node:assert';
+/**
+ * @vitest-environment node
+ */
+import { describe, it, assert } from 'vitest';
 import { getDaysArrayInMonth, getDaysInMonth } from './get-days-in-month';
 
 describe('get-days-in-month', () => {

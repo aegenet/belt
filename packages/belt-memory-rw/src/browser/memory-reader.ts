@@ -117,7 +117,6 @@ export class MemoryReader extends MemoryCommon implements IMemoryReader<ArrayBuf
     if (endPosition === -1) {
       reachLimit = true;
       endPosition = maxLength;
-    } else {
     }
 
     const result = this.readString(endPosition);

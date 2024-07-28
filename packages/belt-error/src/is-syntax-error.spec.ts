@@ -1,4 +1,8 @@
 // tslint:disable:no-big-function
+/**
+ * @vitest-environment node
+ */
+import { describe, it } from 'vitest';
 import { isSyntaxError, asError } from './index';
 
 describe('isSyntaxError', () => {

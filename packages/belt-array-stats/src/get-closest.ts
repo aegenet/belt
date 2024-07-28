@@ -20,7 +20,11 @@ export function getClosestNumber(value: number, collection: number[]): number | 
 /**
  * Get closest value
  */
-export function getClosestValue<T = number>(value: T, collection: T[], reducer: (value: T, a: T, b: T, collection: T[]) => T): T | null {
+export function getClosestValue<T = number>(
+  value: T,
+  collection: T[],
+  reducer: (value: T, a: T, b: T, collection: T[]) => T
+): T | null {
   return collection?.length
     ? collection.reduce((a, b) => {
         return reducer(value, a, b, collection);

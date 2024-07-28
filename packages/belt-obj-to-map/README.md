@@ -8,9 +8,9 @@
 ## 💾 Installation
 
 ```shell
-yarn add @aegenet/belt-obj-to-map@^1.4.0
+yarn add @aegenet/belt-obj-to-map@^1.6.0
 # or
-npm i @aegenet/belt-obj-to-map@^1.4.0
+npm i @aegenet/belt-obj-to-map@^1.6.0
 ```
 
 ## 📝 Usage

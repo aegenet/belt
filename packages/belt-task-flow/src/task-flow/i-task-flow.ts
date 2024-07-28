@@ -19,7 +19,10 @@ import type { TaskFlowConstructable, TaskFlowDisposable } from '../common/types'
  */
 export interface ITaskFlow {
   /** @internal */
-  readonly eventLookup: Record<string, { handle: (message: unknown, channel: string) => void; options: TaskFlowSubOptions }[]>;
+  readonly eventLookup: Record<
+    string,
+    { handle: (message: unknown, channel: string) => void; options: TaskFlowSubOptions }[]
+  >;
   /** @internal */
   readonly messageHandlers: TaskFlowHandler<TaskFlowConstructable>[];
 
@@ -36,7 +39,10 @@ export interface ITaskFlow {
    * @param instance - The instance to publish.
    */
   publish<T extends TaskFlowConstructable>(instance: InstanceType<T>): Promise<void>;
-  publish<T extends TaskFlowConstructable | string>(channelOrInstance: T extends TaskFlowConstructable ? InstanceType<T> : T, message?: unknown): Promise<void>;
+  publish<T extends TaskFlowConstructable | string>(
+    channelOrInstance: T extends TaskFlowConstructable ? InstanceType<T> : T,
+    message?: unknown
+  ): Promise<void>;
 
   /**
    * Subscribes to a message channel (FIFO first in first out).
@@ -44,15 +50,27 @@ export interface ITaskFlow {
    * @param channel - The event channel.
    * @param callback - The callback to be invoked when the specified message is published.
    */
-  subscribe<T, C extends string>(channel: C, callback: (message: T, channel: C) => Promise<void> | void, options?: TaskFlowSubOptions): TaskFlowDisposable;
+  subscribe<T, C extends string>(
+    channel: C,
+    callback: (message: T, channel: C) => Promise<void> | void,
+    options?: TaskFlowSubOptions
+  ): TaskFlowDisposable;
   /**
    * Subscribes to a message type (FIFO first in first out).
    *
    * @param type - The event message type.
    * @param callback - The callback to be invoked when the specified message is published.
    */
-  subscribe<T extends TaskFlowConstructable>(type: T, callback: (message: InstanceType<T>) => Promise<void> | void, options?: TaskFlowSubOptions): TaskFlowDisposable;
-  subscribe(channelOrType: string | TaskFlowConstructable, callback: (...args: unknown[]) => Promise<void> | void, options?: TaskFlowSubOptions): TaskFlowDisposable;
+  subscribe<T extends TaskFlowConstructable>(
+    type: T,
+    callback: (message: InstanceType<T>) => Promise<void> | void,
+    options?: TaskFlowSubOptions
+  ): TaskFlowDisposable;
+  subscribe(
+    channelOrType: string | TaskFlowConstructable,
+    callback: (...args: unknown[]) => Promise<void> | void,
+    options?: TaskFlowSubOptions
+  ): TaskFlowDisposable;
 
   /**
    * Subscribes to a message channel, then disposes the subscription automatically after the first message is received.

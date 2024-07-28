@@ -1,8 +1,8 @@
-import config from '../../.build/vite.configurator.mjs';
+import { viteConfigurator } from '@aegenet/yawt';
 import { dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-export default config({
+export default viteConfigurator({
   cwd: dirname(fileURLToPath(import.meta.url)),
   libName: '@aegenet/belt-array-stats',
   entryPoint: 'src/index.ts',

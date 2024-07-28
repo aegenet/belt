@@ -1,4 +1,7 @@
-import * as assert from 'assert';
+/**
+ * @vitest-environment node
+ */
+import { describe, it, assert } from 'vitest';
 import { ObjectMonitoringResult, deepSetProxy } from '../index';
 
 describe('deep-set-proxy', () => {
@@ -9,7 +12,7 @@ describe('deep-set-proxy', () => {
     };
 
     const results: ObjectMonitoringResult[] = [];
-    const something = deepSetProxy(somethingOrig, options => results.push(options));
+    const something = deepSetProxy(somethingOrig, { callback: result => results.push(result) });
     something.title = 'Maurice';
 
     assert.deepStrictEqual(results, [
@@ -29,8 +32,8 @@ describe('deep-set-proxy', () => {
     };
 
     const results: ObjectMonitoringResult[] = [];
-    let something = deepSetProxy(somethingOrig, options => results.push(options));
-    something = deepSetProxy(somethingOrig, options => results.push(options));
+    let something = deepSetProxy(somethingOrig, { callback: result => results.push(result) });
+    something = deepSetProxy(somethingOrig, { callback: result => results.push(result) });
     something.title = 'Maurice';
 
     assert.deepStrictEqual(results, [
@@ -57,9 +60,8 @@ describe('deep-set-proxy', () => {
     };
 
     const results: ObjectMonitoringResult[] = [];
-    const something = deepSetProxy(somethingOrig, options => results.push(options));
+    const something = deepSetProxy(somethingOrig, { callback: result => results.push(result) });
     something.title = 'Maurice';
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     something.company!.name = 'Other';
     something.company = undefined;
 
@@ -97,7 +99,7 @@ describe('deep-set-proxy', () => {
     };
 
     const results: ObjectMonitoringResult[] = [];
-    const proxy = deepSetProxy(somethingOrig, options => results.push(options));
+    const proxy = deepSetProxy(somethingOrig, { callback: result => results.push(result) });
     proxy.new = 'A lot';
 
     assert.deepStrictEqual(results, [
@@ -126,7 +128,7 @@ describe('deep-set-proxy', () => {
     };
 
     const results: ObjectMonitoringResult[] = [];
-    const proxy = deepSetProxy(somethingOrig, options => results.push(options));
+    const proxy = deepSetProxy(somethingOrig, { callback: result => results.push(result) });
     proxy.new = {
       value: 'A lot',
     };
@@ -162,6 +164,7 @@ describe('deep-set-proxy', () => {
     proxy.new.deepest = {
       more: 'everever',
     };
+    // eslint-disable-next-line no-self-assign
     proxy.new.deepest = proxy.new.deepest;
     proxy.new.deepest.more = 'THEN ever';
 

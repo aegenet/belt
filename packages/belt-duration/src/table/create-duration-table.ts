@@ -12,7 +12,10 @@ const memoizeMap: Map<string, IDurationTable> = new Map();
  * @param { EDurationFormat } from Duration time type. Default milliseconds
  * @returns { IDurationInterval }
  */
-export function createDurationTable(from: EDurationFormat = EDurationFormat.MILLISECONDS, options: Omit<IDurationOptions, 'mask' | 'precision'> = { hoursPerDay: 24, daysPerWeek: 7, memoize: false }): IDurationTable {
+export function createDurationTable(
+  from: EDurationFormat = EDurationFormat.MILLISECONDS,
+  options: Omit<IDurationOptions, 'mask' | 'precision'> = { hoursPerDay: 24, daysPerWeek: 7, memoize: false }
+): IDurationTable {
   options ||= {};
   options.hoursPerDay ||= 24;
   options.daysPerWeek ||= 7;
@@ -21,7 +24,6 @@ export function createDurationTable(from: EDurationFormat = EDurationFormat.MILL
   const memKey = memoize ? `${from}_${options.daysPerWeek}_${options.hoursPerDay}` : '';
 
   if (memoize && memoizeMap.has(memKey)) {
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     return memoizeMap.get(memKey)!;
   }
 
@@ -54,6 +56,7 @@ export function createDurationTable(from: EDurationFormat = EDurationFormat.MILL
 
   switch (from) {
     case EDurationFormat.YEARS:
+      // eslint-disable-next-line no-case-declarations
       const hoursPerDayXdaysPerWeekXM12 = options.hoursPerDay * options.daysPerWeek * WEEKS_PER_MONTH * MONTHS_PER_YEAR;
       duration[HOURS] = {
         div: false,
@@ -73,6 +76,7 @@ export function createDurationTable(from: EDurationFormat = EDurationFormat.MILL
       };
       break;
     case EDurationFormat.MONTHS:
+      // eslint-disable-next-line no-case-declarations
       const hoursPerDayXdaysPerWeekXM = options.hoursPerDay * options.daysPerWeek * WEEKS_PER_MONTH;
       duration[HOURS] = {
         div: false,
@@ -92,6 +96,7 @@ export function createDurationTable(from: EDurationFormat = EDurationFormat.MILL
       };
       break;
     case EDurationFormat.WEEKS:
+      // eslint-disable-next-line no-case-declarations
       const hoursPerDayXdaysPerWeek = options.hoursPerDay * options.daysPerWeek;
       duration[HOURS] = {
         div: false,
@@ -206,24 +211,46 @@ export function createDurationTable(from: EDurationFormat = EDurationFormat.MILL
   /** Days */
   duration[DAYS] = {
     div: from < EDurationFormat.DAYS,
-    ratio: from === EDurationFormat.DAYS ? 1 : from > EDurationFormat.DAYS ? duration[HOURS].ratio / options.hoursPerDay : duration[HOURS].ratio * options.hoursPerDay,
+    ratio:
+      from === EDurationFormat.DAYS
+        ? 1
+        : from > EDurationFormat.DAYS
+          ? duration[HOURS].ratio / options.hoursPerDay
+          : duration[HOURS].ratio * options.hoursPerDay,
   };
 
   duration[WEEKS] = {
     div: from < EDurationFormat.WEEKS,
-    ratio: from === EDurationFormat.WEEKS ? 1 : from > EDurationFormat.WEEKS ? duration[DAYS].ratio / options.daysPerWeek : duration[DAYS].ratio * options.daysPerWeek,
+    ratio:
+      from === EDurationFormat.WEEKS
+        ? 1
+        : from > EDurationFormat.WEEKS
+          ? duration[DAYS].ratio / options.daysPerWeek
+          : duration[DAYS].ratio * options.daysPerWeek,
   };
   duration[MONTHS] = {
     div: from < EDurationFormat.MONTHS,
-    ratio: from === EDurationFormat.MONTHS ? 1 : from > EDurationFormat.MONTHS ? duration[WEEKS].ratio / WEEKS_PER_MONTH : duration[WEEKS].ratio * WEEKS_PER_MONTH,
+    ratio:
+      from === EDurationFormat.MONTHS
+        ? 1
+        : from > EDurationFormat.MONTHS
+          ? duration[WEEKS].ratio / WEEKS_PER_MONTH
+          : duration[WEEKS].ratio * WEEKS_PER_MONTH,
   };
   duration[YEARS] = {
     div: from < EDurationFormat.YEARS,
-    ratio: from === EDurationFormat.YEARS ? 1 : from > EDurationFormat.YEARS ? duration[MONTHS].ratio / MONTHS_PER_YEAR : duration[MONTHS].ratio * MONTHS_PER_YEAR,
+    ratio:
+      from === EDurationFormat.YEARS
+        ? 1
+        : from > EDurationFormat.YEARS
+          ? duration[MONTHS].ratio / MONTHS_PER_YEAR
+          : duration[MONTHS].ratio * MONTHS_PER_YEAR,
   };
 
   /** Memoize */
-  memoize && memoizeMap.set(memKey, duration);
+  if (memoize) {
+    memoizeMap.set(memKey, duration);
+  }
 
   return duration;
 }

@@ -1,5 +1,8 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import * as assert from 'node:assert';
+/**
+ * @vitest-environment node
+ */
+import { describe, it, assert } from 'vitest';
 import { oclone } from './index';
 
 describe('oclone', function () {
@@ -55,10 +58,11 @@ describe('oclone', function () {
 
     const clone = oclone(source, { keepType: true });
 
+    assert.ok(clone);
     assert.ok('method' in clone!);
-    assert.strictEqual(clone.id, 7);
-    clone.id = 6;
-    assert.strictEqual(clone.id, 6);
+    assert.strictEqual(clone!.id, 7);
+    clone!.id = 6;
+    assert.strictEqual(clone!.id, 6);
     assert.strictEqual(source.id, 7);
   });
 

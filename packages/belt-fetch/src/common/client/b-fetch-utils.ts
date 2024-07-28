@@ -4,6 +4,7 @@
  * @internal
  */
 export function getIPsFromDNSMap(dnsMap: Record<string, string>, hostname: string): string[] | undefined {
+  // eslint-disable-next-line no-prototype-builtins
   return dnsMap.hasOwnProperty(hostname) ? [dnsMap[hostname]] : undefined;
 }
 

@@ -18,7 +18,10 @@ export const bFetchDefaultOptions: bFetchOptions = Object.seal({
  *
  * @internal
  */
-export function bFetchApplyDefaultOptions(options: bFetchOptions, defaultOptions: bFetchOptions = bFetchDefaultOptions) {
+export function bFetchApplyDefaultOptions(
+  options: bFetchOptions,
+  defaultOptions: bFetchOptions = bFetchDefaultOptions
+) {
   options.timeout ??= defaultOptions.timeout;
   options.replaceDNSByIP ??= defaultOptions.replaceDNSByIP;
   options.dnsMapAsFallback ??= defaultOptions.dnsMapAsFallback;

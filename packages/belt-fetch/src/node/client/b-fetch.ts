@@ -7,7 +7,11 @@ import { bFetchGetIPsFromDNS } from './b-fetch-get-ips-from-dns';
 import { bFetchSharedCache } from './b-fetch-shared-cache';
 
 /** Fetch with timeout and an async dns resolver */
-export async function bFetch(input: RequestInfo | URL, init: RequestInit = {}, options: bFetchOptions = {}): Promise<Response> {
+export async function bFetch(
+  input: RequestInfo | URL,
+  init: RequestInit = {},
+  options: bFetchOptions = {}
+): Promise<Response> {
   bFetchApplyDefaultOptions(options);
 
   let origHostname: string;

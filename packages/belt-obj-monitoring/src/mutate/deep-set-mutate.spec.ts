@@ -1,4 +1,7 @@
-import * as assert from 'assert';
+/**
+ * @vitest-environment node
+ */
+import { describe, it, assert } from 'vitest';
 import { ObjectMonitoringResult, deepSetMutate } from '../index';
 
 describe('deep-set-mutate', () => {
@@ -9,7 +12,7 @@ describe('deep-set-mutate', () => {
     };
 
     const results: ObjectMonitoringResult[] = [];
-    deepSetMutate(something, options => results.push(options));
+    deepSetMutate(something, { callback: result => results.push(result) });
     something.title = 'Maurice';
     assert.strictEqual(something.title, 'Maurice');
     something.title = 'Tintin';
@@ -31,6 +34,41 @@ describe('deep-set-mutate', () => {
     ]);
   });
 
+  it('Initial object has getter/setter', () => {
+    const something: any = new (class {
+      private _title: string = 'Boris';
+      public get title() {
+        return this._title;
+      }
+      public set title(newValue: string) {
+        this._title = newValue;
+      }
+      description = 'Oromov';
+    })();
+
+    const results: ObjectMonitoringResult[] = [];
+    deepSetMutate(something, { callback: result => results.push(result) });
+    something.title = 'Maurice';
+    assert.strictEqual(something.title, 'Maurice');
+    something.title = 'Tintin';
+    assert.strictEqual(something.title, 'Tintin');
+
+    assert.deepStrictEqual(results, [
+      {
+        newValue: 'Maurice',
+        oldValue: 'Boris',
+        path: '_title',
+        property: '_title',
+      },
+      {
+        newValue: 'Tintin',
+        oldValue: 'Maurice',
+        path: '_title',
+        property: '_title',
+      },
+    ]);
+  });
+
   it('Already hydrated, must be ok, second times is ignored', () => {
     const something = {
       title: 'Boris',
@@ -38,8 +76,8 @@ describe('deep-set-mutate', () => {
     };
 
     const results: ObjectMonitoringResult[] = [];
-    deepSetMutate(something, options => results.push(options));
-    deepSetMutate(something, options => results.push(options));
+    deepSetMutate(something, { callback: result => results.push(result) });
+    deepSetMutate(something, { callback: result => results.push(result) });
     something.title = 'Maurice';
     assert.strictEqual(something.title, 'Maurice');
 
@@ -70,10 +108,9 @@ describe('deep-set-mutate', () => {
     };
 
     const results: ObjectMonitoringResult[] = [];
-    const token = deepSetMutate(something, options => results.push(options));
+    const token = deepSetMutate(something, { callback: result => results.push(result) });
     something.title = 'Maurice';
     assert.strictEqual(something.title, 'Maurice');
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     something.company!.name = 'Other';
     assert.strictEqual(something.company?.name, 'Other');
     something.company = undefined;
@@ -127,13 +164,14 @@ describe('deep-set-mutate', () => {
     });
 
     const results: ObjectMonitoringResult[] = [];
-    deepSetMutate(something, options => results.push(options));
+    deepSetMutate(something, { callback: result => results.push(result) });
     something.new.value = 'ok2';
     assert.strictEqual(something.new.value, 'ok2');
     something.new = {
       value: 'ko',
     };
     assert.strictEqual(something.new.value, 'ko');
+    // eslint-disable-next-line no-self-assign
     something.new = something.new;
     assert.strictEqual(something.new.value, 'ko');
     something.new.value = 'ko2';
@@ -186,7 +224,7 @@ describe('deep-set-mutate', () => {
     };
 
     const results: ObjectMonitoringResult[] = [];
-    deepSetMutate(something, options => results.push(options));
+    deepSetMutate(something, { callback: result => results.push(result) });
     something.new = 'A lot';
 
     assert.deepStrictEqual(results, []);

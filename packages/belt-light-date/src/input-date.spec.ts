@@ -1,4 +1,7 @@
-import * as assert from 'node:assert';
+/**
+ * @vitest-environment node
+ */
+import { describe, it, assert } from 'vitest';
 import { dateToInputDate, dateToInputDateTime, inputDateTimeToDate, inputDateToDate } from './index';
 
 const isParisTZ = Intl.DateTimeFormat().resolvedOptions().timeZone === 'Europe/Paris';
@@ -16,10 +19,19 @@ describe('dateToInputDate', () => {
 describe('inputDateToDate', () => {
   it('String', () => {
     // - => Iso
-    assert.strictEqual(inputDateToDate('2015-12-25').toISOString(), isParisTZ ? '2015-12-24T23:00:00.000Z' : '2015-12-25T00:00:00.000Z');
+    assert.strictEqual(
+      inputDateToDate('2015-12-25').toISOString(),
+      isParisTZ ? '2015-12-24T23:00:00.000Z' : '2015-12-25T00:00:00.000Z'
+    );
     // / => Local
-    assert.strictEqual(inputDateToDate('2015/12/25').toISOString(), isParisTZ ? '2015-12-24T23:00:00.000Z' : '2015-12-25T00:00:00.000Z');
-    assert.strictEqual(inputDateToDate('2018-06-12').toISOString(), isParisTZ ? '2018-06-11T22:00:00.000Z' : '2018-06-12T00:00:00.000Z');
+    assert.strictEqual(
+      inputDateToDate('2015/12/25').toISOString(),
+      isParisTZ ? '2015-12-24T23:00:00.000Z' : '2015-12-25T00:00:00.000Z'
+    );
+    assert.strictEqual(
+      inputDateToDate('2018-06-12').toISOString(),
+      isParisTZ ? '2018-06-11T22:00:00.000Z' : '2018-06-12T00:00:00.000Z'
+    );
   });
 });
 
@@ -44,9 +56,18 @@ describe('inputDateTimeToDate', () => {
   it('String', () => {
     assert.ok(inputDateTimeToDate(null as any));
     // - => Iso
-    assert.strictEqual(inputDateTimeToDate('2015-12-25T19:30').toISOString(), isParisTZ ? '2015-12-25T18:30:00.000Z' : '2015-12-25T19:30:00.000Z');
+    assert.strictEqual(
+      inputDateTimeToDate('2015-12-25T19:30').toISOString(),
+      isParisTZ ? '2015-12-25T18:30:00.000Z' : '2015-12-25T19:30:00.000Z'
+    );
     // / => Local
-    assert.strictEqual(inputDateTimeToDate('2015/12/25T19:30').toISOString(), isParisTZ ? '2015-12-25T18:30:00.000Z' : '2015-12-25T19:30:00.000Z');
-    assert.strictEqual(inputDateTimeToDate('2018-06-12T19:30').toISOString(), isParisTZ ? '2018-06-12T17:30:00.000Z' : '2018-06-12T19:30:00.000Z');
+    assert.strictEqual(
+      inputDateTimeToDate('2015/12/25T19:30').toISOString(),
+      isParisTZ ? '2015-12-25T18:30:00.000Z' : '2015-12-25T19:30:00.000Z'
+    );
+    assert.strictEqual(
+      inputDateTimeToDate('2018-06-12T19:30').toISOString(),
+      isParisTZ ? '2018-06-12T17:30:00.000Z' : '2018-06-12T19:30:00.000Z'
+    );
   });
 });

@@ -10,9 +10,9 @@ Auto add an AbortController on all Fastify Request
 ## 💾 Installation
 
 ```shell
-yarn add @aegenet/belt-fastify-abort@^1.4.0
+yarn add @aegenet/belt-fastify-abort@^1.6.0
 # or
-npm i @aegenet/belt-fastify-abort@^1.4.0
+npm i @aegenet/belt-fastify-abort@^1.6.0
 ```
 
 ## 📝 Usage

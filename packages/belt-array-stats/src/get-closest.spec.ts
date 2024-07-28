@@ -1,4 +1,7 @@
-import * as assert from 'node:assert';
+/**
+ * @vitest-environment node
+ */
+import { describe, it, assert } from 'vitest';
 import { getClosestNumber, getClosestValue } from './get-closest';
 
 describe('getClosestNumber', function () {
@@ -40,14 +43,24 @@ describe('getClosestValue', function () {
   };
 
   it('In array', () => {
-    assert.deepStrictEqual(getClosestValue<{ value: number }>({ value: 1 }, [{ value: 1 }, { value: 2 }], reducer), { value: 1 });
-    assert.deepStrictEqual(getClosestValue<{ value: number }>({ value: 2 }, [{ value: 1 }, { value: 2 }], reducer), { value: 2 });
+    assert.deepStrictEqual(getClosestValue<{ value: number }>({ value: 1 }, [{ value: 1 }, { value: 2 }], reducer), {
+      value: 1,
+    });
+    assert.deepStrictEqual(getClosestValue<{ value: number }>({ value: 2 }, [{ value: 1 }, { value: 2 }], reducer), {
+      value: 2,
+    });
   });
 
   it('Not in array', () => {
-    assert.deepStrictEqual(getClosestValue<{ value: number }>({ value: 0 }, [{ value: 1 }, { value: 2 }], reducer), { value: 1 });
-    assert.deepStrictEqual(getClosestValue<{ value: number }>({ value: 3 }, [{ value: 1 }, { value: 2 }], reducer), { value: 2 });
-    assert.deepStrictEqual(getClosestValue<{ value: number }>({ value: 13 }, [{ value: 1 }, { value: 2 }], reducer), { value: 2 });
+    assert.deepStrictEqual(getClosestValue<{ value: number }>({ value: 0 }, [{ value: 1 }, { value: 2 }], reducer), {
+      value: 1,
+    });
+    assert.deepStrictEqual(getClosestValue<{ value: number }>({ value: 3 }, [{ value: 1 }, { value: 2 }], reducer), {
+      value: 2,
+    });
+    assert.deepStrictEqual(getClosestValue<{ value: number }>({ value: 13 }, [{ value: 1 }, { value: 2 }], reducer), {
+      value: 2,
+    });
   });
 
   it('Null', () => {
