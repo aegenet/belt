@@ -39,3 +39,4 @@ export * from '../../belt-rows-inflator/src/index';
 export * from '../../belt-duration/src/index';
 export * from '../../belt-string-split/src/index';
 export * from '../../belt-task-flow/src/index';
+export * from '../../belt-argv-to-obj/src/index';

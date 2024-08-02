@@ -1,173 +1,222 @@
-[{
-  "name": "belt-crc8",
-  "links": [],
-  "publish": true
-}, {
-  "name": "belt-hide-sensitive",
-  "links": [],
-  "publish": true
-}, {
-  "name": "belt-crc32",
-  "links": [],
-  "publish": true
-}, {
-  "name": "belt-promise",
-  "links": [],
-  "publish": true
-}, {
-  "name": "belt-fetch",
-  "links": [],
-  "publish": true
-}, {
-  "name": "belt-odeep",
-  "links": [],
-  "publish": true
-}, {
-  "name": "belt-odiff",
-  "links": [],
-  "publish": true
-}, {
-  "name": "belt-ofields",
-  "links": [],
-  "publish": true
-}, {
-  "name": "belt-oclone",
-  "links": [],
-  "publish": true
-}, {
-  "name": "belt-obj-to-array",
-  "links": [],
-  "publish": true
-}, {
-  "name": "belt-obj-to-map",
-  "links": [],
-  "publish": true
-}, {
-  "name": "belt-obj-is-empty",
-  "links": [],
-  "publish": true
-}, {
-  "name": "belt-obj-is-equals",
-  "links": [],
-  "publish": true
-}, {
-  "name": "belt-obj-first-key",
-  "links": [],
-  "publish": true
-}, {
-  "name": "belt-obj-monitoring",
-  "links": [],
-  "publish": true
-}, {
-  "name": "belt-array-to-obj",
-  "links": [],
-  "publish": true
-}, {
-  "name": "belt-array-async-filter",
-  "links": [],
-  "publish": true
-}, {
-  "name": "belt-array-async-map",
-  "links": [],
-  "publish": true
-}, {
-  "name": "belt-array-async-foreach",
-  "links": [],
-  "publish": true
-}, {
-  "name": "belt-array-duplicates",
-  "links": [],
-  "publish": true
-}, {
-  "name": "belt-array-stats",
-  "links": [],
-  "publish": true
-}, {
-  "name": "belt-array-string-join",
-  "links": [],
-  "publish": true
-}, {
-  "name": "belt-hook",
-  "links": [],
-  "publish": true
-}, {
-  "name": "belt-interpolation",
-  "links": [],
-  "publish": true
-}, {
-  "name": "belt-str-escape-regex",
-  "links": [],
-  "publish": true
-}, {
-  "name": "belt-string-split",
-  "links": [],
-  "publish": true
-}, {
-  "name": "belt-binary-search",
-  "links": [],
-  "publish": true
-}, {
-  "name": "belt-symbols-is-balanced",
-  "links": [],
-  "publish": true
-}, {
-  "name": "belt-platform-detector",
-  "links": [],
-  "publish": true
-}, {
-  "name": "belt-error",
-  "links": [],
-  "publish": true
-}, {
-  "name": "belt-base64",
-  "links": [],
-  "publish": true
-}, {
-  "name": "belt-anti-bounce",
-  "links": [],
-  "publish": true
-}, {
-  "name": "belt-json-ignore",
-  "links": [],
-  "publish": true
-}, {
-  "name": "belt-memory-rw",
-  "links": [],
-  "publish": true
-}, {
-  "name": "belt-light-date",
-  "links": [],
-  "publish": true
-}, {
-  "name": "belt-readdir",
-  "links": [],
-  "publish": true
-}, {
-  "name": "belt-extract-domain",
-  "links": [],
-  "publish": true
-}, {
-  "name": "belt-benchmark",
-  "links": [],
-  "publish": true
-}, {
-  "name": "belt-rows-inflator",
-  "links": [],
-  "publish": true
-}, {
-  "name": "belt-fastify-abort",
-  "links": [],
-  "publish": true
-}, {
-  "name": "belt-duration",
-  "links": [],
-  "publish": true
-}, {
-  "name": "belt-task-flow",
-  "links": [],
-  "publish": true
-}, {
-  "name": "belt",
-  "links": [],
-  "publish": true
-}]
+[
+  {
+    "name": "belt-crc8",
+    "links": [],
+    "publish": true
+  },
+  {
+    "name": "belt-hide-sensitive",
+    "links": [],
+    "publish": true
+  },
+  {
+    "name": "belt-crc32",
+    "links": [],
+    "publish": true
+  },
+  {
+    "name": "belt-promise",
+    "links": [],
+    "publish": true
+  },
+  {
+    "name": "belt-fetch",
+    "links": [],
+    "publish": true
+  },
+  {
+    "name": "belt-odeep",
+    "links": [],
+    "publish": true
+  },
+  {
+    "name": "belt-odiff",
+    "links": [],
+    "publish": true
+  },
+  {
+    "name": "belt-ofields",
+    "links": [],
+    "publish": true
+  },
+  {
+    "name": "belt-oclone",
+    "links": [],
+    "publish": true
+  },
+  {
+    "name": "belt-obj-to-array",
+    "links": [],
+    "publish": true
+  },
+  {
+    "name": "belt-obj-to-map",
+    "links": [],
+    "publish": true
+  },
+  {
+    "name": "belt-obj-is-empty",
+    "links": [],
+    "publish": true
+  },
+  {
+    "name": "belt-obj-is-equals",
+    "links": [],
+    "publish": true
+  },
+  {
+    "name": "belt-obj-first-key",
+    "links": [],
+    "publish": true
+  },
+  {
+    "name": "belt-obj-monitoring",
+    "links": [],
+    "publish": true
+  },
+  {
+    "name": "belt-array-to-obj",
+    "links": [],
+    "publish": true
+  },
+  {
+    "name": "belt-argv-to-obj",
+    "links": [],
+    "publish": true
+  },
+  {
+    "name": "belt-array-async-filter",
+    "links": [],
+    "publish": true
+  },
+  {
+    "name": "belt-array-async-map",
+    "links": [],
+    "publish": true
+  },
+  {
+    "name": "belt-array-async-foreach",
+    "links": [],
+    "publish": true
+  },
+  {
+    "name": "belt-array-duplicates",
+    "links": [],
+    "publish": true
+  },
+  {
+    "name": "belt-array-stats",
+    "links": [],
+    "publish": true
+  },
+  {
+    "name": "belt-array-string-join",
+    "links": [],
+    "publish": true
+  },
+  {
+    "name": "belt-hook",
+    "links": [],
+    "publish": true
+  },
+  {
+    "name": "belt-interpolation",
+    "links": [],
+    "publish": true
+  },
+  {
+    "name": "belt-str-escape-regex",
+    "links": [],
+    "publish": true
+  },
+  {
+    "name": "belt-string-split",
+    "links": [],
+    "publish": true
+  },
+  {
+    "name": "belt-binary-search",
+    "links": [],
+    "publish": true
+  },
+  {
+    "name": "belt-symbols-is-balanced",
+    "links": [],
+    "publish": true
+  },
+  {
+    "name": "belt-platform-detector",
+    "links": [],
+    "publish": true
+  },
+  {
+    "name": "belt-error",
+    "links": [],
+    "publish": true
+  },
+  {
+    "name": "belt-base64",
+    "links": [],
+    "publish": true
+  },
+  {
+    "name": "belt-anti-bounce",
+    "links": [],
+    "publish": true
+  },
+  {
+    "name": "belt-json-ignore",
+    "links": [],
+    "publish": true
+  },
+  {
+    "name": "belt-memory-rw",
+    "links": [],
+    "publish": true
+  },
+  {
+    "name": "belt-light-date",
+    "links": [],
+    "publish": true
+  },
+  {
+    "name": "belt-readdir",
+    "links": [],
+    "publish": true
+  },
+  {
+    "name": "belt-extract-domain",
+    "links": [],
+    "publish": true
+  },
+  {
+    "name": "belt-benchmark",
+    "links": [],
+    "publish": true
+  },
+  {
+    "name": "belt-rows-inflator",
+    "links": [],
+    "publish": true
+  },
+  {
+    "name": "belt-fastify-abort",
+    "links": [],
+    "publish": true
+  },
+  {
+    "name": "belt-duration",
+    "links": [],
+    "publish": true
+  },
+  {
+    "name": "belt-task-flow",
+    "links": [],
+    "publish": true
+  },
+  {
+    "name": "belt",
+    "links": [],
+    "publish": true
+  }
+]

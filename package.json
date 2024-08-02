@@ -91,7 +91,7 @@
     "lint": "yawt --task=lint",
     "build": "yawt --task=build",
     "test": "vitest run",
-    "test:coverage": "vitest run --coverage --coverage.provider=v8 --coverage.extension=.ts --coverage.exclude=\"**/packages/{rql-app-playground,rql-http-json,rql-mongodb,rql-knex}/**\"",
+    "test:coverage": "vitest run --coverage --coverage.provider=istanbul --coverage.extension=.ts  --coverage.exclude=\"**/packages/belt-benchmark/bench/**\"",
     "publish": "yawt --task=publish",
     "version": "yawt --task=version",
     "upgrade": "npm cache clean && yawt --task=upgrade",
@@ -103,10 +103,11 @@
     "cover": "npm run cover:clean && npm run cover:merge && npm run cover:report"
   },
   "devDependencies": {
-    "@aegenet/yawt": "0.5.1",
+    "@aegenet/yawt": "0.5.7",
     "@commitlint/cli": "^19.3.0",
     "@fastify/pre-commit": "^2.1.0",
     "@types/node": "^20.11.2",
+    "@vitest/coverage-istanbul": "^2.0.5",
     "http-server": "^14.1.1",
     "terser": "^5.31.3",
     "typescript": "^5.5.4"

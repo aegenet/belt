@@ -1,0 +1,13 @@
+{
+  "extends": "./../../node_modules/@aegenet/yawt/tsconfig.base.json",
+  "exclude": [
+    "./node_modules",
+    "./samples"
+  ],
+  "include": [
+    "test",
+    "src" ],
+  "atom": {
+    "rewriteTsconfig": false
+  }
+}
