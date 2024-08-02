@@ -17,8 +17,10 @@ jobs:
           registry-url: 'https://npm.pkg.github.com'
           # Defaults to the user or organization that owns the workflow file
           scope: '@aegenet'
+      - name: Install Yawt
+        run: npm i -g @aegenet/yawt
       - name: Get projects and set env
-        run: echo "DELETE_PACKAGE_NAMES=$(node ./.build/get-projects.js)" >> $GITHUB_ENV
+        run: echo "DELETE_PACKAGE_NAMES=$(yawt-projects)" >> $GITHUB_ENV
       - name: Delete old dev packages
         uses: aegenet/gh-delete-package-versions@v5.5.0
         with:

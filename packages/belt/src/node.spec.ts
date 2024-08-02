@@ -175,4 +175,7 @@ describe('all-in-one', () => {
     assert.ok(belt.TaskFlowHandler);
     assert.ok(belt.TaskFlowListener);
   });
+  it('belt_argv_to_obj', () => {
+    assert.ok(belt.argvToObject);
+  });
 });

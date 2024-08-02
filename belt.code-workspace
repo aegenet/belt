@@ -69,6 +69,10 @@
       "path": "./packages/belt-obj-monitoring"
     },
     {
+      "name": "Argv To Object",
+      "path": "./packages/belt-argv-to-obj"
+    },
+    {
       "name": "Hook",
       "path": "./packages/belt-hook"
     },
