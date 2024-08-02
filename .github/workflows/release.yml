@@ -52,15 +52,17 @@ jobs:
       - name: Publish packages GitHub
         env:
           CI: true
-          NPM_PUBLISH_PUBLIC: '0'
-          NPM_PUSH_REGISTRY: https://npm.pkg.github.com/
+          YAWT_NPM_PUBLIC_PUBLISH: '0'
+          YAWT_NPM_NAMESPACE: '@aegenet'
+          YAWT_NPM_PUSH_REGISTRY: https://npm.pkg.github.com/
           NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
         run: npm run publish
 
       - name: Publish packages npm
         env:
           CI: true
-          NPM_PUBLISH_PUBLIC: '1'
-          NPM_PUSH_REGISTRY: https://registry.npmjs.org/
+          YAWT_NPM_PUBLIC_PUBLISH: '1'
+          YAWT_NPM_NAMESPACE: '@aegenet'
+          YAWT_NPM_PUSH_REGISTRY: https://registry.npmjs.org/
           NODE_AUTH_TOKEN: ${{ secrets.NPM_PUBLISH_TOKEN }}
         run: npm run publish
