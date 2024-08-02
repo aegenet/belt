@@ -34,5 +34,5 @@ jobs:
           package-type: 'npm'
           min-versions-to-keep: 5
           include-versions: '^999\.|\-dev$'
-          token: ${{ secrets.NPM_AUTH_TOKEN }}
+          token: ${{ secrets.DELETE_PACKAGES_TOKEN }}
           sleep-interval: 10000
