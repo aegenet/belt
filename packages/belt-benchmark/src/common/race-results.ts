@@ -1,6 +1,6 @@
 import { getAverage } from '../../../belt-array-stats/src/get-average';
 import { p50, p75, p90 } from '../../../belt-array-stats/src/get-percentile';
-import { ICarOptions } from './i-car-options';
+import type { ICarOptions } from './i-car-options';
 import { RaceTime } from './race-time';
 
 export class RaceResult {

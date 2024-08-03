@@ -2,7 +2,7 @@
  * @vitest-environment node
  */
 import { describe, it, assert } from 'vitest';
-import { ObjectMonitoringResult, deepSetMutate } from '../index';
+import { type ObjectMonitoringResult, deepSetMutate } from '../index';
 
 describe('deep-set-mutate', () => {
   it('Ok', () => {

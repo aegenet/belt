@@ -4,7 +4,7 @@
 import { describe, it, assert } from 'vitest';
 import * as path from 'node:path';
 import { readdir } from '../node';
-import { IReaddirEntry } from '../node';
+import type { IReaddirEntry } from '../node';
 
 describe('readdir/node', () => {
   it('simple', async () => {
