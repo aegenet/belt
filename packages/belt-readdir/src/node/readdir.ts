@@ -1,6 +1,6 @@
 import * as fs from 'node:fs/promises';
 import * as path from 'node:path';
-import { IReaddirEntry } from '../node';
+import type { IReaddirEntry } from '../node';
 
 /**
  * Get all files from a root directory (recursively)

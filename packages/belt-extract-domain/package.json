@@ -21,6 +21,7 @@
   "typings": "./dist/bundle.d.ts",
   "types": "./dist/bundle.d.ts",
   "author": "Alexandre Genet",
+  "sideEffects": false,
   "license": "MIT",
   "files": [
     "dist"

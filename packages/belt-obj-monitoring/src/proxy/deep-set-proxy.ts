@@ -1,4 +1,4 @@
-import { ObjectMonitoringOptions } from '../common/object-monitoring-options';
+import { type ObjectMonitoringOptions } from '../common/object-monitoring-options';
 const symIsProxy: unique symbol = Symbol('__isp');
 
 /**

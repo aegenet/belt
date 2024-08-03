@@ -1,4 +1,4 @@
-import { ERowsInflatorAssociation, IRowsInflatorOptions } from '../src/index';
+import { ERowsInflatorAssociation, type IRowsInflatorOptions } from '../src/index';
 import * as fs from 'node:fs';
 import path from 'node:path';
 
@@ -84,4 +84,6 @@ export const rowsMergerSchema = {
 } as IRowsInflatorOptions;
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-export const raws: any[] = fs.existsSync(path.join(__dirname, './../../../static/sample.json')) ? require(path.join(__dirname, './../../../static/sample.json')) : require('./../static/sample.json');
+export const raws: any[] = fs.existsSync(path.join(__dirname, './../../../static/sample.json'))
+  ? require(path.join(__dirname, './../../../static/sample.json'))
+  : require('./../static/sample.json');

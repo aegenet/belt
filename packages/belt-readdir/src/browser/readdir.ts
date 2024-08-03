@@ -1,4 +1,4 @@
-import { IReaddirEntry } from '../browser';
+import type { IReaddirEntry } from '../browser';
 
 /**
  * NodeJS ONLY.

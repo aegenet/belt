@@ -1,4 +1,4 @@
-import { Racetrack, ILapContext } from '../../../belt-benchmark/src/common';
+import { Racetrack, type ILapContext } from '../../../belt-benchmark/src/common';
 import { NodeRacetrack } from '../../../belt-benchmark/src/node';
 import { StringSplit } from '../../src/string-split';
 

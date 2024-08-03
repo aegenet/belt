@@ -20,6 +20,7 @@
   "typings": "./dist/node/bundle.d.ts",
   "types": "./dist/node/bundle.d.ts",
   "author": "Alexandre Genet",
+  "sideEffects": false,
   "license": "MIT",
   "files": [
     "dist"

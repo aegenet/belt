@@ -2,7 +2,7 @@
  * @vitest-environment node
  */
 import { describe, it, assert } from 'vitest';
-import { extractDomain, IDomain } from './index';
+import { extractDomain, type IDomain } from './index';
 
 describe('extract-domain', function () {
   it('undefined', () => {

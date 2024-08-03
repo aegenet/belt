@@ -201,7 +201,7 @@
     "explorer.fileNesting.enabled": true,
     "explorer.fileNesting.expand": false,
     "explorer.fileNesting.patterns": {
-      "package.json": ".gitignore,.npmrc,LICENSE,package-lock.json,tsconfig.json,eslint.config.cjs,.prettierrc.js,rollup.config.dts.mjs,vite.config.mjs,yarn.lock"
+      "package.json": ".gitignore,.npmrc,LICENSE,package-lock.json,tsconfig.json,eslint.config.cjs,eslint.config.mjs,.prettierrc.js,prettier.config.mjs,rollup.config.dts.mjs,vite.config.mjs,yarn.lock"
     }
   }
 }

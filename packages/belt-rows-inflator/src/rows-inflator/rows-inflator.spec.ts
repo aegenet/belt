@@ -2,7 +2,7 @@
  * @vitest-environment node
  */
 import { describe, it, assert } from 'vitest';
-import { ERowsInflatorAssociation, IRowsInflatorOptions, rowsInflator } from './../index';
+import { ERowsInflatorAssociation, type IRowsInflatorOptions, rowsInflator } from './../index';
 
 describe('rows-inflator', () => {
   const rowsMergerSchema = {

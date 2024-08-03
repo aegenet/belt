@@ -2,7 +2,7 @@
  * @vitest-environment node
  */
 import { describe, it, assert } from 'vitest';
-import { ObjectMonitoringResult, deepSetProxy } from '../index';
+import { type ObjectMonitoringResult, deepSetProxy } from '../index';
 
 describe('deep-set-proxy', () => {
   it('Ok', () => {

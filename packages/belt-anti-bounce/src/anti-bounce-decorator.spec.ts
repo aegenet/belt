@@ -3,7 +3,7 @@
  */
 import { describe, it, assert } from 'vitest';
 import { AntiBounce } from './index';
-import { antiBounce, disposeAntiBounces, IAntiBounceSupport } from './anti-bounce-decorator';
+import { antiBounce, disposeAntiBounces, type IAntiBounceSupport } from './anti-bounce-decorator';
 import { setTimeout } from 'node:timers/promises';
 
 class Sample implements IAntiBounceSupport {

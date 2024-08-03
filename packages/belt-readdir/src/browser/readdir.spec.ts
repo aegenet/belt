@@ -5,7 +5,7 @@ import { describe, it, assert } from 'vitest';
 import * as path from 'node:path';
 import { readdir } from '../browser';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { IReaddirEntry } from '../browser';
+import type { IReaddirEntry } from '../browser';
 
 describe('readdir/browser', () => {
   it('simple', async () => {
