@@ -179,4 +179,7 @@ describe('all-in-one', () => {
   test('belt_argv_to_obj', () => {
     assert.ok(belt.argvToObject);
   });
+  test('belt_env_to_obj', () => {
+    assert.ok(belt.envToObject);
+  });
 });

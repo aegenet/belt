@@ -24,6 +24,7 @@
 | [@aegenet/belt-array-string-join](./packages/belt-array-string-join/README.md)     | `stringJoin()` `stringConcat()` => Array.join() is slow, this tool helps you to join() your string array faster                       |
 | [@aegenet/belt-array-to-obj](./packages/belt-array-to-obj/README.md)               | Array to Object                                                                                                                       |
 | [@aegenet/belt-argv-to-obj](./packages/belt-argv-to-obj/README.md)                 | Convert an array of command line arguments (argv) to an object                                                                        |
+| [@aegenet/belt-env-to-obj](./packages/belt-env-to-obj/README.md)                   | Combine multiple environment variables into one JS object                                                                             |
 | [@aegenet/belt-base64](./packages/belt-base64/README.md)                           | Base64 (`toBase64`, `fromBase64`)                                                                                                     |
 | [@aegenet/belt-benchmark](./packages/belt-benchmark/README.md)                     | Benchmark your functions                                                                                                              |
 | [@aegenet/belt-binary-search](./packages/belt-binary-search/README.md)             | Binary search                                                                                                                         |

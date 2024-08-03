@@ -40,3 +40,4 @@ export * from '../../belt-duration/src/index';
 export * from '../../belt-string-split/src/index';
 export * from '../../belt-task-flow/src/index';
 export * from '../../belt-argv-to-obj/src/index';
+export * from '../../belt-env-to-obj/src/index';

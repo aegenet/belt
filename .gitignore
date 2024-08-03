@@ -70,3 +70,4 @@ packages/belt-benchmark/.nyc_output/
 packages/belt-benchmark/.vscode/
 packages/belt-benchmark/yarn-error.log
 packages/belt-benchmark/temp/
+*.timestamp-*
