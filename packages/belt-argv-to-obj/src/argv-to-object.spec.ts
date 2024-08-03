@@ -10,9 +10,9 @@ describe('argvToObject', () => {
   });
 
   it('equals syntax', () => {
-    const argv = ['--name=John', '--age=25'];
+    const argv = ['--name=John', '--age=25', '--level=0'];
     const result = argvToObject(argv);
-    const expected = { name: 'John', age: 25 };
+    const expected = { name: 'John', age: 25, level: 0 };
     expect(result).toEqual(expected);
   });
 
@@ -48,6 +48,20 @@ describe('argvToObject', () => {
     const argv = ['--verbose=true', '--debug=false'];
     const result = argvToObject(argv);
     const expected = { verbose: true, debug: false };
+    expect(result).toEqual(expected);
+  });
+
+  it('should not ignore empty value (quotes)', () => {
+    const argv = ["--something=''"];
+    const result = argvToObject(argv);
+    const expected = { something: '' };
+    expect(result).toEqual(expected);
+  });
+
+  it('should not ignore empty value (dbl quotes)', () => {
+    const argv = ['--something=""'];
+    const result = argvToObject(argv);
+    const expected = { something: '' };
     expect(result).toEqual(expected);
   });
 });

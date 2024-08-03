@@ -46,7 +46,7 @@ export function argvToObject<O extends object = Record<string, string | boolean 
               value = valueMatch[1];
             }
           } else if (value) {
-            value = valueMatch[2] || valueMatch[3];
+            value = valueMatch[2] || valueMatch[3] || '';
           }
         }
       }
