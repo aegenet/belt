@@ -73,6 +73,10 @@
       "path": "./packages/belt-argv-to-obj"
     },
     {
+      "name": "Env To Object",
+      "path": "./packages/belt-env-to-obj"
+    },
+    {
       "name": "Hook",
       "path": "./packages/belt-hook"
     },

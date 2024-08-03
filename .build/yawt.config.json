@@ -85,6 +85,11 @@
     "publish": true
   },
   {
+    "name": "belt-env-to-obj",
+    "links": [],
+    "publish": true
+  },
+  {
     "name": "belt-array-async-filter",
     "links": [],
     "publish": true
