@@ -108,7 +108,7 @@ describe('task-flow-subscription', () => {
     listenToMe = undefined;
   });
 
-  it.only('Register & publish', async () => {
+  it('Register & publish', async () => {
     assert.deepStrictEqual(listenToMe!.msg, []);
     await taskFlow!.publish('tf.ListenToMe:doIt');
     assert.deepStrictEqual(listenToMe!.msg, ['hello']);

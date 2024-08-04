@@ -8,9 +8,9 @@ Convert an array of command line arguments (argv) to an object.
 ## 💾 Installation
 
 ```shell
-yarn add @aegenet/belt-argv-to-obj@^1.6.0
+yarn add @aegenet/belt-argv-to-obj@^2.0.0
 # or
-npm i @aegenet/belt-argv-to-obj@^1.6.0
+npm i @aegenet/belt-argv-to-obj@^2.0.0
 ```
 
 ## 📝 Usage

@@ -10,9 +10,9 @@
 ## 💾 Installation
 
 ```shell
-yarn add @aegenet/belt-anti-bounce@^1.6.0
+yarn add @aegenet/belt-anti-bounce@^2.0.0
 # or
-npm i @aegenet/belt-anti-bounce@^1.6.0
+npm i @aegenet/belt-anti-bounce@^2.0.0
 ```
 
 ## 📝 Usage

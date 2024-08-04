@@ -8,9 +8,9 @@
 ## 💾 Installation
 
 ```shell
-yarn add @aegenet/belt-array-async-map@^1.6.0
+yarn add @aegenet/belt-array-async-map@^2.0.0
 # or
-npm i @aegenet/belt-array-async-map@^1.6.0
+npm i @aegenet/belt-array-async-map@^2.0.0
 ```
 
 ## 📝 Usage
