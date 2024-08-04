@@ -3,7 +3,9 @@
 
 # @aegenet/belt-anti-bounce
 
-> `@antiBounce` decorator
+> `@antiBounce` a debounce decorator for TypeScript classes to prevent multiple calls in a short period of time.
+
+**Note**: `Stage 3` decorator *(for stage 2, you can use an older version (< 2.0.0) of this package)*.
 
 ## 💾 Installation
 
@@ -19,7 +21,7 @@ npm i @aegenet/belt-anti-bounce@^1.6.0
 import { IAntiBounceSupport, IAntiBounce, disposeAntiBounces } from '@aegenet/belt-anti-bounce';
 
 class Sample implements IAntiBounceSupport {
-  public $antiBounces?: Map<string, IAntiBounce>;
+  public declare $antiBounces?: Map<string, IAntiBounce>;
   private _i = 0;
 
   @antiBounce({ duration: 300 })

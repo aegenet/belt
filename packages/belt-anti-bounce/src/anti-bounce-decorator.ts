@@ -24,46 +24,65 @@ import type { IAntiBounce } from './i-anti-bounce';
  * }
  * ```
  */
-export function antiBounce(options: IAntiBounceOptions) {
-  options = options ?? {};
+export function antiBounce(
+  options: IAntiBounceOptions
+): (target: unknown, context: ClassMethodDecoratorContext) => void {
+  options ||= {};
 
-  function _wrapAntiBounce(
-    instance: IAntiBounceSupport,
-    descriptor: PropertyDescriptor,
-    propertyKey: string
-  ): IAntiBounce {
-    if (!instance.$antiBounces) {
-      instance.$antiBounces = new Map();
+  return function (originalMethod: unknown, context: ClassMethodDecoratorContext): void {
+    const methodName = String(context.name);
+    if (context.private) {
+      throw new Error(`'antiBounce' cannot decorate private properties like ${methodName}.`);
     }
 
-    if (!instance.$antiBounces.has(propertyKey)) {
-      instance.$antiBounces.set(
-        propertyKey,
-        new AntiBounce(
-          descriptor.value.bind(instance),
-          options.duration,
-          options.checker ? (instance as any)[options.checker].bind(instance) : undefined
-        )
-      );
-    }
-    return instance.$antiBounces.get(propertyKey)!;
-  }
+    if (context.kind === 'method') {
+      context.addInitializer(function (this: unknown) {
+        const method = _wrapAntiBounce(
+          this as IAntiBounceSupport,
+          (originalMethod as (...params: unknown[]) => void).bind(this),
+          context.name,
+          options
+        );
 
-  return function (target: IAntiBounceSupport, propertyKey: string, descriptor: PropertyDescriptor) {
-    return {
-      configurable: true,
-      enumerable: descriptor.enumerable,
-      get: function (): unknown {
-        const method = _wrapAntiBounce(this as IAntiBounceSupport, descriptor, propertyKey);
-        Object.defineProperty(this, propertyKey, {
+        Object.defineProperty(this, methodName, {
+          enumerable: false,
           configurable: true,
-          enumerable: descriptor.enumerable,
           value: method.call.bind(method),
         });
-        return (this as any)[propertyKey];
-      },
-    } as any; // weirdo
+      });
+    } else {
+      throw new Error(`'antiBounce' cannot decorate ${context.kind} like ${methodName}.`);
+    }
   };
+}
+
+function _wrapAntiBounce(
+  instance: IAntiBounceSupport,
+  originalMethod: (...params: unknown[]) => void,
+  propertyKey: string | symbol,
+  options: IAntiBounceOptions
+): IAntiBounce {
+  if (!instance.$antiBounces) {
+    Object.defineProperty(instance, '$antiBounces', {
+      enumerable: false,
+      configurable: false,
+      writable: false,
+      value: new Map(),
+    });
+    // instance.$antiBounces = new Map();
+  }
+
+  if (!instance.$antiBounces!.has(propertyKey)) {
+    instance.$antiBounces!.set(
+      propertyKey,
+      new AntiBounce(
+        originalMethod,
+        options.duration,
+        options.checker ? (instance as any)[options.checker].bind(instance) : undefined
+      )
+    );
+  }
+  return instance.$antiBounces!.get(propertyKey)!;
 }
 
 /**
@@ -81,10 +100,24 @@ export interface IAntiBounceOptions {
  * Thus, use this interface to "know" the properties.
  *
  * Ah! Don't forget to call `disposeAntiBounces` in your lifecycle (dispose)!
+ * The `declare` keyword is used to avoid any conflict: the decorator will add the property.
+ *
+ * @example
+ * ```ts
+ * class Sample implements IAntiBounceSupport {
+ *   public declare $antiBounces?: Map<string, AntiBounce>;
+ *   private _i = 0;
+ *
+ *   @antiBounce({ duration: 300 })
+ *   public inc(): void {
+ *     this._i++;
+ *   }
+ * }
+ * ```
  */
 export interface IAntiBounceSupport {
   /** DebouceIts instances (allows purging) */
-  $antiBounces?: Map<string, IAntiBounce>;
+  $antiBounces?: Map<string | symbol, IAntiBounce>;
 }
 
 /** Clean all antiBounce used */

@@ -3,7 +3,9 @@
 
 # @aegenet/belt-json-ignore
 
-> `@jsonIgnore` decorator
+> `@jsonIgnore` decorator for TypeScript classes to ignore fields when serializing to JSON.
+
+**Note**: `Stage 3` decorator *(for stage 2, you can use an older version (< 2.0.0) of this package)*.
 
 ## 💾 Installation
 
@@ -20,12 +22,8 @@ import { jsonIgnore } from '@aegenet/belt-json-ignore';
 
 class MyClass {
   @jsonIgnore
-  public declare mySubPrivateField: string;
+  public mySubPrivateField: string = 'abcdefg';
   public something: string = 'ok';
-
-  constructor() {
-    this.mySubPrivateField = 'abcdefg';
-  }
 }
 
 const instance = new MyClass();

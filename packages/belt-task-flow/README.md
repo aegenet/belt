@@ -47,6 +47,8 @@ taskFlow.dispose();
 
 ### Listener & subscription
 
+**Note**: `Stage 3` decorator *(for stage 2, you can use an older version (< 2.0.0) of this package)*.
+
 ```typescript
 import { TaskFlow, type ITaskFlow, TaskFlowListener, taskFlowMethod } from '@aegenet/belt-task-flow';
 

@@ -11,7 +11,8 @@ export abstract class TaskFlowListener implements TaskFlowDisposable {
   public __tfSubs?: ITaskFlowSubscription[];
 
   constructor(protected _taskFlow: ITaskFlow) {
-    this.__subscribe(this.__getAllTFSubs());
+    // since the stage 3, the constructor is executed after the `addInitializer` methods (decorators stage 3)
+    // this.__subscribe(this.__getAllTFSubs());
   }
 
   /** Dispose */
@@ -33,34 +34,44 @@ export abstract class TaskFlowListener implements TaskFlowDisposable {
     return allRaFT;
   }
 
-  private __subscribe(tfSubs: ITaskFlowSubscription[]) {
-    tfSubs.forEach(f => {
-      if (f.token) {
-        f.token.dispose();
-        f.token = undefined;
-      }
-      if (f.once) {
-        f.token = this._taskFlow.subscribeOnce(
-          f.channel,
-          async (args: unknown[]) => {
-            await this.__callMethod(f, args);
-          },
-          {
-            order: f.order,
-          }
-        );
-      } else {
-        f.token = this._taskFlow.subscribe(
-          f.channel,
-          async (args: unknown[]) => {
-            await this.__callMethod(f, args);
-          },
-          {
-            order: f.order,
-          }
-        );
-      }
-    });
+  /**
+   * @internal
+   */
+  public __subscribe(tfSubs: ITaskFlowSubscription[]): ITaskFlowSubscription[] {
+    tfSubs.forEach(f => this.__subscribeMethod(f));
+    return tfSubs;
+  }
+
+  /**
+   * @internal
+   */
+  public __subscribeMethod(f: ITaskFlowSubscription): ITaskFlowSubscription {
+    if (f.token) {
+      f.token.dispose();
+      f.token = undefined;
+    }
+    if (f.once) {
+      f.token = this._taskFlow.subscribeOnce(
+        f.channel,
+        async (args: unknown[]) => {
+          await this.__callMethod(f, args);
+        },
+        {
+          order: f.order,
+        }
+      );
+    } else {
+      f.token = this._taskFlow.subscribe(
+        f.channel,
+        async (args: unknown[]) => {
+          await this.__callMethod(f, args);
+        },
+        {
+          order: f.order,
+        }
+      );
+    }
+    return f;
   }
 
   private async __callMethod(f: ITaskFlowSubscription, args: unknown[]) {
