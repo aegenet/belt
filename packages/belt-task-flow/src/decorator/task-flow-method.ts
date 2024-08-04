@@ -32,28 +32,35 @@ export function taskFlowMethod(
     /** Optional, allows you to define a running order */
     order?: number;
   } = { once: false }
-) {
-  return function (target: TaskFlowListener, propertyKey: string | symbol, descriptor: PropertyDescriptor) {
-    if (!target.__tfSubs) {
-      target.__tfSubs = [];
-    }
+): (originalMethod: unknown, context: ClassMethodDecoratorContext) => void {
+  return function (originalMethod, context: ClassMethodDecoratorContext) {
+    const propertyKey = context.name;
+    context.addInitializer(function (this: unknown): void {
+      if (!(this as TaskFlowListener).__tfSubs) {
+        (this as TaskFlowListener).__tfSubs = [];
+      }
 
-    const actions: ITaskFlowSubscription[] = target.__tfSubs;
+      const actions: ITaskFlowSubscription[] | undefined = (this as TaskFlowListener).__tfSubs;
 
-    const prefix = options.prefix ?? 'tf';
-    const channel = options.channel?.length
-      ? `${options.prefix ? options.prefix + '.' : ''}${options.channel}`
-      : `${prefix && prefix != '' ? prefix + '.' : ''}${`${target.constructor.name}:${propertyKey.toString()}`}`;
+      const prefix = options.prefix ?? 'tf';
+      const channel = options.channel?.length
+        ? `${options.prefix ? options.prefix + '.' : ''}${options.channel}`
+        : `${prefix && prefix != '' ? prefix + '.' : ''}${`${(this as TaskFlowListener).constructor.name}:${propertyKey.toString()}`}`;
 
-    if (actions) {
-      actions.push({
-        channel,
-        once: !!options.once,
-        methodName: propertyKey.toString(),
-        token: undefined,
-        order: options.order,
-      });
-    }
-    return descriptor;
+      if (actions) {
+        // We add the subscription to the list, but before we subscribe:
+        // since the stage 3, `addInitializer` methods are executed after the constructor, so we must subscribe now
+        actions.push(
+          (this as TaskFlowListener).__subscribeMethod({
+            channel,
+            once: !!options.once,
+            methodName: propertyKey.toString(),
+            token: undefined,
+            order: options.order,
+          })
+        );
+      }
+    });
+    return originalMethod;
   };
 }

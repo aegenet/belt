@@ -8,9 +8,9 @@
 ## 💾 Installation
 
 ```shell
-yarn add @aegenet/belt-binary-search@^1.6.0
+yarn add @aegenet/belt-binary-search@^2.0.0
 # or
-npm i @aegenet/belt-binary-search@^1.6.0
+npm i @aegenet/belt-binary-search@^2.0.0
 ```
 
 ## 📝 Usage

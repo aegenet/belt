@@ -8,9 +8,9 @@
 ## 💾 Installation
 
 ```shell
-yarn add @aegenet/belt-task-flow@^1.5.0
+yarn add @aegenet/belt-task-flow@^2.0.0
 # or
-npm i @aegenet/belt-task-flow@^1.5.0
+npm i @aegenet/belt-task-flow@^2.0.0
 ```
 
 ## 📝 Usage
@@ -46,6 +46,8 @@ taskFlow.dispose();
 ```
 
 ### Listener & subscription
+
+**Note**: `Stage 3` decorator *(for stage 2, you can use an older version (< 2.0.0) of this package)*.
 
 ```typescript
 import { TaskFlow, type ITaskFlow, TaskFlowListener, taskFlowMethod } from '@aegenet/belt-task-flow';

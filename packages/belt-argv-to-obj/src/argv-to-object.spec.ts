@@ -64,4 +64,11 @@ describe('argvToObject', () => {
     const expected = { something: '' };
     expect(result).toEqual(expected);
   });
+
+  it('same parameters twice', () => {
+    const argv = ['--something="hello"', '--something="world"'];
+    const result = argvToObject(argv);
+    const expected = { something: ['hello', 'world'] };
+    expect(result).toEqual(expected);
+  });
 });

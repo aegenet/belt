@@ -50,7 +50,15 @@ export function argvToObject<O extends object = Record<string, string | boolean 
           }
         }
       }
-      (params as Record<string, unknown>)[key] = value;
+
+      if ((params as Record<string, unknown>)[key] != null) {
+        if (!Array.isArray((params as Record<string, unknown>)[key])) {
+          (params as Record<string, unknown>)[key] = [(params as Record<string, unknown>)[key]];
+        }
+        (params as Record<string, unknown[]>)[key].push(value);
+      } else {
+        (params as Record<string, unknown>)[key] = value;
+      }
     }
   }
   return params;

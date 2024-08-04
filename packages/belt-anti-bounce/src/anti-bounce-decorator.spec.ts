@@ -7,7 +7,7 @@ import { antiBounce, disposeAntiBounces, type IAntiBounceSupport } from './anti-
 import { setTimeout } from 'node:timers/promises';
 
 class Sample implements IAntiBounceSupport {
-  public $antiBounces?: Map<string, AntiBounce>;
+  public declare $antiBounces?: Map<string, AntiBounce>;
   private _i = 0;
 
   @antiBounce({ duration: 300 })

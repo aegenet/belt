@@ -8,9 +8,9 @@ Convert an array of command line arguments (argv) to an object.
 ## 💾 Installation
 
 ```shell
-yarn add @aegenet/belt-argv-to-obj@^1.6.0
+yarn add @aegenet/belt-argv-to-obj@^2.0.0
 # or
-npm i @aegenet/belt-argv-to-obj@^1.6.0
+npm i @aegenet/belt-argv-to-obj@^2.0.0
 ```
 
 ## 📝 Usage
@@ -20,9 +20,10 @@ npm i @aegenet/belt-argv-to-obj@^1.6.0
 ```typescript
 import { argvToObject } from '@aegenet/belt-argv-to-obj';
 
-const argv = ['--name', 'John', '--age', '25'];
+const argv = ['--name', 'John', '--age', '25', '--include', 'hello', '--include', 'world'];
+// OR ['--name=John', '--age=25', '--include=hello', '--include=world'];
 const result = argvToObject(argv);
-//=> { name: 'John', age: 25 }
+//=> { name: 'John', age: 25, include: ['hello', 'world'] }
 ```
 
 ### Node.js
@@ -63,3 +64,7 @@ const result = argvToObject(argv.slice(2));
 
 - `--key=true` -> `{ key: true }`
 - `--key` -> `{ key: true }`
+
+### Array
+
+- `--key="abc" --key="def"` -> `{ key: ['abc', 'def'] }`

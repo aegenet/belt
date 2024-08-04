@@ -10,9 +10,9 @@
 ## 💾 Installation
 
 ```shell
-yarn add @aegenet/belt-array-string-join@^1.6.0
+yarn add @aegenet/belt-array-string-join@^2.0.0
 # or
-npm i @aegenet/belt-array-string-join@^1.6.0
+npm i @aegenet/belt-array-string-join@^2.0.0
 ```
 
 ## 📝 Usage
