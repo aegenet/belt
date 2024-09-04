@@ -16,7 +16,7 @@ import { ODeepSet } from './../../belt-odeep/src/odeep-set';
  * ```
  */
 export function envToObject<O extends object = Record<string, string | boolean | number>>(
-  env: Record<string, string>,
+  env: Record<string, string | undefined>,
   options?: {
     /**
      * A regular expression to match the environment variable keys.
@@ -37,7 +37,13 @@ export function envToObject<O extends object = Record<string, string | boolean |
     /**
      * Convert the value
      */
-    convertValue?: (value: string | number | boolean) => unknown;
+    convertValue?: (value: string | number | boolean | undefined, key: string) => unknown;
+    /**
+     * Keep undefined key/value
+     *
+     * @default true
+     */
+    keepUndefined?: boolean;
   }
 ): O {
   options ??= {};
@@ -47,12 +53,13 @@ export function envToObject<O extends object = Record<string, string | boolean |
   const oDeepSet = new ODeepSet();
 
   const params: O = {} as O;
-  let value: string | boolean | number;
+  let computedKey: string | undefined;
+  let value: string | boolean | number | undefined;
 
   for (const key in env) {
     if (pattern.test(key)) {
       value = env[key];
-      const valueMatch = value.match(RE_ENV_VALUE);
+      const valueMatch = value?.match(RE_ENV_VALUE);
       if (valueMatch?.length) {
         if (valueMatch[1]) {
           if (valueMatch[1].match(RE_IS_NUMBER)) {
@@ -68,11 +75,16 @@ export function envToObject<O extends object = Record<string, string | boolean |
           // Skip empty values
           continue;
         }
+      } else {
+        value = undefined;
+      }
 
+      if (value != null || options.keepUndefined === true) {
+        computedKey = convertKey != null ? convertKey(key) : key;
         oDeepSet.setValue(
           params,
-          (convertKey != null ? convertKey(key) : key).split(nestedDelimiter),
-          convertValue != null ? convertValue(value) : value,
+          computedKey.split(nestedDelimiter),
+          convertValue != null ? convertValue(value, computedKey) : value,
           {
             autoCreate: true,
           }

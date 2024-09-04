@@ -9,12 +9,57 @@ describe('envToObject', () => {
           NAME: 'John',
           AGE: '25',
           level: '0',
+          something: undefined,
         },
         {
           convertKey: key => key.toLowerCase(),
         }
       )
-    ).toEqual({ name: 'John', age: 25, level: 0 });
+    ).deep.equals({ name: 'John', age: 25, level: 0 });
+  });
+
+  it('Env to an object - keep undefined', () => {
+    expect(
+      envToObject(
+        {
+          NAME: 'John',
+          AGE: '25',
+          level: '0',
+          something: undefined,
+        },
+        {
+          convertKey: key => key.toLowerCase(),
+          keepUndefined: true,
+        }
+      )
+    ).deep.equals({ name: 'John', age: 25, level: 0, something: undefined });
+  });
+
+  it('Env to an object - keep undefined - fallback', () => {
+    const defaultValue: Record<string, unknown> = {
+      something: 'else',
+    };
+    expect(
+      envToObject(
+        {
+          NAME: 'John',
+          AGE: '25',
+          level: '0',
+          something: undefined,
+        },
+        {
+          convertKey: key => key.toLowerCase(),
+          convertValue(value, key) {
+            if (value == null) {
+              return defaultValue[key];
+            } else {
+              return value;
+            }
+          },
+          keepUndefined: true,
+        }
+      )
+    ).deep.equals({ name: 'John', age: 25, level: 0, something: 'else' });
   });
 
   it('With quotes', () => {
@@ -28,7 +73,7 @@ describe('envToObject', () => {
           convertKey: key => key.toLowerCase(),
         }
       )
-    ).toEqual({ name: 'John', age: '25' });
+    ).deep.equals({ name: 'John', age: '25' });
   });
 
   it('Double quotes', () => {
@@ -42,7 +87,7 @@ describe('envToObject', () => {
           convertKey: key => key.toLowerCase(),
         }
       )
-    ).toEqual({ name: 'John', age: '25' });
+    ).deep.equals({ name: 'John', age: '25' });
   });
 
   it('should handle empty arguments', () => {
@@ -143,7 +188,7 @@ describe('envToObject', () => {
           convertKey: key => key.toLowerCase(),
         }
       )
-    ).toEqual({ belt: { contact: { name: 'John', age: 25 } } });
+    ).deep.equals({ belt: { contact: { name: 'John', age: 25 } } });
   });
 
   it('Nested - custom delimiter - dot', () => {
@@ -158,7 +203,7 @@ describe('envToObject', () => {
           nestedDelimiter: '.',
         }
       )
-    ).toEqual({ belt: { contact: { name: 'John', age: 25 } } });
+    ).deep.equals({ belt: { contact: { name: 'John', age: 25 } } });
   });
 
   it('Nested - custom delimiter - RegExp', () => {
@@ -174,6 +219,6 @@ describe('envToObject', () => {
           nestedDelimiter: /[^a-zA-Z0-9]/,
         }
       )
-    ).toEqual({ belt: { contact: { name: 'John', age: 25 } } });
+    ).deep.equals({ belt: { contact: { name: 'John', age: 25 } } });
   });
 });
