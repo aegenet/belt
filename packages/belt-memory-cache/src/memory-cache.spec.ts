@@ -58,12 +58,12 @@ describe('memory-cache', function () {
     try {
       cache.start();
       for (let i = 0; i < 100; i++) {
-        cache.set('key' + i, 'value', 1);
+        cache.set('key' + i, 'value', 2);
       }
       for (let i = 0; i < 100; i++) {
         assert.strictEqual(cache.has('key' + i), true);
       }
-      await setTimeout(1000);
+      await setTimeout(2000);
       for (let i = 0; i < 100; i++) {
         assert.strictEqual(cache.has('key' + i), false);
       }
