@@ -1,0 +1,49 @@
+{
+  "name": "@aegenet/belt-memory-cache",
+  "description": "Basic memory cache with TTL",
+  "keywords": ["memory", "cache", "ttl"],
+  "version": "0.0.0-dev",
+  "main": "dist/index.cjs",
+  "module": "dist/index.mjs",
+  "browser": "dist/index.mjs",
+  "exports": {
+    "node": {
+      "require": "./dist/index.cjs",
+      "import": "./dist/index.mjs",
+      "types": "./dist/bundle.d.ts"
+    },
+    "default": {
+      "require": "./dist/index.cjs",
+      "import": "./dist/index.mjs",
+      "types": "./dist/bundle.d.ts"
+    }
+  },
+  "typings": "./dist/bundle.d.ts",
+  "types": "./dist/bundle.d.ts",
+  "author": "Alexandre Genet",
+  "sideEffects": false,
+  "license": "MIT",
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
+  "repository": "https://github.com/aegenet/belt/tree/master/packages/belt-memory-cache",
+  "peerDependencies": {},
+  "pre-commit": [
+    "lint"
+  ],
+  "scripts": {
+    "clean": "node ./../../node_modules/rimraf/dist/esm/bin.mjs ./dist ./coverage ./.nyc_output ./node_modules",
+    "lint": "node ./../../node_modules/eslint/bin/eslint ./src/**/*.{js,ts,tsx}",
+    "lint:fix": "node ./../../node_modules/eslint/bin/eslint ./src/**/*.{js,ts,tsx} --fix",
+    "test:vitest:browser": "vitest run --environment jsdom",
+    "test:vitest:watch": "vitest",
+    "test:vitest": "vitest run",
+    "build": "npm run tsc && npm run build:vite && npm run build:dts",
+    "tsc": "node ./../../node_modules/typescript/bin/tsc --noEmit",
+    "build:dts": "node ./../../node_modules/rollup/dist/bin/rollup -c rollup.config.dts.mjs",
+    "build:vite": "node ./../../node_modules/vite/bin/vite build"
+  }
+}

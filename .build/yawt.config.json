@@ -180,6 +180,11 @@
     "publish": true
   },
   {
+    "name": "belt-memory-cache",
+    "links": [],
+    "publish": true
+  },
+  {
     "name": "belt-light-date",
     "links": [],
     "publish": true
