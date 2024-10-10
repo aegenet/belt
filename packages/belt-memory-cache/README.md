@@ -20,10 +20,9 @@ import { MemoryCache } from '@aegenet/belt-memory-cache';
 
 const cache = new MemoryCache({
   // The interval in minutes at which the cache will be cleaned up. -> default: 5
-  cleanupIntervalMinutes: 5;
-
+  cleanupIntervalMinutes: 5,
   // If true, values will be cloned before being stored in the cache. -> default: true
-  cloneValues?: boolean;
+  cloneValues: true,
 });
 // The cache will remove all expired items every 5 minutes
 cache.start();
