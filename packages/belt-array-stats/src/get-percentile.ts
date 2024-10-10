@@ -16,8 +16,12 @@ export function getPercentile(pc: 10 | 25 | 50 | 75 | 90, v: number[]): number {
     .sort((a, b) => {
       a ||= 0;
       b ||= 0;
-      if (a > b) return 1;
-      if (a < b) return -1;
+      if (a > b) {
+        return 1;
+      }
+      if (a < b) {
+        return -1;
+      }
       return 0;
     });
 
