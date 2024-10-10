@@ -40,6 +40,7 @@
 | [@aegenet/belt-json-ignore](./packages/belt-json-ignore/README.md)                 | JSON Ignore (`@jsonIgnore`)                                                                                                           |
 | [@aegenet/belt-light-date](./packages/belt-light-date/README.md)                   | (Very) light `Date` tools                                                                                                             |
 | [@aegenet/belt-memory-rw](./packages/belt-memory-rw/README.md)                     | Memory RW helps to read/write a buffer sequentially                                                                                   |
+| [@aegenet/belt-memory-cache](./packages/belt-memory-cache/README.md)               | Basic memory cache with TTL                                                                                                           |
 | [@aegenet/belt-obj-first-key](./packages/belt-obj-first-key/README.md)             | Object first key                                                                                                                      |
 | [@aegenet/belt-obj-is-empty](./packages/belt-obj-is-empty/README.md)               | Object is empty?                                                                                                                      |
 | [@aegenet/belt-obj-is-equals](./packages/belt-obj-is-equals/README.md)             | Object is equals `objectsIsEquals`?                                                                                                   |

@@ -182,4 +182,7 @@ describe('all-in-one', () => {
   test('belt_env_to_obj', () => {
     assert.ok(belt.envToObject);
   });
+  test('belt_memory_cache', () => {
+    assert.ok(belt.MemoryCache);
+  });
 });

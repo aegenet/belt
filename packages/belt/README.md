@@ -62,6 +62,7 @@ import {
   AntiBounce,
   disposeAntiBounces,
   jsonIgnore,
+  MemoryCache,
   MemoryReader, MemoryWriter, MemoryCreator,
   LightDate, getDayNames, getMonthNames,
   dateToInputDate, inputDateToDate,

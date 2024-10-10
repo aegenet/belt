@@ -40,7 +40,9 @@ function _deepSetProxy<T>(parentPath: string, data: T, options: ObjectMonitoring
         return true;
       },
       get(target, key) {
-        if (key === symIsProxy) return true;
+        if (key === symIsProxy) {
+          return true;
+        }
         return target[key];
       },
     });

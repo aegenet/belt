@@ -153,6 +153,10 @@
       "path": "./packages/belt-memory-rw"
     },
     {
+      "name": "Memory Cache",
+      "path": "./packages/belt-memory-cache"
+    },
+    {
       "name": "Read Directory",
       "path": "./packages/belt-readdir"
     },
