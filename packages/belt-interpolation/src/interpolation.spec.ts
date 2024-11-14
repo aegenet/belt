@@ -1,84 +1,84 @@
 /**
  * @vitest-environment node
  */
-import { assert, describe, it } from "vitest";
-import { Interpolation, transform } from "./index";
+import { assert, describe, it } from 'vitest';
+import { Interpolation, transform } from './index';
 
-describe("interpolation", function () {
-  describe("With constructor", () => {
-    it("Simple", () => {
+describe('interpolation', function () {
+  describe('With constructor', () => {
+    it('Simple', () => {
       const interpolation = new Interpolation();
       assert.strictEqual(
-        interpolation.transform("Hello ${name}", {
-          name: "David",
+        interpolation.transform('Hello ${name}', {
+          name: 'David',
         }),
-        "Hello David"
+        'Hello David'
       );
     });
 
-    it("$value", () => {
+    it('$value', () => {
       const interpolation = new Interpolation();
       assert.strictEqual(
-        interpolation.transform("Hello ${$value}", {
-          $value: "David",
+        interpolation.transform('Hello ${$value}', {
+          $value: 'David',
         }),
-        "Hello David"
+        'Hello David'
       );
     });
 
-    it("$value and space", () => {
+    it('$value and space', () => {
       const interpolation = new Interpolation();
       assert.strictEqual(
-        interpolation.transform("Hello ${$value}  ", {
-          $value: "David",
+        interpolation.transform('Hello ${$value}  ', {
+          $value: 'David',
         }),
-        "Hello David  "
+        'Hello David  '
       );
     });
 
-    it("Skippy", () => {
+    it('Skippy', () => {
       const interpolation = new Interpolation();
       assert.strictEqual(
-        interpolation.transform("Hello \\${name}", {
-          name: "David",
+        interpolation.transform('Hello \\${name}', {
+          name: 'David',
         }),
-        "Hello \\${name}"
+        'Hello \\${name}'
       );
     });
 
-    it("Multiple", () => {
+    it('Multiple', () => {
       const interpolation = new Interpolation();
       assert.strictEqual(
-        interpolation.transform("Hello ${firstName} ${lastName}", {
-          firstName: "David",
-          lastName: "Goodenough",
+        interpolation.transform('Hello ${firstName} ${lastName}', {
+          firstName: 'David',
+          lastName: 'Goodenough',
         }),
-        "Hello David Goodenough"
+        'Hello David Goodenough'
       );
     });
 
-    it("Null context property", () => {
+    it('Null context property', () => {
       const interpolation = new Interpolation();
       assert.strictEqual(
-        interpolation.transform("Hello ${firstName} ${lastName}", {
-          firstName: "David",
+        interpolation.transform('Hello ${firstName} ${lastName}', {
+          firstName: 'David',
           lastName: null,
         }),
-        "Hello David "
+        'Hello David '
       );
     });
 
-    it("Missing context property", () => {
+    it('Missing context property', () => {
       const interpolation = new Interpolation();
       assert.strictEqual(
-        interpolation.transform("Hello ${firstName} ${lastName}", {
-          firstName: "David",
+        interpolation.transform('Hello ${firstName} ${lastName}', {
+          firstName: 'David',
         }),
-        "Hello David "
+        'Hello David '
       );
     });
 
-    it("Custom language", () => {
+    it('Custom language', () => {
       const interpolation = new Interpolation({
         customDialects: {
           // eslint-disable-next-line no-useless-escape
@@ -87,44 +87,44 @@ describe("interpolation", function () {
       });
       assert.strictEqual(
         interpolation.transform(
-          "Hello ¤¤firstName¤¤ ¤¤lastName¤¤",
+          'Hello ¤¤firstName¤¤ ¤¤lastName¤¤',
           {
-            firstName: "David",
-            lastName: "Goodenough",
+            firstName: 'David',
+            lastName: 'Goodenough',
           },
-          { dialect: "spider" }
+          { dialect: 'spider' }
         ),
-        "Hello David Goodenough"
+        'Hello David Goodenough'
       );
     });
   });
 
-  describe("With constructor", () => {
-    it("Simple", () => {
+  describe('With constructor', () => {
+    it('Simple', () => {
       assert.strictEqual(
-        transform("Hello ${name}", {
-          name: "David",
+        transform('Hello ${name}', {
+          name: 'David',
         }),
-        "Hello David"
+        'Hello David'
       );
     });
 
-    it("Multiple", () => {
+    it('Multiple', () => {
       assert.strictEqual(
-        transform("Hello ${firstName} ${lastName}", {
-          firstName: "David",
-          lastName: "Goodenough",
+        transform('Hello ${firstName} ${lastName}', {
+          firstName: 'David',
+          lastName: 'Goodenough',
         }),
-        "Hello David Goodenough"
+        'Hello David Goodenough'
       );
     });
   });
 
-  describe("Override default getValue", () => {
-    it("Deep path", () => {
+  describe('Override default getValue', () => {
+    it('Deep path', () => {
       const interpolation = new Interpolation({
         getValue: (ctx, propPath) => {
-          const props = propPath.split(".");
+          const props = propPath.split('.');
           return String(
             props.reduce((prev: any, curr) => {
               return prev[curr];
@@ -134,38 +134,35 @@ describe("interpolation", function () {
       });
 
       assert.strictEqual(
-        interpolation.transform(
-          "Hello ${person.firstName} ${person.lastName}",
-          {
-            person: {
-              firstName: "David",
-              lastName: "Goodenough",
-            },
-          }
-        ),
-        "Hello David Goodenough"
+        interpolation.transform('Hello ${person.firstName} ${person.lastName}', {
+          person: {
+            firstName: 'David',
+            lastName: 'Goodenough',
+          },
+        }),
+        'Hello David Goodenough'
       );
     });
   });
 
-  describe("Case Sensitivity", () => {
-    it("Case sensitive", () => {
+  describe('Case Sensitivity', () => {
+    it('Case sensitive', () => {
       const interpolation = new Interpolation();
       assert.strictEqual(
-        interpolation.transform("Hello ${NaMe}", {
-          name: "David",
+        interpolation.transform('Hello ${NaMe}', {
+          name: 'David',
         }),
-        "Hello "
+        'Hello '
       );
     });
 
-    it("Ignore case", () => {
+    it('Ignore case', () => {
       const interpolation = new Interpolation({ ignoreCase: true });
       assert.strictEqual(
-        interpolation.transform("Hello ${NaMe}", {
-          name: "David",
+        interpolation.transform('Hello ${NaMe}', {
+          name: 'David',
         }),
-        "Hello David"
+        'Hello David'
       );
     });
   });
