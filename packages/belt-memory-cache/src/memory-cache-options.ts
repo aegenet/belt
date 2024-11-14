@@ -1,7 +1,7 @@
 /**
  * Options for the memory cache.
  */
-export type MemoryCacheOptions = {
+export type MemoryCacheOptions<KeyType = string> = {
   /**
    * The interval in minutes at which the cache will be cleaned up.
    */
@@ -18,5 +18,5 @@ export type MemoryCacheOptions = {
   /**
    * Convert the cache key
    */
-  convertKey?: (key: string) => string;
+  convertKey?: (key: KeyType) => string;
 };

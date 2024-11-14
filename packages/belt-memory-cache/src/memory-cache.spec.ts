@@ -87,4 +87,30 @@ describe('memory-cache', function () {
       });
     });
   });
+
+  it('Get object id -> key', async () => {
+    const something = { id: 'key' };
+    const cache = new MemoryCache<{
+      id: string;
+    }>({
+      convertKey: (key: { id: string }) => key.id,
+    });
+    cache.set(something, 'value', 1);
+    assert.strictEqual(cache.has(something), true);
+    await setTimeout(1000);
+    assert.strictEqual(cache.has(something), false);
+  });
+
+  it('Get object without id -> key', async () => {
+    const something = { something: 'key', else: 'other' };
+    const somethingElse = { something: 'key2', else: 'other2' };
+    const cache = new MemoryCache<Record<string, unknown>>({
+      convertKey: (key: Record<string, unknown>) => createHash('sha256').update(JSON.stringify(key)).digest('hex'),
+    });
+    cache.set(something, 'value', 1);
+    assert.strictEqual(cache.has(something), true);
+    assert.strictEqual(cache.has(somethingElse), false);
+    await setTimeout(1000);
+    assert.strictEqual(cache.has(something), false);
+  });
 });
