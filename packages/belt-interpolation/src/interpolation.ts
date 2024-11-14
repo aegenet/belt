@@ -11,7 +11,7 @@ export type InterpolationConfig = {
 /** Interpolation transform options */
 export type InterpolationOptions = {
   /** Dialect, by default ECMAScript */
-  dialect?: "ECMAScript" | string;
+  dialect?: 'ECMAScript' | string;
 };
 
 /**
@@ -23,11 +23,7 @@ export class Interpolation {
     ECMAScript: /(\\{0,1})\${([\$\w_\.\-]{1,})}/,
   };
 
-  private readonly _getValue: (
-    ctx: unknown,
-    propPath: string,
-    ...other: string[]
-  ) => string;
+  private readonly _getValue: (ctx: unknown, propPath: string, ...other: string[]) => string;
 
   constructor(
     private readonly _config: InterpolationConfig = {
@@ -38,7 +34,7 @@ export class Interpolation {
       this._config.customDialects = {};
     }
     this._getValue =
-      this._config.getValue ?? this._config.ignoreCase
+      (this._config.getValue ?? this._config.ignoreCase)
         ? Interpolation._ignoreCaseGetValue
         : Interpolation._defaultGetValue;
   }
@@ -53,18 +49,16 @@ export class Interpolation {
   ): string {
     options = options ?? {};
     context = context ?? ({} as C);
-    const dialectName = options.dialect || "ECMAScript";
+    const dialectName = options.dialect || 'ECMAScript';
 
     const dialect =
       dialectName in this._config.customDialects!
         ? this._config.customDialects![dialectName]
         : dialectName in Interpolation._DEFAULT_DIALECTS
-        ? (Interpolation._DEFAULT_DIALECTS as Record<string, RegExp>)[
-            dialectName
-          ]
-        : null;
+          ? (Interpolation._DEFAULT_DIALECTS as Record<string, RegExp>)[dialectName]
+          : null;
     if (dialect) {
-      const re = new RegExp(dialect, "g");
+      const re = new RegExp(dialect, 'g');
 
       return text.replace(re, (substring: string, ...params: string[]) => {
         if (!params[0]) {
@@ -90,18 +84,16 @@ export class Interpolation {
   ): unknown[] {
     options = options ?? {};
     context = context ?? ({} as C);
-    const dialectName = options.dialect || "ECMAScript";
+    const dialectName = options.dialect || 'ECMAScript';
 
     const dialect =
       dialectName in this._config.customDialects!
         ? this._config.customDialects![dialectName]
         : dialectName in Interpolation._DEFAULT_DIALECTS
-        ? (Interpolation._DEFAULT_DIALECTS as Record<string, RegExp>)[
-            dialectName
-          ]
-        : null;
+          ? (Interpolation._DEFAULT_DIALECTS as Record<string, RegExp>)[dialectName]
+          : null;
     if (dialect) {
-      const re = new RegExp(dialect, "g");
+      const re = new RegExp(dialect, 'g');
       const results: unknown[] = [];
 
       text.replace(re, (substring: string, ...params: string[]) => {
@@ -110,7 +102,7 @@ export class Interpolation {
         } else {
           results.push(substring);
         }
-        return "";
+        return '';
       });
       return results;
     } else {
@@ -122,11 +114,8 @@ export class Interpolation {
 
   /** Default get Value */
   private static _defaultGetValue<C>(ctx: C, propPath: string) {
-    const value =
-      propPath in (ctx as Record<string, unknown>)
-        ? (ctx as Record<string, unknown>)[propPath]
-        : null;
-    return value == null ? "" : String(value);
+    const value = propPath in (ctx as Record<string, unknown>) ? (ctx as Record<string, unknown>)[propPath] : null;
+    return value == null ? '' : String(value);
   }
 
   /** Ignore case get Value */
@@ -137,15 +126,11 @@ export class Interpolation {
         value = ctx[key];
       }
     }
-    return value == null ? "" : String(value);
+    return value == null ? '' : String(value);
   }
 }
 
 /** Tranform with interpolation */
-export function transform<C = Record<string, unknown>>(
-  text: string,
-  context: C,
-  options?: InterpolationOptions
-) {
+export function transform<C = Record<string, unknown>>(text: string, context: C, options?: InterpolationOptions) {
   return new Interpolation().transform<C>(text, context, options);
 }
