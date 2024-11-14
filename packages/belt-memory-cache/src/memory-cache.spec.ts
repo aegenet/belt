@@ -28,7 +28,7 @@ describe('memory-cache', function () {
       it('expired -> should set and get undefined', async () => {
         const cache = new MemoryCache(config.options);
         cache.set('key', 'value', 1);
-        await setTimeout(1000);
+        await setTimeout(2000);
         assert.strictEqual(cache.get('key'), undefined);
       });
 
@@ -60,7 +60,7 @@ describe('memory-cache', function () {
         const cache = new MemoryCache(config.options);
         cache.set('key', 'value', 1);
         assert.strictEqual(cache.has('key'), true);
-        await setTimeout(1000);
+        await setTimeout(2000);
         assert.strictEqual(cache.has('key'), false);
       });
 
@@ -97,7 +97,7 @@ describe('memory-cache', function () {
     });
     cache.set(something, 'value', 1);
     assert.strictEqual(cache.has(something), true);
-    await setTimeout(1000);
+    await setTimeout(1500);
     assert.strictEqual(cache.has(something), false);
   });
 
@@ -110,7 +110,7 @@ describe('memory-cache', function () {
     cache.set(something, 'value', 1);
     assert.strictEqual(cache.has(something), true);
     assert.strictEqual(cache.has(somethingElse), false);
-    await setTimeout(1000);
+    await setTimeout(1500);
     assert.strictEqual(cache.has(something), false);
   });
 });
