@@ -14,4 +14,9 @@ export type MemoryCacheOptions = {
    * @default true
    */
   cloneValues?: boolean;
+
+  /**
+   * Convert the cache key
+   */
+  convertKey?: (key: string) => string;
 };
