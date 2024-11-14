@@ -23,6 +23,8 @@ const cache = new MemoryCache({
   cleanupIntervalMinutes: 5,
   // If true, values will be cloned before being stored in the cache. -> default: true
   cloneValues: true,
+  // Convert the key before storing it in the cache. -> default: (key) => key
+  convertKey: (key: unknown) => key,
 });
 // The cache will remove all expired items every 5 minutes
 cache.start();

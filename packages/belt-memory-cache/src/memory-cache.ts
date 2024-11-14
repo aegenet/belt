@@ -5,7 +5,7 @@ import type { MemoryCacheOptions } from './memory-cache-options';
 /**
  * Memory cache
  */
-export class MemoryCache implements IMemoryCache {
+export class MemoryCache<KeyType = string> implements IMemoryCache<KeyType> {
   /**
    * Cache object
    */
@@ -22,9 +22,14 @@ export class MemoryCache implements IMemoryCache {
    * Garbage collection interval
    */
   private _gcInterval?: unknown;
+  /**
+   * Convert the cache key
+   */
+  private _convertKey: ((key: KeyType) => string) | undefined;
 
-  constructor(options: MemoryCacheOptions = {}) {
+  constructor(options: MemoryCacheOptions<KeyType> = {}) {
     const { cleanupIntervalMinutes = 5, cloneValues = true } = options;
+    this._convertKey = options.convertKey;
 
     this._cache = Object.create(null);
     // interval in milliseconds
@@ -35,8 +40,8 @@ export class MemoryCache implements IMemoryCache {
   /**
    * @inheritdoc
    */
-  public set<T = unknown>(key: string, value: T, ttlInSeconds: number): void {
-    this._cache[key] = {
+  public set<T = unknown>(key: KeyType, value: T, ttlInSeconds: number): void {
+    this._cache[this._convertKey ? this._convertKey(key) : <string>key] = {
       value: this._cloneValues ? this._deepCopy<T>(value) : value,
       expiredAt: Date.now() + ttlInSeconds * 1000,
     };
@@ -45,8 +50,9 @@ export class MemoryCache implements IMemoryCache {
   /**
    * @inheritdoc
    */
-  public get<T = unknown>(key: string): T | undefined {
-    const cachedItem = this._cache[key];
+  public get<T = unknown>(key: KeyType): T | undefined {
+    const formattedKey = this._convertKey ? this._convertKey(key) : <string>key;
+    const cachedItem = this._cache[formattedKey];
     if (!cachedItem) {
       return undefined;
     }
@@ -57,7 +63,7 @@ export class MemoryCache implements IMemoryCache {
     if (Date.now() > expirationTime) {
       if (!this._gcInterval) {
         // If the garbage collection interval is not set, we can delete the item immediately
-        delete this._cache[key];
+        delete this._cache[formattedKey];
       }
       return undefined;
     }
@@ -68,8 +74,9 @@ export class MemoryCache implements IMemoryCache {
   /**
    * @inheritdoc
    */
-  public has(key: string): boolean {
-    const cachedItem = this._cache[key];
+  public has(key: KeyType): boolean {
+    const formattedKey = this._convertKey ? this._convertKey(key) : <string>key;
+    const cachedItem = this._cache[formattedKey];
     if (!cachedItem) {
       return false;
     }
@@ -78,7 +85,7 @@ export class MemoryCache implements IMemoryCache {
     if (Date.now() > cachedItem.expiredAt) {
       if (!this._gcInterval) {
         // If the garbage collection interval is not set, we can delete the item immediately
-        delete this._cache[key];
+        delete this._cache[formattedKey];
       }
       return false;
     }
@@ -89,9 +96,10 @@ export class MemoryCache implements IMemoryCache {
   /**
    * @inheritdoc
    */
-  public delete(key: string): void {
-    if (this._cache[key]) {
-      delete this._cache[key];
+  public delete(key: KeyType): void {
+    const formattedKey = this._convertKey ? this._convertKey(key) : <string>key;
+    if (this._cache[formattedKey]) {
+      delete this._cache[formattedKey];
     }
   }
 

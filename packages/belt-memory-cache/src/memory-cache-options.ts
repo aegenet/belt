@@ -1,7 +1,7 @@
 /**
  * Options for the memory cache.
  */
-export type MemoryCacheOptions = {
+export type MemoryCacheOptions<KeyType = string> = {
   /**
    * The interval in minutes at which the cache will be cleaned up.
    */
@@ -14,4 +14,9 @@ export type MemoryCacheOptions = {
    * @default true
    */
   cloneValues?: boolean;
+
+  /**
+   * Convert the cache key
+   */
+  convertKey?: (key: KeyType) => string;
 };

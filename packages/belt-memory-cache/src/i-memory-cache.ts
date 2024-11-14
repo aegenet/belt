@@ -1,7 +1,7 @@
 /**
  * Memory cache
  */
-export interface IMemoryCache {
+export interface IMemoryCache<KeyType = string> {
   /**
    * Start periodic cleanup.
    */
@@ -15,22 +15,22 @@ export interface IMemoryCache {
   /**
    * Add an item to the cache with an expiration time.
    */
-  set<T = unknown>(key: string, value: T, ttlInSeconds: number): void;
+  set<T = unknown>(key: KeyType, value: T, ttlInSeconds: number): void;
 
   /**
    * Get an item from the cache. Returns undefined if the item is expired.
    */
-  get<T = unknown>(key: string): T | undefined;
+  get<T = unknown>(key: KeyType): T | undefined;
 
   /**
    * Check if a key is present in the cache and not expired.
    */
-  has(key: string): boolean;
+  has(key: KeyType): boolean;
 
   /**
    * Delete an item from the cache.
    */
-  delete(key: string): void;
+  delete(key: KeyType): void;
 
   /**
    * Clear the cache.
