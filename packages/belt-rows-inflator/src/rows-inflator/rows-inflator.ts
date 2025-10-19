@@ -5,7 +5,7 @@ import type { IRowsInflatorOptions } from './i-rows-inflator-options';
 /** Faster than array.join() */
 function rejoin(array: string[], endInclusive: number) {
   let str = '';
-  for (let i = 0; i <= endInclusive; i++) {
+  for (let i = 0; i < endInclusive; i++) {
     str += array[i];
   }
   return str;
@@ -50,7 +50,6 @@ export function rowsInflator<I = any, O = any>(raws: I[], schema: IRowsInflatorO
         formated = map<I>(raw);
         if (formated) {
           assocUUID = rejoin(rowPathUUID, depth) + formated.uuid;
-
           cachedData = cache.get(assocUUID);
 
           // If it doesn't exist, we create it and add it to the table and map.
@@ -96,7 +95,9 @@ function _createJITRowMapper(
     let mapFunction: ((row: unknown) => { value: unknown; uuid: string }) | undefined;
     if (levelSchema.fields) {
       const fields = Object.keys(levelSchema.fields);
-      const pks = levelSchema.primaryKeys?.length ? levelSchema.primaryKeys.filter(f => f in levelSchema.fields) : [];
+      const pks = levelSchema.primaryKeys?.length
+        ? levelSchema.primaryKeys.filter(f => levelSchema.fields[f] != null)
+        : [];
       const hasPKFields = !!pks.length;
       // We create a closure dedicated to this string so as not to keep the entire function in memory (here and in the Function).
       let mapFuncStr = `

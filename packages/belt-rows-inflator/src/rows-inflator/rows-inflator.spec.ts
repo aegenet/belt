@@ -375,4 +375,173 @@ describe('rows-inflator', () => {
       rowsMergerSchema.fields = fields;
     }
   });
+
+  it('Complexe schema', () => {
+    const schema: IRowsInflatorOptions = {
+      fields: {
+        id: true,
+        code: true,
+      },
+      as: '',
+      associationType: 0,
+      associations: {
+        user_skills: {
+          as: 'user_skills',
+          fields: {
+            id: true,
+            code: true,
+          },
+          associationType: 11,
+          associations: {
+            skill: {
+              as: 'skill',
+              fields: {
+                id: true,
+                code: true,
+              },
+              associationType: 1,
+              associations: {},
+              primaryKeys: ['id'],
+            },
+          },
+          primaryKeys: ['id'],
+        },
+        subordinates: {
+          as: 'subordinates',
+          fields: {
+            id: true,
+            code: true,
+          },
+          associationType: 11,
+          associations: {
+            company: {
+              as: 'company',
+              fields: {
+                id: true,
+                code: true,
+              },
+              associationType: 1,
+              associations: {},
+              primaryKeys: ['id'],
+            },
+          },
+          primaryKeys: ['id'],
+        },
+        company: {
+          as: 'company',
+          fields: {
+            id: true,
+            code: true,
+          },
+          associationType: 1,
+          associations: {
+            etablishments: {
+              as: 'etablishments',
+              fields: {
+                id: true,
+                code: true,
+              },
+              associationType: 11,
+              associations: {
+                etablishment: {
+                  as: 'etablishment',
+                  fields: {
+                    id: true,
+                    code: true,
+                  },
+                  associationType: 1,
+                  associations: {},
+                  primaryKeys: ['id'],
+                },
+              },
+              primaryKeys: ['id'],
+            },
+          },
+          primaryKeys: ['id'],
+        },
+      },
+      primaryKeys: ['id'],
+    };
+
+    const results = rowsInflator(
+      [
+        {
+          id: -1,
+          code: 'aneta',
+          user_skills__id: 1,
+          user_skills__skill__id: 1,
+          user_skills__skill__code: 'C++',
+          subordinates__id: 2,
+          subordinates__code: 'mbelaudi',
+          subordinates__company__id: 4,
+          subordinates__company__code: 'Something',
+          company__id: -1,
+          company__code: 'Something',
+          company__etablishments__id: null,
+          company__etablishments__etablishment__id: null,
+        },
+        {
+          id: -1,
+          code: 'aneta',
+          user_skills__id: 2,
+          user_skills__skill__id: 3,
+          user_skills__skill__code: 'TypeScript',
+          subordinates__id: 2,
+          subordinates__code: 'mbelaudi',
+          subordinates__company__id: 4,
+          subordinates__company__code: 'Something',
+          company__id: -1,
+          company__code: 'Something',
+          company__etablishments__id: null,
+          company__etablishments__etablishment__id: null,
+        },
+        {
+          id: -3,
+          code: 'mbelaudi',
+          user_skills__id: null,
+          user_skills__skill__id: null,
+          user_skills__skill__code: null,
+          subordinates__id: null,
+          subordinates__code: null,
+          subordinates__company__id: null,
+          subordinates__company__code: null,
+          company__id: -1,
+          company__code: 'Something',
+          company__etablishments__id: null,
+          company__etablishments__etablishment__id: null,
+        },
+        {
+          id: -2,
+          code: 'hbenao',
+          user_skills__id: null,
+          user_skills__skill__id: null,
+          user_skills__skill__code: null,
+          subordinates__id: null,
+          subordinates__code: null,
+          subordinates__company__id: null,
+          subordinates__company__code: null,
+          company__id: -2,
+          company__code: 'Rave',
+          company__etablishments__id: null,
+          company__etablishments__etablishment__id: null,
+        },
+      ],
+      schema
+    );
+    assert.strictEqual(results.length, 3);
+    assert.deepEqual(results, [
+      {
+        id: -1,
+        code: 'aneta',
+        user_skills: [
+          { id: 1, code: undefined, skill: { id: 1, code: 'C++' } },
+          { id: 2, code: undefined, skill: { id: 3, code: 'TypeScript' } },
+        ],
+        subordinates: [{ id: 2, code: 'mbelaudi', company: { id: 4, code: 'Something' } }],
+        company: { id: -1, code: 'Something' },
+      },
+      { id: -3, code: 'mbelaudi', company: { id: -1, code: 'Something' } },
+      { id: -2, code: 'hbenao', company: { id: -2, code: 'Rave' } },
+    ]);
+  });
 });
