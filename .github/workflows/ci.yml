@@ -7,6 +7,12 @@ on:
       - opened
       - synchronize
 
+permissions:
+  # GitHub Packages (@aegenet/* on npm.pkg.github.com) is now authenticated with the
+  # workflow's GITHUB_TOKEN. Without `packages: write`, GPR answers 404 to the publish.
+  contents: read
+  packages: write
+
 env:
   BUILD_WORKER_THREADS: 4
   BUILD_SILENT: false
@@ -34,12 +40,12 @@ jobs:
       - name: Install workspace dependencies
         env:
           CI: true
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: npm i
       - name: Packages dependencies
         env:
           CI: true
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: npm run dependencies
 
       - name: Clean coverages
@@ -65,7 +71,7 @@ jobs:
       - name: Publish dev packages
         env:
           CI: true
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: npm run publish
 
   build_pr:
@@ -90,12 +96,12 @@ jobs:
       - name: Install workspace dependencies
         env:
           CI: true
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: npm i
       - name: Packages dependencies
         env:
           CI: true
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: npm run dependencies
 
       - name: Clean coverages

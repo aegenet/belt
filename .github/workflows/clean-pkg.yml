@@ -3,6 +3,12 @@ name: Clean Packages
 on:
   push:
 
+permissions:
+  # GitHub Packages (@aegenet/* on npm.pkg.github.com) is now authenticated with the
+  # workflow's GITHUB_TOKEN. Without `packages: write`, GPR answers 404 to the publish.
+  contents: read
+  packages: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -21,7 +27,7 @@ jobs:
       - name: Install Yawt
         env:
           CI: true
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: npm i -g @aegenet/yawt
 
       - name: Get projects and set env
