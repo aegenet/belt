@@ -90,3 +90,29 @@ Results
   }
 ]
 ```
+
+## Option `emptyWhenAbsent`
+
+An outer join (`LEFT JOIN`) that matched no child row makes that association level map to nothing — and by
+default the key is then **never created** on the parent, which forces every consumer to test
+`'users' in row`.
+
+Set `emptyWhenAbsent: true` on an **association** level to always expose it, the empty value following the
+cardinality of the association:
+
+- `[]` for a plural one (`hasMany` / `belongsToMany`),
+- `null` for a singular one (`hasOne` / `belongsTo`).
+
+```typescript
+associations: {
+  users: {
+    as: 'users',
+    associationType: ERowsInflatorAssociation.hasMany,
+    emptyWhenAbsent: true, // "users": [] when the join matched nothing
+    fields: { code: {}, id: {} },
+  },
+},
+```
+
+Guarantees: it never attaches anything to an ancestor that already missed on the same row (nested outer
+joins), and it never invents a root row out of an all-null one.

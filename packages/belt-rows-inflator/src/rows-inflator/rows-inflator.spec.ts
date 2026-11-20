@@ -544,4 +544,94 @@ describe('rows-inflator', () => {
       { id: -2, code: 'hbenao', company: { id: -2, code: 'Rave' } },
     ]);
   });
+
+  // ---------------------------------------------------------------------------
+  // emptyWhenAbsent: an outer join (LEFT JOIN) that matched nothing still exposes
+  // the association on the parent — `null` for a singular one, `[]` for a plural one.
+  // Without the option the key stays absent (the historic behaviour, pinned below).
+  // ---------------------------------------------------------------------------
+  describe('emptyWhenAbsent', () => {
+    const schema = (emptyWhenAbsent: boolean): IRowsInflatorOptions =>
+      ({
+        as: 'user',
+        fields: { id: {}, code: {} },
+        primaryKeys: ['id'],
+        associations: {
+          user_skills: {
+            as: 'user_skills',
+            associationType: ERowsInflatorAssociation.hasMany,
+            fields: { id: {} },
+            primaryKeys: ['id'],
+            emptyWhenAbsent,
+            associations: {
+              skill: {
+                as: 'skill',
+                associationType: ERowsInflatorAssociation.belongsTo,
+                fields: { id: {}, code: {} },
+                primaryKeys: ['id'],
+                emptyWhenAbsent,
+              },
+            },
+          },
+          company: {
+            as: 'company',
+            associationType: ERowsInflatorAssociation.hasOne,
+            fields: { id: {}, code: {} },
+            primaryKeys: ['id'],
+            emptyWhenAbsent,
+          },
+        },
+      }) as IRowsInflatorOptions;
+
+    it('leaves the key out when the option is off (historic behaviour)', () => {
+      const results = rowsInflator([{ id: 1, code: 'a', user_skills__id: null, company__id: null }], schema(false));
+      assert.strictEqual('user_skills' in results[0], false);
+      assert.strictEqual('company' in results[0], false);
+    });
+
+    it('answers [] for a plural association and null for a singular one', () => {
+      const results = rowsInflator([{ id: 1, code: 'a', user_skills__id: null, company__id: null }], schema(true));
+      assert.deepEqual(results[0].user_skills, []);
+      assert.strictEqual(results[0].company, null);
+    });
+
+    it('keeps the real children when the association did match', () => {
+      const results = rowsInflator(
+        [
+          { id: 1, code: 'a', user_skills__id: 10, company__id: 1, company__code: 'C1' },
+          { id: 1, code: 'a', user_skills__id: 11, company__id: 1, company__code: 'C1' },
+        ],
+        schema(true)
+      );
+      assert.strictEqual(results.length, 1);
+      assert.deepEqual(
+        results[0].user_skills.map((sk: any) => sk.id),
+        [10, 11]
+      );
+      assert.deepEqual(results[0].company, { id: 1, code: 'C1' });
+    });
+
+    it('fills a nested miss without touching a stale parent', () => {
+      const results = rowsInflator(
+        [
+          // This user has a skill, and that skill has a company.
+          { id: 1, code: 'a', user_skills__id: 10, user_skills__skill__id: 7, user_skills__skill__code: 'S7' },
+          // This one has no skill at all: the deeper level must NOT be attached to the previous user's skill.
+          { id: 2, code: 'b', user_skills__id: null, user_skills__skill__id: null, user_skills__skill__code: null },
+        ],
+        schema(true)
+      );
+
+      assert.strictEqual(results.length, 2);
+      assert.deepEqual(results[0].user_skills, [{ id: 10, skill: { id: 7, code: 'S7' } }]);
+      assert.deepEqual(results[1].user_skills, []);
+      // The skill of the first row is untouched: no `company`/empty marker leaked from the second row.
+      assert.deepEqual(Object.keys(results[0].user_skills[0]), ['id', 'skill']);
+    });
+
+    it('does not create a root row out of an all-null row', () => {
+      const results = rowsInflator([{ id: null, code: null, user_skills__id: null }], schema(true));
+      assert.strictEqual(results.length, 0);
+    });
+  });
 });

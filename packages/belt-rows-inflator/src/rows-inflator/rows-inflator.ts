@@ -14,6 +14,12 @@ function rejoin(array: string[], endInclusive: number) {
 /** Good to know: Symbol is ignored in JSON serialization */
 const symHydrate: unique symbol = Symbol('__h');
 
+/**
+ * Handed to `setValue` when an association level mapped to nothing on this row (`emptyWhenAbsent`).
+ * Never exposed: consumers only ever see the `null` / `[]` it produces on the parent.
+ */
+const symAbsent: unique symbol = Symbol('__absent');
+
 export function rowsInflator<I = any, O = any>(raws: I[], schema: IRowsInflatorOptions): O[] {
   if (!raws || raws.length === 0) {
     return [];
@@ -74,6 +80,14 @@ export function rowsInflator<I = any, O = any>(raws: I[], schema: IRowsInflatorO
 
             rowPathUUID[depth] = formated.uuid;
           }
+        } else if (rowMapper.emptyWhenAbsent) {
+          // The association matched nothing on this row: the parent still gets the key (`null` or `[]`).
+          rowMapper.setValue(mainCollection, rowPathValues, symAbsent);
+          if (depth > 0) {
+            // Deeper levels of this same row must not attach to the parent this row just left behind.
+            rowPathValues[depth] = null;
+            rowPathUUID[depth] = '';
+          }
         }
       }
     }
@@ -125,11 +139,33 @@ ${hasPKFields ? '' : `uuid += \`_\${val}\`;`}`;
       mapFunction = new Function('row', mapFuncStr) as (row: unknown) => { value: unknown; uuid: string };
     }
 
+    // `<= belongsTo` is the singular side of the enum (hasOne & belongsTo), the plural side being
+    // hasMany & belongsToMany. Computed once per level, reused by the `emptyWhenAbsent` marker.
+    const isSingularAssociation =
+      levelSchema.associationType != null && levelSchema.associationType <= ERowsInflatorAssociation.belongsTo;
+
     rowMappers.push({
       cache: new Map<string, any>(),
       depth,
+      // A root level that maps to nothing is not a row: the option only applies to associations.
+      emptyWhenAbsent: depth > 0 && levelSchema.emptyWhenAbsent === true,
       map: (mapFunction as any) ?? (() => null),
       setValue: (mainCollection, rowPathValues, value) => {
+        if (value === symAbsent) {
+          // Only reached through `emptyWhenAbsent`. Singular -> null, plural -> [].
+          if (depth === 0) {
+            return;
+          }
+          const absentParent = rowPathValues[depth - 1];
+          if (absentParent == null) {
+            // An ancestor already missed on this row: there is nothing to hang the key on.
+            return;
+          }
+          // Singular association -> `null`, plural one -> `[]`.
+          absentParent[levelSchema.as!] = isSingularAssociation ? null : [];
+          return;
+        }
+
         if (depth === 0) {
           mainCollection.push(value);
         } else {
